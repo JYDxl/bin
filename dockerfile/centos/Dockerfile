@@ -1,4 +1,4 @@
-FROM centos:8.2.2004
+FROM centos:8.1.1911
 
 RUN yum -y update \
   && yum clean all

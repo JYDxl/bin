@@ -1,11 +1,10 @@
 #!ruby
 
-#noinspection RubyResolve
 require 'colorize'
 
 # @return [Unit]
 def warn
-  system "echo 'bin/init.rb mysql57|mysql80|mariadb|postgresql|rabbitmq|redis4|redis5|mongodb|alpine|ubuntu|centos'"
+  system "echo 'bin/init.rb mysql57|mysql80|mariadb|postgresql|rabbitmq|redis4|redis5|redis6|mongodb|alpine|ubuntu|centos'"
 end
 
 # @param [String] cmd
@@ -29,9 +28,9 @@ case app
     exec 'docker rm -f mysql80'
     exec "docker run -d --name mysql80 -v ~/volume/mysql80:/var/lib/mysql -p 3380:3306 -p 33800:33060 mysql80:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
   when 'mariadb'
-    exec 'docker build -t maria14 ~/bin/dockerfile/mariadb/'
-    exec 'docker rm -f maria14'
-    exec "docker run -d --name maria14 -v ~/volume/maria14:/var/lib/mysql -p 3307:3306 maria14:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
+    exec 'docker build -t maria ~/bin/dockerfile/mariadb/'
+    exec 'docker rm -f maria'
+    exec "docker run -d --name maria -v ~/volume/maria:/var/lib/mysql -p 3307:3306 maria:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
   when 'postgresql'
     exec 'docker build -t postgresql ~/bin/dockerfile/postgresql/'
     exec 'docker rm -f postgresql'
@@ -48,6 +47,10 @@ case app
     exec 'docker build -t redis5 ~/bin/dockerfile/redis5/'
     exec 'docker rm -f redis5'
     exec 'docker run -d --name redis5 -v ~/volume/redis5:/data -p 6379:6379 redis5:latest'
+  when 'redis6'
+    exec 'docker build -t redis6 ~/bin/dockerfile/redis6/'
+    exec 'docker rm -f redis6'
+    exec 'docker run -d --name redis6 -v ~/volume/redis6:/data -p 6381:6379 redis6:latest'
   when 'mongodb'
     exec 'docker build -t mongodb ~/bin/dockerfile/mongodb/'
     exec 'docker rm -f mongodb'
