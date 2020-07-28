@@ -1,0 +1,5 @@
+FROM mariadb:10.5.4
+
+ENV LANGUAGE en_US.UTF-8
+ENV TZ Asia/Shanghai
+ENV MYSQL_ROOT_PASSWORD l
