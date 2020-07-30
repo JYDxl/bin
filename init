@@ -1,15 +1,16 @@
 #!ruby
 
+# gem update --system
+# gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+# gem install colorize
+
 require 'colorize'
 
-# @return [Unit]
 def warn
-  system "echo 'bin/init.rb mysql57|mysql80|mariadb|postgresql|rabbitmq|redis4|redis5|redis6|mongodb|alpine|ubuntu|centos'"
+  system "echo 'bin/init mysql57|mysql80|mariadb|postgresql|rabbitmq|redis4|redis5|redis6|mongodb|alpine|ubuntu|centos|java'"
 end
 
-# @param [String] cmd
-# @return [Unit]
-# noinspection RubyResolve
+#noinspection RubyResolve
 def exec(cmd)
   puts "#{"==>".blue.bold} #{cmd.red.bold}"
   system cmd
@@ -67,6 +68,8 @@ case app
     exec 'docker build -t centoss ~/bin/dockerfile/centos/'
     exec 'docker rm -f centoss'
     exec 'docker run -d --name centoss -it centoss:latest /bin/bash'
+  when 'java'
+    exec 'docker build -t alpine-jre ~/hub/gradle-root/'
   else
     warn
 end
