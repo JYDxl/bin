@@ -1,6 +1,6 @@
-FROM centos:8.1.1911
+FROM centos:8
 
-RUN yum -y update \
+RUN  yum -y update \
   && yum clean all
 
 ENV LANGUAGE en_US.UTF-8

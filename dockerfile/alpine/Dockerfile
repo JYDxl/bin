@@ -1,6 +1,6 @@
 FROM alpine:3.12.0
 
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
+RUN  sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
   && apk update \
   && apk add curl bash tree iproute2 \
   && apk add -U tzdata \
