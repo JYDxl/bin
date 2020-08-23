@@ -1,4 +1,4 @@
-#!ruby
+#!/usr/bin/ruby
 
 # gem update --system
 # gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
@@ -7,7 +7,7 @@
 require 'colorize'
 
 def warn
-  system "echo 'bin/init mysql57|mysql80|mariadb|postgresql|rabbitmq|redis4|redis5|redis6|mongodb|alpine|ubuntu|centos|java'"
+  system "echo 'bin/init mysql57|mysql80|mariadb|postgresql|rabbitmq|redis4|redis5|redis6|mongodb|alpine|ubuntu|centos|debian|arch|java'"
 end
 
 #noinspection RubyResolve
@@ -57,17 +57,25 @@ case app
     exec 'docker rm -f mongodb'
     exec 'docker run -d --net backend --name mongodb -v ~/volume/mongo:/data/db -p 27017:27017 mongodb:latest'
   when 'alpine'
-    exec 'docker build -t alpineos ~/bin/dockerfile/alpine/'
-    exec 'docker rm -f alpineos'
-    exec 'docker run -d --net backend --name alpineos -it alpineos:latest sh'
+    exec 'docker build -t alpine-os ~/bin/dockerfile/alpine/'
+    exec 'docker rm -f alpine-os'
+    exec 'docker run -d --net backend --name alpine-os -it alpine-os:latest sh'
   when 'ubuntu'
-    exec 'docker build -t ubuntuos ~/bin/dockerfile/ubuntu/'
-    exec 'docker rm -f ubuntuos'
-    exec 'docker run -d --net backend --name ubuntuos -it ubuntuos:latest /bin/bash'
+    exec 'docker build -t ubuntu-os ~/bin/dockerfile/ubuntu/'
+    exec 'docker rm -f ubuntu-os'
+    exec 'docker run -d --net backend --name ubuntu-os -it ubuntu-os:latest /bin/bash'
+  when 'debian'
+    exec 'docker build -t debian-os ~/bin/dockerfile/debian/'
+    exec 'docker rm -f debian-os'
+    exec 'docker run -d --net backend --name debian-os -it debian-os:latest /bin/bash'
   when 'centos'
-    exec 'docker build -t centoss ~/bin/dockerfile/centos/'
-    exec 'docker rm -f centoss'
-    exec 'docker run -d --net backend --name centoss -it centoss:latest /bin/bash'
+    exec 'docker build -t centos-os ~/bin/dockerfile/centos/'
+    exec 'docker rm -f centos-os'
+    exec 'docker run -d --net backend --name centos-os -it centos-os:latest /bin/bash'
+  when 'arch'
+    exec 'docker build -t arch-os ~/bin/dockerfile/arch/'
+    exec 'docker rm -f arch-os'
+    exec 'docker run -d --net backend --name arch-os -it arch-os:latest /bin/bash'
   when 'java'
     exec 'docker build -t alpine-jre ~/hub/gradle-root/'
   else
