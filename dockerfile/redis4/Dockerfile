@@ -1,4 +1,4 @@
-FROM redis:4-alpine
+FROM redis:4.0.14-alpine
 
 RUN  sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
   && apk update \

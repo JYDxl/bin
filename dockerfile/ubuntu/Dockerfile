@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:focal-20200729
 
 RUN  sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
   && apt-get clean \

@@ -1,4 +1,4 @@
-FROM mariadb:10
+FROM mariadb:10.5.5-focal
 
 ENV LANGUAGE en_US.UTF-8
 ENV TZ Asia/Shanghai
