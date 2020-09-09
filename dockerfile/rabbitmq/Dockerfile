@@ -1,4 +1,4 @@
-FROM rabbitmq:3.8.7-management-alpine
+FROM rabbitmq:3.8.8-management-alpine
 
 RUN  sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
   && apk update \
