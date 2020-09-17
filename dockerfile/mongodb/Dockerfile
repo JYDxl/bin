@@ -1,4 +1,4 @@
-FROM mongo:4.4.0-bionic
+FROM mongo:4.4.1-bionic
 
 ENV LANGUAGE en_US.UTF-8
 ENV TZ Asia/Shanghai

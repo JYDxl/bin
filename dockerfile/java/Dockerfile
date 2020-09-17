@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alpine:11.0.8-jre-headless as jre-alpine
+FROM azul/zulu-openjdk-alpine:11.0.8-11.41.23-jre-headless as jre-alpine
 
 RUN \
 #设置镜像地址

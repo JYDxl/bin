@@ -1,4 +1,4 @@
-.idea
+/.idea
 .DS_Store
 
 /appcode
@@ -12,4 +12,5 @@
 /rubymine
 /studio
 /webstorm
+/iterm
 /.ruby-version
