@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alpine:15.0.0-15.27.17-jre as jre-alpine
+FROM azul/zulu-openjdk-alpine:15.0.0-15.27.17-jre as sub-web
 
 RUN \
 #设置镜像地址
@@ -6,6 +6,7 @@ RUN \
     && apk update \
 #安装常用工具包
 #    && apk add curl tree bash iproute2 \
+    && apk add tomcat-native \
 #设置时区
     && apk add -U tzdata \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
