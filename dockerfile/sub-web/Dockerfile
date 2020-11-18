@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alpine:15.0.0-15.27.17-jre as sub-web
+FROM azul/zulu-openjdk-alpine:15.0.1-15.28.13 as sub-web
 
 RUN \
 #设置镜像地址
