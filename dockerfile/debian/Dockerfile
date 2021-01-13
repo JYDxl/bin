@@ -1,4 +1,4 @@
-FROM debian:buster-20201117
+FROM debian:buster-20210111
 
 RUN  sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
   && apt-get clean \

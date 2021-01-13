@@ -7,7 +7,7 @@
 require 'colorize'
 
 def warn
-  system "echo 'bin/init mysql57|mysql80|mariadb|postgresql|rabbitmq|redis4|redis5|redis6|mongodb|alpine|ubuntu|centos|debian|arch|java|env|sub-web'"
+  system "echo 'bin/init mysql57|mysql80|mariadb|postgresql|rabbitmq|redis4|redis5|redis6|mongodb|alpine|ubuntu|debian|arch|java|env|sub-web'"
 end
 
 #noinspection RubyResolve
@@ -68,10 +68,6 @@ case app
     exec 'docker build -t debian-os ~/bin/dockerfile/debian/'
     exec 'docker rm -f debian-os'
     exec 'docker run -d --net backend --name debian-os -it debian-os:latest /bin/bash'
-  when 'centos'
-    exec 'docker build -t centos-os ~/bin/dockerfile/centos/'
-    exec 'docker rm -f centos-os'
-    exec 'docker run -d --net backend --name centos-os -it centos-os:latest /bin/bash'
   when 'arch'
     exec 'docker build -t arch-os ~/bin/dockerfile/arch/'
     exec 'docker rm -f arch-os'
