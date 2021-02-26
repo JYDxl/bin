@@ -7,7 +7,7 @@
 require 'colorize'
 
 def warn
-  system "echo 'bin/init mysql57|mysql80|mariadb|postgresql|rabbitmq|redis4|redis5|redis6|mongodb|alpine|ubuntu|debian|arch|java|env'"
+  system "echo 'bin/init mysql57|mysql80|mariadb|postgresql|rabbitmq|redis5|redis6|mongodb|alpine|ubuntu|debian|arch|java|env'"
 end
 
 #noinspection RubyResolve
@@ -40,10 +40,6 @@ case app
     exec 'docker build -t rabbit ~/bin/dockerfile/rabbitmq/'
     exec 'docker rm -f rabbit'
     exec 'docker run -d --net backend --name rabbit -v ~/volume/rabbitmq:/var/lib/rabbitmq -p 15672:15672 -p 5672:5672 rabbit:latest'
-  when 'redis4'
-    exec 'docker build -t redis4 ~/bin/dockerfile/redis4/'
-    exec 'docker rm -f redis4'
-    exec 'docker run -d --net backend --name redis4 -v ~/volume/redis4:/data -p 6380:6379 redis4:latest'
   when 'redis5'
     exec 'docker build -t redis5 ~/bin/dockerfile/redis5/'
     exec 'docker rm -f redis5'

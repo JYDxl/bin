@@ -1,4 +1,4 @@
-FROM alpine:3.13.1
+FROM alpine:3.13.2
 
 RUN  sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
   && apk update \
