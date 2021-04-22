@@ -1,15 +1,16 @@
 /.idea
 .DS_Store
 
+/mps
 /appcode
 /clion
 /datagrip
 /goland
 /idea
-/idea-old
 /pycharm
 /rider
 /rubymine
 /studio
 /webstorm
 /.ruby-version
+/.ubuntu.sh

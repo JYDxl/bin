@@ -10,8 +10,8 @@ def warn
   system "echo 'bin/init mysql57|mysql80|mariadb|postgresql|rabbitmq|redis5|redis6|mongodb|alpine|ubuntu|debian|arch|java|env'"
 end
 
-#noinspection RubyResolve
 def exec(cmd)
+  #noinspection RubyResolve
   puts "#{"==>".blue.bold} #{cmd.red.bold}"
   system cmd
 end
