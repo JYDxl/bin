@@ -8,4 +8,4 @@ RUN  sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositori
 
 ENV LANGUAGE en_US.UTF-8
 ENV TZ Asia/Shanghai
-ENV POSTGRES_PASSWORD root
+ENV POSTGRES_PASSWORD XLrootJYD713

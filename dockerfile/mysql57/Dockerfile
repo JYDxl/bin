@@ -1,5 +1,0 @@
-FROM mysql:5.7.34
-
-ENV LANGUAGE en_US.UTF-8
-ENV TZ Asia/Shanghai
-ENV MYSQL_ROOT_PASSWORD root
