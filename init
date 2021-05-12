@@ -23,11 +23,11 @@ case app
   when 'mysql'
     exec 'docker build -t mysql-server ~/bin/dockerfile/mysql/'
     exec 'docker rm -f mysql-server'
-    exec "docker run -d --net backend --name mysql-server -v ~/volume/mysql:/var/lib/mysql -p 3306:3306 mysql-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
+    exec "docker run -d --net backend --name mysql-server -v ~/volume/mysql:/var/lib/mysql -p 3306:3306 mysql-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
   when 'mariadb'
     exec 'docker build -t maria ~/bin/dockerfile/mariadb/'
     exec 'docker rm -f maria'
-    exec "docker run -d --net backend --name maria -v ~/volume/maria:/var/lib/mysql -p 3307:3306 maria:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
+    exec "docker run -d --net backend --name maria -v ~/volume/maria:/var/lib/mysql -p 3307:3306 maria:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
   when 'postgresql'
     exec 'docker build -t postgresql ~/bin/dockerfile/postgresql/'
     exec 'docker rm -f postgresql'
