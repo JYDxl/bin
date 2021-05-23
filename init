@@ -35,7 +35,7 @@ case app
   when 'rabbitmq'
     exec 'docker build -t rabbit ~/bin/dockerfile/rabbitmq/'
     exec 'docker rm -f rabbit'
-    exec 'docker run -d --net backend --name rabbit -v ~/volume/rabbitmq:/var/lib/rabbitmq -p 15672:15672 -p 5672:5672 rabbit:latest'
+    exec 'docker run -d --net backend --name rabbit --hostname rabbitmq -v ~/volume/rabbitmq:/var/lib/rabbitmq -p 15672:15672 -p 5672:5672 rabbit:latest'
   when 'redis'
     exec 'docker build -t redis-server ~/bin/dockerfile/redis/'
     exec 'docker rm -f redis-server'
