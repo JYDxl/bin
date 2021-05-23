@@ -10,3 +10,4 @@ ENV LANGUAGE en_US.UTF-8
 ENV TZ Asia/Shanghai
 ENV RABBITMQ_DEFAULT_USER root
 ENV RABBITMQ_DEFAULT_PASS XLrootJYD713
+RUN rabbitmq-plugins enable --all
