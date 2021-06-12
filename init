@@ -7,7 +7,7 @@
 require 'colorize'
 
 def warn
-  system "echo 'bin/init mysql|mariadb|postgresql|rabbitmq|redis|mongodb|nacos|alpine|ubuntu|debian|arch|java|env'"
+  system "echo 'bin/init mysql|mariadb|postgresql|rabbitmq|redis|mongodb|nacos|zipkin|alpine|ubuntu|debian|arch|java|env'"
 end
 
 def exec(cmd)
@@ -46,7 +46,13 @@ case app
     exec 'docker run -d --net backend --name mongodb -v ~/volume/mongo:/data/db -p 27017:27017 mongodb:latest'
   when 'nacos'
     exec 'docker rm -f nacos-mysql'
-    exec 'docker run -d -e MODE=standalone -e SPRING_DATASOURCE_PLATFORM=mysql --net backend -e MYSQL_SERVICE_HOST=mysql-server -e MYSQL_SERVICE_PORT=3306 -e MYSQL_SERVICE_USER=root -e MYSQL_SERVICE_PASSWORD=XLrootJYD713 -e MYSQL_SERVICE_DB_NAME=nacos_config --restart=always --name nacos-mysql -p 8848:8848 nacos/nacos-server:latest'
+    exec 'docker run -d --net backend --name nacos-mysql -p 8848:8848 -e MODE=standalone -e SPRING_DATASOURCE_PLATFORM=mysql -e MYSQL_SERVICE_HOST=mysql-server -e MYSQL_SERVICE_PORT=3306 -e MYSQL_SERVICE_USER=root -e MYSQL_SERVICE_PASSWORD=XLrootJYD713 -e MYSQL_SERVICE_DB_NAME=nacos_config --restart=always nacos/nacos-server:latest'
+  when 'zipkin'
+    exec 'docker rm -f zipkin-server'
+    exec 'docker run -d --net backend --name zipkin-server -p 9411:9411 openzipkin/zipkin:latest'
+  when 'sentinel'
+    exec 'docker rm -f sentinel-server'
+    exec 'docker run -d --net backend --name sentinel-server -p 8858:8858 bladex/sentinel-dashboard:latest'
   when 'alpine'
     exec 'docker build -t alpine-os ~/bin/dockerfile/alpine/'
     exec 'docker rm -f alpine-os'
