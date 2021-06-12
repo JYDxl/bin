@@ -46,7 +46,7 @@ case app
     exec 'docker run -d --net backend --name mongodb -v ~/volume/mongo:/data/db -p 27017:27017 mongodb:latest'
   when 'nacos'
     exec 'docker rm -f nacos-mysql'
-    exec 'docker run -d -e MODE=standalone -e SPRING_DATASOURCE_PLATFORM=mysql --net host -e MYSQL_SERVICE_HOST=localhost -e MYSQL_SERVICE_PORT=3306 -e MYSQL_SERVICE_USER=root -e MYSQL_SERVICE_PASSWORD=XLrootJYD713 -e MYSQL_SERVICE_DB_NAME=nacos_config --restart=always --name nacos-mysql nacos/nacos-server:latest'
+    exec 'docker run -d -e MODE=standalone -e SPRING_DATASOURCE_PLATFORM=mysql --net backend -e MYSQL_SERVICE_HOST=mysql-server -e MYSQL_SERVICE_PORT=3306 -e MYSQL_SERVICE_USER=root -e MYSQL_SERVICE_PASSWORD=XLrootJYD713 -e MYSQL_SERVICE_DB_NAME=nacos_config --restart=always --name nacos-mysql -p 8848:8848 nacos/nacos-server:latest'
   when 'alpine'
     exec 'docker build -t alpine-os ~/bin/dockerfile/alpine/'
     exec 'docker rm -f alpine-os'
