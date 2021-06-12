@@ -7,7 +7,7 @@
 require 'colorize'
 
 def warn
-  system "echo 'bin/init mysql|mariadb|postgresql|rabbitmq|redis|mongodb|alpine|ubuntu|debian|arch|java|env'"
+  system "echo 'bin/init mysql|mariadb|postgresql|rabbitmq|redis|mongodb|nacos|alpine|ubuntu|debian|arch|java|env'"
 end
 
 def exec(cmd)
@@ -44,6 +44,9 @@ case app
     exec 'docker build -t mongodb ~/bin/dockerfile/mongodb/'
     exec 'docker rm -f mongodb'
     exec 'docker run -d --net backend --name mongodb -v ~/volume/mongo:/data/db -p 27017:27017 mongodb:latest'
+  when 'nacos'
+    exec 'docker rm -f nacos-mysql'
+    exec 'docker run -d -e MODE=standalone -e SPRING_DATASOURCE_PLATFORM=mysql --net host -e MYSQL_SERVICE_HOST=localhost -e MYSQL_SERVICE_PORT=3306 -e MYSQL_SERVICE_USER=root -e MYSQL_SERVICE_PASSWORD=XLrootJYD713 -e MYSQL_SERVICE_DB_NAME=nacos_config --restart=always --name nacos-mysql nacos/nacos-server:latest'
   when 'alpine'
     exec 'docker build -t alpine-os ~/bin/dockerfile/alpine/'
     exec 'docker rm -f alpine-os'
