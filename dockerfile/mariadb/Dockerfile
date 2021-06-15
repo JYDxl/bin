@@ -2,4 +2,5 @@ FROM mariadb:10.5.10-focal
 
 ENV LANGUAGE en_US.UTF-8
 ENV TZ Asia/Shanghai
+
 ENV MYSQL_ROOT_PASSWORD XLrootJYD713

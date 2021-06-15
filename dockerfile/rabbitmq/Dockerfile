@@ -8,6 +8,7 @@ RUN  sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositori
 
 ENV LANGUAGE en_US.UTF-8
 ENV TZ Asia/Shanghai
+
 ENV RABBITMQ_DEFAULT_USER root
 ENV RABBITMQ_DEFAULT_PASS XLrootJYD713
 RUN rabbitmq-plugins enable --all
