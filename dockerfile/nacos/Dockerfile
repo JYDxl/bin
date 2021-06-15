@@ -1,4 +1,4 @@
-FROM nacos/nacos-server:2.0.2
+FROM nacos/nacos-server:2.0.1
 
 ENV LANGUAGE en_US.UTF-8
 ENV TZ Asia/Shanghai
