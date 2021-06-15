@@ -9,6 +9,7 @@ require 'colorize'
 def warn
   system "echo 'bin/init mysql|mariadb|postgresql|rabbitmq|redis|mongodb|nacos|zipkin|sentinel|alpine|ubuntu|debian|arch|java|env'"
 end
+# TODO jenkins nginx
 
 def exec(cmd)
   #noinspection RubyResolve
@@ -23,35 +24,35 @@ case app
   when 'mysql'
     exec 'docker build -t mysql-server ~/bin/dockerfile/mysql/'
     exec 'docker rm -f mysql-server'
-    exec "docker run -d --net backend --name mysql-server -v ~/volume/mysql:/var/lib/mysql -p 3306:3306 mysql-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
+    exec "docker run -d --net backend --name mysql-server -p 3306:3306 -v ~/volume/mysql:/var/lib/mysql mysql-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
   when 'mariadb'
-    exec 'docker build -t maria ~/bin/dockerfile/mariadb/'
-    exec 'docker rm -f maria'
-    exec "docker run -d --net backend --name maria -v ~/volume/maria:/var/lib/mysql -p 3307:3306 maria:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
+    exec 'docker build -t mariadb-server ~/bin/dockerfile/mariadb/'
+    exec 'docker rm -f mariadb-server'
+    exec "docker run -d --net backend --name mariadb-server -p 3307:3306 -v ~/volume/maria:/var/lib/mysql mariadb-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
   when 'postgresql'
-    exec 'docker build -t postgresql ~/bin/dockerfile/postgresql/'
-    exec 'docker rm -f postgresql'
-    exec 'docker run -d --net backend --name postgresql -v ~/volume/pgdata:/var/lib/postgresql/data -p 5432:5432 postgresql:latest'
+    exec 'docker build -t postgresql-server ~/bin/dockerfile/postgresql/'
+    exec 'docker rm -f postgresql-server'
+    exec 'docker run -d --net backend --name postgresql-server -p 5432:5432 -v ~/volume/pgdata:/var/lib/postgresql/data postgresql-server:latest'
   when 'rabbitmq'
-    exec 'docker build -t rabbit ~/bin/dockerfile/rabbitmq/'
-    exec 'docker rm -f rabbit'
-    exec 'docker run -d --net backend --name rabbit --hostname rabbitmq -v ~/volume/rabbitmq:/var/lib/rabbitmq -p 15672:15672 -p 5672:5672 rabbit:latest'
+    exec 'docker build -t rabbitmq-server ~/bin/dockerfile/rabbitmq/'
+    exec 'docker rm -f rabbitmq-server'
+    exec 'docker run -d --net backend --name rabbitmq-server -p 15672:15672 -p 5672:5672 -v ~/volume/rabbitmq:/var/lib/rabbitmq rabbitmq-server:latest --hostname=rabbitmq-server'
   when 'redis'
     exec 'docker build -t redis-server ~/bin/dockerfile/redis/'
     exec 'docker rm -f redis-server'
-    exec 'docker run -d --net backend --name redis-server -v ~/volume/redis:/data -p 6379:6379 redis-server:latest --requirepass "XLrootJYD713"'
+    exec 'docker run -d --net backend --name redis-server -p 6379:6379 -v ~/volume/redis:/data redis-server:latest --requirepass="XLrootJYD713"'
   when 'mongodb'
-    exec 'docker build -t mongodb ~/bin/dockerfile/mongodb/'
-    exec 'docker rm -f mongodb'
-    exec 'docker run -d --net backend --name mongodb -v ~/volume/mongo:/data/db -p 27017:27017 mongodb:latest'
+    exec 'docker build -t mongodb-server ~/bin/dockerfile/mongodb/'
+    exec 'docker rm -f mongodb-server'
+    exec 'docker run -d --net backend --name mongodb-server -p 27017:27017 -v ~/volume/mongo:/data/db mongodb-server:latest'
   when 'nacos'
-    exec 'docker build -t nacos-mysql ~/bin/dockerfile/nacos/'
-    exec 'docker rm -f nacos-mysql'
-    exec 'docker run -d --net backend --name nacos-mysql -p 8848:8848 --restart=always nacos-mysql:latest'
+    exec 'docker build -t nacos-server ~/bin/dockerfile/nacos/'
+    exec 'docker rm -f nacos-server'
+    exec 'docker run -d --net backend --name nacos-server -p 8848:8848 nacos-server:latest'
   when 'zipkin'
     exec 'docker build -t zipkin-server ~/bin/dockerfile/nacos/'
     exec 'docker rm -f zipkin-server'
-    exec 'docker run -d --net backend --name zipkin-server -p 9411:9411 zipkin-server:latest'
+    exec 'docker run -d --net backend --name zipkin-server -p 9411:9411 zipkin-server:latest --link=rabbitmq'
   when 'sentinel'
     exec 'docker build -t sentinel-server ~/bin/dockerfile/nacos/'
     exec 'docker rm -f sentinel-server'

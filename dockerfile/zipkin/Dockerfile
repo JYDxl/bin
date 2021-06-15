@@ -2,3 +2,7 @@ FROM openzipkin/zipkin:latest
 
 ENV LANGUAGE en_US.UTF-8
 ENV TZ Asia/Shanghai
+
+ENV RABBIT_ADDRESSES rabbitmq-server:5672
+ENV RABBIT_USER root
+ENV RABBIT_PASSWORD XLrootJYD713
