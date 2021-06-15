@@ -24,11 +24,11 @@ case app
   when 'mysql'
     exec 'docker build -t mysql-server ~/bin/dockerfile/mysql/'
     exec 'docker rm -f mysql-server'
-    exec "docker run -d --net backend --name mysql-server -p 3306:3306 -v ~/volume/mysql:/var/lib/mysql mysql-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
+    exec "docker run -d --net backend --name mysql-server -p 3306:3306 -v ~/volume/mysql:/var/lib/mysql --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00' mysql-server:latest"
   when 'mariadb'
     exec 'docker build -t mariadb-server ~/bin/dockerfile/mariadb/'
     exec 'docker rm -f mariadb-server'
-    exec "docker run -d --net backend --name mariadb-server -p 3307:3306 -v ~/volume/maria:/var/lib/mysql mariadb-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
+    exec "docker run -d --net backend --name mariadb-server -p 3307:3306 -v ~/volume/maria:/var/lib/mysql --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00' mariadb-server:latest"
   when 'postgresql'
     exec 'docker build -t postgresql-server ~/bin/dockerfile/postgresql/'
     exec 'docker rm -f postgresql-server'
@@ -36,11 +36,11 @@ case app
   when 'rabbitmq'
     exec 'docker build -t rabbitmq-server ~/bin/dockerfile/rabbitmq/'
     exec 'docker rm -f rabbitmq-server'
-    exec 'docker run -d --net backend --name rabbitmq-server -p 15672:15672 -p 5672:5672 -v ~/volume/rabbitmq:/var/lib/rabbitmq rabbitmq-server:latest --hostname=rabbitmq-server'
+    exec 'docker run -d --net backend --name rabbitmq-server -p 15672:15672 -p 5672:5672 -v ~/volume/rabbitmq:/var/lib/rabbitmq --hostname=rabbitmq rabbitmq-server:latest'
   when 'redis'
     exec 'docker build -t redis-server ~/bin/dockerfile/redis/'
     exec 'docker rm -f redis-server'
-    exec 'docker run -d --net backend --name redis-server -p 6379:6379 -v ~/volume/redis:/data redis-server:latest --requirepass="XLrootJYD713"'
+    exec 'docker run -d --net backend --name redis-server -p 6379:6379 -v ~/volume/redis:/data --requirepass="XLrootJYD713" redis-server:latest'
   when 'mongodb'
     exec 'docker build -t mongodb-server ~/bin/dockerfile/mongodb/'
     exec 'docker rm -f mongodb-server'
@@ -52,7 +52,7 @@ case app
   when 'zipkin'
     exec 'docker build -t zipkin-server ~/bin/dockerfile/zipkin/'
     exec 'docker rm -f zipkin-server'
-    exec 'docker run -d --net backend --name zipkin-server -p 9411:9411 zipkin-server:latest --link=rabbitmq'
+    exec 'docker run -d --net backend --name zipkin-server -p 9411:9411 --link=rabbitmq zipkin-server:latest'
   when 'sentinel'
     exec 'docker build -t sentinel-server ~/bin/dockerfile/sentinel/'
     exec 'docker rm -f sentinel-server'
