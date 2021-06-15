@@ -1,4 +1,4 @@
-FROM openzipkin/zipkin:latest
+FROM openzipkin/zipkin:2.23.2
 
 ENV LANGUAGE en_US.UTF-8
 ENV TZ Asia/Shanghai
