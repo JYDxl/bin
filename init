@@ -60,7 +60,7 @@ case app
   when 'seata'
     exec 'docker build -t seata-server ~/bin/dockerfile/seata/'
     exec 'docker rm -f seata-server'
-    exec 'docker run -d --net backend --name seata-server -p 8091:8091 -v /PATH/TO/CONFIG_FILE:~/bin/config/seata/conf seata-server:latest'
+    exec 'docker run -d --net backend --name seata-server -p 8091:8091 -v /PATH/TO/CONFIG_FILE:/opt/conf/seata/conf seata-server:latest'
   when 'alpine'
     exec 'docker build -t alpine-os ~/bin/dockerfile/alpine/'
     exec 'docker rm -f alpine-os'
