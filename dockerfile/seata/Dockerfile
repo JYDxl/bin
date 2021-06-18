@@ -2,4 +2,4 @@ FROM seataio/seata-server:1.4.2
 
 ENV LANGUAGE en_US.UTF-8
 ENV TZ Asia/Shanghai
-ENV SEATA_CONFIG_NAME file:/opt/conf/seata/conf/registry
+ENV SEATA_CONFIG_NAME file:/root/seata-config/registry
