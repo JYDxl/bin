@@ -6,4 +6,4 @@ ENV TZ Asia/Shanghai
 
 COPY conf/registry.conf /seata-server/resources/registry.conf
 COPY conf/file.conf /seata-server/resources/file.conf
-COPY https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.25/mysql-connector-java-8.0.25.jar /seata-server/libs/mysql-connector-java.jar
+COPY conf/mysql-connector-java-8.0.25.jar /seata-server/libs/mysql-connector-java.jar
