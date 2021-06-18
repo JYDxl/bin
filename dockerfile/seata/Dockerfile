@@ -5,5 +5,5 @@ ENV TZ Asia/Shanghai
 #ENV SEATA_CONFIG_NAME file:/root/seata-config/registry
 
 COPY conf/registry.conf /seata-server/resources/registry.conf
-COPY conf/file.conf /seata-server/resources/file.conf
+#COPY conf/file.conf /seata-server/resources/file.conf
 COPY conf/mysql-connector-java-8.0.25.jar /seata-server/libs/mysql-connector-java-8.0.25.jar
