@@ -7,7 +7,7 @@
 require 'colorize'
 
 def warn
-  system "echo 'bin/init mysql|mariadb|postgresql|rabbitmq|redis|mongodb|nacos|zipkin|sentinel|seata|alpine|ubuntu|debian|arch|java|env'"
+  system "echo 'bin/init mysql|mariadb|postgresql|rabbitmq|redis|mongodb|nacos|zipkin|sentinel|seata|nginx|alpine|ubuntu|debian|arch|java|env'"
 end
 # TODO jenkins nginx
 
@@ -57,6 +57,10 @@ case app
     exec 'docker build -t sentinel-server ~/bin/dockerfile/sentinel/'
     exec 'docker rm -f sentinel-server'
     exec 'docker run -d --net backend --name sentinel-server -p 8858:8858 sentinel-server:latest'
+  when 'nginx'
+    exec 'docker build -t nginx-server ~/bin/dockerfile/nginx/'
+    exec 'docker rm -f nginx-server'
+    exec 'docker run -d --net host    --name nginx-server -p 80:80 -v ~/frontend:/frontend nginx-server:latest'
   when 'seata'
     exec 'docker build -t seata-server ~/bin/dockerfile/seata/'
     exec 'docker rm -f seata-server'
