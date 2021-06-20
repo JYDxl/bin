@@ -3,7 +3,7 @@ FROM seataio/seata-server:1.4.2
 ENV LANGUAGE en_US.UTF-8
 ENV TZ Asia/Shanghai
 
-ENV SEATA_IP ubuntu
+ENV SEATA_IP 192.168.1.200
 #ENV SEATA_CONFIG_NAME file:/root/seata-config/registry
 
 COPY conf/registry.conf /seata-server/resources/registry.conf
