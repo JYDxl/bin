@@ -47,7 +47,7 @@ store.file.sessionReloadReadSize=100
 store.db.datasource=druid
 store.db.dbType=mysql
 store.db.driverClassName=com.mysql.cj.jdbc.Driver
-store.db.url=jdbc:mysql://ubuntu:3306/seata?useUnicode=true&rewriteBatchedStatements=true
+store.db.url=jdbc:mysql://mysql-server:3306/seata?useUnicode=true&rewriteBatchedStatements=true
 store.db.user=root
 store.db.password=XLrootJYD713
 store.db.minConn=5
