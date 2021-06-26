@@ -56,7 +56,7 @@ case app
   when 'sentinel'
     exec 'docker build -t sentinel-server ~/bin/dockerfile/sentinel/'
     exec 'docker rm -f sentinel-server'
-    exec 'docker run -d --net backend --name sentinel-server -p 8858:8858 sentinel-server:latest'
+    exec 'docker run -d --net host    --name sentinel-server sentinel-server:latest'
   when 'nginx'
     exec 'docker build -t nginx-server ~/bin/dockerfile/nginx/'
     exec 'docker rm -f nginx-server'
