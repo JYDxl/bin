@@ -9,7 +9,7 @@ require 'colorize'
 def warn
   system "echo 'bin/init mysql|mariadb|postgresql|rabbitmq|redis|mongodb|nacos|zipkin|sentinel|seata|nginx|alpine|ubuntu|debian|arch|java|env'"
 end
-# TODO jenkins nginx
+# TODO jenkins
 
 def exec(cmd)
   #noinspection RubyResolve

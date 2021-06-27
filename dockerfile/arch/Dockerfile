@@ -1,4 +1,4 @@
-FROM archlinux:base-20210530.0.24217
+FROM archlinux:base-20210620.0.26405
 
 RUN  sed -i '1i Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist \
   && pacman -Syyu --noconfirm \
