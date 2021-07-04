@@ -7,7 +7,7 @@
 require 'colorize'
 
 def warn
-  system "echo 'bin/init mysql|mariadb|postgresql|rabbitmq|redis|mongodb|nacos|zipkin|sentinel|seata|nginx|alpine|ubuntu|debian|arch|java|env'"
+  system "echo 'bin/init mysql|mysql5|mariadb|postgresql|rabbitmq|redis|mongodb|nacos|zipkin|sentinel|seata|nginx|alpine|ubuntu|debian|arch|java|env'"
 end
 # TODO jenkins
 
@@ -25,6 +25,10 @@ case app
     exec 'docker build -t mysql-server ~/bin/dockerfile/mysql/'
     exec 'docker rm -f mysql-server'
     exec "docker run -d --net backend --name mysql-server -p 3306:3306 -v ~/volume/mysql:/var/lib/mysql --restart=always --privileged=true mysql-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
+  when 'mysql5'
+    exec 'docker build -t mysql5-server ~/bin/dockerfile/mysql5/'
+    exec 'docker rm -f mysql5-server'
+    exec "docker run -d --net backend --name mysql5-server -p 3307:3306 -v ~/volume/mysql5:/var/lib/mysql --restart=always --privileged=true mysql5-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
   when 'mariadb'
     exec 'docker build -t mariadb-server ~/bin/dockerfile/mariadb/'
     exec 'docker rm -f mariadb-server'
