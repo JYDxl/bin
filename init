@@ -32,7 +32,7 @@ case app
   when 'mariadb'
     exec 'docker build -t mariadb-server ~/bin/dockerfile/mariadb/'
     exec 'docker rm -f mariadb-server'
-    exec "docker run -d --net backend --name mariadb-server -p 3307:3306 -v ~/volume/maria:/var/lib/mysql --restart=always --privileged=true mariadb-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
+    exec "docker run -d --net backend --name mariadb-server -p 3308:3306 -v ~/volume/maria:/var/lib/mysql --restart=always --privileged=true mariadb-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
   when 'postgresql'
     exec 'docker build -t postgresql-server ~/bin/dockerfile/postgresql/'
     exec 'docker rm -f postgresql-server'
