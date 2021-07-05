@@ -68,7 +68,7 @@ case app
   when 'fastdfs'
     exec 'docker build -t fastdfs-server ~/bin/dockerfile/fastdfs/'
     exec 'docker rm -f fastdfs-server'
-    exec 'docker run -d --net host    --name fastdfs-server -p 8090:8080 -v ~/volume/fastdfs:/data --restart=always --privileged=true fastdfs-server:latest'
+    exec 'docker run -d --net host    --name fastdfs-server -v ~/volume/fastdfs:/data --restart=always --privileged=true fastdfs-server:latest'
   when 'seata'
     exec 'docker build -t seata-server ~/bin/dockerfile/seata/'
     exec 'docker rm -f seata-server'
