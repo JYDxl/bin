@@ -7,7 +7,7 @@
 require 'colorize'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|mariadb|postgresql|rabbitmq|redis|mongodb|nacos|zipkin|sentinel|seata|nginx|fastdfs|alpine|ubuntu|debian|arch|java|env'"
+  system "echo 'bin/init mysql|mysql5|mariadb|postgresql|rabbitmq|redis|mongodb|clickhouse|nacos|zipkin|sentinel|seata|nginx|fastdfs|alpine|ubuntu|debian|arch|java|env'"
 end
 # TODO jenkins
 
@@ -49,6 +49,10 @@ case app
     exec 'docker build -t mongodb-server ~/bin/dockerfile/mongodb/'
     exec 'docker rm -f mongodb-server'
     exec 'docker run -d --net backend --name mongodb-server -p 27017:27017 -v ~/volume/mongo:/data/db --restart=always --privileged=true mongodb-server:latest'
+  when 'clickhouse'
+    exec 'docker build -t clickhouse-server ~/bin/dockerfile/clickhouse/'
+    exec 'docker rm -f clickhouse-server'
+    exec 'docker run -d --net backend --name clickhouse-server --ulimit nofile=262144:262144 -p 8123:8123 -p 9000:9000 -v ~/volume/clickhouse:/var/lib/clickhouse --restart=always --privileged=true clickhouse-server:latest'
   when 'nacos'
     exec 'docker build -t nacos-server ~/bin/dockerfile/nacos/'
     exec 'docker rm -f nacos-server'
