@@ -11,13 +11,12 @@ RUN \
     && apk add --no-cache tzdata \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
-    && apk del tzdata \
     && rm -rf /var/cache/apk/* \
     && rm -rf /root/.cache \
     && rm -rf /tmp/*
 
-WORKDIR /
-
 #配置环境
 ENV LANG zh_CN.UTF-8
 ENV TZ Asia/Shanghai
+
+COPY conf/config.xml /etc/clickhouse-server/config.xml
