@@ -8,11 +8,16 @@ RUN \
 #安装常用工具包
 #    && apk add curl tree bash iproute2 \
 #设置时区
-    && apk add tzdata \
-    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && apk add --no-cache tzdata \
+    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
-#    && apk del tzdata \
-#    && rm -rf /var/cache/apk/*
+    && apk del tzdata \
+    && rm -rf /var/cache/apk/* \
+    && rm -rf /root/.cache \
+    && rm -rf /tmp/*
+
+WORKDIR /
+
 #配置环境
 ENV LANG zh_CN.UTF-8
 ENV TZ Asia/Shanghai
