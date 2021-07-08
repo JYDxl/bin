@@ -52,7 +52,7 @@ case app
   when 'clickhouse'
     exec 'docker build -t clickhouse-server ~/bin/dockerfile/clickhouse/'
     exec 'docker rm -f clickhouse-server'
-    exec 'docker run -d --net backend --name clickhouse-server --ulimit nofile=262144:262144 -p 8123:8123 -p 9000:9000 -v ~/volume/clickhouse:/var/lib/clickhouse --restart=always --privileged=true clickhouse-server:latest'
+    exec 'docker run -d --net backend --name clickhouse-server --ulimit nofile=262144:262144 -p 8123:8123 -p 8999:9000 -v ~/volume/clickhouse:/var/lib/clickhouse --restart=always --privileged=true clickhouse-server:latest'
   when 'nacos'
     exec 'docker build -t nacos-server ~/bin/dockerfile/nacos/'
     exec 'docker rm -f nacos-server'
