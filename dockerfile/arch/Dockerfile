@@ -6,5 +6,5 @@ RUN  sed -i '1i Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os
   && echo "Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch" >> /etc/pacman.conf \
   && pacman -Sy archlinuxcn-keyring
 
-ENV LANGUAGE en_US.UTF-8
+ENV LANG zh_CN.UTF-8
 ENV TZ Asia/Shanghai

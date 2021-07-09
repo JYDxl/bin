@@ -1,6 +1,6 @@
 FROM mongo:4.4.6-bionic
 
-ENV LANGUAGE en_US.UTF-8
+ENV LANG zh_CN.UTF-8
 ENV TZ Asia/Shanghai
 
 ENV MONGO_INITDB_ROOT_USERNAME root

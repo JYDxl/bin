@@ -1,6 +1,6 @@
 FROM nacos/nacos-server:2.0.2
 
-ENV LANGUAGE en_US.UTF-8
+ENV LANG zh_CN.UTF-8
 ENV TZ Asia/Shanghai
 
 ENV MODE standalone
