@@ -7,7 +7,7 @@
 require 'colorize'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|mariadb|postgresql|rabbitmq|redis|mongodb|clickhouse|nacos|zipkin|sentinel|seata|nginx|fastdfs|alpine|ubuntu|debian|arch|java|env'"
+  system "echo 'bin/init mysql|mysql5|mariadb|postgresql|rabbitmq|redis|mongodb|clickhouse|nacos|zipkin|sentinel|seata|nginx|fastdfs|alpine|ubuntu|debian|arch|java|env' -origin"
 end
 # TODO jenkins
 
@@ -24,35 +24,35 @@ case app
   when 'mysql'
     exec 'docker build -t mysql-server ~/bin/dockerfile/mysql/'
     exec 'docker rm -f mysql-server'
-    exec "docker run -d --net backend --name mysql-server -p 3306:3306 -v ~/volume/mysql:/var/lib/mysql --restart=always --privileged=true mysql-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
+    exec "docker run -d --net backend --name mysql-server -p 3306:3306 -v ~/volume/mysql:/var/lib/mysql -v /home:/extra/home --restart=always --privileged=true mysql-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
   when 'mysql5'
     exec 'docker build -t mysql5-server ~/bin/dockerfile/mysql5/'
     exec 'docker rm -f mysql5-server'
-    exec "docker run -d --net backend --name mysql5-server -p 3307:3306 -v ~/volume/mysql5:/var/lib/mysql --restart=always --privileged=true mysql5-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
+    exec "docker run -d --net backend --name mysql5-server -p 3307:3306 -v ~/volume/mysql5:/var/lib/mysql -v /home:/extra/home --restart=always --privileged=true mysql5-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
   when 'mariadb'
     exec 'docker build -t mariadb-server ~/bin/dockerfile/mariadb/'
     exec 'docker rm -f mariadb-server'
-    exec "docker run -d --net backend --name mariadb-server -p 3308:3306 -v ~/volume/maria:/var/lib/mysql --restart=always --privileged=true mariadb-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
+    exec "docker run -d --net backend --name mariadb-server -p 3308:3306 -v ~/volume/maria:/var/lib/mysql -v /home:/extra/home --restart=always --privileged=true mariadb-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
   when 'postgresql'
     exec 'docker build -t postgresql-server ~/bin/dockerfile/postgresql/'
     exec 'docker rm -f postgresql-server'
-    exec 'docker run -d --net backend --name postgresql-server -p 5432:5432 -v ~/volume/pgdata:/var/lib/postgresql/data --restart=always --privileged=true postgresql-server:latest'
+    exec 'docker run -d --net backend --name postgresql-server -p 5432:5432 -v ~/volume/pgdata:/var/lib/postgresql/data -v /home:/extra/home --restart=always --privileged=true postgresql-server:latest'
   when 'rabbitmq'
     exec 'docker build -t rabbitmq-server ~/bin/dockerfile/rabbitmq/'
     exec 'docker rm -f rabbitmq-server'
-    exec 'docker run -d --net backend --name rabbitmq-server -p 15672:15672 -p 5672:5672 -v ~/volume/rabbitmq:/var/lib/rabbitmq --hostname rabbitmq-server --restart=always --privileged=true rabbitmq-server:latest'
+    exec 'docker run -d --net backend --name rabbitmq-server -p 15672:15672 -p 5672:5672 -v ~/volume/rabbitmq:/var/lib/rabbitmq -v /home:/extra/home --hostname rabbitmq-server --restart=always --privileged=true rabbitmq-server:latest'
   when 'redis'
     exec 'docker build -t redis-server ~/bin/dockerfile/redis/'
     exec 'docker rm -f redis-server'
-    exec 'docker run -d --net backend --name redis-server -p 6379:6379 -v ~/volume/redis:/data --restart=always --privileged=true redis-server:latest --requirepass "XLrootJYD713"'
+    exec 'docker run -d --net backend --name redis-server -p 6379:6379 -v ~/volume/redis:/data -v /home:/extra/home --restart=always --privileged=true redis-server:latest --requirepass "XLrootJYD713"'
   when 'mongodb'
     exec 'docker build -t mongodb-server ~/bin/dockerfile/mongodb/'
     exec 'docker rm -f mongodb-server'
-    exec 'docker run -d --net backend --name mongodb-server -p 27017:27017 -v ~/volume/mongo:/data/db --restart=always --privileged=true mongodb-server:latest'
+    exec 'docker run -d --net backend --name mongodb-server -p 27017:27017 -v ~/volume/mongo:/data/db -v /home:/extra/home --restart=always --privileged=true mongodb-server:latest'
   when 'clickhouse'
     exec 'docker build -t clickhouse-server ~/bin/dockerfile/clickhouse/'
     exec 'docker rm -f clickhouse-server'
-    exec 'docker run -d --net backend --name clickhouse-server --ulimit nofile=262144:262144 -p 8123:8123 -p 8999:9000 -v ~/volume/clickhouse:/var/lib/clickhouse --restart=always --privileged=true clickhouse-server:latest'
+    exec 'docker run -d --net backend --name clickhouse-server --ulimit nofile=262144:262144 -p 8123:8123 -p 8999:9000 -v ~/volume/clickhouse:/var/lib/clickhouse -v /home:/extra/home --restart=always --privileged=true clickhouse-server:latest'
   when 'nacos'
     exec 'docker build -t nacos-server ~/bin/dockerfile/nacos/'
     exec 'docker rm -f nacos-server'
@@ -68,11 +68,11 @@ case app
   when 'nginx'
     exec 'docker build -t nginx-server ~/bin/dockerfile/nginx/'
     exec 'docker rm -f nginx-server'
-    exec 'docker run -d --net backend --name nginx-server -p 80:80 -v ~/frontend:/frontend --restart=always --privileged=true nginx-server:latest'
+    exec 'docker run -d --net backend --name nginx-server -p 80:80 -v ~/frontend:/frontend -v /home:/extra/home --restart=always --privileged=true nginx-server:latest'
   when 'fastdfs'
     exec 'docker build -t fastdfs-server ~/bin/dockerfile/fastdfs/'
     exec 'docker rm -f fastdfs-server'
-    exec 'docker run -d --net host    --name fastdfs-server -v ~/volume/fastdfs:/data --restart=always --privileged=true fastdfs-server:latest'
+    exec 'docker run -d --net host    --name fastdfs-server -v ~/volume/fastdfs:/data -v /home:/extra/home --restart=always --privileged=true fastdfs-server:latest'
   when 'seata'
     exec 'docker build -t seata-server ~/bin/dockerfile/seata/'
     exec 'docker rm -f seata-server'
