@@ -7,7 +7,7 @@
 require 'colorize'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|mariadb|postgresql|rabbitmq|redis|mongodb|clickhouse|nacos|zipkin|sentinel|seata|nginx|fastdfs|alpine|ubuntu|debian|arch|java|env' -origin"
+  system "echo 'bin/init mysql|mysql5|mariadb|postgresql|rabbitmq|redis|mongodb|clickhouse|nacos|zipkin|sentinel|seata|nginx|fastdfs|minio|alpine|ubuntu|debian|arch|java|env' -origin"
 end
 # TODO jenkins
 
@@ -73,6 +73,10 @@ case app
     exec 'docker build -t fastdfs-server ~/bin/dockerfile/fastdfs/'
     exec 'docker rm -f fastdfs-server'
     exec 'docker run -d --net host    --name fastdfs-server -v ~/volume/fastdfs:/data -v /home:/extra/home --restart=always --privileged=true fastdfs-server:latest'
+  when 'minio'
+    exec 'docker build -t minio-server ~/bin/dockerfile/minio/'
+    exec 'docker rm -f minio-server'
+    exec 'docker run -d --net backend --name minio-server -p 8998:9000 -v ~/volume/minio:/data -v ~/config/minio:/root/.minio -v /home:/extra/home --restart=always --privileged=true minio-server:latest server /data'
   when 'seata'
     exec 'docker build -t seata-server ~/bin/dockerfile/seata/'
     exec 'docker rm -f seata-server'
