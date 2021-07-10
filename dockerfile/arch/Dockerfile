@@ -7,4 +7,4 @@ RUN  sed -i '1i Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os
   && pacman -Sy archlinuxcn-keyring
 
 ENV LANG zh_CN.UTF-8
-ENV TZ Asia/Shanghai
+#ENV TZ Asia/Shanghai

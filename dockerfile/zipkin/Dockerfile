@@ -1,7 +1,7 @@
 FROM openzipkin/zipkin:2.23.2
 
 ENV LANG zh_CN.UTF-8
-ENV TZ Asia/Shanghai
+#ENV TZ Asia/Shanghai
 
 ENV RABBIT_ADDRESSES rabbitmq-server:5672
 ENV RABBIT_USER root

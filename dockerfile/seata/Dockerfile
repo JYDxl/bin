@@ -1,7 +1,7 @@
 FROM seataio/seata-server:1.4.2
 
 ENV LANG zh_CN.UTF-8
-ENV TZ Asia/Shanghai
+#ENV TZ Asia/Shanghai
 
 ENV SEATA_IP 192.168.1.200
 #ENV SEATA_CONFIG_NAME file:/root/seata-config/registry

@@ -5,4 +5,4 @@ RUN  sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
   && apt-get update
 
 ENV LANG zh_CN.UTF-8
-ENV TZ Asia/Shanghai
+#ENV TZ Asia/Shanghai
