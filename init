@@ -88,7 +88,7 @@ case app
   when 'ubuntu'
     exec 'docker build -t ubuntu-os ~/bin/dockerfile/ubuntu/'
     exec 'docker rm -f ubuntu-os'
-    exec 'docker run -d --net backend --name ubuntu-os -it ubuntu-os:latest /bin/bash'
+    exec 'docker run -d --net backend --name ubuntu-os -v /etc/localtime:/etc/localtime -it ubuntu-os:latest /bin/bash'
   when 'debian'
     exec 'docker build -t debian-os ~/bin/dockerfile/debian/'
     exec 'docker rm -f debian-os'
