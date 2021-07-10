@@ -6,5 +6,5 @@ ENV TZ Asia/Shanghai
 ENV MINIO_ROOT_USER root
 ENV MINIO_ROOT_PASSWORD XLrootJYD713
 
-COPY ../ubuntu/timezone/Shanghai /etc/localtime
+COPY timezone/Shanghai /etc/localtime
 RUN echo 'Asia/Shanghai' >/etc/timezone
