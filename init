@@ -7,7 +7,7 @@
 require 'colorize'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|mariadb|postgresql|rabbitmq|redis|mongodb|clickhouse|nacos|zipkin|sentinel|seata|nginx|fastdfs|minio|alpine|ubuntu|debian|arch|java|env' -origin"
+  system "echo 'bin/init mysql|mysql5|mariadb|postgresql|rabbitmq|redis|mongodb|clickhouse|nacos|zipkin|sentinel|seata|nginx|fastdfs|minio|alpine|ubuntu|debian|arch|java|env'"
 end
 # TODO jenkins
 
