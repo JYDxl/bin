@@ -1,4 +1,4 @@
-FROM yandex/clickhouse-server:21.6.6.51-alpine
+FROM yandex/clickhouse-server:21.7.2.7-alpine
 
 RUN \
 #设置镜像地址

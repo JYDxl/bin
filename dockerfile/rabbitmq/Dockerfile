@@ -1,4 +1,4 @@
-FROM rabbitmq:3.8.17-management-alpine
+FROM rabbitmq:3.8.19-management-alpine
 
 RUN \
 #设置镜像地址

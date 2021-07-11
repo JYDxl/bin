@@ -5,5 +5,3 @@ ENV LANG zh_CN.UTF-8
 
 ENV MINIO_ROOT_USER root
 ENV MINIO_ROOT_PASSWORD XLrootJYD713
-
-RUN echo 'Asia/Shanghai' >/etc/timezone

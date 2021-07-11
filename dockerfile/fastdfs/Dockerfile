@@ -1,4 +1,4 @@
-FROM sjqzhang/go-fastdfs:v1.4.2
+FROM sjqzhang/go-fastdfs:latest
 
 ENV LANG zh_CN.UTF-8
 #ENV TZ Asia/Shanghai
