@@ -1,6 +1,6 @@
 FROM mysql:8.0.25
 
 ENV LANG zh_CN.UTF-8
-#ENV TZ Asia/Shanghai
+ENV TZ Asia/Shanghai
 
 ENV MYSQL_ROOT_PASSWORD XLrootJYD713

@@ -1,4 +1,4 @@
 FROM bladex/sentinel-dashboard:1.8.0
 
 ENV LANG zh_CN.UTF-8
-#ENV TZ Asia/Shanghai
+ENV TZ Asia/Shanghai

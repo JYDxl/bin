@@ -1,7 +1,7 @@
 FROM nacos/nacos-server:2.0.2
 
 ENV LANG zh_CN.UTF-8
-#ENV TZ Asia/Shanghai
+ENV TZ Asia/Shanghai
 
 ENV MODE standalone
 ENV SPRING_DATASOURCE_PLATFORM mysql

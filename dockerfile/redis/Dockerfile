@@ -17,4 +17,4 @@ RUN \
 
 #配置环境
 ENV LANG zh_CN.UTF-8
-#ENV TZ Asia/Shanghai
+ENV TZ Asia/Shanghai
