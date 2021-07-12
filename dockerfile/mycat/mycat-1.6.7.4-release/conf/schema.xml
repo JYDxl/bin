@@ -22,7 +22,7 @@
 			  writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
 		<heartbeat>select user()</heartbeat>
 		<!-- can have multi write hosts -->
-		<writeHost host="hostM1" url="localhost:3307" user="root"
+		<writeHost host="hostM1" url="mysql5-server:3306" user="root"
 				   password="XLrootJYD713">
 		</writeHost>
 		<!-- <writeHost host="hostM2" url="localhost:3316" user="root" password="123456"/> -->

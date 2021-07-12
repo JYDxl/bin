@@ -7,7 +7,7 @@
 require 'colorize'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|mariadb|postgresql|rabbitmq|redis|mongodb|clickhouse|nacos|zipkin|sentinel|seata|nginx|fastdfs|minio|alpine|ubuntu|debian|arch|java|env'"
+  system "echo 'bin/init mysql|mysql5|mariadb|mycat|postgresql|rabbitmq|redis|mongodb|clickhouse|nacos|zipkin|sentinel|seata|nginx|fastdfs|minio|alpine|ubuntu|debian|arch|java|env'"
 end
 # TODO jenkins
 
@@ -33,6 +33,10 @@ case app
     exec 'docker build -t mariadb-server ~/bin/dockerfile/mariadb/'
     exec 'docker rm -f mariadb-server'
     exec "docker run -d --net backend --name mariadb-server -p 3308:3306 -v ~/volume/maria:/var/lib/mysql -v /home:/extra/home -v /etc/localtime:/etc/localtime --restart=always --privileged=true mariadb-server:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
+  when 'mycat'
+      exec 'docker build -t mycat-server ~/bin/dockerfile/mycat/'
+      exec 'docker rm -f mycat-server'
+      exec "docker run -d --net backend --name mycat-server -p 8066:8066 -p 9066:9066 -v /home:/extra/home --restart=always --privileged=true mycat-server:latest"
   when 'postgresql'
     exec 'docker build -t postgresql-server ~/bin/dockerfile/postgresql/'
     exec 'docker rm -f postgresql-server'
