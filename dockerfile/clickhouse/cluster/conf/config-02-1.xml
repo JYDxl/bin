@@ -692,7 +692,7 @@
 <!--                </replica>-->
 <!--            </shard>-->
 <!--        </test_unavailable_shard>-->
-        <my_cluster>
+        <cluster>
             <!--分片1-->
             <shard>
                 <internal_replication>true</internal_replication>
@@ -769,7 +769,7 @@
                     <password></password>
                 </replica>
             </shard>
-        </my_cluster>
+        </cluster>
     </remote_servers>
 
     <!-- The list of hosts allowed to use in URL-related storage engines and table functions.
