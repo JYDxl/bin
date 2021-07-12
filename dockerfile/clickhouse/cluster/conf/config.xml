@@ -153,7 +153,7 @@
          - users without password have readonly access.
          See also: https://www.shodan.io/search?query=clickhouse
       -->
-    <!-- <listen_host>::</listen_host> -->
+    <listen_host>::</listen_host>
 
     <!-- Same for hosts without support for IPv6: -->
     <!-- <listen_host>0.0.0.0</listen_host> -->
@@ -693,6 +693,8 @@
             </shard>
         </test_unavailable_shard>
     </remote_servers>
+
+    <include_from>/etc/clickhouse-server/metrika.xml</include_from>
 
     <!-- The list of hosts allowed to use in URL-related storage engines and table functions.
         If this section is not present in configuration, all hosts are allowed.

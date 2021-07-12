@@ -1,0 +1,112 @@
+<yandex>
+  <!--ck集群节点-->
+  <clickhouse_remote_servers>
+    <my_cluster>
+      <!--分片1-->
+      <shard>
+        <internal_replication>true</internal_replication>
+        <replica>
+          <!--这里写节点1的IP4地址-->
+          <host>clickhouse-shard1-replica1</host>
+          <!--这里写节点1的tcp端口-->
+          <port>9000</port>
+          <!--这里写节点1的账号-->
+          <user>default</user>
+          <!--这里写节点1的账号对应的密码-->
+          <password></password>
+        </replica>
+        <replica>
+          <!--这里写节点1的IP4地址-->
+          <host>clickhouse-shard1-replica2</host>
+          <!--这里写节点1的tcp端口-->
+          <port>9000</port>
+          <!--这里写节点1的账号-->
+          <user>default</user>
+          <!--这里写节点1的账号对应的密码-->
+          <password></password>
+        </replica>
+      </shard>
+      <!--分片2-->
+      <shard>
+        <internal_replication>true</internal_replication>
+        <replica>
+          <!--这里写节点2的IP4地址-->
+          <!--这里的地址有点坑，它是docker容器的地址：查看命令：docker inspect 容器ID-->
+          <host>clickhouse-shard2-replica1</host>
+          <!--这里写节点2的tcp端口-->
+          <port>9000</port>
+          <!--这里写节点2的账号-->
+          <user>default</user>
+          <!--这里写节点2的账号对应的密码-->
+          <password></password>
+        </replica>
+        <replica>
+          <!--这里写节点2的IP4地址-->
+          <!--这里的地址有点坑，它是docker容器的地址：查看命令：docker inspect 容器ID-->
+          <host>clickhouse-shard2-replica2</host>
+          <!--这里写节点2的tcp端口-->
+          <port>9000</port>
+          <!--这里写节点2的账号-->
+          <user>default</user>
+          <!--这里写节点2的账号对应的密码-->
+          <password></password>
+        </replica>
+      </shard>
+      <!--分片3-->
+      <shard>
+        <internal_replication>true</internal_replication>
+        <replica>
+          <!--这里写节点2的IP4地址-->
+          <!--这里的地址有点坑，它是docker容器的地址：查看命令：docker inspect 容器ID-->
+          <host>clickhouse-shard3-replica1</host>
+          <!--这里写节点2的tcp端口-->
+          <port>9000</port>
+          <!--这里写节点2的账号-->
+          <user>default</user>
+          <!--这里写节点2的账号对应的密码-->
+          <password></password>
+        </replica>
+        <replica>
+          <!--这里写节点2的IP4地址-->
+          <!--这里的地址有点坑，它是docker容器的地址：查看命令：docker inspect 容器ID-->
+          <host>clickhouse-shard3-replica2</host>
+          <!--这里写节点2的tcp端口-->
+          <port>9000</port>
+          <!--这里写节点2的账号-->
+          <user>default</user>
+          <!--这里写节点2的账号对应的密码-->
+          <password></password>
+        </replica>
+      </shard>
+    </my_cluster>
+  </clickhouse_remote_servers>
+
+  <!--zookeeper相关配置-->
+  <zookeeper-servers>
+    <node index="1">
+      <!--这里写Zookeeper的IP，如果用docker启动的： docker inspect 容器ID  查看docker容器的IPv4 -->
+      <host>zookeeper-clickhouse</host>
+      <!--这里写Zookeeper的端口-->
+      <port>2181</port>
+    </node>
+   </zookeeper-servers>
+
+  <macros>
+    <layer>01</layer>
+    <shard>01</shard> <!--这个节点配置的分片号-->
+    <replica>cluster-01-1</replica> <!--当前分片为1，副本为1-->
+  </macros>
+
+  <networks>
+    <ip>::/0</ip>
+  </networks>
+
+  <!--压缩相关配置-->
+  <clickhouse_compression>
+    <case>
+      <min_part_size>10000000000</min_part_size>
+      <min_part_size_ratio>0.01</min_part_size_ratio>
+      <method>lz4</method> <!--压缩算法lz4压缩比zstd快, 更占磁盘-->
+    </case>
+  </clickhouse_compression>
+</yandex>

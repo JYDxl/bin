@@ -18,5 +18,7 @@ RUN \
 #配置环境
 ENV LANG zh_CN.UTF-8
 ENV TZ Asia/Shanghai
+ENV NODE 01-1
 
 COPY conf/config.xml /etc/clickhouse-server/config.xml
+COPY conf/metrika-$NODE.xml /etc/clickhouse-server/metrika.xml
