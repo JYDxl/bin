@@ -82,14 +82,14 @@
   </clickhouse_remote_servers>
 
   <!--zookeeper相关配置-->
-  <zookeeper-servers>
-    <node index="1">
+  <zookeeper>
+    <node>
       <!--这里写Zookeeper的IP，如果用docker启动的： docker inspect 容器ID  查看docker容器的IPv4 -->
       <host>zookeeper-clickhouse</host>
       <!--这里写Zookeeper的端口-->
       <port>2181</port>
     </node>
-   </zookeeper-servers>
+   </zookeeper>
 
   <macros>
     <layer>01</layer>
