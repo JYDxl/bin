@@ -61,6 +61,8 @@ case app
     exec 'docker rm -f zookeeper-clickhouse'
     exec 'docker run -d --net backend --name zookeeper-clickhouse --restart=always --privileged=true zookeeper:latest'
 
+    sleep 10
+
     exec 'docker build -t clickhouse-shard1-replica1 --build-arg NODE="01-1" ~/bin/dockerfile/clickhouse/cluster/'
     exec 'docker rm -f clickhouse-shard1-replica1'
     exec 'docker run -d --net backend --name clickhouse-shard1-replica1 --ulimit nofile=262144:262144 -p 18011:8123 -v /home:/extra/home --restart=always --privileged=true clickhouse-shard1-replica1:latest'
