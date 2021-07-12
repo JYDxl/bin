@@ -587,8 +587,8 @@
     <!-- Configuration of clusters that could be used in Distributed tables.
          https://clickhouse.tech/docs/en/operations/table_engines/distributed/
       -->
-<!--    <remote_servers>-->
-<!--        &lt;!&ndash; Test only shard config for testing distributed storage &ndash;&gt;-->
+    <remote_servers>
+        <!-- Test only shard config for testing distributed storage -->
 <!--        <test_shard_localhost>-->
 <!--            &lt;!&ndash; Inter-server per-cluster secret for Distributed queries-->
 <!--                 default: no secret (no authentication will be performed)-->
@@ -692,9 +692,85 @@
 <!--                </replica>-->
 <!--            </shard>-->
 <!--        </test_unavailable_shard>-->
-<!--    </remote_servers>-->
-
-    <remote_servers incl="clickhouse_remote_servers"></remote_servers>
+        <my_cluster>
+            <!--分片1-->
+            <shard>
+                <internal_replication>true</internal_replication>
+                <replica>
+                    <!--这里写节点1的IP4地址-->
+                    <host>clickhouse-shard1-replica1</host>
+                    <!--这里写节点1的tcp端口-->
+                    <port>9000</port>
+                    <!--这里写节点1的账号-->
+                    <user>default</user>
+                    <!--这里写节点1的账号对应的密码-->
+                    <password></password>
+                </replica>
+                <replica>
+                    <!--这里写节点1的IP4地址-->
+                    <host>clickhouse-shard1-replica2</host>
+                    <!--这里写节点1的tcp端口-->
+                    <port>9000</port>
+                    <!--这里写节点1的账号-->
+                    <user>default</user>
+                    <!--这里写节点1的账号对应的密码-->
+                    <password></password>
+                </replica>
+            </shard>
+            <!--分片2-->
+            <shard>
+                <internal_replication>true</internal_replication>
+                <replica>
+                    <!--这里写节点2的IP4地址-->
+                    <!--这里的地址有点坑，它是docker容器的地址：查看命令：docker inspect 容器ID-->
+                    <host>clickhouse-shard2-replica1</host>
+                    <!--这里写节点2的tcp端口-->
+                    <port>9000</port>
+                    <!--这里写节点2的账号-->
+                    <user>default</user>
+                    <!--这里写节点2的账号对应的密码-->
+                    <password></password>
+                </replica>
+                <replica>
+                    <!--这里写节点2的IP4地址-->
+                    <!--这里的地址有点坑，它是docker容器的地址：查看命令：docker inspect 容器ID-->
+                    <host>clickhouse-shard2-replica2</host>
+                    <!--这里写节点2的tcp端口-->
+                    <port>9000</port>
+                    <!--这里写节点2的账号-->
+                    <user>default</user>
+                    <!--这里写节点2的账号对应的密码-->
+                    <password></password>
+                </replica>
+            </shard>
+            <!--分片3-->
+            <shard>
+                <internal_replication>true</internal_replication>
+                <replica>
+                    <!--这里写节点2的IP4地址-->
+                    <!--这里的地址有点坑，它是docker容器的地址：查看命令：docker inspect 容器ID-->
+                    <host>clickhouse-shard3-replica1</host>
+                    <!--这里写节点2的tcp端口-->
+                    <port>9000</port>
+                    <!--这里写节点2的账号-->
+                    <user>default</user>
+                    <!--这里写节点2的账号对应的密码-->
+                    <password></password>
+                </replica>
+                <replica>
+                    <!--这里写节点2的IP4地址-->
+                    <!--这里的地址有点坑，它是docker容器的地址：查看命令：docker inspect 容器ID-->
+                    <host>clickhouse-shard3-replica2</host>
+                    <!--这里写节点2的tcp端口-->
+                    <port>9000</port>
+                    <!--这里写节点2的账号-->
+                    <user>default</user>
+                    <!--这里写节点2的账号对应的密码-->
+                    <password></password>
+                </replica>
+            </shard>
+        </my_cluster>
+    </remote_servers>
 
     <!-- The list of hosts allowed to use in URL-related storage engines and table functions.
         If this section is not present in configuration, all hosts are allowed.
@@ -728,35 +804,26 @@
          See https://clickhouse.tech/docs/en/engines/table-engines/mergetree-family/replication/
       -->
 
-    <!--
     <zookeeper>
         <node>
-            <host>example1</host>
-            <port>2181</port>
-        </node>
-        <node>
-            <host>example2</host>
-            <port>2181</port>
-        </node>
-        <node>
-            <host>example3</host>
+            <!--这里写Zookeeper的IP，如果用docker启动的： docker inspect 容器ID  查看docker容器的IPv4 -->
+            <host>zookeeper-clickhouse</host>
+            <!--这里写Zookeeper的端口-->
             <port>2181</port>
         </node>
     </zookeeper>
-    -->
 
     <!-- Substitutions for parameters of replicated tables.
           Optional. If you don't use replicated tables, you could omit that.
 
          See https://clickhouse.tech/docs/en/engines/table-engines/mergetree-family/replication/#creating-replicated-tables
       -->
-    <!--
-    <macros>
-        <shard>01</shard>
-        <replica>example01-01-1</replica>
-    </macros>
-    -->
 
+    <macros>
+        <layer>01</layer>
+        <shard>02</shard> <!--这个节点配置的分片号-->
+        <replica>cluster-02-2</replica> <!--当前分片为1，副本为1-->
+    </macros>
 
     <!-- Reloading interval for embedded dictionaries, in seconds. Default: 3600. -->
     <builtin_dictionaries_reload_interval>3600</builtin_dictionaries_reload_interval>
@@ -1158,5 +1225,4 @@
 
     <!-- Uncomment to disable ClickHouse internal DNS caching. -->
     <!-- <disable_internal_dns_cache>1</disable_internal_dns_cache> -->
-    <include_from>/etc/clickhouse-server/metrika.xml</include_from>
 </yandex>

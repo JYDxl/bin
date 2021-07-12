@@ -21,5 +21,4 @@ ENV TZ Asia/Shanghai
 
 ARG NODE
 
-COPY conf/config.xml /etc/clickhouse-server/config.xml
-COPY conf/metrika-$NODE.xml /etc/clickhouse-server/metrika.xml
+COPY conf/config-$NODE.xml /etc/clickhouse-server/config.xml
