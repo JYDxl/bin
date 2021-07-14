@@ -135,6 +135,7 @@
                  Execute: PASSWORD=$(base64 < /dev/urandom | head -c8); echo "$PASSWORD"; echo -n "$PASSWORD" | sha1sum | tr -d '-' | xxd -r -p | sha1sum | tr -d '-'
                  In first line will be password and in second - corresponding double SHA1.
             -->
+            <!--XLrootJYD713-->
             <password_sha256_hex>8a6e2877f8355224e394ed52612e9827229280ec6a27a31efcf9c3013144b408</password_sha256_hex>
 
             <!-- List of networks with open access.
