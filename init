@@ -57,7 +57,7 @@ case app
   when 'clickhouse'
     exec 'docker build -t clickhouse-server ~/bin/dockerfile/clickhouse/'
     exec 'docker rm -f clickhouse-server'
-    exec 'docker run -d --net backend --name clickhouse-server --ulimit nofile=262144:262144 -p 8123:8123 -p 8999:9000 -v ~/volume/clickhouse:/var/lib/clickhouse -v /home:/extra/home --restart=always --privileged=true clickhouse-server:latest'
+    exec 'docker run -d --net backend --name clickhouse-server --ulimit nofile=262144:262144 -p 8123:8123 -p 8999:9000 -v ~/volume/clickhouse:/var/lib/clickhouse -v /etc/localtime:/etc/localtime -v /home:/extra/home --restart=always --privileged=true clickhouse-server:latest'
   when 'clickhouse-cluster'
     exec 'docker build -t clickhouse-shard1-replica1 --build-arg NODE="01-1" ~/bin/dockerfile/clickhouse/cluster/'
     exec 'docker rm -f clickhouse-shard1-replica1'
