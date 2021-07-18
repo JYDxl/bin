@@ -16,7 +16,8 @@ if $noJavaHome ; then
 fi
 #==============================================================================
 #set JAVA_OPTS
-JAVA_OPTS="-server -Xms2G -Xmx2G -XX:+AggressiveOpts -XX:MaxDirectMemorySize=2G"
+JAVA_OPTS="-server -XX:+AggressiveOpts"
+#JAVA_OPTS="-server -Xms2G -Xmx2G -XX:+AggressiveOpts -XX:MaxDirectMemorySize=2G"
 #JAVA_OPTS="-server -Xms4G -Xmx4G -XX:+AggressiveOpts -XX:MaxDirectMemorySize=6G"
 #performance Options
 #JAVA_OPTS="$JAVA_OPTS -Xss256k"
