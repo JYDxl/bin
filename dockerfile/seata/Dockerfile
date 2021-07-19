@@ -2,7 +2,8 @@ FROM seataio/seata-server:1.4.2
 
 ENV LANG zh_CN.UTF-8
 
-ENV SEATA_IP 192.168.1.200
+ARG IP
+ENV SEATA_IP $IP
 #ENV SEATA_CONFIG_NAME file:/root/seata-config/registry
 
 COPY conf/registry.conf /seata-server/resources/registry.conf
