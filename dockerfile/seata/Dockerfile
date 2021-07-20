@@ -8,4 +8,4 @@ ENV SEATA_IP $IP
 
 COPY conf/registry.conf /seata-server/resources/registry.conf
 #COPY conf/file.conf /seata-server/resources/file.conf
-COPY conf/mysql-connector-java-8.0.25.jar /seata-server/libs/mysql-connector-java.jar
+COPY conf/mysql-connector-java-8.0.26.jar /seata-server/libs/mysql-connector-java.jar
