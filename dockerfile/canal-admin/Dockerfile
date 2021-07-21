@@ -1,7 +1,6 @@
-FROM mysql:5.7.35
+FROM mysql:8.0.25
 
 ENV LANG zh_CN.UTF-8
 ENV TZ Asia/Shanghai
 
 ENV MYSQL_ROOT_PASSWORD XLrootJYD713
-COPY conf/mysql.cnf /etc/mysql/mysql.cnf

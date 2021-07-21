@@ -8,7 +8,7 @@ require 'colorize'
 require 'socket'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|mariadb|mycat|postgresql|rabbitmq|redis|mongodb|clickhouse|clickhouse-cluster|kafka|nacos|zipkin|sentinel|seata|nginx|fastdfs|minio|alpine|ubuntu|debian|arch|java|env'"
+  system "echo 'bin/init mysql|mysql5|canal|mariadb|mycat|postgresql|rabbitmq|redis|mongodb|clickhouse|clickhouse-cluster|kafka|nacos|zipkin|sentinel|seata|nginx|fastdfs|minio|alpine|ubuntu|debian|arch|java|env'"
 end
 
 # TODO jenkins
@@ -32,6 +32,10 @@ case app
     exec 'docker build -t mysql5-server ~/bin/dockerfile/mysql5/'
     exec 'docker rm -f mysql5-server'
     exec "docker run -d --net backend --name mysql5-server -p 3307:3306 -v ~/volume/mysql5:/var/lib/mysql -v /home:/extra/home --restart=always --privileged=true mysql5-server --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
+  when 'canal'
+    exec 'docker build -t canal-server ~/bin/dockerfile/canal/'
+    exec 'docker rm -f canal-server'
+    exec "docker run -d --net backend --name canal-server -p 11111:11111 -v /home:/extra/home --restart=always --privileged=true canal-server"
   when 'mariadb'
     exec 'docker build -t mariadb-server ~/bin/dockerfile/mariadb/'
     exec 'docker rm -f mariadb-server'
