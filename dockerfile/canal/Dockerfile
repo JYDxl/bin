@@ -13,3 +13,5 @@ ENV canal.instance.dbPassword canal
 
 ENV canal.serverMode kafka
 ENV kafka.bootstrap.servers kafka-server:9092
+ENV kafka.linger.ms 50
+ENV canal.mq.topic=canal
