@@ -11,7 +11,11 @@ ENV canal.instance.master.address mysql-server:3306
 ENV canal.instance.dbUsername canal
 ENV canal.instance.dbPassword canal
 
-ENV canal.serverMode kafka
-ENV kafka.bootstrap.servers kafka-server:9092
-ENV kafka.linger.ms 50
-ENV canal.mq.topic=canal
+ENV canal.serverMode rabbitMQ
+ENV rabbitmq.host rabbitmq-server
+ENV rabbitmq.virtual.host /
+ENV rabbitmq.exchange canal-exchange
+ENV rabbitmq.username root
+ENV rabbitmq.password XLrootJYD713
+ENV rabbitmq.deliveryMode 2
+ENV canal.mq.topic=routing-key
