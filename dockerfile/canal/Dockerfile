@@ -3,6 +3,5 @@ FROM canal/canal-server:v1.1.5
 ENV LANG zh_CN.UTF-8
 ENV TZ Asia/Shanghai
 
-ENV canal.instance.master.address mysql5-server:3306
-ENV canal.instance.dbUsername root
-ENV canal.instance.dbPassword XLrootJYD713
+COPY conf/canal.properties /home/admin/canal-server/conf/canal.properties
+COPY conf/instance.properties /home/admin/canal-server/conf/example/instance.properties

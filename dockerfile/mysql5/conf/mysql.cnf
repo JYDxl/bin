@@ -21,11 +21,9 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 
 [mysqld]
-log_timestamps=SYSTEM
-default-time-zone='+8:00'
+server-id=3307
 log-bin=mysql-bin
-server-id=3306
-binlog_format=row
+binlog_format=ROW
 
 !includedir /etc/mysql/conf.d/
 !includedir /etc/mysql/mysql.conf.d/
