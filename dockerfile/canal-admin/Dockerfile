@@ -5,9 +5,9 @@ ENV TZ Asia/Shanghai
 
 ENV server.port 8089
 ENV canal.adminUser admin
-ENV canal.adminPasswd XLrootJYD713
+ENV canal.adminPasswd admin
 
-#ENV spring.datasource.address mysql-server:3306
-#ENV spring.datasource.database canal_manager
-#ENV spring.datasource.username root
-#ENV spring.datasource.password XLrootJYD713
+ENV spring.datasource.address mysql-server:3306
+ENV spring.datasource.database canal_manager
+ENV spring.datasource.username root
+ENV spring.datasource.password XLrootJYD713
