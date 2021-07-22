@@ -106,7 +106,7 @@ case app
     exec 'docker rm -f kafka-server'
 
     exec 'docker rm -f zookeeper-kafka'
-    exec 'docker run -d --net backend --name zookeeper-kafka -v /etc/localtime:/etc/localtime --restart=always --privileged=true zookeeper:3.6.3'
+    exec 'docker run -d --net backend --name zookeeper-kafka -p 2181:2181 -v /etc/localtime:/etc/localtime --restart=always --privileged=true zookeeper:3.6.3'
     sleep 30
 
     exec 'docker run -d --net backend --name kafka-server -p 9092:9092 -v /etc/localtime:/etc/localtime --restart=always --log-driver json-file --log-opt max-size=100m --log-opt max-file=2 kafka-server'
