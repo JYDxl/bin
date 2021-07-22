@@ -1,4 +1,4 @@
-FROM mysql:8.0.25
+FROM mysql:8.0.26
 
 ENV LANG zh_CN.UTF-8
 ENV TZ Asia/Shanghai
