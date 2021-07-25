@@ -1,4 +1,4 @@
-FROM minio/minio:RELEASE.2021-07-08T19-43-25Z.fips
+FROM minio/minio:RELEASE.2021-07-22T05-23-32Z.fips
 
 ENV LANG zh_CN.UTF-8
 
