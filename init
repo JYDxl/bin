@@ -110,15 +110,6 @@ case app
     sleep 30
 
     exec 'docker run -d --net backend --name kafka-server -p 9092:9092 -v /etc/localtime:/etc/localtime --restart=always --log-driver json-file --log-opt max-size=100m --log-opt max-file=2 kafka-server'
-  when 'kafka'
-    exec "docker build -t kafka-server --build-arg IP='#{ip}' ~/bin/dockerfile/kafka/"
-    exec 'docker rm -f kafka-server1'
-
-    exec 'docker rm -f zookeeper-kafka1'
-    exec 'docker run -d --net backend --name zookeeper-kafka1 -p 2182:2181 -v /etc/localtime:/etc/localtime --restart=always --privileged=true zookeeper:3.6.3'
-    sleep 30
-
-    exec 'docker run -d --net backend --name kafka-server1 -p 9093:9092 -v /etc/localtime:/etc/localtime --restart=always --log-driver json-file --log-opt max-size=100m --log-opt max-file=2 kafka-server'
   when 'nacos'
     exec 'docker build -t nacos-server ~/bin/dockerfile/nacos/'
     exec 'docker rm -f nacos-server'
