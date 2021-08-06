@@ -1,4 +1,4 @@
-FROM mongo:4.4.7-focal
+FROM mongo:5.0.2-focal
 
 ENV LANG zh_CN.UTF-8
 ENV TZ Asia/Shanghai

@@ -8,7 +8,7 @@ require 'colorize'
 require 'socket'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|canal|mariadb|mycat|postgresql|rabbitmq|redis|mongodb|clickhouse|clickhouse-cluster|kafka|nacos|zipkin|sentinel|seata|nginx|fastdfs|minio|alpine|ubuntu|debian|arch|java|env'"
+  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|clickhouse|clickhouse-cluster|kafka|nacos|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
 end
 
 # TODO jenkins
@@ -19,7 +19,8 @@ def exec(cmd)
   system cmd
 end
 
-ip = Socket.ip_address_list.detect{|x| x.ipv4_private?}.ip_address
+#noinspection RubyNilAnalysis
+ip  = Socket.ip_address_list.detect { |x| x.ipv4_private? }.ip_address
 app = ARGV[0]
 warn && exit unless app
 
@@ -36,17 +37,10 @@ case app
     exec 'docker build -t canal-server ~/bin/dockerfile/canal/'
     exec 'docker rm -f canal-server'
     exec "docker run -d --net backend --name canal-server -p 11111:11111 -v /home:/extra/home --privileged=true canal-server"
-  # when 'canal-admin'
-  #   exec 'docker build -t canal-admin-server ~/bin/dockerfile/canal-admin/'
-  #   exec 'docker rm -f canal-admin-server'
-  #   exec "docker run -d --net backend --name canal-admin-server -p 8089:8089 -v /home:/extra/home --privileged=true canal-admin-server"
   when 'mariadb'
     exec 'docker build -t mariadb-server ~/bin/dockerfile/mariadb/'
     exec 'docker rm -f mariadb-server'
     exec "docker run -d --net backend --name mariadb-server -p 3308:3306 -v ~/volume/maria:/var/lib/mysql -v /home:/extra/home -v /etc/localtime:/etc/localtime --privileged=true mariadb-server --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
-  when 'mycat'
-    exec 'cd ~/bin/dockerfile/mycat/'
-    exec 'bin/startup_nowrap.sh'
   when 'postgresql'
     exec 'docker build -t postgresql-server ~/bin/dockerfile/postgresql/'
     exec 'docker rm -f postgresql-server'
@@ -126,10 +120,6 @@ case app
     exec 'docker build -t nginx-server ~/bin/dockerfile/nginx/'
     exec 'docker rm -f nginx-server'
     exec 'docker run -d --net backend --name nginx-server -p 80:80 -v ~/frontend:/frontend -v /home:/extra/home --privileged=true nginx-server'
-  when 'fastdfs'
-    exec 'docker build -t fastdfs-server ~/bin/dockerfile/fastdfs/'
-    exec 'docker rm -f fastdfs-server'
-    exec 'docker run -d --net host    --name fastdfs-server -v ~/volume/fastdfs:/data -v /home:/extra/home --privileged=true fastdfs-server'
   when 'minio'
     exec 'docker build -t minio-server ~/bin/dockerfile/minio/'
     exec 'docker rm -f minio-server'
@@ -150,10 +140,6 @@ case app
     exec 'docker build -t debian-os ~/bin/dockerfile/debian/'
     exec 'docker rm -f debian-os'
     exec 'docker run -d --net backend --name debian-os -v /home:/extra/home -it debian-os /bin/bash'
-  when 'arch'
-    exec 'docker build -t arch-os ~/bin/dockerfile/arch/'
-    exec 'docker rm -f arch-os'
-    exec 'docker run -d --net backend --name arch-os -v /home:/extra/home -it arch-os /bin/bash'
   when 'java'
     exec 'docker build -t jre-alpine ~/bin/dockerfile/java/'
   when 'env'
