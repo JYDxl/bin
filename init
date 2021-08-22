@@ -8,7 +8,7 @@ require 'colorize'
 require 'socket'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|clickhouse|clickhouse-cluster|kafka|nacos|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
+  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|elasticsearch|clickhouse|clickhouse-cluster|kafka|nacos|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
 end
 
 # TODO jenkins
@@ -57,6 +57,9 @@ case app
     exec 'docker build -t mongodb-server ~/bin/dockerfile/mongodb/'
     exec 'docker rm -f mongodb-server'
     exec 'docker run -d --net backend --name mongodb-server -p 27017:27017 -v ~/volume/mongo:/data/db -v /home:/extra/home --privileged=true mongodb-server'
+  when 'elasticsearch'
+    exec 'docker rm -f elasticsearch-server'
+    exec 'docker run -d --net backend --name elasticsearch-server -p 9200:9200 -p 9300:9300 -v /home:/extra/home -e "discovery.type=single-node" --privileged=true docker.elastic.co/elasticsearch/elasticsearch:7.14.0'
   when 'clickhouse'
     exec 'docker build -t clickhouse-server ~/bin/dockerfile/clickhouse/'
     exec 'docker rm -f clickhouse-server'
