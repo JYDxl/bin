@@ -8,7 +8,7 @@ require 'colorize'
 require 'socket'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|elasticsearch|clickhouse|clickhouse-cluster|kafka|nacos|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
+  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|elasticsearch|kibana|cerebro|clickhouse|clickhouse-cluster|kafka|nacos|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
 end
 
 # TODO jenkins
@@ -58,8 +58,15 @@ case app
     exec 'docker rm -f mongodb-server'
     exec 'docker run -d --net backend --name mongodb-server -p 27017:27017 -v ~/volume/mongo:/data/db -v /home:/extra/home --privileged=true mongodb-server'
   when 'elasticsearch'
+    exec 'docker build -t elasticsearch-server ~/bin/dockerfile/elasticsearch/'
     exec 'docker rm -f elasticsearch-server'
-    exec 'docker run -d --net backend --name elasticsearch-server -p 9200:9200 -p 9300:9300 -v /home:/extra/home -e "discovery.type=single-node" --privileged=true docker.elastic.co/elasticsearch/elasticsearch:7.14.0'
+    exec 'docker run -d --net backend --name elasticsearch-server -p 9200:9200 -p 9300:9300 -v ~/volume/elasticsearch:/usr/share/elasticsearch/data -v /home:/extra/home -e "discovery.type=single-node" --privileged=true elasticsearch-server'
+  when 'kibana'
+    exec 'docker rm -f kibana-server'
+    exec 'docker run -d --net backend --name kibana-server -p 5601:5601 -v /home:/extra/home -e "ELASTICSEARCH_HOSTS=http://elasticsearch-server:9200" -e "I18N_LOCALE=zh-CN" --privileged=true docker.elastic.co/kibana/kibana:7.14.0'
+  when 'cerebro'
+    exec 'docker rm -f cerebro-server'
+    exec 'docker run -d --net backend --name cerebro-server -p 9000:9000 -v /home:/extra/home --privileged=true lmenezes/cerebro'
   when 'clickhouse'
     exec 'docker build -t clickhouse-server ~/bin/dockerfile/clickhouse/'
     exec 'docker rm -f clickhouse-server'
