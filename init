@@ -8,7 +8,7 @@ require 'colorize'
 require 'socket'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|elasticsearch|kibana|cerebro|clickhouse|clickhouse-cluster|kafka|nacos|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
+  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|elasticsearch|kibana|cerebro|clickhouse|clickhouse-cluster|kafka|kafka-cluster|nacos|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
 end
 
 # TODO jenkins
@@ -114,6 +114,10 @@ case app
     sleep 30
 
     exec 'docker run -d --net backend --name kafka-server -p 9092:9092 -v /etc/localtime:/etc/localtime --log-driver json-file --log-opt max-size=100m --log-opt max-file=2 kafka-server'
+  when 'kafka-cluster'
+    path = "~/bin/module/kafka/cluster"
+    exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml down"
+    exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml up -d"
   when 'nacos'
     exec 'docker build -t nacos-server ~/bin/module/nacos/'
     exec 'docker rm -f nacos-server'
