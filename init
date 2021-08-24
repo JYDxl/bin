@@ -115,7 +115,7 @@ case app
 
     exec 'docker run -d --net backend --name kafka-server -p 9092:9092 -v /etc/localtime:/etc/localtime --log-driver json-file --log-opt max-size=100m --log-opt max-file=2 kafka-server'
   when 'kafka-cluster'
-    path = "~/bin/module/kafka/cluster"
+    path = "~/bin/module/kafka/kafka-cluster"
     exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml down"
     exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml up -d"
   when 'nacos'
