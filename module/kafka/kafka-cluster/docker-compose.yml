@@ -1,10 +1,16 @@
 version: '3'
 services:
+
   kafka-zookeeper:
     container_name: kafka-zookeeper
     image: wurstmeister/zookeeper
     networks:
       - backend
+    volumes:
+      - ~/volume/kafka-zookeeper/data:/data
+      - ~/volume/kafka-zookeeper/datalog:/datalog
+      - ~/volume/kafka-zookeeper/logs:/logs
+
   kafka-cluster1:
     container_name: kafka-cluster1
     image: wurstmeister/kafka
@@ -20,8 +26,11 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://:9093
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${IP}:9093
       KAFKA_BROKER_ID: 1
+      KAFKA_LOG_DIRS: /home/kafka/logs
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/volume/kafka-cluster1/kafka:/kafka
+      - ~/volume/kafka-cluster1/logs:/home/kafka/logs
+
   kafka-cluster2:
     container_name: kafka-cluster2
     image: wurstmeister/kafka
@@ -37,8 +46,11 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://:9094
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${IP}:9094
       KAFKA_BROKER_ID: 2
+      KAFKA_LOG_DIRS: /home/kafka/logs
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/volume/kafka-cluster2/kafka:/kafka
+      - ~/volume/kafka-cluster2/logs:/home/kafka/logs
+
   kafka-cluster3:
     container_name: kafka-cluster3
     image: wurstmeister/kafka
@@ -54,8 +66,11 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://:9095
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${IP}:9095
       KAFKA_BROKER_ID: 3
+      KAFKA_LOG_DIRS: /home/kafka/logs
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/volume/kafka-cluster3/kafka:/kafka
+      - ~/volume/kafka-cluster3/logs:/home/kafka/logs
+
 networks:
   backend:
     external: true
