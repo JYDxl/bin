@@ -1,0 +1,113 @@
+version: '3'
+services:
+  clickhouse-zookeeper:
+    container_name: clickhouse-zookeeper
+    image: zookeeper:3.6.3
+    networks:
+      - backend
+    volumes:
+      - /etc/localtime:/etc/localtime
+  clickhouse-shard1-replica1:
+    container_name: clickhouse-shard1-replica1
+    image: clickhouse-shard1-replica1
+    networks:
+      - backend
+    depends_on:
+      - clickhouse-zookeeper
+    ports:
+      - "18011:8123"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 262144
+        hard: 262144
+    volumes:
+      - /home:/extra/home
+  clickhouse-shard1-replica2:
+    container_name: clickhouse-shard1-replica2
+    image: clickhouse-shard1-replica2
+    networks:
+      - backend
+    depends_on:
+      - clickhouse-zookeeper
+    ports:
+      - "18012:8123"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 262144
+        hard: 262144
+    volumes:
+      - ~/volume/clickhouse-shard1-replica2:/var/lib/clickhouse
+      - /home:/extra/home
+  clickhouse-shard2-replica1:
+    container_name: clickhouse-shard2-replica1
+    image: clickhouse-shard2-replica1
+    networks:
+      - backend
+    depends_on:
+      - clickhouse-zookeeper
+    ports:
+      - "18021:8123"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 262144
+        hard: 262144
+    volumes:
+      - ~/volume/clickhouse-shard2-replica1:/var/lib/clickhouse
+      - /home:/extra/home
+  clickhouse-shard2-replica2:
+    container_name: clickhouse-shard2-replica2
+    image: clickhouse-shard2-replica2
+    networks:
+      - backend
+    depends_on:
+      - clickhouse-zookeeper
+    ports:
+      - "18022:8123"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 262144
+        hard: 262144
+    volumes:
+      - ~/volume/clickhouse-shard2-replica2:/var/lib/clickhouse
+      - /home:/extra/home
+  clickhouse-shard3-replica1:
+    container_name: clickhouse-shard3-replica1
+    image: clickhouse-shard3-replica1
+    networks:
+      - backend
+    depends_on:
+      - clickhouse-zookeeper
+    ports:
+      - "18031:8123"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 262144
+        hard: 262144
+    volumes:
+      - ~/volume/clickhouse-shard3-replica1:/var/lib/clickhouse
+      - /home:/extra/home
+  clickhouse-shard3-replica2:
+    container_name: clickhouse-shard3-replica2
+    image: clickhouse-shard3-replica2
+    networks:
+      - backend
+    depends_on:
+      - clickhouse-zookeeper
+    ports:
+      - "18032:8123"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 262144
+        hard: 262144
+    volumes:
+      - ~/volume/clickhouse-shard3-replica2:/var/lib/clickhouse
+      - /home:/extra/home
+networks:
+  backend:
+    external: true

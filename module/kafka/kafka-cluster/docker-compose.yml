@@ -1,10 +1,12 @@
 version: '3'
 services:
   kafka-zookeeper:
+    container_name: kafka-zookeeper
     image: wurstmeister/zookeeper
     networks:
       - backend
-  kafka-cluster01:
+  kafka-cluster1:
+    container_name: kafka-cluster1
     image: wurstmeister/kafka
     networks:
       - backend
@@ -13,14 +15,15 @@ services:
     ports:
       - "9093:9093"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: kafka-cluster01
+      KAFKA_ADVERTISED_HOST_NAME: kafka-cluster1
       KAFKA_ZOOKEEPER_CONNECT: kafka-zookeeper:2181/kafka
       KAFKA_LISTENERS: PLAINTEXT://:9093
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${IP}:9093
       KAFKA_BROKER_ID: 1
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-  kafka-cluster02:
+  kafka-cluster2:
+    container_name: kafka-cluster2
     image: wurstmeister/kafka
     networks:
       - backend
@@ -29,14 +32,15 @@ services:
     ports:
       - "9094:9094"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: kafka-cluster02
+      KAFKA_ADVERTISED_HOST_NAME: kafka-cluster2
       KAFKA_ZOOKEEPER_CONNECT: kafka-zookeeper:2181/kafka
       KAFKA_LISTENERS: PLAINTEXT://:9094
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${IP}:9094
       KAFKA_BROKER_ID: 2
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-  kafka-cluster03:
+  kafka-cluster3:
+    container_name: kafka-cluster3
     image: wurstmeister/kafka
     networks:
       - backend
@@ -45,7 +49,7 @@ services:
     ports:
       - "9095:9095"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: kafka-cluster03
+      KAFKA_ADVERTISED_HOST_NAME: kafka-cluster3
       KAFKA_ZOOKEEPER_CONNECT: kafka-zookeeper:2181/kafka
       KAFKA_LISTENERS: PLAINTEXT://:9095
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${IP}:9095

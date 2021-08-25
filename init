@@ -73,38 +73,15 @@ case app
     exec 'docker run -d --net backend --name clickhouse-server --ulimit nofile=262144:262144 -p 8123:8123 -p 8999:9000 -v ~/volume/clickhouse:/var/lib/clickhouse -v /etc/localtime:/etc/localtime -v /home:/extra/home --privileged=true clickhouse-server'
   when 'clickhouse-cluster'
     exec 'docker build -t clickhouse-shard1-replica1 --build-arg NODE="01-1" ~/bin/module/clickhouse/cluster/'
-    exec 'docker rm -f clickhouse-shard1-replica1'
-
     exec 'docker build -t clickhouse-shard1-replica2 --build-arg NODE="01-2" ~/bin/module/clickhouse/cluster/'
-    exec 'docker rm -f clickhouse-shard1-replica2'
-
     exec 'docker build -t clickhouse-shard2-replica1 --build-arg NODE="02-1" ~/bin/module/clickhouse/cluster/'
-    exec 'docker rm -f clickhouse-shard2-replica1'
-
     exec 'docker build -t clickhouse-shard2-replica2 --build-arg NODE="02-2" ~/bin/module/clickhouse/cluster/'
-    exec 'docker rm -f clickhouse-shard2-replica2'
-
     exec 'docker build -t clickhouse-shard3-replica1 --build-arg NODE="03-1" ~/bin/module/clickhouse/cluster/'
-    exec 'docker rm -f clickhouse-shard3-replica1'
-
     exec 'docker build -t clickhouse-shard3-replica2 --build-arg NODE="03-2" ~/bin/module/clickhouse/cluster/'
-    exec 'docker rm -f clickhouse-shard3-replica2'
 
-    exec 'docker rm -f zookeeper-clickhouse'
-    exec 'docker run -d --net backend --name zookeeper-clickhouse -v /etc/localtime:/etc/localtime --privileged=true zookeeper:3.6.3'
-    sleep 30
-
-    exec 'docker run -d --net backend --name clickhouse-shard1-replica1 --ulimit nofile=262144:262144 -p 18011:8123 -v ~/volume/clickhouse-shard1-replica1:/var/lib/clickhouse -v /home:/extra/home --privileged=true clickhouse-shard1-replica1'
-
-    exec 'docker run -d --net backend --name clickhouse-shard1-replica2 --ulimit nofile=262144:262144 -p 18012:8123 -v ~/volume/clickhouse-shard1-replica2:/var/lib/clickhouse -v /home:/extra/home --privileged=true clickhouse-shard1-replica2'
-
-    exec 'docker run -d --net backend --name clickhouse-shard2-replica1 --ulimit nofile=262144:262144 -p 18021:8123 -v ~/volume/clickhouse-shard2-replica1:/var/lib/clickhouse -v /home:/extra/home --privileged=true clickhouse-shard2-replica1'
-
-    exec 'docker run -d --net backend --name clickhouse-shard2-replica2 --ulimit nofile=262144:262144 -p 18022:8123 -v ~/volume/clickhouse-shard2-replica2:/var/lib/clickhouse -v /home:/extra/home --privileged=true clickhouse-shard2-replica2'
-
-    exec 'docker run -d --net backend --name clickhouse-shard3-replica1 --ulimit nofile=262144:262144 -p 18031:8123 -v ~/volume/clickhouse-shard3-replica1:/var/lib/clickhouse -v /home:/extra/home --privileged=true clickhouse-shard3-replica1'
-
-    exec 'docker run -d --net backend --name clickhouse-shard3-replica2 --ulimit nofile=262144:262144 -p 18032:8123 -v ~/volume/clickhouse-shard3-replica2:/var/lib/clickhouse -v /home:/extra/home --privileged=true clickhouse-shard3-replica2'
+    path = "~/bin/module/clickhouse/clickhouse-cluster"
+    exec "docker-compose -f #{path}/docker-compose.yml down"
+    exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'kafka'
     exec "docker build -t kafka-server --build-arg IP='#{ip}' ~/bin/module/kafka/"
     exec 'docker rm -f kafka-server'

@@ -692,7 +692,7 @@
 <!--                </replica>-->
 <!--            </shard>-->
 <!--        </test_unavailable_shard>-->
-        <cluster>
+        <clickhouse_cluster>
             <!--分片1-->
             <shard>
                 <internal_replication>true</internal_replication>
@@ -769,7 +769,7 @@
                     <password></password>
                 </replica>
             </shard>
-        </cluster>
+        </clickhouse_cluster>
     </remote_servers>
 
     <!-- The list of hosts allowed to use in URL-related storage engines and table functions.
@@ -807,7 +807,7 @@
     <zookeeper>
         <node>
             <!--这里写Zookeeper的IP，如果用docker启动的： docker inspect 容器ID  查看docker容器的IPv4 -->
-            <host>zookeeper-clickhouse</host>
+            <host>clickhouse-zookeeper</host>
             <!--这里写Zookeeper的端口-->
             <port>2181</port>
         </node>
