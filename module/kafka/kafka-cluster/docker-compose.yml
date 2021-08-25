@@ -6,10 +6,6 @@ services:
     image: wurstmeister/zookeeper
     networks:
       - backend
-    volumes:
-      - ~/volume/kafka-zookeeper/data:/data
-      - ~/volume/kafka-zookeeper/datalog:/datalog
-      - ~/volume/kafka-zookeeper/logs:/logs
 
   kafka-cluster1:
     container_name: kafka-cluster1
@@ -22,14 +18,12 @@ services:
       - "9093:9093"
     environment:
       KAFKA_ADVERTISED_HOST_NAME: kafka-cluster1
-      KAFKA_ZOOKEEPER_CONNECT: kafka-zookeeper:2181/kafka
-      KAFKA_LISTENERS: PLAINTEXT://:9093
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${IP}:9093
+      KAFKA_LISTENERS: PLAINTEXT://:9093
+      KAFKA_ZOOKEEPER_CONNECT: kafka-zookeeper:2181
       KAFKA_BROKER_ID: 1
-      KAFKA_LOG_DIRS: /home/kafka/logs
     volumes:
-      - ~/volume/kafka-cluster1/kafka:/kafka
-      - ~/volume/kafka-cluster1/logs:/home/kafka/logs
+      - /var/run/docker.sock:/var/run/docker.sock
 
   kafka-cluster2:
     container_name: kafka-cluster2
@@ -42,14 +36,12 @@ services:
       - "9094:9094"
     environment:
       KAFKA_ADVERTISED_HOST_NAME: kafka-cluster2
-      KAFKA_ZOOKEEPER_CONNECT: kafka-zookeeper:2181/kafka
-      KAFKA_LISTENERS: PLAINTEXT://:9094
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${IP}:9094
+      KAFKA_LISTENERS: PLAINTEXT://:9094
+      KAFKA_ZOOKEEPER_CONNECT: kafka-zookeeper:2181
       KAFKA_BROKER_ID: 2
-      KAFKA_LOG_DIRS: /home/kafka/logs
     volumes:
-      - ~/volume/kafka-cluster2/kafka:/kafka
-      - ~/volume/kafka-cluster2/logs:/home/kafka/logs
+      - /var/run/docker.sock:/var/run/docker.sock
 
   kafka-cluster3:
     container_name: kafka-cluster3
@@ -62,14 +54,12 @@ services:
       - "9095:9095"
     environment:
       KAFKA_ADVERTISED_HOST_NAME: kafka-cluster3
-      KAFKA_ZOOKEEPER_CONNECT: kafka-zookeeper:2181/kafka
-      KAFKA_LISTENERS: PLAINTEXT://:9095
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${IP}:9095
+      KAFKA_LISTENERS: PLAINTEXT://:9095
+      KAFKA_ZOOKEEPER_CONNECT: kafka-zookeeper:2181
       KAFKA_BROKER_ID: 3
-      KAFKA_LOG_DIRS: /home/kafka/logs
     volumes:
-      - ~/volume/kafka-cluster3/kafka:/kafka
-      - ~/volume/kafka-cluster3/logs:/home/kafka/logs
+      - /var/run/docker.sock:/var/run/docker.sock
 
 networks:
   backend:
