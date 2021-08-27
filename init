@@ -8,7 +8,7 @@ require 'colorize'
 require 'socket'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|elasticsearch|kibana|cerebro|clickhouse|clickhouse-cluster|kafka|kafka-cluster|nacos|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
+  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|elasticsearch|kibana|cerebro|clickhouse-cluster|kafka-cluster|nacos|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
 end
 
 # TODO jenkins
@@ -67,10 +67,6 @@ case app
   when 'cerebro'
     exec 'docker rm -f cerebro-server'
     exec 'docker run -d --net backend --name cerebro-server -p 9000:9000 -v /home:/extra/home --privileged=true lmenezes/cerebro'
-  when 'clickhouse'
-    exec 'docker build -t clickhouse-server ~/bin/module/clickhouse/'
-    exec 'docker rm -f clickhouse-server'
-    exec 'docker run -d --net backend --name clickhouse-server --ulimit nofile=262144:262144 -p 8123:8123 -p 8999:9000 -v ~/volume/clickhouse:/var/lib/clickhouse -v /etc/localtime:/etc/localtime -v /home:/extra/home --privileged=true clickhouse-server'
   when 'clickhouse-cluster'
     exec 'docker build -t clickhouse-shard1-replica1 --build-arg NODE="01-1" ~/bin/module/clickhouse/cluster/'
     exec 'docker build -t clickhouse-shard1-replica2 --build-arg NODE="01-2" ~/bin/module/clickhouse/cluster/'
@@ -82,15 +78,6 @@ case app
     path = "~/bin/module/clickhouse/clickhouse-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml down"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
-  when 'kafka'
-    exec "docker build -t kafka-server --build-arg IP='#{ip}' ~/bin/module/kafka/"
-    exec 'docker rm -f kafka-server'
-
-    exec 'docker rm -f zookeeper-kafka'
-    exec 'docker run -d --net backend --name zookeeper-kafka -p 2181:2181 -v /etc/localtime:/etc/localtime --privileged=true zookeeper:3.6.3'
-    sleep 30
-
-    exec 'docker run -d --net backend --name kafka-server -p 9092:9092 -v /etc/localtime:/etc/localtime --log-driver json-file --log-opt max-size=100m --log-opt max-file=2 kafka-server'
   when 'kafka-cluster'
     path = "~/bin/module/kafka/kafka-cluster"
     exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml down"
