@@ -8,7 +8,7 @@ require 'colorize'
 require 'socket'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|elasticsearch|kibana|cerebro|clickhouse-cluster|kafka-cluster|nacos|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
+  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|elasticsearch-cluster|kibana|cerebro|clickhouse-cluster|kafka-cluster|nacos|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
 end
 
 # TODO jenkins
@@ -57,10 +57,12 @@ case app
     exec 'docker build -t mongodb-server ~/bin/module/mongodb/'
     exec 'docker rm -f mongodb-server'
     exec 'docker run -d --net backend --name mongodb-server -p 27017:27017 -v /opt/volumes/mongo:/data/db -v /home:/extra/home mongodb-server'
-  when 'elasticsearch'
+  when 'elasticsearch-cluster'
     exec 'docker build -t elasticsearch-server ~/bin/module/elasticsearch/'
-    exec 'docker rm -f elasticsearch-server'
-    exec 'docker run -d --net backend --name elasticsearch-server -p 9200:9200 -p 9300:9300 -v /opt/volumes/elasticsearch:/usr/share/elasticsearch/data -v /home:/extra/home -e "discovery.type=single-node" elasticsearch-server'
+
+    path = "~bin/module/elasticsearch/elasticsearch-cluster"
+    exec "docker-compose -f #{path}/docker-compose.yml down"
+    exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'kibana'
     exec 'docker rm -f kibana-server'
     exec 'docker run -d --net backend --name kibana-server -p 5601:5601 -v /home:/extra/home -e "ELASTICSEARCH_HOSTS=http://elasticsearch-server:9200" -e "I18N_LOCALE=zh-CN" docker.elastic.co/kibana/kibana:7.14.0'
