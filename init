@@ -87,7 +87,7 @@ case app
   when 'nacos'
     exec 'docker build -t nacos-server ~/bin/module/nacos/'
     exec 'docker rm -f nacos-server'
-    exec 'docker run -d --net backend --name nacos-server -p 8848:8848 -v /home:/extra/home -v /opt/volumes/nacos:/home/nacos nacos-server'
+    exec 'docker run -d --net backend --name nacos-server -p 8848:8848 -v /home:/extra/home -v /opt/volumes/nacos/logs:/home/nacos/logs nacos-server'
   when 'zipkin'
     exec 'docker build -t zipkin-server ~/bin/module/zipkin/'
     exec 'docker rm -f zipkin-server'
