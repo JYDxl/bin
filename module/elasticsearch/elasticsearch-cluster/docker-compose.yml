@@ -16,7 +16,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - /volumes/docker/elasticsearch-cluster1:/usr/share/elasticsearch/data
+      - /opt/volumes/elasticsearch-cluster1:/usr/share/elasticsearch/data
     ports:
       - "9201:9200"
     networks:
@@ -37,7 +37,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - /volumes/docker/elasticsearch-cluster2:/usr/share/elasticsearch/data
+      - /opt/volumes/elasticsearch-cluster2:/usr/share/elasticsearch/data
     networks:
       - backend
 
@@ -56,7 +56,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - /volumes/docker/elasticsearch-cluster3:/usr/share/elasticsearch/data
+      - /opt/volumes/elasticsearch-cluster3:/usr/share/elasticsearch/data
     networks:
       - backend
 
