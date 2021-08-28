@@ -60,7 +60,7 @@ case app
   when 'elasticsearch-cluster'
     exec 'docker build -t elasticsearch-server ~/bin/module/elasticsearch/'
 
-    path = "~bin/module/elasticsearch/elasticsearch-cluster"
+    path = "~/bin/module/elasticsearch/elasticsearch-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml down"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'kibana'
