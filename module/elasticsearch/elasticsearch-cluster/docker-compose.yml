@@ -1,0 +1,65 @@
+version: '3'
+services:
+
+  elasticsearch-cluster1:
+    image: elasticsearch-server
+    container_name: elasticsearch-cluster1
+    environment:
+      - node.name=elasticsearch-cluster1
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=elasticsearch-cluster2,elasticsearch-cluster3
+      - cluster.initial_master_nodes=elasticsearch-cluster1,elasticsearch-cluster2,elasticsearch-cluster3
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /volumes/docker/elasticsearch-cluster1:/usr/share/elasticsearch/data
+    ports:
+      - "9201:9200"
+    networks:
+      - backend
+
+  elasticsearch-cluster2:
+    image: elasticsearch-server
+    container_name: elasticsearch-cluster2
+    environment:
+      - node.name=elasticsearch-cluster2
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=elasticsearch-cluster1,elasticsearch-cluster3
+      - cluster.initial_master_nodes=elasticsearch-cluster1,elasticsearch-cluster2,elasticsearch-cluster3
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /volumes/docker/elasticsearch-cluster2:/usr/share/elasticsearch/data
+    networks:
+      - backend
+
+  elasticsearch-cluster3:
+    image: elasticsearch-server
+    container_name: elasticsearch-cluster3
+    environment:
+      - node.name=elasticsearch-cluster3
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=elasticsearch-cluster1,elasticsearch-cluster2
+      - cluster.initial_master_nodes=elasticsearch-cluster1,elasticsearch-cluster2,elasticsearch-cluster3
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /volumes/docker/elasticsearch-cluster3:/usr/share/elasticsearch/data
+    networks:
+      - backend
+
+networks:
+  backend:
+    external: true
