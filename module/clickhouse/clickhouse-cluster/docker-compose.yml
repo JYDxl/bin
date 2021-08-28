@@ -22,6 +22,7 @@ services:
         soft: 262144
         hard: 262144
     volumes:
+      - /opt/volumes/clickhouse-shard1-replica1:/var/lib/clickhouse
       - /home:/extra/home
   clickhouse-shard1-replica2:
     container_name: clickhouse-shard1-replica2
