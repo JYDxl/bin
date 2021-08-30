@@ -17,7 +17,6 @@ services:
         hard: -1
     volumes:
       - /opt/volumes/elasticsearch-cluster1/data:/usr/share/elasticsearch/data
-      - /opt/volumes/elasticsearch-cluster1/logs:/usr/share/elasticsearch/logs
     ports:
       - "9201:9200"
     networks:
@@ -39,7 +38,6 @@ services:
         hard: -1
     volumes:
       - /opt/volumes/elasticsearch-cluster2/data:/usr/share/elasticsearch/data
-      - /opt/volumes/elasticsearch-cluster2/logs:/usr/share/elasticsearch/logs
     networks:
       - backend
 
@@ -59,7 +57,6 @@ services:
         hard: -1
     volumes:
       - /opt/volumes/elasticsearch-cluster3/data:/usr/share/elasticsearch/data
-      - /opt/volumes/elasticsearch-cluster3/logs:/usr/share/elasticsearch/logs
     networks:
       - backend
 
