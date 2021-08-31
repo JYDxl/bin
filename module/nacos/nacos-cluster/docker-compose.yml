@@ -1,0 +1,51 @@
+version: "3"
+services:
+  nacos-cluster1:
+    container_name: nacos-cluster1
+    image: nacos/nacos-server:v2.0.3
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/nacos-cluster1:/home/nacos/logs
+      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - "8849:8848"
+      - "9849:9848"
+      - "9555:9555"
+    env_file:
+      - ./env/nacos-hostname.env
+    external_links:
+      - mysql-server
+  nacos-cluster2:
+    image: nacos/nacos-server:v2.0.3
+    container_name: nacos-cluster2
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/nacos-cluster2:/home/nacos/logs
+      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - "8850:8848"
+      - "9850:9848"
+    env_file:
+      - ./env/nacos-hostname.env
+    external_links:
+      - mysql-server
+  nacos-cluster3:
+    image: nacos/nacos-server:v2.0.3
+    container_name: nacos-cluster3
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/nacos-cluster3:/home/nacos/logs
+      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - "8851:8848"
+      - "9851:9848"
+    env_file:
+      - ./env/nacos-hostname.env
+    external_links:
+      - mysql-server
+networks:
+  backend:
+    external: true

@@ -8,7 +8,7 @@ require 'colorize'
 require 'socket'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|elasticsearch-cluster|kibana|cerebro|clickhouse-cluster|kafka-cluster|nacos|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
+  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|elasticsearch-cluster|kibana|cerebro|clickhouse-cluster|kafka-cluster|nacos|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
 end
 
 # TODO jenkins
@@ -88,6 +88,10 @@ case app
     exec 'docker build -t nacos-server ~/bin/module/nacos/'
     exec 'docker rm -f nacos-server'
     exec 'docker run -d --net backend --name nacos-server -p 8848:8848 -v /home:/extra/home -v /opt/volumes/nacos/logs:/home/nacos/logs nacos-server'
+  when 'nacos-cluster'
+    path = "~/bin/module/nacos/nacos-cluster"
+    exec "docker-compose -f #{path}/docker-compose.yml down"
+    exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'zipkin'
     exec 'docker build -t zipkin-server ~/bin/module/zipkin/'
     exec 'docker rm -f zipkin-server'
