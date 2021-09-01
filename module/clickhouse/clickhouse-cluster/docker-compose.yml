@@ -3,7 +3,7 @@ services:
 
   clickhouse-zookeeper:
     container_name: clickhouse-zookeeper
-    image: zookeeper:3.6.3
+    image: zookeeper:3.7.0
     networks:
       - backend
     volumes:

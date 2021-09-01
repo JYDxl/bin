@@ -8,7 +8,7 @@ require 'colorize'
 require 'socket'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|elasticsearch-cluster|kibana|cerebro|clickhouse-cluster|kafka-cluster|nacos|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
+  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|neo4j|elasticsearch-cluster|kibana|cerebro|clickhouse-cluster|kafka-cluster|nacos|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
 end
 
 # TODO jenkins
@@ -57,6 +57,9 @@ case app
     exec 'docker build -t mongodb-server ~/bin/module/mongodb/'
     exec 'docker rm -f mongodb-server'
     exec 'docker run -d --net backend --name mongodb-server -p 27017:27017 -v /opt/volumes/mongo:/data/db -v /home:/extra/home mongodb-server'
+  when 'neo4j'
+    exec 'docker rm -f neo4j-server'
+    exec 'docker run -d --net backend --name neo4j-server -p 7474:7474 -p 7687:7687 -v /opt/volumes/neo4j/data:/data -v /home:/extra/home neo4j'
   when 'elasticsearch-cluster'
     exec 'docker build -t elasticsearch-server ~/bin/module/elasticsearch/'
 
