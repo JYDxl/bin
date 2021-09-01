@@ -1,5 +1,6 @@
 version: '3'
 services:
+
   clickhouse-zookeeper:
     container_name: clickhouse-zookeeper
     image: zookeeper:3.6.3
@@ -7,6 +8,7 @@ services:
       - backend
     volumes:
       - /etc/localtime:/etc/localtime
+
   clickhouse-shard1-replica1:
     container_name: clickhouse-shard1-replica1
     image: clickhouse-shard1-replica1
@@ -24,6 +26,7 @@ services:
     volumes:
       - /opt/volumes/clickhouse-shard1-replica1:/var/lib/clickhouse
       - /home:/extra/home
+
   clickhouse-shard1-replica2:
     container_name: clickhouse-shard1-replica2
     image: clickhouse-shard1-replica2
@@ -41,6 +44,7 @@ services:
     volumes:
       - /opt/volumes/clickhouse-shard1-replica2:/var/lib/clickhouse
       - /home:/extra/home
+
   clickhouse-shard2-replica1:
     container_name: clickhouse-shard2-replica1
     image: clickhouse-shard2-replica1
@@ -58,6 +62,7 @@ services:
     volumes:
       - /opt/volumes/clickhouse-shard2-replica1:/var/lib/clickhouse
       - /home:/extra/home
+
   clickhouse-shard2-replica2:
     container_name: clickhouse-shard2-replica2
     image: clickhouse-shard2-replica2
@@ -75,6 +80,7 @@ services:
     volumes:
       - /opt/volumes/clickhouse-shard2-replica2:/var/lib/clickhouse
       - /home:/extra/home
+
   clickhouse-shard3-replica1:
     container_name: clickhouse-shard3-replica1
     image: clickhouse-shard3-replica1
@@ -92,6 +98,7 @@ services:
     volumes:
       - /opt/volumes/clickhouse-shard3-replica1:/var/lib/clickhouse
       - /home:/extra/home
+
   clickhouse-shard3-replica2:
     container_name: clickhouse-shard3-replica2
     image: clickhouse-shard3-replica2
@@ -109,6 +116,7 @@ services:
     volumes:
       - /opt/volumes/clickhouse-shard3-replica2:/var/lib/clickhouse
       - /home:/extra/home
+
 networks:
   backend:
     external: true

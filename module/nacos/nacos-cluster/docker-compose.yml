@@ -1,5 +1,6 @@
 version: "3"
 services:
+
   nacos-cluster1:
     container_name: nacos-cluster1
     image: nacos/nacos-server:v2.0.3
@@ -16,6 +17,7 @@ services:
       - ./env/nacos-hostname.env
     external_links:
       - mysql-server
+
   nacos-cluster2:
     image: nacos/nacos-server:v2.0.3
     container_name: nacos-cluster2
@@ -31,6 +33,7 @@ services:
       - ./env/nacos-hostname.env
     external_links:
       - mysql-server
+
   nacos-cluster3:
     image: nacos/nacos-server:v2.0.3
     container_name: nacos-cluster3
@@ -46,6 +49,7 @@ services:
       - ./env/nacos-hostname.env
     external_links:
       - mysql-server
+
 networks:
   backend:
     external: true

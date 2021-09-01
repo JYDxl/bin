@@ -62,6 +62,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /opt/volumes/kafka-cluster3:/kafka
+
 #  kafka-manager:
 #    container_name: kafka-manager
 #    image: sheepkiller/kafka-manager
@@ -73,6 +74,7 @@ services:
 #      - "9020:9000"
 #    environment:
 #      ZK_HOSTS: kafka-zookeeper:2181
+
 networks:
   backend:
     external: true
