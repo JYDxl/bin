@@ -4,6 +4,7 @@ services:
   elasticsearch-cluster1:
     image: elasticsearch-server
     container_name: elasticsearch-cluster1
+    privileged: true
     environment:
       - node.name=elasticsearch-cluster1
       - cluster.name=es-docker-cluster
@@ -25,6 +26,7 @@ services:
   elasticsearch-cluster2:
     image: elasticsearch-server
     container_name: elasticsearch-cluster2
+    privileged: true
     environment:
       - node.name=elasticsearch-cluster2
       - cluster.name=es-docker-cluster
@@ -44,6 +46,7 @@ services:
   elasticsearch-cluster3:
     image: elasticsearch-server
     container_name: elasticsearch-cluster3
+    privileged: true
     environment:
       - node.name=elasticsearch-cluster3
       - cluster.name=es-docker-cluster
