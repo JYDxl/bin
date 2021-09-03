@@ -22,7 +22,7 @@ end
 
 #noinspection RubyNilAnalysis
 ip  = Socket.ip_address_list.detect { |x| x.ipv4_private? }.ip_address
-num = Etc.nprocessors
+num = Etc.nprocessors / 2
 app = ARGV[0]
 warn && exit unless app
 
