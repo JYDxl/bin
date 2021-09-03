@@ -7,7 +7,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/nacos-cluster1:/home/nacos/logs
+      - /opt/volumes/nacos-cluster1/logs:/home/nacos/logs
       - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
     ports:
       - "8849:8848"
@@ -24,7 +24,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/nacos-cluster2:/home/nacos/logs
+      - /opt/volumes/nacos-cluster2/logs:/home/nacos/logs
       - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
     ports:
       - "8850:8848"
@@ -40,7 +40,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/nacos-cluster3:/home/nacos/logs
+      - /opt/volumes/nacos-cluster3/logs:/home/nacos/logs
       - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
     ports:
       - "8851:8848"

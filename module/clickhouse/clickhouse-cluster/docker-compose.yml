@@ -7,7 +7,9 @@ services:
     networks:
       - backend
     volumes:
-      - /etc/localtime:/etc/localtime
+      - /opt/volumes/clickhouse-zookeeper/data:/data
+      - /opt/volumes/clickhouse-zookeeper/datalog:/datalog
+      - /opt/volumes/clickhouse-zookeeper/logs:/logs
 
   clickhouse-shard1-replica1:
     container_name: clickhouse-shard1-replica1
@@ -24,8 +26,9 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard1-replica1:/var/lib/clickhouse
-      - /home:/extra/home
+      - /opt/volumes/clickhouse-shard1-replica1/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard1-replica1/log:/var/log/clickhouse-server
+      - /opt/volumes/extra:/extra
 
   clickhouse-shard1-replica2:
     container_name: clickhouse-shard1-replica2
@@ -42,8 +45,9 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard1-replica2:/var/lib/clickhouse
-      - /home:/extra/home
+      - /opt/volumes/clickhouse-shard1-replica2/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard1-replica2/log:/var/log/clickhouse-server
+      - /opt/volumes/extra:/extra
 
   clickhouse-shard2-replica1:
     container_name: clickhouse-shard2-replica1
@@ -60,8 +64,9 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard2-replica1:/var/lib/clickhouse
-      - /home:/extra/home
+      - /opt/volumes/clickhouse-shard2-replica1/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard2-replica1/log:/var/log/clickhouse-server
+      - /opt/volumes/extra:/extra
 
   clickhouse-shard2-replica2:
     container_name: clickhouse-shard2-replica2
@@ -78,8 +83,9 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard2-replica2:/var/lib/clickhouse
-      - /home:/extra/home
+      - /opt/volumes/clickhouse-shard2-replica2/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard2-replica2/log:/var/log/clickhouse-server
+      - /opt/volumes/extra:/extra
 
   clickhouse-shard3-replica1:
     container_name: clickhouse-shard3-replica1
@@ -96,8 +102,9 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard3-replica1:/var/lib/clickhouse
-      - /home:/extra/home
+      - /opt/volumes/clickhouse-shard3-replica1/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard3-replica1/log:/var/log/clickhouse-server
+      - /opt/volumes/extra:/extra
 
   clickhouse-shard3-replica2:
     container_name: clickhouse-shard3-replica2
@@ -114,8 +121,9 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard3-replica2:/var/lib/clickhouse
-      - /home:/extra/home
+      - /opt/volumes/clickhouse-shard3-replica2/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard3-replica2/log:/var/log/clickhouse-server
+      - /opt/volumes/extra:/extra
 
 networks:
   backend:

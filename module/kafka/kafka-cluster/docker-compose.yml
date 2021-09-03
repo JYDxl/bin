@@ -7,7 +7,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/kafka-zookeeper/data:/data
+      - /opt/volumes/kafka-zookeeper/data:/opt/zookeeper-3.4.13/data
 
   kafka-cluster1:
     container_name: kafka-cluster1
@@ -26,6 +26,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /opt/volumes/kafka-cluster1:/kafka
+      - /opt/volumes/extra:/extra
 
   kafka-cluster2:
     container_name: kafka-cluster2
@@ -44,6 +45,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /opt/volumes/kafka-cluster2:/kafka
+      - /opt/volumes/extra:/extra
 
   kafka-cluster3:
     container_name: kafka-cluster3
@@ -62,6 +64,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /opt/volumes/kafka-cluster3:/kafka
+      - /opt/volumes/extra:/extra
 
 #  kafka-manager:
 #    container_name: kafka-manager
