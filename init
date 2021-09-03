@@ -6,9 +6,10 @@
 
 require 'colorize'
 require 'socket'
+require 'etc'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|neo4j|elasticsearch-cluster|kibana|cerebro|clickhouse-cluster|kafka-cluster|nacos|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
+  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|neo4j|elasticsearch-cluster|kibana|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
 end
 
 # TODO jenkins
@@ -21,6 +22,7 @@ end
 
 #noinspection RubyNilAnalysis
 ip  = Socket.ip_address_list.detect { |x| x.ipv4_private? }.ip_address
+num = Etc.nprocessors
 app = ARGV[0]
 warn && exit unless app
 
@@ -84,6 +86,10 @@ case app
     path = "~/bin/module/clickhouse/clickhouse-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml down"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
+  when 'flink-cluster'
+    path = "~/bin/module/flink/flink-cluster"
+    exec "NUM=#{num} docker-compose -f #{path}/docker-compose.yml down"
+    exec "NUM=#{num} docker-compose -f #{path}/docker-compose.yml up -d"
   when 'kafka-cluster'
     path = "~/bin/module/kafka/kafka-cluster"
     exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml down"

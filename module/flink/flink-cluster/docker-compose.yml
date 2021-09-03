@@ -1,0 +1,61 @@
+version: '3'
+services:
+
+  flink-jobmanager:
+    image: flink:1.13.2-scala_2.12-java8
+    container_name: flink-jobmanager
+    ports:
+      - "8070:8081"
+    networks:
+      - backend
+    command: jobmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: flink-jobmanager
+
+  flink-taskmanager1:
+    image: flink:1.13.2-scala_2.12-java8
+    container_name: flink-taskmanager1
+    depends_on:
+      - flink-jobmanager
+    networks:
+      - backend
+    command: taskmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: flink-jobmanager
+        taskmanager.numberOfTaskSlots: ${NUM}
+
+  flink-taskmanager2:
+    image: flink:1.13.2-scala_2.12-java8
+    container_name: flink-taskmanager2
+    depends_on:
+      - flink-jobmanager
+    networks:
+      - backend
+    command: taskmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: flink-jobmanager
+        taskmanager.numberOfTaskSlots: ${NUM}
+
+  flink-taskmanager3:
+    image: flink:1.13.2-scala_2.12-java8
+    container_name: flink-taskmanager3
+    depends_on:
+      - flink-jobmanager
+    networks:
+      - backend
+    command: taskmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: flink-jobmanager
+        taskmanager.numberOfTaskSlots: ${NUM}
+
+networks:
+  backend:
+    external: true
