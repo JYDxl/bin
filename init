@@ -58,8 +58,9 @@ case app
     exec 'docker rm -f mongodb-server'
     exec 'docker run -d --net backend --name mongodb-server -p 27017:27017 -v /opt/volumes/mongo:/data/db -v /opt/volumes/extra:/extra mongodb-server'
   when 'neo4j'
-    exec 'docker rm -f neo4j-server'
-    exec 'docker run -d --net backend --name neo4j-server -p 7474:7474 -p 7687:7687 -v /opt/volumes/neo4j/data:/data -v /opt/volumes/extra:/extra neo4j'
+    path = "~/bin/module/neo4j"
+    exec "docker-compose -f #{path}/docker-compose.yml down"
+    exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'elasticsearch-cluster'
     exec 'docker build -t elasticsearch-server ~/bin/module/elasticsearch/'
 
