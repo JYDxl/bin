@@ -2,7 +2,7 @@ version: '3'
 services:
 
   neo4j-server:
-    image: neo4j
+    image: neo4j-server
     container_name: neo4j-server
     environment:
       - NEO4J_AUTH=neo4j/XLrootJYD713
@@ -10,7 +10,6 @@ services:
       - /opt/volumes/neo4j/data:/data
       - /opt/volumes/neo4j/logs:/logs
       - /opt/volumes/extra:/extra
-      - ./conf:/var/lib/neo4j/conf
     ports:
       - "7474:7474"
       - "7687:7687"
