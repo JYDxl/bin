@@ -4,7 +4,6 @@ services:
   elasticsearch-cluster1:
     image: elasticsearch-server
     container_name: elasticsearch-cluster1
-    privileged: true
     environment:
       - node.name=elasticsearch-cluster1
       - cluster.name=es-docker-cluster
@@ -17,7 +16,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - /opt/volumes/elasticsearch-cluster1/data:/usr/share/elasticsearch/data
+      - /opt/volumes/elasticsearch-cluster1/data:/usr/share/elasticsearch/data:rw
       - /opt/volumes/extra:/extra
     ports:
       - "9201:9200"
@@ -27,7 +26,6 @@ services:
   elasticsearch-cluster2:
     image: elasticsearch-server
     container_name: elasticsearch-cluster2
-    privileged: true
     environment:
       - node.name=elasticsearch-cluster2
       - cluster.name=es-docker-cluster
@@ -40,7 +38,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - /opt/volumes/elasticsearch-cluster2/data:/usr/share/elasticsearch/data
+      - /opt/volumes/elasticsearch-cluster2/data:/usr/share/elasticsearch/data:rw
       - /opt/volumes/extra:/extra
     ports:
       - "9202:9200"
@@ -50,7 +48,6 @@ services:
   elasticsearch-cluster3:
     image: elasticsearch-server
     container_name: elasticsearch-cluster3
-    privileged: true
     environment:
       - node.name=elasticsearch-cluster3
       - cluster.name=es-docker-cluster
@@ -63,7 +60,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - /opt/volumes/elasticsearch-cluster3/data:/usr/share/elasticsearch/data
+      - /opt/volumes/elasticsearch-cluster3/data:/usr/share/elasticsearch/data:rw
       - /opt/volumes/extra:/extra
     ports:
       - "9203:9200"

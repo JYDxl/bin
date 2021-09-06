@@ -63,13 +63,13 @@ case app
     exec 'docker build -t neo4j-server ~/bin/module/neo4j'
 
     path = "~/bin/module/neo4j"
-    exec "docker-compose -f #{path}/docker-compose.yml down"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'elasticsearch-cluster'
     exec 'docker build -t elasticsearch-server ~/bin/module/elasticsearch/'
 
     path = "~/bin/module/elasticsearch/elasticsearch-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml down"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'kibana'
     exec 'docker rm -f kibana-server'
@@ -86,15 +86,15 @@ case app
     exec 'docker build -t clickhouse-shard3-replica2 --build-arg NODE="03-2" ~/bin/module/clickhouse/cluster/'
 
     path = "~/bin/module/clickhouse/clickhouse-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml down"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'flink-cluster'
     path = "~/bin/module/flink/flink-cluster"
-    exec "NUM=#{num} docker-compose -f #{path}/docker-compose.yml down"
+    exec "NUM=#{num} docker-compose -f #{path}/docker-compose.yml down -v"
     exec "NUM=#{num} docker-compose -f #{path}/docker-compose.yml up -d"
   when 'kafka-cluster'
     path = "~/bin/module/kafka/kafka-cluster"
-    exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml down"
+    exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml down -v"
     exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml up -d"
   when 'nacos'
     exec 'docker build -t nacos-server ~/bin/module/nacos/'
@@ -102,7 +102,7 @@ case app
     exec 'docker run -d --net backend --name nacos-server -p 8848:8848 -v /opt/volumes/extra:/extra -v /opt/volumes/nacos/logs:/home/nacos/logs nacos-server'
   when 'nacos-cluster'
     path = "~/bin/module/nacos/nacos-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml down"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'zipkin'
     exec 'docker build -t zipkin-server ~/bin/module/zipkin/'
