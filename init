@@ -71,6 +71,10 @@ case app
     path = "~/bin/module/elasticsearch/elasticsearch-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml down -v"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
+  when 'logstash'
+    exec 'docker build -t logstash-server ~/bin/module/logstash/'
+    exec 'docker rm -f logstash-server'
+    exec "docker run -d --net backend --name logstash-server -v /opt/volumes/extra:/extra logstash-server"
   when 'kibana'
     exec 'docker rm -f kibana-server'
     exec 'docker run -d --net backend --name kibana-server -p 5601:5601 -v /opt/volumes/extra:/extra -e "ELASTICSEARCH_HOSTS=http://elasticsearch-server:9200" -e "I18N_LOCALE=zh-CN" docker.elastic.co/kibana/kibana:7.14.0'
