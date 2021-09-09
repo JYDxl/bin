@@ -9,7 +9,7 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|neo4j|elasticsearch-cluster|kibana|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
+  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|neo4j|elasticsearch-cluster|logstash|kibana|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
 end
 
 # TODO jenkins
