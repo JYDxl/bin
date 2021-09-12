@@ -19,7 +19,7 @@ services:
     depends_on:
       - clickhouse-zookeeper
     ports:
-      - "18011:8123"
+      - "8123:8123"
     ulimits:
       nproc: 65535
       nofile:
@@ -38,7 +38,7 @@ services:
     depends_on:
       - clickhouse-zookeeper
     ports:
-      - "18012:8123"
+      - "8124:8123"
     ulimits:
       nproc: 65535
       nofile:
@@ -57,7 +57,7 @@ services:
     depends_on:
       - clickhouse-zookeeper
     ports:
-      - "18021:8123"
+      - "8125:8123"
     ulimits:
       nproc: 65535
       nofile:
@@ -76,7 +76,7 @@ services:
     depends_on:
       - clickhouse-zookeeper
     ports:
-      - "18022:8123"
+      - "8126:8123"
     ulimits:
       nproc: 65535
       nofile:
@@ -95,7 +95,7 @@ services:
     depends_on:
       - clickhouse-zookeeper
     ports:
-      - "18031:8123"
+      - "8127:8123"
     ulimits:
       nproc: 65535
       nofile:
@@ -114,7 +114,7 @@ services:
     depends_on:
       - clickhouse-zookeeper
     ports:
-      - "18032:8123"
+      - "8128:8123"
     ulimits:
       nproc: 65535
       nofile:

@@ -19,7 +19,7 @@ services:
       - /opt/volumes/elasticsearch-cluster1/data:/usr/share/elasticsearch/data:rw
       - /opt/volumes/extra:/extra
     ports:
-      - "9201:9200"
+      - "9200:9200"
     networks:
       - backend
 
@@ -41,7 +41,7 @@ services:
       - /opt/volumes/elasticsearch-cluster2/data:/usr/share/elasticsearch/data:rw
       - /opt/volumes/extra:/extra
     ports:
-      - "9202:9200"
+      - "9201:9200"
     networks:
       - backend
 
@@ -63,7 +63,7 @@ services:
       - /opt/volumes/elasticsearch-cluster3/data:/usr/share/elasticsearch/data:rw
       - /opt/volumes/extra:/extra
     ports:
-      - "9203:9200"
+      - "9202:9200"
     networks:
       - backend
 

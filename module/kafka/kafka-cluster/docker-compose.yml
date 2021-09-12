@@ -17,12 +17,12 @@ services:
     depends_on:
       - kafka-zookeeper
     ports:
-      - "9093:9093"
+      - "9092:9092"
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: kafka-zookeeper:2181
-      KAFKA_LISTENERS: PLAINTEXT://:9093
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${IP}:9093
+      KAFKA_LISTENERS: PLAINTEXT://:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${IP}:9092
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /opt/volumes/kafka-cluster1:/kafka
@@ -36,12 +36,12 @@ services:
     depends_on:
       - kafka-zookeeper
     ports:
-      - "9094:9094"
+      - "9093:9093"
     environment:
       KAFKA_BROKER_ID: 2
       KAFKA_ZOOKEEPER_CONNECT: kafka-zookeeper:2181
-      KAFKA_LISTENERS: PLAINTEXT://:9094
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${IP}:9094
+      KAFKA_LISTENERS: PLAINTEXT://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${IP}:9093
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /opt/volumes/kafka-cluster2:/kafka
@@ -55,12 +55,12 @@ services:
     depends_on:
       - kafka-zookeeper
     ports:
-      - "9095:9095"
+      - "9094:9094"
     environment:
       KAFKA_BROKER_ID: 3
       KAFKA_ZOOKEEPER_CONNECT: kafka-zookeeper:2181
-      KAFKA_LISTENERS: PLAINTEXT://:9095
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${IP}:9095
+      KAFKA_LISTENERS: PLAINTEXT://:9094
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${IP}:9094
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /opt/volumes/kafka-cluster3:/kafka

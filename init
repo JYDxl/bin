@@ -9,7 +9,7 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql|mysql5|canal|mariadb|postgresql|rabbitmq|redis|mongodb|neo4j|elasticsearch-cluster|logstash|kibana|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
+  system "echo 'bin/init mysql|canal|mariadb|postgresql|rabbitmq|redis|mongodb|neo4j|elasticsearch-cluster|logstash|kibana|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
 end
 
 # TODO jenkins
@@ -31,10 +31,6 @@ case app
     exec 'docker build -t mysql-server ~/bin/module/mysql/'
     exec 'docker rm -f mysql-server'
     exec "docker run -d --net backend --name mysql-server -p 3306:3306 -v /opt/volumes/mysql:/var/lib/mysql -v /opt/volumes/extra:/extra mysql-server --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
-  when 'mysql5'
-    exec 'docker build -t mysql5-server ~/bin/module/mysql5/'
-    exec 'docker rm -f mysql5-server'
-    exec "docker run -d --net backend --name mysql5-server -p 3307:3306 -v /opt/volumes/mysql5:/var/lib/mysql -v /opt/volumes/extra:/extra mysql5-server --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
   when 'canal'
     exec 'docker build -t canal-server ~/bin/module/canal/'
     exec 'docker rm -f canal-server'
@@ -100,10 +96,6 @@ case app
     path = "~/bin/module/kafka/kafka-cluster"
     exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml down -v"
     exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml up -d"
-  when 'nacos'
-    exec 'docker build -t nacos-server ~/bin/module/nacos/'
-    exec 'docker rm -f nacos-server'
-    exec 'docker run -d --net backend --name nacos-server -p 8848:8848 -v /opt/volumes/extra:/extra -v /opt/volumes/nacos/logs:/home/nacos/logs nacos-server'
   when 'nacos-cluster'
     path = "~/bin/module/nacos/nacos-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml down -v"

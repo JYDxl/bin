@@ -5,7 +5,7 @@ services:
     image: flink:1.13.2-scala_2.12-java11
     container_name: flink-jobmanager
     ports:
-      - "8070:8081"
+      - "8079:8081"
     networks:
       - backend
     command: jobmanager
