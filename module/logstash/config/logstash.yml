@@ -1,3 +1,3 @@
 http.host: "0.0.0.0"
-xpack.monitoring.enabled: true
-xpack.monitoring.elasticsearch.hosts: [ "http://elasticsearch-cluster1:9200", "http://elasticsearch-cluster2:9200", "http://elasticsearch-cluster3:9200" ]
+#xpack.monitoring.enabled: true
+#xpack.monitoring.elasticsearch.hosts: [ "http://elasticsearch-cluster1:9200", "http://elasticsearch-cluster2:9200", "http://elasticsearch-cluster3:9200" ]
