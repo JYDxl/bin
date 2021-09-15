@@ -62,8 +62,6 @@ case app
     exec "docker-compose -f #{path}/docker-compose.yml down -v"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'elasticsearch-cluster'
-    exec 'docker build -t elasticsearch-server ~/bin/module/elasticsearch/'
-
     path = "~/bin/module/elasticsearch/elasticsearch-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml down -v"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
