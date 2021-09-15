@@ -4,15 +4,14 @@ services:
   flink-jobmanager:
     image: flink:1.13.2-scala_2.12-java11
     container_name: flink-jobmanager
-    ports:
-      - "8079:8081"
     networks:
-      - backend
+      - host
     command: jobmanager
     environment:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-jobmanager
+        rest.bind-port: 8079
 
   flink-taskmanager1:
     image: flink:1.13.2-scala_2.12-java11
@@ -20,7 +19,7 @@ services:
     depends_on:
       - flink-jobmanager
     networks:
-      - backend
+      - host
     command: taskmanager
     environment:
       - |
@@ -34,7 +33,7 @@ services:
     depends_on:
       - flink-jobmanager
     networks:
-      - backend
+      - host
     command: taskmanager
     environment:
       - |
@@ -48,7 +47,7 @@ services:
     depends_on:
       - flink-jobmanager
     networks:
-      - backend
+      - host
     command: taskmanager
     environment:
       - |
@@ -62,7 +61,7 @@ services:
     depends_on:
       - flink-jobmanager
     networks:
-      - backend
+      - host
     command: taskmanager
     environment:
       - |
