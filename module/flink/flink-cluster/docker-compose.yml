@@ -8,6 +8,8 @@ services:
       - "8079:8081"
     networks:
       - backend
+    volumes:
+      - /opt/volumes/flink-jobmanager/artifacts:/opt/flink/usrlib
     command: jobmanager
     environment:
       - |
@@ -21,6 +23,8 @@ services:
       - flink-jobmanager
     networks:
       - backend
+    volumes:
+      - /opt/volumes/flink-taskmanager1/artifacts:/opt/flink/usrlib
     command: taskmanager
     environment:
       - |
@@ -35,6 +39,8 @@ services:
       - flink-jobmanager
     networks:
       - backend
+    volumes:
+      - /opt/volumes/flink-taskmanager2/artifacts:/opt/flink/usrlib
     command: taskmanager
     environment:
       - |
@@ -49,6 +55,8 @@ services:
       - flink-jobmanager
     networks:
       - backend
+    volumes:
+      - /opt/volumes/flink-taskmanager3/artifacts:/opt/flink/usrlib
     command: taskmanager
     environment:
       - |
@@ -63,6 +71,8 @@ services:
       - flink-jobmanager
     networks:
       - backend
+    volumes:
+      - /opt/volumes/flink-taskmanager4/artifacts:/opt/flink/usrlib
     command: taskmanager
     environment:
       - |
