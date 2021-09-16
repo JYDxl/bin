@@ -3,17 +3,15 @@ services:
 
   clickhouse-zookeeper:
     container_name: clickhouse-zookeeper
-    image: zookeeper:3.7.0
+    image: bitnami/zookeeper
     networks:
       - backend
     volumes:
-      - /opt/volumes/clickhouse-zookeeper/data:/data
-      - /opt/volumes/clickhouse-zookeeper/datalog:/datalog
-      - /opt/volumes/clickhouse-zookeeper/logs:/logs
+      - /opt/volumes/clickhouse-zookeeper/data:/bitnami/zookeeper/data
 
-  clickhouse-shard1-replica1:
-    container_name: clickhouse-shard1-replica1
-    image: clickhouse-shard1-replica1
+  clickhouse-shard0-replica0:
+    container_name: clickhouse-shard0-replica0
+    image: clickhouse-shard0-replica0
     networks:
       - backend
     depends_on:
@@ -26,13 +24,13 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard1-replica1/lib:/var/lib/clickhouse
-      - /opt/volumes/clickhouse-shard1-replica1/log:/var/log/clickhouse-server
+      - /opt/volumes/clickhouse-shard0-replica0/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard0-replica0/log:/var/log/clickhouse-server
       - /opt/volumes/extra:/extra
 
-  clickhouse-shard1-replica2:
-    container_name: clickhouse-shard1-replica2
-    image: clickhouse-shard1-replica2
+  clickhouse-shard0-replica1:
+    container_name: clickhouse-shard0-replica1
+    image: clickhouse-shard0-replica1
     networks:
       - backend
     depends_on:
@@ -45,13 +43,13 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard1-replica2/lib:/var/lib/clickhouse
-      - /opt/volumes/clickhouse-shard1-replica2/log:/var/log/clickhouse-server
+      - /opt/volumes/clickhouse-shard0-replica1/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard0-replica1/log:/var/log/clickhouse-server
       - /opt/volumes/extra:/extra
 
-  clickhouse-shard2-replica1:
-    container_name: clickhouse-shard2-replica1
-    image: clickhouse-shard2-replica1
+  clickhouse-shard1-replica0:
+    container_name: clickhouse-shard1-replica0
+    image: clickhouse-shard1-replica0
     networks:
       - backend
     depends_on:
@@ -64,13 +62,13 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard2-replica1/lib:/var/lib/clickhouse
-      - /opt/volumes/clickhouse-shard2-replica1/log:/var/log/clickhouse-server
+      - /opt/volumes/clickhouse-shard1-replica0/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard1-replica0/log:/var/log/clickhouse-server
       - /opt/volumes/extra:/extra
 
-  clickhouse-shard2-replica2:
-    container_name: clickhouse-shard2-replica2
-    image: clickhouse-shard2-replica2
+  clickhouse-shard1-replica1:
+    container_name: clickhouse-shard1-replica1
+    image: clickhouse-shard1-replica1
     networks:
       - backend
     depends_on:
@@ -83,13 +81,13 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard2-replica2/lib:/var/lib/clickhouse
-      - /opt/volumes/clickhouse-shard2-replica2/log:/var/log/clickhouse-server
+      - /opt/volumes/clickhouse-shard1-replica1/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard1-replica1/log:/var/log/clickhouse-server
       - /opt/volumes/extra:/extra
 
-  clickhouse-shard3-replica1:
-    container_name: clickhouse-shard3-replica1
-    image: clickhouse-shard3-replica1
+  clickhouse-shard2-replica0:
+    container_name: clickhouse-shard2-replica0
+    image: clickhouse-shard2-replica0
     networks:
       - backend
     depends_on:
@@ -102,13 +100,13 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard3-replica1/lib:/var/lib/clickhouse
-      - /opt/volumes/clickhouse-shard3-replica1/log:/var/log/clickhouse-server
+      - /opt/volumes/clickhouse-shard2-replica0/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard2-replica0/log:/var/log/clickhouse-server
       - /opt/volumes/extra:/extra
 
-  clickhouse-shard3-replica2:
-    container_name: clickhouse-shard3-replica2
-    image: clickhouse-shard3-replica2
+  clickhouse-shard2-replica1:
+    container_name: clickhouse-shard2-replica1
+    image: clickhouse-shard2-replica1
     networks:
       - backend
     depends_on:
@@ -121,8 +119,8 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard3-replica2/lib:/var/lib/clickhouse
-      - /opt/volumes/clickhouse-shard3-replica2/log:/var/log/clickhouse-server
+      - /opt/volumes/clickhouse-shard2-replica1/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard2-replica1/log:/var/log/clickhouse-server
       - /opt/volumes/extra:/extra
 
 networks:

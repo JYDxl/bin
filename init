@@ -9,7 +9,7 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql|canal|mariadb|postgresql|rabbitmq|redis|mongodb|neo4j|elasticsearch-cluster|logstash|kibana|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
+  system "echo 'bin/init mysql|canal|mariadb|postgresql|rabbitmq|redis|mongodb-cluster|neo4j|elasticsearch-cluster|logstash|kibana|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
 end
 
 # TODO jenkins
@@ -51,14 +51,14 @@ case app
     exec 'docker build -t redis-server ~/bin/module/redis/'
     exec 'docker rm -f redis-server'
     exec 'docker run -d --net backend --name redis-server -p 6379:6379 -v /opt/volumes/redis:/data -v /opt/volumes/extra:/extra redis-server --requirepass "XLrootJYD713"'
-  when 'mongodb'
-    exec 'docker build -t mongodb-server ~/bin/module/mongodb/'
-    exec 'docker rm -f mongodb-server'
-    exec 'docker run -d --net backend --name mongodb-server -p 27017:27017 -v /opt/volumes/mongo:/data/db -v /opt/volumes/extra:/extra mongodb-server'
   when 'neo4j'
     exec 'docker build -t neo4j-server ~/bin/module/neo4j'
 
     path = "~/bin/module/neo4j"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v"
+    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+  when 'mongodb-cluster'
+    path = "~/bin/module/mongodb/mongodb-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml down -v"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'elasticsearch-cluster'

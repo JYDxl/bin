@@ -821,8 +821,8 @@
 
     <macros>
         <layer>01</layer>
-        <shard>03</shard> <!--这个节点配置的分片号-->
-        <replica>cluster-03-1</replica> <!--当前分片为1，副本为1-->
+        <shard>00</shard> <!--这个节点配置的分片号-->
+        <replica>cluster-00-0</replica> <!--当前分片为1，副本为1-->
     </macros>
 
     <!-- Reloading interval for embedded dictionaries, in seconds. Default: 3600. -->

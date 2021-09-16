@@ -1,0 +1,84 @@
+version: '3'
+
+services:
+  mongodb-sharded:
+    container_name: mongodb-sharded
+    image: docker.io/bitnami/mongodb-sharded:4.4
+    networks:
+      - backend
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-sharded
+      - MONGODB_SHARDING_MODE=mongos
+      - MONGODB_CFG_PRIMARY_HOST=mongodb-cfg
+      - MONGODB_CFG_REPLICA_SET_NAME=cfgreplicaset
+      - MONGODB_REPLICA_SET_KEY=replicasetkey
+      - MONGODB_ROOT_PASSWORD=XLrootJYD713
+    ports:
+      - '27017:27017'
+
+  mongodb-shard0:
+    container_name: mongodb-shard0
+    image: docker.io/bitnami/mongodb-sharded:4.4
+    networks:
+      - backend
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-shard0
+      - MONGODB_SHARDING_MODE=shardsvr
+      - MONGODB_MONGOS_HOST=mongodb-sharded
+      - MONGODB_ROOT_PASSWORD=XLrootJYD713
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_REPLICA_SET_KEY=replicasetkey
+      - MONGODB_REPLICA_SET_NAME=shard0
+    volumes:
+      - /opt/volumes/mongodb-shard0:/bitnami/mongodb/data
+
+  mongodb-shard1:
+    container_name: mongodb-shard1
+    image: docker.io/bitnami/mongodb-sharded:4.4
+    networks:
+      - backend
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-shard1
+      - MONGODB_SHARDING_MODE=shardsvr
+      - MONGODB_MONGOS_HOST=mongodb-sharded
+      - MONGODB_ROOT_PASSWORD=XLrootJYD713
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_REPLICA_SET_KEY=replicasetkey
+      - MONGODB_REPLICA_SET_NAME=shard1
+    volumes:
+      - /opt/volumes/mongodb-shard1:/bitnami/mongodb/data
+
+  mongodb-shard2:
+    container_name: mongodb-shard2
+    image: docker.io/bitnami/mongodb-sharded:4.4
+    networks:
+      - backend
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-shard2
+      - MONGODB_SHARDING_MODE=shardsvr
+      - MONGODB_MONGOS_HOST=mongodb-sharded
+      - MONGODB_ROOT_PASSWORD=XLrootJYD713
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_REPLICA_SET_KEY=replicasetkey
+      - MONGODB_REPLICA_SET_NAME=shard2
+    volumes:
+      - /opt/volumes/mongodb-shard2:/bitnami/mongodb/data
+
+  mongodb-cfg:
+    container_name: mongodb-cfg
+    image: docker.io/bitnami/mongodb-sharded:4.4
+    networks:
+      - backend
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-cfg
+      - MONGODB_SHARDING_MODE=configsvr
+      - MONGODB_ROOT_PASSWORD=XLrootJYD713
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_REPLICA_SET_KEY=replicasetkey
+      - MONGODB_REPLICA_SET_NAME=cfgreplicaset
+    volumes:
+      - /opt/volumes/mongodb-cfg:/bitnami/mongodb/data
+
+networks:
+  backend:
+    external: true

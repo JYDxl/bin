@@ -11,8 +11,8 @@ services:
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
 
-  kafka-cluster1:
-    container_name: kafka-cluster1
+  kafka-cluster0:
+    container_name: kafka-cluster0
     image: bitnami/kafka
     networks:
       - backend
@@ -27,11 +27,11 @@ services:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
     volumes:
-      - /opt/volumes/kafka-cluster1/data:/bitnami/kafka/data
+      - /opt/volumes/kafka-cluster0/data:/bitnami/kafka/data
       - /opt/volumes/extra:/extra
 
-  kafka-cluster2:
-    container_name: kafka-cluster2
+  kafka-cluster1:
+    container_name: kafka-cluster1
     image: bitnami/kafka
     networks:
       - backend
@@ -46,11 +46,11 @@ services:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
     volumes:
-      - /opt/volumes/kafka-cluster2/data:/bitnami/kafka/data
+      - /opt/volumes/kafka-cluster1/data:/bitnami/kafka/data
       - /opt/volumes/extra:/extra
 
-  kafka-cluster3:
-    container_name: kafka-cluster3
+  kafka-cluster2:
+    container_name: kafka-cluster2
     image: bitnami/kafka
     networks:
       - backend
@@ -65,7 +65,7 @@ services:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
     volumes:
-      - /opt/volumes/kafka-cluster3/data:/bitnami/kafka/data
+      - /opt/volumes/kafka-cluster2/data:/bitnami/kafka/data
       - /opt/volumes/extra:/extra
 
 #  kafka-exporter:
@@ -74,12 +74,12 @@ services:
 #    networks:
 #      - backend
 #    depends_on:
+#      - kafka-cluster0
 #      - kafka-cluster1
 #      - kafka-cluster2
-#      - kafka-cluster3
 #    ports:
 #      - '9308:9308'
-#    command: --kafka.server=kafka-cluster1:9092,kafka-cluster2:9093,kafka-cluster3:9094
+#    command: --kafka.server=kafka-cluster0:9092,kafka-cluster1:9093,kafka-cluster2:9094
 
 networks:
   backend:
