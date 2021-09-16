@@ -8,6 +8,8 @@ services:
       - backend
     volumes:
       - /opt/volumes/clickhouse-zookeeper/data:/bitnami/zookeeper/data
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
 
   clickhouse-shard0-replica0:
     container_name: clickhouse-shard0-replica0
