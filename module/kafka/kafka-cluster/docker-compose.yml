@@ -10,6 +10,7 @@ services:
       - /opt/volumes/kafka-zookeeper/data:/bitnami/zookeeper/data
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
+      - TZ=Asia/Shanghai
 
   kafka-cluster0:
     container_name: kafka-cluster0
@@ -26,6 +27,7 @@ services:
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9092
       - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
+      - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/kafka-cluster0/data:/bitnami/kafka/data
       - /opt/volumes/extra:/extra
@@ -45,6 +47,7 @@ services:
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9093
       - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
+      - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/kafka-cluster1/data:/bitnami/kafka/data
       - /opt/volumes/extra:/extra
@@ -64,6 +67,7 @@ services:
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9094
       - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
+      - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/kafka-cluster2/data:/bitnami/kafka/data
       - /opt/volumes/extra:/extra

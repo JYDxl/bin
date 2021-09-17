@@ -7,10 +7,11 @@ services:
     environment:
       - REDIS_REPLICATION_MODE=master
       - REDIS_PASSWORD=XLrootJYD713
+      - TZ=Asia/Shanghai
     networks:
       - backend
     ports:
-      - "6379"
+      - "6379:6379"
     volumes:
       - /opt/volumes/redis-master/data:/bitnami/redis/data
       - /opt/volumes/extra:/extra
@@ -22,8 +23,9 @@ services:
       - REDIS_MASTER_HOST=redis-master
       - REDIS_MASTER_PASSWORD=XLrootJYD713
       - REDIS_PASSWORD=XLrootJYD713
+      - TZ=Asia/Shanghai
     ports:
-      - "6379"
+      - "6380:6379"
     depends_on:
       - redis-master
     networks:
@@ -37,6 +39,7 @@ services:
     environment:
       - REDIS_MASTER_HOST=redis-master
       - REDIS_MASTER_PASSWORD=XLrootJYD713
+      - TZ=Asia/Shanghai
     depends_on:
       - redis-master
       - redis-slave
@@ -50,6 +53,7 @@ services:
     environment:
       - REDIS_MASTER_HOST=redis-master
       - REDIS_MASTER_PASSWORD=XLrootJYD713
+      - TZ=Asia/Shanghai
     depends_on:
       - redis-master
       - redis-slave
@@ -63,6 +67,7 @@ services:
     environment:
       - REDIS_MASTER_HOST=redis-master
       - REDIS_MASTER_PASSWORD=XLrootJYD713
+      - TZ=Asia/Shanghai
     depends_on:
       - redis-master
       - redis-slave

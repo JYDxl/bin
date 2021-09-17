@@ -13,6 +13,7 @@ services:
       - MONGODB_CFG_REPLICA_SET_NAME=cfgreplicaset
       - MONGODB_REPLICA_SET_KEY=replicasetkey
       - MONGODB_ROOT_PASSWORD=XLrootJYD713
+      - TZ=Asia/Shanghai
     ports:
       - '27017:27017'
 
@@ -29,6 +30,7 @@ services:
       - MONGODB_REPLICA_SET_MODE=primary
       - MONGODB_REPLICA_SET_KEY=replicasetkey
       - MONGODB_REPLICA_SET_NAME=shard0
+      - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/mongodb-shard0:/bitnami/mongodb/data
 
@@ -45,6 +47,7 @@ services:
       - MONGODB_REPLICA_SET_MODE=primary
       - MONGODB_REPLICA_SET_KEY=replicasetkey
       - MONGODB_REPLICA_SET_NAME=shard1
+      - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/mongodb-shard1:/bitnami/mongodb/data
 
@@ -61,6 +64,7 @@ services:
       - MONGODB_REPLICA_SET_MODE=primary
       - MONGODB_REPLICA_SET_KEY=replicasetkey
       - MONGODB_REPLICA_SET_NAME=shard2
+      - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/mongodb-shard2:/bitnami/mongodb/data
 
@@ -76,6 +80,7 @@ services:
       - MONGODB_REPLICA_SET_MODE=primary
       - MONGODB_REPLICA_SET_KEY=replicasetkey
       - MONGODB_REPLICA_SET_NAME=cfgreplicaset
+      - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/mongodb-cfg:/bitnami/mongodb/data
 

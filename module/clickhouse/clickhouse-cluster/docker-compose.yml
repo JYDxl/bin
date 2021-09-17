@@ -10,6 +10,7 @@ services:
       - /opt/volumes/clickhouse-zookeeper/data:/bitnami/zookeeper/data
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
+      - TZ=Asia/Shanghai
 
   clickhouse-shard0-replica0:
     container_name: clickhouse-shard0-replica0
