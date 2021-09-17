@@ -115,7 +115,7 @@
     #    split => {
     #      "genre" => "|"
     #    }
-    #    remove_field => ["path", "host","@timestamp","message"]
+    #    remove_field => ["path", "host","message"]
     #  }
     #
     #  mutate {
@@ -134,7 +134,7 @@
     #      "year" => "integer"
     #    }
     #    strip => ["title"]
-    #    remove_field => ["path", "host","@timestamp","message","content"]
+    #    remove_field => ["path", "host","message","content"]
     #  }
     #
     #}
