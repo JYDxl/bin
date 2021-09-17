@@ -9,7 +9,7 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql|canal|mariadb|postgresql|rabbitmq|redis-sentinel|redis-cluster|mongodb-cluster|neo4j|elasticsearch-cluster|logstash|kibana|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|java|env'"
+  system "echo 'bin/init mysql|canal|mariadb|postgresql|rabbitmq|redis-sentinel|redis-cluster|mongodb-cluster|neo4j|elasticsearch-cluster|logstash|kibana|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|env'"
 end
 
 # TODO jenkins
@@ -138,8 +138,6 @@ case app
     exec 'docker build -t debian-os ~/bin/module/debian/'
     exec 'docker rm -f debian-os'
     exec 'docker run -d --net backend --name debian-os -v /opt/volumes/extra:/extra -it debian-os /bin/bash'
-  when 'java'
-    exec 'docker build -t jre-alpine ~/bin/module/java/'
   when 'env'
     exec 'docker network create backend'
   else
