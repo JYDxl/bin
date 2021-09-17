@@ -1,0 +1,72 @@
+version: '2'
+
+services:
+  mysql-master:
+    image: bitnami/mysql:latest
+    container_name: mysql-master
+    networks:
+      - backend
+    ports:
+      - '3306:3306'
+    volumes:
+      - ../conf/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
+      - /opt/volumes/mysql-master/data:/bitnami/mysql/data
+    environment:
+      - MYSQL_REPLICATION_MODE=master
+      - MYSQL_REPLICATION_USER=repl_user
+      - MYSQL_REPLICATION_PASSWORD=XLrootJYD713
+      - MYSQL_ROOT_PASSWORD=XLrootJYD713
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=XLrootJYD713
+      - MYSQL_DATABASE=mysql
+      - MYSQL_CHARACTER_SET=utf8mb4
+      - MYSQL_COLLATE=utf8mb4_general_ci
+      - TZ=Asia/Shanghai
+  mysql-slave0:
+    image: bitnami/mysql:latest
+    container_name: mysql-slave0
+    networks:
+      - backend
+    ports:
+      - '3307:3306'
+    depends_on:
+      - mysql-master
+    volumes:
+      - ../conf/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
+      - /opt/volumes/mysql-slave0/data:/bitnami/mysql/data
+    environment:
+      - MYSQL_REPLICATION_MODE=slave
+      - MYSQL_REPLICATION_USER=repl_user
+      - MYSQL_REPLICATION_PASSWORD=XLrootJYD713
+      - MYSQL_MASTER_HOST=mysql-master
+      - MYSQL_MASTER_PORT_NUMBER=3306
+      - MYSQL_MASTER_ROOT_PASSWORD=XLrootJYD713
+      - MYSQL_CHARACTER_SET=utf8mb4
+      - MYSQL_COLLATE=utf8mb4_general_ci
+      - TZ=Asia/Shanghai
+  mysql-slave1:
+    image: bitnami/mysql:latest
+    container_name: mysql-slave1
+    networks:
+      - backend
+    ports:
+      - '3308:3306'
+    depends_on:
+      - mysql-master
+    volumes:
+      - ../conf/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
+      - /opt/volumes/mysql-slave1/data:/bitnami/mysql/data
+    environment:
+      - MYSQL_REPLICATION_MODE=slave
+      - MYSQL_REPLICATION_USER=repl_user
+      - MYSQL_REPLICATION_PASSWORD=XLrootJYD713
+      - MYSQL_MASTER_HOST=mysql-master
+      - MYSQL_MASTER_PORT_NUMBER=3306
+      - MYSQL_MASTER_ROOT_PASSWORD=XLrootJYD713
+      - MYSQL_CHARACTER_SET=utf8mb4
+      - MYSQL_COLLATE=utf8mb4_general_ci
+      - TZ=Asia/Shanghai
+
+networks:
+  backend:
+    external: true

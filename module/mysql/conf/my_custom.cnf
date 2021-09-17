@@ -1,0 +1,5 @@
+[mysqld]
+lower_case_table_names = 1
+
+binlog_format          = row
+log_bin                = mysql-bin

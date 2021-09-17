@@ -9,7 +9,7 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql|canal|mariadb|postgresql|rabbitmq|redis-sentinel|redis-cluster|mongodb-cluster|neo4j|elasticsearch-cluster|logstash|kibana|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|env'"
+  system "echo 'bin/init mysql-cluster|canal|mariadb|postgresql|rabbitmq|redis-sentinel|redis-cluster|mongodb-cluster|neo4j|elasticsearch-cluster|logstash|kibana|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|env'"
 end
 
 # TODO jenkins
@@ -27,10 +27,6 @@ app = ARGV[0]
 warn && exit unless app
 
 case app
-  when 'mysql'
-    exec 'docker build -t mysql-server ~/bin/module/mysql/'
-    exec 'docker rm -f mysql-server'
-    exec "docker run -d --net backend --name mysql-server -p 3306:3306 -v /opt/volumes/mysql:/var/lib/mysql -v /opt/volumes/extra:/extra mysql-server --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
   when 'canal'
     exec 'docker build -t canal-server ~/bin/module/canal/'
     exec 'docker rm -f canal-server'
