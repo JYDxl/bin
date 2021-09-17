@@ -3,7 +3,7 @@ version: '3'
 services:
   mongodb-sharded:
     container_name: mongodb-sharded
-    image: docker.io/bitnami/mongodb-sharded:4.4
+    image: bitnami/mongodb-sharded:4.4
     networks:
       - backend
     environment:
@@ -19,7 +19,7 @@ services:
 
   mongodb-shard0:
     container_name: mongodb-shard0
-    image: docker.io/bitnami/mongodb-sharded:4.4
+    image: bitnami/mongodb-sharded:4.4
     networks:
       - backend
     environment:
@@ -36,7 +36,7 @@ services:
 
   mongodb-shard1:
     container_name: mongodb-shard1
-    image: docker.io/bitnami/mongodb-sharded:4.4
+    image: bitnami/mongodb-sharded:4.4
     networks:
       - backend
     environment:
@@ -53,7 +53,7 @@ services:
 
   mongodb-shard2:
     container_name: mongodb-shard2
-    image: docker.io/bitnami/mongodb-sharded:4.4
+    image: bitnami/mongodb-sharded:4.4
     networks:
       - backend
     environment:
@@ -70,7 +70,7 @@ services:
 
   mongodb-cfg:
     container_name: mongodb-cfg
-    image: docker.io/bitnami/mongodb-sharded:4.4
+    image: bitnami/mongodb-sharded:4.4
     networks:
       - backend
     environment:
