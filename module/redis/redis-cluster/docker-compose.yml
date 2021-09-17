@@ -8,7 +8,7 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - /opt/volumes/redis-cluster0/data:/bitnami/redis/data
+      - /opt/volumes/redis-cluster0:/bitnami/redis/data
     environment:
       - REDIS_PASSWORD=XLrootJYD713
       - REDIS_NODES=redis-cluster0 redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5
@@ -22,7 +22,7 @@ services:
     ports:
       - "6380:6379"
     volumes:
-      - /opt/volumes/redis-cluster1/data:/bitnami/redis/data
+      - /opt/volumes/redis-cluster1:/bitnami/redis/data
     environment:
       - REDIS_PASSWORD=XLrootJYD713
       - REDIS_NODES=redis-cluster0 redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5
@@ -36,7 +36,7 @@ services:
     ports:
       - "6381:6379"
     volumes:
-      - /opt/volumes/redis-cluster2/data:/bitnami/redis/data
+      - /opt/volumes/redis-cluster2:/bitnami/redis/data
     environment:
       - REDIS_PASSWORD=XLrootJYD713
       - REDIS_NODES=redis-cluster0 redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5
@@ -50,7 +50,7 @@ services:
     ports:
       - "6382:6379"
     volumes:
-      - /opt/volumes/redis-cluster3/data:/bitnami/redis/data
+      - /opt/volumes/redis-cluster3:/bitnami/redis/data
     environment:
       - REDIS_PASSWORD=XLrootJYD713
       - REDIS_NODES=redis-cluster0 redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5
@@ -64,7 +64,7 @@ services:
     ports:
       - "6383:6379"
     volumes:
-      - /opt/volumes/redis-cluster4/data:/bitnami/redis/data
+      - /opt/volumes/redis-cluster4:/bitnami/redis/data
     environment:
       - REDIS_PASSWORD=XLrootJYD713
       - REDIS_NODES=redis-cluster0 redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5
@@ -78,7 +78,7 @@ services:
     ports:
       - "6384:6379"
     volumes:
-      - /opt/volumes/redis-cluster5/data:/bitnami/redis/data
+      - /opt/volumes/redis-cluster5:/bitnami/redis/data
     depends_on:
       - redis-cluster0
       - redis-cluster1

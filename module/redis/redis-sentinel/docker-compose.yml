@@ -13,7 +13,7 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - /opt/volumes/redis-master/data:/bitnami/redis/data
+      - /opt/volumes/redis-master:/bitnami/redis/data
       - /opt/volumes/extra:/extra
   redis-slave0:
     image: bitnami/redis:latest
@@ -31,7 +31,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/redis-slave0/data:/bitnami/redis/data
+      - /opt/volumes/redis-slave0:/bitnami/redis/data
       - /opt/volumes/extra:/extra
   redis-slave1:
     image: bitnami/redis:latest
@@ -49,7 +49,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/redis-slave1/data:/bitnami/redis/data
+      - /opt/volumes/redis-slave1:/bitnami/redis/data
       - /opt/volumes/extra:/extra
   redis-sentinel0:
     image: bitnami/redis-sentinel:latest

@@ -7,7 +7,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/clickhouse-zookeeper/data:/bitnami/zookeeper/data
+      - /opt/volumes/clickhouse-zookeeper:/bitnami/zookeeper/data
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
       - TZ=Asia/Shanghai

@@ -7,7 +7,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/kafka-zookeeper/data:/bitnami/zookeeper/data
+      - /opt/volumes/kafka-zookeeper:/bitnami/zookeeper/data
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
       - TZ=Asia/Shanghai
@@ -29,7 +29,7 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/kafka-cluster0/data:/bitnami/kafka/data
+      - /opt/volumes/kafka-cluster0:/bitnami/kafka/data
       - /opt/volumes/extra:/extra
 
   kafka-cluster1:
@@ -49,7 +49,7 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/kafka-cluster1/data:/bitnami/kafka/data
+      - /opt/volumes/kafka-cluster1:/bitnami/kafka/data
       - /opt/volumes/extra:/extra
 
   kafka-cluster2:
@@ -69,7 +69,7 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/kafka-cluster2/data:/bitnami/kafka/data
+      - /opt/volumes/kafka-cluster2:/bitnami/kafka/data
       - /opt/volumes/extra:/extra
 
 #  kafka-exporter:
