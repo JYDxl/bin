@@ -10,6 +10,7 @@ services:
       - backend
     command: jobmanager
     environment:
+      - TZ=Asia/Shanghai
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-jobmanager
@@ -23,6 +24,7 @@ services:
       - backend
     command: taskmanager
     environment:
+      - TZ=Asia/Shanghai
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-jobmanager
@@ -37,6 +39,7 @@ services:
       - backend
     command: taskmanager
     environment:
+      - TZ=Asia/Shanghai
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-jobmanager
@@ -51,6 +54,7 @@ services:
       - backend
     command: taskmanager
     environment:
+      - TZ=Asia/Shanghai
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-jobmanager
@@ -65,6 +69,7 @@ services:
       - backend
     command: taskmanager
     environment:
+      - TZ=Asia/Shanghai
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-jobmanager
