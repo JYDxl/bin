@@ -53,6 +53,10 @@ case app
     path = "~/bin/module/neo4j"
     exec "docker-compose -f #{path}/docker-compose.yml down -v"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
+  when 'mysql-cluster'
+    path = "~/bin/module/mysql/mysql-cluster"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v"
+    exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'redis-sentinel'
     path = "~/bin/module/redis/redis-sentinel"
     exec "docker-compose -f #{path}/docker-compose.yml down -v"
