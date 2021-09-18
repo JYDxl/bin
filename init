@@ -9,7 +9,7 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql-cluster|canal|mariadb|postgresql-repmgr|rabbitmq|redis-sentinel|redis-cluster|mongodb-cluster|neo4j|elasticsearch-cluster|logstash|kibana|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|env'"
+  system "echo 'bin/init mysql-cluster|canal|mariadb|postgresql-repmgr|rabbitmq-cluster|redis-sentinel|redis-cluster|mongodb-cluster|neo4j|elasticsearch-cluster|logstash|kibana|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|env'"
 end
 
 # TODO jenkins
@@ -39,10 +39,10 @@ case app
     path = "~/bin/module/postgresql/postgresql-repmgr"
     exec "docker-compose -f #{path}/docker-compose.yml down -v"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
-  when 'rabbitmq'
-    exec 'docker build -t rabbitmq-server ~/bin/module/rabbitmq/'
-    exec 'docker rm -f rabbitmq-server'
-    exec 'docker run -d --net backend --name rabbitmq-server -p 15672:15672 -p 5672:5672 -v /opt/volumes/rabbitmq:/var/lib/rabbitmq -v /opt/volumes/extra:/extra --hostname rabbitmq-server rabbitmq-server'
+  when 'rabbitmq-cluster'
+    path = "~/bin/module/rabbitmq/rabbitmq-cluster"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v"
+    exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'redis'
     exec 'docker build -t redis-server ~/bin/module/redis/'
     exec 'docker rm -f redis-server'
