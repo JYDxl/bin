@@ -24,6 +24,7 @@ end
 ip  = Socket.ip_address_list.detect { |x| x.ipv4_private? }.ip_address
 num = Etc.nprocessors
 app = ARGV[0]
+up  = ARGV[1]
 warn && exit unless app
 
 case app
@@ -37,11 +38,11 @@ case app
     exec "docker run -d --net backend --name mariadb-server -p 3308:3306 -v /opt/volumes/maria:/var/lib/mysql -v /opt/volumes/extra:/extra -v /etc/localtime:/etc/localtime mariadb-server --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --lower_case_table_names=1 --default-time_zone='+8:00'"
   when 'postgresql-repmgr'
     path = "~/bin/module/postgresql/postgresql-repmgr"
-    exec "docker-compose -f #{path}/docker-compose.yml down -v"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v" unless up
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'rabbitmq-cluster'
     path = "~/bin/module/rabbitmq/rabbitmq-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml down -v"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v" unless up
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'redis'
     exec 'docker build -t redis-server ~/bin/module/redis/'
@@ -51,27 +52,27 @@ case app
     exec 'docker build -t neo4j-server ~/bin/module/neo4j'
 
     path = "~/bin/module/neo4j"
-    exec "docker-compose -f #{path}/docker-compose.yml down -v"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v" unless up
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'mysql-cluster'
     path = "~/bin/module/mysql/mysql-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml down -v"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v" unless up
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'redis-sentinel'
     path = "~/bin/module/redis/redis-sentinel"
-    exec "docker-compose -f #{path}/docker-compose.yml down -v"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v" unless up
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'redis-cluster'
     path = "~//bin/module/redis/redis-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml down -v"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v" unless up
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'mongodb-cluster'
     path = "~/bin/module/mongodb/mongodb-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml down -v"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v" unless up
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'elasticsearch-cluster'
     path = "~/bin/module/elasticsearch/elasticsearch-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml down -v"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v" unless up
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'logstash'
     exec 'docker build -t logstash-server ~/bin/module/logstash/'
@@ -92,19 +93,19 @@ case app
     exec 'docker build -t clickhouse-shard3-replica1 --build-arg NODE="02-1" ~/bin/module/clickhouse/cluster/'
 
     path = "~/bin/module/clickhouse/clickhouse-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml down -v"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v" unless up
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'flink-cluster'
     path = "~/bin/module/flink/flink-cluster"
-    exec "NUM=#{num} docker-compose -f #{path}/docker-compose.yml down -v"
+    exec "NUM=#{num} docker-compose -f #{path}/docker-compose.yml down -v" unless up
     exec "NUM=#{num} docker-compose -f #{path}/docker-compose.yml up -d"
   when 'kafka-cluster'
     path = "~/bin/module/kafka/kafka-cluster"
-    exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml down -v"
+    exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml down -v" unless up
     exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml up -d"
   when 'nacos-cluster'
     path = "~/bin/module/nacos/nacos-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml down -v"
+    exec "docker-compose -f #{path}/docker-compose.yml down -v" unless up
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'zipkin'
     exec 'docker build -t zipkin-server ~/bin/module/zipkin/'
