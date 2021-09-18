@@ -85,13 +85,6 @@ case app
     exec 'docker rm -f cerebro-server'
     exec 'docker run -d --net backend --name cerebro-server -p 9000:9000 -v /opt/volumes/extra:/extra lmenezes/cerebro'
   when 'clickhouse-cluster'
-    exec 'docker build -t clickhouse-shard0-replica0 --build-arg NODE="00-0" ~/bin/module/clickhouse/cluster/'
-    exec 'docker build -t clickhouse-shard0-replica1 --build-arg NODE="00-1" ~/bin/module/clickhouse/cluster/'
-    exec 'docker build -t clickhouse-shard1-replica0 --build-arg NODE="01-0" ~/bin/module/clickhouse/cluster/'
-    exec 'docker build -t clickhouse-shard1-replica1 --build-arg NODE="01-1" ~/bin/module/clickhouse/cluster/'
-    exec 'docker build -t clickhouse-shard2-replica0 --build-arg NODE="02-0" ~/bin/module/clickhouse/cluster/'
-    exec 'docker build -t clickhouse-shard3-replica1 --build-arg NODE="02-1" ~/bin/module/clickhouse/cluster/'
-
     path = "~/bin/module/clickhouse/clickhouse-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml down -v" unless up
     exec "docker-compose -f #{path}/docker-compose.yml up -d"

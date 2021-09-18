@@ -32,6 +32,7 @@ services:
       - /opt/volumes/extra:/extra
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-00-0.xml:/etc/clickhouse-server/config.xml
+    environment:
       - TZ=Asia/Shanghai
 
   clickhouse-shard0-replica1:
@@ -54,6 +55,7 @@ services:
       - /opt/volumes/extra:/extra
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-00-1.xml:/etc/clickhouse-server/config.xml
+    environment:
       - TZ=Asia/Shanghai
 
   clickhouse-shard1-replica0:
@@ -76,6 +78,7 @@ services:
       - /opt/volumes/extra:/extra
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-01-0.xml:/etc/clickhouse-server/config.xml
+    environment:
       - TZ=Asia/Shanghai
 
   clickhouse-shard1-replica1:
@@ -98,6 +101,7 @@ services:
       - /opt/volumes/extra:/extra
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-01-1.xml:/etc/clickhouse-server/config.xml
+    environment:
       - TZ=Asia/Shanghai
 
   clickhouse-shard2-replica0:
@@ -120,6 +124,7 @@ services:
       - /opt/volumes/extra:/extra
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-02-0.xml:/etc/clickhouse-server/config.xml
+    environment:
       - TZ=Asia/Shanghai
 
   clickhouse-shard2-replica1:
@@ -142,6 +147,7 @@ services:
       - /opt/volumes/extra:/extra
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-02-1.xml:/etc/clickhouse-server/config.xml
+    environment:
       - TZ=Asia/Shanghai
 
 networks:
