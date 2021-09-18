@@ -19,7 +19,7 @@ services:
       - '25672:25672'
       - '15672:15672'
     volumes:
-      - /opt/volumes/rabbitmq-stats:/bitnami/rabbitmq
+      - /opt/volumes/rabbitmq-stats:/bitnami/rabbitmq/mnesia
   rabbitmq-disc0:
     image: bitnami/rabbitmq
     container_name: rabbitmq-disc0
@@ -34,7 +34,7 @@ services:
       - RABBITMQ_ERL_COOKIE=XLrootJYD713
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/rabbitmq-disc0:/bitnami/rabbitmq
+      - /opt/volumes/rabbitmq-disc0:/bitnami/rabbitmq/mnesia
   rabbitmq-disc1:
     image: bitnami/rabbitmq
     container_name: rabbitmq-disc1
@@ -49,7 +49,7 @@ services:
       - RABBITMQ_ERL_COOKIE=XLrootJYD713
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/rabbitmq-disc1:/bitnami/rabbitmq
+      - /opt/volumes/rabbitmq-disc1:/bitnami/rabbitmq/mnesia
   rabbitmq-ram0:
     image: bitnami/rabbitmq
     container_name: rabbitmq-ram0
@@ -64,7 +64,7 @@ services:
       - RABBITMQ_ERL_COOKIE=XLrootJYD713
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/rabbitmq-ram0:/bitnami/rabbitmq
+      - /opt/volumes/rabbitmq-ram0:/bitnami/rabbitmq/mnesia
   rabbitmq-ram1:
     image: bitnami/rabbitmq
     container_name: rabbitmq-ram1
@@ -79,7 +79,7 @@ services:
       - RABBITMQ_ERL_COOKIE=XLrootJYD713
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/rabbitmq-ram1:/bitnami/rabbitmq
+      - /opt/volumes/rabbitmq-ram1:/bitnami/rabbitmq/mnesia
 
 networks:
   backend:
