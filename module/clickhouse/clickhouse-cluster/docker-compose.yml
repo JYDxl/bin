@@ -14,7 +14,7 @@ services:
 
   clickhouse-shard0-replica0:
     container_name: clickhouse-shard0-replica0
-    image: clickhouse-shard0-replica0
+    image: yandex/clickhouse-server:latest
     networks:
       - backend
     depends_on:
@@ -30,10 +30,13 @@ services:
       - /opt/volumes/clickhouse-shard0-replica0/lib:/var/lib/clickhouse
       - /opt/volumes/clickhouse-shard0-replica0/log:/var/log/clickhouse-server
       - /opt/volumes/extra:/extra
+      - ./conf/users.xml:/etc/clickhouse-server/users.xml
+      - ./conf/config-00-0.xml:/etc/clickhouse-server/config.xml
+      - TZ=Asia/Shanghai
 
   clickhouse-shard0-replica1:
     container_name: clickhouse-shard0-replica1
-    image: clickhouse-shard0-replica1
+    image: yandex/clickhouse-server:latest
     networks:
       - backend
     depends_on:
@@ -49,10 +52,13 @@ services:
       - /opt/volumes/clickhouse-shard0-replica1/lib:/var/lib/clickhouse
       - /opt/volumes/clickhouse-shard0-replica1/log:/var/log/clickhouse-server
       - /opt/volumes/extra:/extra
+      - ./conf/users.xml:/etc/clickhouse-server/users.xml
+      - ./conf/config-00-1.xml:/etc/clickhouse-server/config.xml
+      - TZ=Asia/Shanghai
 
   clickhouse-shard1-replica0:
     container_name: clickhouse-shard1-replica0
-    image: clickhouse-shard1-replica0
+    image: yandex/clickhouse-server:latest
     networks:
       - backend
     depends_on:
@@ -68,10 +74,13 @@ services:
       - /opt/volumes/clickhouse-shard1-replica0/lib:/var/lib/clickhouse
       - /opt/volumes/clickhouse-shard1-replica0/log:/var/log/clickhouse-server
       - /opt/volumes/extra:/extra
+      - ./conf/users.xml:/etc/clickhouse-server/users.xml
+      - ./conf/config-01-0.xml:/etc/clickhouse-server/config.xml
+      - TZ=Asia/Shanghai
 
   clickhouse-shard1-replica1:
     container_name: clickhouse-shard1-replica1
-    image: clickhouse-shard1-replica1
+    image: yandex/clickhouse-server:latest
     networks:
       - backend
     depends_on:
@@ -87,10 +96,13 @@ services:
       - /opt/volumes/clickhouse-shard1-replica1/lib:/var/lib/clickhouse
       - /opt/volumes/clickhouse-shard1-replica1/log:/var/log/clickhouse-server
       - /opt/volumes/extra:/extra
+      - ./conf/users.xml:/etc/clickhouse-server/users.xml
+      - ./conf/config-01-1.xml:/etc/clickhouse-server/config.xml
+      - TZ=Asia/Shanghai
 
   clickhouse-shard2-replica0:
     container_name: clickhouse-shard2-replica0
-    image: clickhouse-shard2-replica0
+    image: yandex/clickhouse-server:latest
     networks:
       - backend
     depends_on:
@@ -106,10 +118,13 @@ services:
       - /opt/volumes/clickhouse-shard2-replica0/lib:/var/lib/clickhouse
       - /opt/volumes/clickhouse-shard2-replica0/log:/var/log/clickhouse-server
       - /opt/volumes/extra:/extra
+      - ./conf/users.xml:/etc/clickhouse-server/users.xml
+      - ./conf/config-02-0.xml:/etc/clickhouse-server/config.xml
+      - TZ=Asia/Shanghai
 
   clickhouse-shard2-replica1:
     container_name: clickhouse-shard2-replica1
-    image: clickhouse-shard2-replica1
+    image: yandex/clickhouse-server:latest
     networks:
       - backend
     depends_on:
@@ -125,6 +140,9 @@ services:
       - /opt/volumes/clickhouse-shard2-replica1/lib:/var/lib/clickhouse
       - /opt/volumes/clickhouse-shard2-replica1/log:/var/log/clickhouse-server
       - /opt/volumes/extra:/extra
+      - ./conf/users.xml:/etc/clickhouse-server/users.xml
+      - ./conf/config-02-1.xml:/etc/clickhouse-server/config.xml
+      - TZ=Asia/Shanghai
 
 networks:
   backend:

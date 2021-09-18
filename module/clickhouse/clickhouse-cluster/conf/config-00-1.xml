@@ -541,7 +541,7 @@
          Please note, that server could display time zone alias instead of specified name.
          Example: W-SU is an alias for Europe/Moscow and Zulu is an alias for UTC.
     -->
-     <timezone>Asia/Shanghai</timezone>
+    <timezone>Asia/Shanghai</timezone>
 
     <!-- You can specify umask here (see "man umask"). Server will apply it on startup.
          Number is always parsed as octal. Default umask is 027 (other users cannot read logs, data files, etc; group can only read).
@@ -583,122 +583,122 @@
         <port>9019</port>
     </jdbc_bridge>
     -->
-  
+
     <!-- Configuration of clusters that could be used in Distributed tables.
          https://clickhouse.tech/docs/en/operations/table_engines/distributed/
       -->
     <remote_servers>
         <!-- Test only shard config for testing distributed storage -->
-<!--        <test_shard_localhost>-->
-<!--            &lt;!&ndash; Inter-server per-cluster secret for Distributed queries-->
-<!--                 default: no secret (no authentication will be performed)-->
+        <!--        <test_shard_localhost>-->
+        <!--            &lt;!&ndash; Inter-server per-cluster secret for Distributed queries-->
+        <!--                 default: no secret (no authentication will be performed)-->
 
-<!--                 If set, then Distributed queries will be validated on shards, so at least:-->
-<!--                 - such cluster should exist on the shard,-->
-<!--                 - such cluster should have the same secret.-->
+        <!--                 If set, then Distributed queries will be validated on shards, so at least:-->
+        <!--                 - such cluster should exist on the shard,-->
+        <!--                 - such cluster should have the same secret.-->
 
-<!--                 And also (and which is more important), the initial_user will-->
-<!--                 be used as current user for the query.-->
+        <!--                 And also (and which is more important), the initial_user will-->
+        <!--                 be used as current user for the query.-->
 
-<!--                 Right now the protocol is pretty simple and it only takes into account:-->
-<!--                 - cluster name-->
-<!--                 - query-->
+        <!--                 Right now the protocol is pretty simple and it only takes into account:-->
+        <!--                 - cluster name-->
+        <!--                 - query-->
 
-<!--                 Also it will be nice if the following will be implemented:-->
-<!--                 - source hostname (see interserver_http_host), but then it will depends from DNS,-->
-<!--                   it can use IP address instead, but then the you need to get correct on the initiator node.-->
-<!--                 - target hostname / ip address (same notes as for source hostname)-->
-<!--                 - time-based security tokens-->
-<!--            &ndash;&gt;-->
-<!--            &lt;!&ndash; <secret></secret> &ndash;&gt;-->
+        <!--                 Also it will be nice if the following will be implemented:-->
+        <!--                 - source hostname (see interserver_http_host), but then it will depends from DNS,-->
+        <!--                   it can use IP address instead, but then the you need to get correct on the initiator node.-->
+        <!--                 - target hostname / ip address (same notes as for source hostname)-->
+        <!--                 - time-based security tokens-->
+        <!--            &ndash;&gt;-->
+        <!--            &lt;!&ndash; <secret></secret> &ndash;&gt;-->
 
-<!--            <shard>-->
-<!--                &lt;!&ndash; Optional. Whether to write data to just one of the replicas. Default: false (write data to all replicas). &ndash;&gt;-->
-<!--                &lt;!&ndash; <internal_replication>false</internal_replication> &ndash;&gt;-->
-<!--                &lt;!&ndash; Optional. Shard weight when writing data. Default: 1. &ndash;&gt;-->
-<!--                &lt;!&ndash; <weight>1</weight> &ndash;&gt;-->
-<!--                <replica>-->
-<!--                    <host>localhost</host>-->
-<!--                    <port>9000</port>-->
-<!--                    &lt;!&ndash; Optional. Priority of the replica for load_balancing. Default: 1 (less value has more priority). &ndash;&gt;-->
-<!--                    &lt;!&ndash; <priority>1</priority> &ndash;&gt;-->
-<!--                </replica>-->
-<!--            </shard>-->
-<!--        </test_shard_localhost>-->
-<!--        <test_cluster_two_shards_localhost>-->
-<!--             <shard>-->
-<!--                 <replica>-->
-<!--                     <host>localhost</host>-->
-<!--                     <port>9000</port>-->
-<!--                 </replica>-->
-<!--             </shard>-->
-<!--             <shard>-->
-<!--                 <replica>-->
-<!--                     <host>localhost</host>-->
-<!--                     <port>9000</port>-->
-<!--                 </replica>-->
-<!--             </shard>-->
-<!--        </test_cluster_two_shards_localhost>-->
-<!--        <test_cluster_two_shards>-->
-<!--            <shard>-->
-<!--                <replica>-->
-<!--                    <host>127.0.0.1</host>-->
-<!--                    <port>9000</port>-->
-<!--                </replica>-->
-<!--            </shard>-->
-<!--            <shard>-->
-<!--                <replica>-->
-<!--                    <host>127.0.0.2</host>-->
-<!--                    <port>9000</port>-->
-<!--                </replica>-->
-<!--            </shard>-->
-<!--        </test_cluster_two_shards>-->
-<!--        <test_cluster_two_shards_internal_replication>-->
-<!--            <shard>-->
-<!--                <internal_replication>true</internal_replication>-->
-<!--                <replica>-->
-<!--                    <host>127.0.0.1</host>-->
-<!--                    <port>9000</port>-->
-<!--                </replica>-->
-<!--            </shard>-->
-<!--            <shard>-->
-<!--                <internal_replication>true</internal_replication>-->
-<!--                <replica>-->
-<!--                    <host>127.0.0.2</host>-->
-<!--                    <port>9000</port>-->
-<!--                </replica>-->
-<!--            </shard>-->
-<!--        </test_cluster_two_shards_internal_replication>-->
-<!--        <test_shard_localhost_secure>-->
-<!--            <shard>-->
-<!--                <replica>-->
-<!--                    <host>localhost</host>-->
-<!--                    <port>9440</port>-->
-<!--                    <secure>1</secure>-->
-<!--                </replica>-->
-<!--            </shard>-->
-<!--        </test_shard_localhost_secure>-->
-<!--        <test_unavailable_shard>-->
-<!--            <shard>-->
-<!--                <replica>-->
-<!--                    <host>localhost</host>-->
-<!--                    <port>9000</port>-->
-<!--                </replica>-->
-<!--            </shard>-->
-<!--            <shard>-->
-<!--                <replica>-->
-<!--                    <host>localhost</host>-->
-<!--                    <port>1</port>-->
-<!--                </replica>-->
-<!--            </shard>-->
-<!--        </test_unavailable_shard>-->
+        <!--            <shard>-->
+        <!--                &lt;!&ndash; Optional. Whether to write data to just one of the replicas. Default: false (write data to all replicas). &ndash;&gt;-->
+        <!--                &lt;!&ndash; <internal_replication>false</internal_replication> &ndash;&gt;-->
+        <!--                &lt;!&ndash; Optional. Shard weight when writing data. Default: 1. &ndash;&gt;-->
+        <!--                &lt;!&ndash; <weight>1</weight> &ndash;&gt;-->
+        <!--                <replica>-->
+        <!--                    <host>localhost</host>-->
+        <!--                    <port>9000</port>-->
+        <!--                    &lt;!&ndash; Optional. Priority of the replica for load_balancing. Default: 1 (less value has more priority). &ndash;&gt;-->
+        <!--                    &lt;!&ndash; <priority>1</priority> &ndash;&gt;-->
+        <!--                </replica>-->
+        <!--            </shard>-->
+        <!--        </test_shard_localhost>-->
+        <!--        <test_cluster_two_shards_localhost>-->
+        <!--             <shard>-->
+        <!--                 <replica>-->
+        <!--                     <host>localhost</host>-->
+        <!--                     <port>9000</port>-->
+        <!--                 </replica>-->
+        <!--             </shard>-->
+        <!--             <shard>-->
+        <!--                 <replica>-->
+        <!--                     <host>localhost</host>-->
+        <!--                     <port>9000</port>-->
+        <!--                 </replica>-->
+        <!--             </shard>-->
+        <!--        </test_cluster_two_shards_localhost>-->
+        <!--        <test_cluster_two_shards>-->
+        <!--            <shard>-->
+        <!--                <replica>-->
+        <!--                    <host>127.0.0.1</host>-->
+        <!--                    <port>9000</port>-->
+        <!--                </replica>-->
+        <!--            </shard>-->
+        <!--            <shard>-->
+        <!--                <replica>-->
+        <!--                    <host>127.0.0.2</host>-->
+        <!--                    <port>9000</port>-->
+        <!--                </replica>-->
+        <!--            </shard>-->
+        <!--        </test_cluster_two_shards>-->
+        <!--        <test_cluster_two_shards_internal_replication>-->
+        <!--            <shard>-->
+        <!--                <internal_replication>true</internal_replication>-->
+        <!--                <replica>-->
+        <!--                    <host>127.0.0.1</host>-->
+        <!--                    <port>9000</port>-->
+        <!--                </replica>-->
+        <!--            </shard>-->
+        <!--            <shard>-->
+        <!--                <internal_replication>true</internal_replication>-->
+        <!--                <replica>-->
+        <!--                    <host>127.0.0.2</host>-->
+        <!--                    <port>9000</port>-->
+        <!--                </replica>-->
+        <!--            </shard>-->
+        <!--        </test_cluster_two_shards_internal_replication>-->
+        <!--        <test_shard_localhost_secure>-->
+        <!--            <shard>-->
+        <!--                <replica>-->
+        <!--                    <host>localhost</host>-->
+        <!--                    <port>9440</port>-->
+        <!--                    <secure>1</secure>-->
+        <!--                </replica>-->
+        <!--            </shard>-->
+        <!--        </test_shard_localhost_secure>-->
+        <!--        <test_unavailable_shard>-->
+        <!--            <shard>-->
+        <!--                <replica>-->
+        <!--                    <host>localhost</host>-->
+        <!--                    <port>9000</port>-->
+        <!--                </replica>-->
+        <!--            </shard>-->
+        <!--            <shard>-->
+        <!--                <replica>-->
+        <!--                    <host>localhost</host>-->
+        <!--                    <port>1</port>-->
+        <!--                </replica>-->
+        <!--            </shard>-->
+        <!--        </test_unavailable_shard>-->
         <clickhouse_cluster>
             <!--分片1-->
             <shard>
                 <internal_replication>true</internal_replication>
                 <replica>
                     <!--这里写节点1的IP4地址-->
-                    <host>clickhouse-shard1-replica1</host>
+                    <host>clickhouse-shard0-replica0</host>
                     <!--这里写节点1的tcp端口-->
                     <port>9000</port>
                     <!--这里写节点1的账号-->
@@ -708,7 +708,7 @@
                 </replica>
                 <replica>
                     <!--这里写节点1的IP4地址-->
-                    <host>clickhouse-shard1-replica2</host>
+                    <host>clickhouse-shard0-replica1</host>
                     <!--这里写节点1的tcp端口-->
                     <port>9000</port>
                     <!--这里写节点1的账号-->
@@ -723,7 +723,7 @@
                 <replica>
                     <!--这里写节点2的IP4地址-->
                     <!--这里的地址有点坑，它是docker容器的地址：查看命令：docker inspect 容器ID-->
-                    <host>clickhouse-shard2-replica1</host>
+                    <host>clickhouse-shard1-replica0</host>
                     <!--这里写节点2的tcp端口-->
                     <port>9000</port>
                     <!--这里写节点2的账号-->
@@ -734,7 +734,7 @@
                 <replica>
                     <!--这里写节点2的IP4地址-->
                     <!--这里的地址有点坑，它是docker容器的地址：查看命令：docker inspect 容器ID-->
-                    <host>clickhouse-shard2-replica2</host>
+                    <host>clickhouse-shard1-replica1</host>
                     <!--这里写节点2的tcp端口-->
                     <port>9000</port>
                     <!--这里写节点2的账号-->
@@ -749,7 +749,7 @@
                 <replica>
                     <!--这里写节点2的IP4地址-->
                     <!--这里的地址有点坑，它是docker容器的地址：查看命令：docker inspect 容器ID-->
-                    <host>clickhouse-shard3-replica1</host>
+                    <host>clickhouse-shard2-replica0</host>
                     <!--这里写节点2的tcp端口-->
                     <port>9000</port>
                     <!--这里写节点2的账号-->
@@ -760,7 +760,7 @@
                 <replica>
                     <!--这里写节点2的IP4地址-->
                     <!--这里的地址有点坑，它是docker容器的地址：查看命令：docker inspect 容器ID-->
-                    <host>clickhouse-shard3-replica2</host>
+                    <host>clickhouse-shard2-replica1</host>
                     <!--这里写节点2的tcp端口-->
                     <port>9000</port>
                     <!--这里写节点2的账号-->
@@ -776,21 +776,21 @@
         If this section is not present in configuration, all hosts are allowed.
     -->
     <!--<remote_url_allow_hosts>-->
-        <!-- Host should be specified exactly as in URL. The name is checked before DNS resolution.
-            Example: "yandex.ru", "yandex.ru." and "www.yandex.ru" are different hosts.
-                    If port is explicitly specified in URL, the host:port is checked as a whole.
-                    If host specified here without port, any port with this host allowed.
-                    "yandex.ru" -> "yandex.ru:443", "yandex.ru:80" etc. is allowed, but "yandex.ru:80" -> only "yandex.ru:80" is allowed.
-            If the host is specified as IP address, it is checked as specified in URL. Example: "[2a02:6b8:a::a]".
-            If there are redirects and support for redirects is enabled, every redirect (the Location field) is checked.
-            Host should be specified using the host xml tag:
-                    <host>yandex.ru</host>
-        -->
+    <!-- Host should be specified exactly as in URL. The name is checked before DNS resolution.
+        Example: "yandex.ru", "yandex.ru." and "www.yandex.ru" are different hosts.
+                If port is explicitly specified in URL, the host:port is checked as a whole.
+                If host specified here without port, any port with this host allowed.
+                "yandex.ru" -> "yandex.ru:443", "yandex.ru:80" etc. is allowed, but "yandex.ru:80" -> only "yandex.ru:80" is allowed.
+        If the host is specified as IP address, it is checked as specified in URL. Example: "[2a02:6b8:a::a]".
+        If there are redirects and support for redirects is enabled, every redirect (the Location field) is checked.
+        Host should be specified using the host xml tag:
+                <host>yandex.ru</host>
+    -->
 
-        <!-- Regular expression can be specified. RE2 engine is used for regexps.
-            Regexps are not aligned: don't forget to add ^ and $. Also don't forget to escape dot (.) metacharacter
-            (forgetting to do so is a common source of error).
-        -->
+    <!-- Regular expression can be specified. RE2 engine is used for regexps.
+        Regexps are not aligned: don't forget to add ^ and $. Also don't forget to escape dot (.) metacharacter
+        (forgetting to do so is a common source of error).
+    -->
     <!--</remote_url_allow_hosts>-->
 
     <!-- If element has 'incl' attribute, then for it's value will be used corresponding substitution from another file.
@@ -822,7 +822,7 @@
     <macros>
         <layer>01</layer>
         <shard>00</shard> <!--这个节点配置的分片号-->
-        <replica>cluster-00-0</replica> <!--当前分片为1，副本为1-->
+        <replica>cluster-00-1</replica> <!--当前分片为1，副本为1-->
     </macros>
 
     <!-- Reloading interval for embedded dictionaries, in seconds. Default: 3600. -->

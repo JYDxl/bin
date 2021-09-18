@@ -18,7 +18,7 @@ services:
       - ./env/nacos-hostname.env
     restart: always
     external_links:
-      - mysql-server
+      - mysql-master
 
   nacos-cluster1:
     image: nacos/nacos-server:v2.0.3
@@ -36,7 +36,7 @@ services:
       - ./env/nacos-hostname.env
     restart: always
     external_links:
-      - mysql-server
+      - mysql-master
 
   nacos-cluster2:
     image: nacos/nacos-server:v2.0.3
@@ -54,7 +54,7 @@ services:
       - ./env/nacos-hostname.env
     restart: always
     external_links:
-      - mysql-server
+      - mysql-master
 
 networks:
   backend:
