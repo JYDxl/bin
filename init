@@ -9,7 +9,7 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql-cluster|canal|mariadb|postgresql-repmgr|postgresql-cluster|rabbitmq-cluster|redis-sentinel|redis-cluster|mongodb-cluster|neo4j|elasticsearch-cluster|logstash|kibana|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|env'"
+  system "echo 'bin/init mysql-cluster|canal|mariadb|postgresql-repmgr|postgresql-cluster|rabbitmq-cluster|redis-sentinel|redis-cluster|mongodb-cluster|neo4j|elasticsearch-cluster|logstash|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|env'"
 end
 
 # TODO jenkins
@@ -82,9 +82,6 @@ case app
     exec 'docker build -t logstash-server ~/bin/module/logstash/'
     exec 'docker rm -f logstash-server'
     exec "docker run -d --net backend --name logstash-server -v /opt/volumes/extra:/extra logstash-server"
-  when 'kibana'
-    exec 'docker rm -f kibana-server'
-    exec 'docker run -d --net backend --name kibana-server -p 5601:5601 -v /opt/volumes/extra:/extra -e "ELASTICSEARCH_HOSTS=http://elasticsearch-server:9200" -e "I18N_LOCALE=zh-CN" docker.elastic.co/kibana/kibana:7.14.0'
   when 'cerebro'
     exec 'docker rm -f cerebro-server'
     exec 'docker run -d --net backend --name cerebro-server -p 9000:9000 -v /opt/volumes/extra:/extra lmenezes/cerebro'

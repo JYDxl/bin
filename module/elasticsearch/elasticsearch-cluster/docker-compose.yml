@@ -17,7 +17,6 @@ services:
       - "9200:9200"
     networks:
       - backend
-
   elasticsearch-cluster1:
     image: bitnami/elasticsearch:7.14.1
     container_name: elasticsearch-cluster1
@@ -34,7 +33,6 @@ services:
       - "9201:9200"
     networks:
       - backend
-
   elasticsearch-cluster2:
     image: bitnami/elasticsearch:7.14.1
     container_name: elasticsearch-cluster2
@@ -51,6 +49,22 @@ services:
       - "9202:9200"
     networks:
       - backend
+  elasticsearch-kibana:
+    image: bitnami/kibana:7.14.1
+    container_name: elasticsearch-kibana
+    environment:
+      - KIBANA_ELASTICSEARCH_URL=elasticsearch-cluster0
+      - TZ=Asia/Shanghai
+    volumes:
+      - opt/volumes/elasticsearch-kibana:/bitnami/kibana/data
+    ports:
+      - "5601:5601"
+    networks:
+      - backend
+    depends_on:
+      - elasticsearch-cluster0
+      - elasticsearch-cluster1
+      - elasticsearch-cluster2
 
 networks:
   backend:
