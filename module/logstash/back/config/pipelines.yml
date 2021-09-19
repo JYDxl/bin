@@ -1,0 +1,180 @@
+# /etc/logstash/pipelines.yml
+- pipeline.id: main
+  config.string: |
+    input {
+      file {
+        path => "/extra/data/datax/log/2021-09-10/*.log"
+        type => "datax"
+        start_position => "beginning"
+      #调试时使用，禁止sincedb_path记录已读取的位置，从而使每次读取都从头开始
+      #    sincedb_path => "/dev/null"
+        codec => multiline {
+                   pattern => "^%{TIMESTAMP_ISO8601}"
+                   what => "previous"
+                   negate => true
+                   charset => "UTF-8"
+                   auto_flush_interval => 2
+                 }
+      }
+    }
+
+    filter {
+      if "datax" == [type] {
+        dissect {
+          mapping => {
+          #%{}中间不写名称表示忽略该值
+            "path" => "%{}[%{job}]%{}"
+            "message" => "%{time} %{+time} [%{thread}] %{level} %{class} - %{}"
+          }
+        }
+        date {
+          match => ["time","yyyy-MM-dd HH:mm:ss.SSS"]
+        }
+        mutate {
+          strip => ["level","class"]
+        }
+        if "StandAloneJobContainerCommunicator" == [class] {
+          clone {
+            clones => ["datax-realtime"]
+          }
+        }
+        if "FinalResult" == [class] {
+          clone {
+            clones => ["datax-result"]
+          }
+        }
+        if "datax-realtime" == [type] {
+          dissect {
+            mapping => {
+              "message" => "%{} %{} [%{}] %{} %{} - Total takes %{totalTime}s | Total %{totalReadRecords} records, %{totalReadBytes} bytes | Speed %{bytesWriteSpeed}KB/s, %{recordWriteSpeed} records/s | Error %{errorRecords} records, %{errorBytes} bytes |  All Task WaitWriterTime %{allTaskWaitWriterTime}s |  All Task WaitReaderTime %{allTaskWaitReaderTime}s | Percentage %{percentage}%"
+            }
+          }
+          mutate {
+            remove_field => ["time","tags","message","host","level","class","path","thread"]
+            convert => {
+              "totalReadRecords" => "integer"
+              "totalReadBytes" => "integer"
+              "bytesWriteSpeed" => "float"
+              "recordWriteSpeed" => "integer"
+              "errorRecords" => "integer"
+              "errorBytes" => "integer"
+              "allTaskWaitWriterTime" => "float"
+              "allTaskWaitReaderTime" => "float"
+              "percentage" => "float"
+              "totalTime" => "integer"
+            }
+          }
+        }
+        if "datax-result" == [type] {
+          dissect {
+            mapping => {
+              "message" => "%{} %{} [%{}] %{} %{} - 任务启动时刻：%{startTime} %{+startTime} | 任务结束时刻: %{endTime} %{+endTime} | 任务总计耗时: %{totalTime}s | 任务平均流量: %{bytesWriteSpeed}KB/s | 记录写入速度: %{recordWriteSpeed}rec/s | 读出记录总数: %{totalReadRecords} | 读写失败总数: %{errorRecords} | [total cpu info] =>averageCpu: %{averageCpu}% | maxDeltaCpu: %{maxDeltaCpu}% | minDeltaCpu: %{minDeltaCpu}% | [total gc info] =>NAME: PS MarkSweep | totalGCCount: %{totalMarkSweepGCCount} | maxDeltaGCCount: %{maxMarkSweepDeltaGCCount} | minDeltaGCCount: %{minMarkSweepDeltaGCCount} | totalGCTime: %{totalMarkSweepGCTime}s | maxDeltaGCTime: %{maxMarkSweepDeltaGCTime}s | minDeltaGCTime: %{minMarkSweepDeltaGCTime}sNAME: PS Scavenge | totalGCCount: %{totalScavengeGCCount} | maxDeltaGCCount: %{maxScavengeDeltaGCCount} | minDeltaGCCount: %{minScavengeDeltaGCCount} | totalGCTime: %{totalScavengeGCTime}s | maxDeltaGCTime: %{maxScavengeDeltaGCTime}s | minDeltaGCTime: %{minScavengeDeltaGCTime}s | 执行结果: %{result} %{msg}"
+            }
+          }
+          mutate {
+            remove_field => ["time","tags","message","host","level","class","path","thread"]
+            convert => {
+              "totalTime" => "integer"
+              "maxMarkSweepDeltaGCTime" => "float"
+              "maxScavengeDeltaGCCount" => "integer"
+              "minMarkSweepDeltaGCTime" => "float"
+              "errorRecords" => "integer"
+              "maxMarkSweepDeltaGCCount" => "integer"
+              "totalReadRecords" => "integer"
+              "totalMarkSweepGCCount" => "integer"
+              "maxDeltaCpu" => "float"
+              "totalScavengeGCCount" => "integer"
+              "totalScavengeGCTime" => "float"
+              "maxScavengeDeltaGCTime" => "float"
+              "minScavengeDeltaGCTime" => "float"
+              "bytesWriteSpeed" => "float"
+              "minScavengeDeltaGCCount" => "integer"
+              "minMarkSweepDeltaGCCount" => "integer"
+              "minDeltaCpu" => "float"
+              "averageCpu" => "float"
+              "totalMarkSweepGCTime" => "float"
+              "recordWriteSpeed" => "integer"
+            }
+          }
+        }
+        if "datax" == [type] {
+          mutate {
+            remove_field => ["time","tags"]
+          }
+        }
+      }
+    }
+
+    #filter {
+    #  csv {
+    #    separator => ","
+    #    columns => ["id","content","genre"]
+    #  }
+    #
+    #  mutate {
+    #    split => {
+    #      "genre" => "|"
+    #    }
+    #    remove_field => ["path", "host","message"]
+    #  }
+    #
+    #  mutate {
+    #
+    #    split => ["content", "("]
+    #    add_field => {
+    #      "title" => "%{[content][0]}"
+    #    }
+    #    add_field => {
+    #      "year" => "%{[content][1]}"
+    #    }
+    #  }
+    #
+    #  mutate {
+    #    convert => {
+    #      "year" => "integer"
+    #    }
+    #    strip => ["title"]
+    #    remove_field => ["path", "host","message","content"]
+    #  }
+    #
+    #}
+
+    output {
+    #  if "datax" == [type] {
+    #    elasticsearch {
+    #      hosts => ["http://elasticsearch-cluster1:9200", "http://elasticsearch-cluster2:9200", "http://elasticsearch-cluster3:9200"]
+    #      index => "datax_log_%{[job]}"
+    #    }
+    #    stdout {
+    #    }
+    #  }
+    #  if "datax-realtime" == [type] {
+    #    kafka {
+    #      topic_id => "datax-realtime"
+    #      bootstrap_servers => "kafka-cluster1:9092,kafka-cluster2:9093,kafka-cluster3:9094"
+    #      codec => json
+    #    }
+    #    stdout {
+    #    }
+    #  }
+      if "datax-result" == [type] {
+        pipeline { send_to => [kafka, es] }
+        stdout {
+        }
+      }
+    }
+- pipeline.id: kafka
+  config.string: |
+    input { pipeline { address => kafka } }
+    output { kafka {
+               topic_id => "datax-result"
+               bootstrap_servers => "kafka-cluster1:9092,kafka-cluster2:9093,kafka-cluster3:9094"
+               codec => json
+             } }
+- pipeline.id: es
+  config.string: |
+    input { pipeline { address => es } }
+    output { elasticsearch {
+               hosts => ["http://elasticsearch-cluster1:9200", "http://elasticsearch-cluster2:9200", "http://elasticsearch-cluster3:9200"]
+               index => "datax-result"
+             } }

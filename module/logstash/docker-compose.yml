@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  logstash:
+    image: bitnami/logstash:latest
+    container_name: logstash
+    networks:
+      - backend
+    ports:
+      - '8080:8080'
+    environment:
+      - LOGSTASH_ENABLE_MULTIPLE_PIPELINES=true
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/logstash:/bitnami/postgresql/data
+      - /opt/volumes/extra:/extra
+      - ./config:/bitnami/logstash/config
+
+networks:
+  backend:
+    external: true
