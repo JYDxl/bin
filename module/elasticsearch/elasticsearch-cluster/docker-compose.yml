@@ -56,7 +56,7 @@ services:
       - KIBANA_ELASTICSEARCH_URL=elasticsearch-cluster0
       - TZ=Asia/Shanghai
     volumes:
-      - opt/volumes/elasticsearch-kibana:/bitnami/kibana/data
+      - /opt/volumes/elasticsearch-kibana:/bitnami/kibana/data
     ports:
       - "5601:5601"
     networks:
