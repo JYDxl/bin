@@ -23,7 +23,7 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/postgresql-repmgr-0:/bitnami/postgresql/data
-      - ./conf/:/bitnami/postgresql/conf/conf.d/
+      - ../conf/:/bitnami/postgresql/conf/conf.d/
   postgresql-repmgr-1:
     image: bitnami/postgresql-repmgr:latest
     container_name: postgresql-repmgr-1
@@ -46,7 +46,7 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/postgresql-repmgr-1:/bitnami/postgresql/data
-      - ./conf/:/bitnami/postgresql/conf/conf.d/
+      - ../conf/:/bitnami/postgresql/conf/conf.d/
   postgresql-repmgr-2:
     image: bitnami/postgresql-repmgr:latest
     container_name: postgresql-repmgr-2
@@ -69,7 +69,7 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/postgresql-repmgr-2:/bitnami/postgresql/data
-      - ./conf/:/bitnami/postgresql/conf/conf.d/
+      - ../conf/:/bitnami/postgresql/conf/conf.d/
 
 networks:
   backend:

@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  postgresql-master:
+    image: bitnami/postgresql:latest
+    container_name: postgresql-master
+    networks:
+      - backend
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRESQL_POSTGRES_PASSWORD=XLrootJYD713
+      - POSTGRESQL_REPLICATION_MODE=master
+      - POSTGRESQL_REPLICATION_USER=repl_user
+      - POSTGRESQL_REPLICATION_PASSWORD=XLrootJYD713
+      - POSTGRESQL_USERNAME=pg
+      - POSTGRESQL_PASSWORD=XLrootJYD713
+      - POSTGRESQL_DATABASE=pg
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/postgresql-master:/bitnami/postgresql/data
+      - ../conf/:/bitnami/postgresql/conf/conf.d/
+  postgresql-slave0:
+    image: bitnami/postgresql:latest
+    container_name: postgresql-slave0
+    networks:
+      - backend
+    ports:
+      - '5433:5432'
+    depends_on:
+      - postgresql-master
+    environment:
+      - POSTGRESQL_POSTGRES_PASSWORD=XLrootJYD713
+      - POSTGRESQL_REPLICATION_MODE=slave
+      - POSTGRESQL_REPLICATION_USER=repl_user
+      - POSTGRESQL_REPLICATION_PASSWORD=XLrootJYD713
+      - POSTGRESQL_MASTER_HOST=postgresql-master
+      - POSTGRESQL_PASSWORD=XLrootJYD713
+      - POSTGRESQL_MASTER_PORT_NUMBER=5432
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/postgresql-slave0:/bitnami/postgresql/data
+      - ../conf/:/bitnami/postgresql/conf/conf.d/
+  postgresql-slave1:
+    image: bitnami/postgresql:latest
+    container_name: postgresql-slave1
+    networks:
+      - backend
+    ports:
+      - '5434:5432'
+    depends_on:
+      - postgresql-master
+    environment:
+      - POSTGRESQL_POSTGRES_PASSWORD=XLrootJYD713
+      - POSTGRESQL_REPLICATION_MODE=slave
+      - POSTGRESQL_REPLICATION_USER=repl_user
+      - POSTGRESQL_REPLICATION_PASSWORD=XLrootJYD713
+      - POSTGRESQL_MASTER_HOST=postgresql-master
+      - POSTGRESQL_PASSWORD=XLrootJYD713
+      - POSTGRESQL_MASTER_PORT_NUMBER=5432
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/postgresql-slave1:/bitnami/postgresql/data
+      - ../conf/:/bitnami/postgresql/conf/conf.d/
+
+networks:
+  backend:
+    external: true
