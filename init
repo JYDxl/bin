@@ -9,7 +9,7 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql-cluster|mariadb-cluster|postgresql-repmgr|postgresql-cluster|rabbitmq-cluster|redis-sentinel|redis-cluster|mongodb-cluster|neo4j|elasticsearch-cluster|logstash|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|canal|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|env'"
+  system "echo 'bin/init mysql-cluster|mariadb-cluster|postgresql-repmgr|postgresql-cluster|rabbitmq-cluster|redis-sentinel|redis-cluster|mongodb-cluster|elasticsearch-cluster|logstash|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|neo4j|canal|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|env'"
 end
 
 # TODO jenkins
@@ -44,8 +44,6 @@ case app
     path = "~/bin/module/rabbitmq/rabbitmq-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'neo4j'
-    exec 'docker build -t neo4j-server ~/bin/module/neo4j'
-
     path = "~/bin/module/neo4j"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'mysql-cluster'
