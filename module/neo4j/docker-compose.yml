@@ -1,18 +1,23 @@
 version: '3'
-services:
 
-  neo4j-server:
-    image: neo4j-server
-    container_name: neo4j-server
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j
     environment:
       - NEO4J_AUTH=neo4j/XLrootJYD713
+      - NEO4J_dbms_default__database=neo4j
+      - NEO4J_db_temporal_timezone=Asia/Shanghai
+      - NEO4J_dbms_db_timezone=SYSTEM
+      - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/neo4j/data:/data
       - /opt/volumes/neo4j/logs:/logs
       - /opt/volumes/extra:/extra
     ports:
-      - "7474:7474"
-      - "7687:7687"
+      - '7474:7474'
+      - '7473:7473'
+      - '7687:7687'
     networks:
       - backend
 
