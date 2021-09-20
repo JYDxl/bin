@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  nginx:
+    image: bitnami/nginx:latest
+    container_name: nginx
+    networks:
+      - backend
+    ports:
+      - '80:8080'
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./conf/my_server_block.conf:/opt/bitnami/nginx/conf/server_blocks/my_server_block.conf:ro
+      - /opt/volumes/nginx:/app
+
+networks:
+  backend:
+    external: true

@@ -88,9 +88,8 @@ case app
     exec 'docker rm -f sentinel-server'
     exec 'docker run -d --net host    --name sentinel-server -v /etc/localtime:/etc/localtime -v /opt/volumes/extra:/extra sentinel-server'
   when 'nginx'
-    exec 'docker build -t nginx-server ~/bin/module/nginx/'
-    exec 'docker rm -f nginx-server'
-    exec 'docker run -d --net backend --name nginx-server -p 80:80 -v ~/frontend:/frontend -v /opt/volumes/extra:/extra nginx-server'
+    path = "~/bin/module/nginx"
+    exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'minio'
     path = "~/bin/module/minio"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
