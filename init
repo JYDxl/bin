@@ -44,10 +44,6 @@ case app
   when 'rabbitmq-cluster'
     path = "~/bin/module/rabbitmq/rabbitmq-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
-  when 'redis'
-    exec 'docker build -t redis-server ~/bin/module/redis/'
-    exec 'docker rm -f redis-server'
-    exec 'docker run -d --net backend --name redis-server -p 6379:6379 -v /opt/volumes/redis:/data -v /opt/volumes/extra:/extra redis-server --requirepass "XLrootJYD713"'
   when 'neo4j'
     exec 'docker build -t neo4j-server ~/bin/module/neo4j'
 
