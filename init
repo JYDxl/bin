@@ -82,7 +82,7 @@ case app
   when 'zipkin'
     exec 'docker build -t zipkin-server ~/bin/module/zipkin/'
     exec 'docker rm -f zipkin-server'
-    exec 'docker run -d --net backend --name zipkin-server -p 9411:9411 -v /etc/localtime:/etc/localtime -v /opt/volumes/extra:/extra zipkin-server --link rabbitmq'
+    exec 'docker run -d --net backend --name zipkin-server -p 9411:9411 zipkin-server --link rabbitmq'
   when 'sentinel'
     exec 'docker build -t sentinel-server ~/bin/module/sentinel/'
     exec 'docker rm -f sentinel-server'
