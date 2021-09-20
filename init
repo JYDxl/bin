@@ -9,7 +9,7 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql-cluster|mariadb-cluster|postgresql-repmgr|postgresql-cluster|rabbitmq-cluster|redis-sentinel|redis-cluster|mongodb-cluster|elasticsearch-cluster|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|logstash|cerebro|neo4j|minio|nginx|zipkin|canal|sentinel|seata|env'"
+  system "echo 'bin/init mysql-cluster|mariadb-cluster|postgresql-repmgr|postgresql-cluster|rabbitmq-cluster|redis-sentinel|redis-cluster|mongodb-cluster|elasticsearch-cluster|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|logstash|cerebro|neo4j|minio|hdfs|nginx|zipkin|canal|sentinel|seata|env'"
 end
 
 # TODO jenkins
@@ -92,6 +92,9 @@ case app
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'minio'
     path = "~/bin/module/minio"
+    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+  when 'hdfs'
+    path = "~/bin/module/hdfs"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'seata'
     exec "docker build -t seata-server --build-arg IP='#{ip}' ~/bin/module/seata/"

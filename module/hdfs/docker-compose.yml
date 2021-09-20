@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  hdfs-namenode:
+    image: gradiant/hdfs:latest
+    container_name: hdfs-namenode
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/hdfs-namenode:/hadoop/dfs
+    command:
+      - namenode
+    ports:
+      - '8020:8020'
+      - '50070:50070'
+      - '9870:9870'
+    networks:
+      - backend
+  hdfs-datanode-0:
+    image: gradiant/hdfs:latest
+    container_name: hdfs-datanode-0
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://hdfs-namenode:8020
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/hdfs-datanode-0:/hadoop/dfs
+    command:
+      - datanode
+    networks:
+      - backend
+  hdfs-datanode-1:
+    image: gradiant/hdfs:latest
+    container_name: hdfs-datanode-1
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://hdfs-namenode:8020
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/hdfs-datanode-1:/hadoop/dfs
+    command:
+      - datanode
+    networks:
+      - backend
+  hdfs-datanode-2:
+    image: gradiant/hdfs:latest
+    container_name: hdfs-datanode-2
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://hdfs-namenode:8020
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/hdfs-datanode-2:/hadoop/dfs
+    command:
+      - datanode
+    networks:
+      - backend
+
+networks:
+  backend:
+    external: true
