@@ -7,7 +7,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     ports:
-      - '9000:9000'
+      - '8999:9000'
     networks:
       - backend
 
