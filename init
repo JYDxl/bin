@@ -9,7 +9,7 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql-cluster|mariadb-cluster|postgresql-repmgr|postgresql-cluster|rabbitmq-cluster|redis-sentinel|redis-cluster|mongodb-cluster|elasticsearch-cluster|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|logstash|cerebro|neo4j|minio|hdfs|spark|nginx|zipkin|canal|sentinel|seata|env'"
+  system "echo 'bin/init mysql|mariadb|postgresql-repmgr|postgresql-cluster|rabbitmq|redis-sentinel|redis-cluster|mongodb|elasticsearch|clickhouse|flink|kafka|nacos|logstash|cerebro|neo4j|minio|hdfs|spark|nginx|zipkin|canal|sentinel|seata|env'"
 end
 
 def get_mem
@@ -45,7 +45,7 @@ case app
     exec 'docker build -t canal-server ~/bin/module/canal/'
     exec 'docker rm -f canal-server'
     exec "docker run -d --net backend --name canal-server -p 11111:11111 -v /opt/volumes/extra:/extra canal-server"
-  when 'mariadb-cluster'
+  when 'mariadb'
     path = "~/bin/module/mariadb/mariadb-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'postgresql-repmgr'
@@ -54,13 +54,13 @@ case app
   when 'postgresql-cluster'
     path = "~/bin/module/postgresql/postgresql-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
-  when 'rabbitmq-cluster'
+  when 'rabbitmq'
     path = "~/bin/module/rabbitmq/rabbitmq-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'neo4j'
     path = "~/bin/module/neo4j"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
-  when 'mysql-cluster'
+  when 'mysql'
     path = "~/bin/module/mysql/mysql-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'redis-sentinel'
@@ -69,10 +69,10 @@ case app
   when 'redis-cluster'
     path = "~//bin/module/redis/redis-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
-  when 'mongodb-cluster'
+  when 'mongodb'
     path = "~/bin/module/mongodb/mongodb-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
-  when 'elasticsearch-cluster'
+  when 'elasticsearch'
     path = "~/bin/module/elasticsearch/elasticsearch-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'logstash'
@@ -81,19 +81,19 @@ case app
   when 'cerebro'
     path = "~/bin/module/cerebro"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
-  when 'clickhouse-cluster'
+  when 'clickhouse'
     path = "~/bin/module/clickhouse/clickhouse-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
-  when 'flink-cluster'
+  when 'flink'
     path = "~/bin/module/flink/flink-cluster"
     exec "NUM=#{num} MEM=#{mem} docker-compose -f #{path}/docker-compose.yml up -d"
   when 'spark'
     path = "~/bin/module/spark"
     exec "NUM=#{num} MEM=#{mem} docker-compose -f #{path}/docker-compose.yml up -d"
-  when 'kafka-cluster'
+  when 'kafka'
     path = "~/bin/module/kafka/kafka-cluster"
     exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml up -d"
-  when 'nacos-cluster'
+  when 'nacos'
     path = "~/bin/module/nacos/nacos-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'zipkin'
