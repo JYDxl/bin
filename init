@@ -9,7 +9,20 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql-cluster|mariadb-cluster|postgresql-repmgr|postgresql-cluster|rabbitmq-cluster|redis-sentinel|redis-cluster|mongodb-cluster|elasticsearch-cluster|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|logstash|cerebro|neo4j|minio|hdfs|nginx|zipkin|canal|sentinel|seata|env'"
+  system "echo 'bin/init mysql-cluster|mariadb-cluster|postgresql-repmgr|postgresql-cluster|rabbitmq-cluster|redis-sentinel|redis-cluster|mongodb-cluster|elasticsearch-cluster|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|logstash|cerebro|neo4j|minio|hdfs|spark|nginx|zipkin|canal|sentinel|seata|env'"
+end
+
+def get_mem
+  if RUBY_PLATFORM.match?(/^.*darwin.*$/)
+    return Float(%x(sysctl hw.memsize | awk '{print $2 / 1024 / 1024 / 1024}')).ceil
+  end
+
+  if RUBY_PLATFORM.match?(/^.*linux.*$/)
+    return Float(%x(vmstat -s | head -1 | awk '{print $1 / 1024 / 1024}')).ceil
+  end
+
+  exec 'unknown os'
+  exit
 end
 
 # TODO jenkins
@@ -23,6 +36,7 @@ end
 #noinspection RubyNilAnalysis
 ip  = Socket.ip_address_list.detect { |x| x.ipv4_private? }.ip_address
 num = Etc.nprocessors
+mem = get_mem / 4
 app = ARGV[0]
 warn && exit unless app
 
@@ -72,7 +86,10 @@ case app
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'flink-cluster'
     path = "~/bin/module/flink/flink-cluster"
-    exec "NUM=#{num} docker-compose -f #{path}/docker-compose.yml up -d"
+    exec "NUM=#{num} MEM=#{mem} docker-compose -f #{path}/docker-compose.yml up -d"
+  when 'spark'
+    path = "~/bin/module/spark"
+    exec "NUM=#{num} MEM=#{mem} docker-compose -f #{path}/docker-compose.yml up -d"
   when 'kafka-cluster'
     path = "~/bin/module/kafka/kafka-cluster"
     exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml up -d"

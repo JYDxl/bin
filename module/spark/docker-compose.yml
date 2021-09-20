@@ -1,0 +1,81 @@
+version: '3'
+
+services:
+  spark-master:
+    image: bitnami/spark:latest
+    container_name: spark-master
+    networks:
+      - backend
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+      - TZ=Asia/Shanghai
+    ports:
+      - '8078:8080'
+  spark-worker-0:
+    image: bitnami/spark:latest
+    container_name: spark-worker-0
+    networks:
+      - backend
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=${MEM}G
+      - SPARK_WORKER_CORES=${NUM}
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+      - TZ=Asia/Shanghai
+  spark-worker-1:
+    image: bitnami/spark:latest
+    container_name: spark-worker-1
+    networks:
+      - backend
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=${MEM}G
+      - SPARK_WORKER_CORES=${NUM}
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+      - TZ=Asia/Shanghai
+  spark-worker-2:
+    image: bitnami/spark:latest
+    container_name: spark-worker-2
+    networks:
+      - backend
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=${MEM}G
+      - SPARK_WORKER_CORES=${NUM}
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+      - TZ=Asia/Shanghai
+  spark-worker-3:
+    image: bitnami/spark:latest
+    container_name: spark-worker-3
+    networks:
+      - backend
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=${MEM}G
+      - SPARK_WORKER_CORES=${NUM}
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+      - TZ=Asia/Shanghai
+
+networks:
+  backend:
+    external: true
