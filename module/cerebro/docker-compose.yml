@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  cerebro:
+    image: lmenezes/cerebro:latest
+    container_name: cerebro
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - '9000:9000'
+    networks:
+      - backend
+
+networks:
+  backend:
+    external: true

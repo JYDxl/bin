@@ -9,7 +9,7 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql-cluster|mariadb-cluster|postgresql-repmgr|postgresql-cluster|rabbitmq-cluster|redis-sentinel|redis-cluster|mongodb-cluster|elasticsearch-cluster|logstash|cerebro|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|neo4j|canal|zipkin|sentinel|seata|nginx|minio|alpine|ubuntu|debian|env'"
+  system "echo 'bin/init mysql-cluster|mariadb-cluster|postgresql-repmgr|postgresql-cluster|rabbitmq-cluster|redis-sentinel|redis-cluster|mongodb-cluster|elasticsearch-cluster|clickhouse-cluster|flink-cluster|kafka-cluster|nacos-cluster|logstash|cerebro|neo4j|canal|zipkin|sentinel|seata|nginx|minio|env'"
 end
 
 # TODO jenkins
@@ -62,12 +62,11 @@ case app
     path = "~/bin/module/elasticsearch/elasticsearch-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'logstash'
-    exec 'docker build -t logstash-server ~/bin/module/logstash/'
-    exec 'docker rm -f logstash-server'
-    exec "docker run -d --net backend --name logstash-server -v /opt/volumes/extra:/extra logstash-server"
+    path = "~/bin/module/logstash"
+    exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'cerebro'
-    exec 'docker rm -f cerebro-server'
-    exec 'docker run -d --net backend --name cerebro-server -p 9000:9000 -v /opt/volumes/extra:/extra lmenezes/cerebro'
+    path = "~/bin/module/cerebro"
+    exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'clickhouse-cluster'
     path = "~/bin/module/clickhouse/clickhouse-cluster"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
@@ -100,18 +99,6 @@ case app
     exec "docker build -t seata-server --build-arg IP='#{ip}' ~/bin/module/seata/"
     exec 'docker rm -f seata-server'
     exec 'docker run -d --net backend --name seata-server -p 8091:8091 -v /etc/localtime:/etc/localtime -v /opt/volumes/extra:/extra seata-server'
-  when 'alpine'
-    exec 'docker build -t alpine-os ~/bin/module/alpine/'
-    exec 'docker rm -f alpine-os'
-    exec 'docker run -d --net backend --name alpine-os -v /opt/volumes/extra:/extra -it alpine-os sh'
-  when 'ubuntu'
-    exec 'docker build -t ubuntu-os ~/bin/module/ubuntu/'
-    exec 'docker rm -f ubuntu-os'
-    exec 'docker run -d --net backend --name ubuntu-os -v /etc/localtime:/etc/localtime -v /opt/volumes/extra:/extra -it ubuntu-os /bin/bash'
-  when 'debian'
-    exec 'docker build -t debian-os ~/bin/module/debian/'
-    exec 'docker rm -f debian-os'
-    exec 'docker run -d --net backend --name debian-os -v /opt/volumes/extra:/extra -it debian-os /bin/bash'
   when 'env'
     exec 'docker network create backend'
   else
