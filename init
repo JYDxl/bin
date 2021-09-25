@@ -9,7 +9,7 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql|mariadb|postgresql-repmgr|postgresql-cluster|rabbitmq|redis-sentinel|redis-cluster|mongodb|elasticsearch|clickhouse|flink|kafka|nacos|logstash|cerebro|neo4j|minio|hdfs|spark|nginx|zipkin|canal|sentinel|seata|env'"
+  system "echo 'bin/init mysql|mariadb|postgresql-repmgr|postgresql-cluster|rabbitmq|redis-sentinel|redis-cluster|mongodb|elasticsearch|clickhouse|flink|kafka|nacos|logstash|cerebro|neo4j|minio|hdfs|spark|nginx|zipkin|gitlab|canal|sentinel|seata|env'"
 end
 
 def get_mem
@@ -109,6 +109,9 @@ case app
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'minio'
     path = "~/bin/module/minio"
+    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+  when 'gitlab'
+    path = "~/bin/module/gitlab"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'hdfs'
     path = "~/bin/module/hdfs"

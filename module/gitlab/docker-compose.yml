@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    container_name: gitlab
+    hostname: msi
+    networks:
+      - backend
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['time_zone'] = 'Beijing'
+      TZ: Asia/Shanghai
+    ports:
+      - '444:443'
+      - '81:80'
+      - '23:22'
+    volumes:
+      - /opt/volumes/gitlab/config:/etc/gitlab
+      - /opt/volumes/gitlab/logs:/var/log/gitlab
+      - /opt/volumes/gitlab/data:/var/opt/gitlab
+
+networks:
+  backend:
+    external: true
