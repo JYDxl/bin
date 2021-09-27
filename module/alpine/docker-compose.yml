@@ -1,0 +1,13 @@
+version: '3'
+services:
+
+  alpine:
+    container_name: alpine
+    build: ctx
+    networks:
+      - backend
+    tty: true
+
+networks:
+  backend:
+    external: true
