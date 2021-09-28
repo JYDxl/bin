@@ -9,7 +9,7 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql|mariadb|postgresql-repmgr|postgresql-cluster|rabbitmq|redis-sentinel|redis-cluster|mongodb|elasticsearch|clickhouse|flink|kafka|nacos|logstash|cerebro|neo4j|minio|hdfs|spark|nginx|zipkin|gitlab|canal|sentinel|seata|env'"
+  system "echo 'bin/init mysql|mariadb|postgresql-repmgr|postgresql-cluster|rabbitmq|redis-sentinel|redis-cluster|mongodb|elasticsearch|clickhouse|flink|kafka|nacos|logstash|cerebro|neo4j|minio|hdfs|spark|nginx|zipkin|gitlab|canal|sentinel|seata|alpine|env'"
 end
 
 def get_mem
@@ -115,6 +115,9 @@ case app
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'hdfs'
     path = "~/bin/module/hdfs"
+    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+  when 'alpine'
+    path = "~/bin/module/alpine"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'seata'
     exec "docker build -t seata-server --build-arg IP='#{ip}' ~/bin/module/seata/"
