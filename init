@@ -9,10 +9,10 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql|mariadb|postgresql-repmgr|postgresql-cluster|rabbitmq|redis-sentinel|redis-cluster|mongodb|elasticsearch|clickhouse|flink|kafka|nacos|logstash|cerebro|neo4j|minio|hdfs|spark|nginx|zipkin|gitlab|canal|sentinel|seata|alpine|env'"
+  system "echo 'bin/init mysql|mariadb|postgresql-repmgr|postgresql-cluster|rabbitmq|redis-sentinel|redis-cluster|mongodb|elasticsearch|clickhouse|flink|kafka|nacos|logstash|cerebro|neo4j|minio|hdfs|spark|nginx|zipkin|gitlab|canal|sentinel|seata|chrome|firefox|alpine|env'"
 end
 
-def get_mem
+def memsize
   if RUBY_PLATFORM.match?(/^.*darwin.*$/)
     return Float(%x(sysctl hw.memsize | awk '{print $2 / 1024 / 1024 / 1024}')).ceil
   end
@@ -36,7 +36,7 @@ end
 #noinspection RubyNilAnalysis
 ip  = Socket.ip_address_list.detect { |x| x.ipv4_private? }.ip_address
 num = Etc.nprocessors
-mem = get_mem / 4
+mem = memsize / 4
 app = ARGV[0]
 warn && exit unless app
 
@@ -115,6 +115,12 @@ case app
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'hdfs'
     path = "~/bin/module/hdfs"
+    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+  when 'chrome'
+    path = "~/bin/module/chrome"
+    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+  when 'firefox'
+    path = "~/bin/module/firefox"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'alpine'
     path = "~/bin/module/alpine"
