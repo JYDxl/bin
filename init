@@ -9,7 +9,7 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql|mariadb|postgresql-repmgr|postgresql-cluster|rabbitmq|redis-sentinel|redis-cluster|mongodb|elasticsearch|clickhouse|flink|kafka|nacos|logstash|cerebro|neo4j|minio|hdfs|spark|nginx|zipkin|gitlab|canal|sentinel|seata|chrome|firefox|alpine|env'"
+  system "echo 'bin/init mysql|mariadb|postgresql-repmgr|postgresql-cluster|rabbitmq|redis-sentinel|redis-cluster|mongodb|elasticsearch|clickhouse|flink|kafka|nacos|logstash|cerebro|neo4j|minio|hdfs|spark|nginx|zipkin|gitlab|canal|sentinel|seata|chrome|alpine|env'"
 end
 
 def memsize
@@ -117,8 +117,7 @@ case app
     path = "~/bin/module/hdfs"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'chrome'
-    path = "~/bin/module/chrome"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec "docker run -d --network backend --shm-size=1G -p 6901:6901 -e VNC_PW=password -e VNC_RESOLUTION=1920x1200 -e TZ=Asia/Shanghai kasmweb/chrome:1.9.0"
   when 'firefox'
     path = "~/bin/module/firefox"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
