@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  chrome:
+    image: kasmweb/chrome:1.9.0
+    container_name: chrome
+    environment:
+      - VNC_PW=password
+      - VNC_RESOLUTION=1920x1200
+      - TZ=Asia/Shanghai
+    ports:
+      - '6901:6901'
+    networks:
+      - backend
+    shm_size: 1G
+
+networks:
+  backend:
+    external: true

@@ -117,7 +117,8 @@ case app
     path = "~/bin/module/hdfs"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'chrome'
-    exec "docker run -d --network backend --shm-size=1G -p 6901:6901 -e VNC_PW=password -e VNC_RESOLUTION=1920x1200 -e TZ=Asia/Shanghai kasmweb/chrome:1.9.0"
+    path = "~/bin/module/chrome"
+    exec "docker-compose -f #{path}/docker-compose.yml up -d"
   when 'firefox'
     path = "~/bin/module/firefox"
     exec "docker-compose -f #{path}/docker-compose.yml up -d"
