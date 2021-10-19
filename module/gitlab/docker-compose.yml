@@ -12,9 +12,9 @@ services:
         gitlab_rails['time_zone'] = 'Beijing'
       TZ: Asia/Shanghai
     ports:
-      - '444:443'
+#      - '444:443'
       - '81:80'
-      - '23:22'
+#      - '23:22'
     volumes:
       - /opt/volumes/gitlab/config:/etc/gitlab
       - /opt/volumes/gitlab/logs:/var/log/gitlab

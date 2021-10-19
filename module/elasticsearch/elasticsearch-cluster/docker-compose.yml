@@ -4,6 +4,7 @@ services:
   elasticsearch-cluster0:
     image: bitnami/elasticsearch:7.14.2
     container_name: elasticsearch-cluster0
+    hostname: elasticsearch-cluster0
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
       - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-cluster0,elasticsearch-cluster1,elasticsearch-cluster2,elasticsearch-cluster3
@@ -20,6 +21,7 @@ services:
   elasticsearch-cluster1:
     image: bitnami/elasticsearch:7.14.2
     container_name: elasticsearch-cluster1
+    hostname: elasticsearch-cluster1
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
       - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-cluster0,elasticsearch-cluster1,elasticsearch-cluster2,elasticsearch-cluster3
@@ -36,6 +38,7 @@ services:
   elasticsearch-cluster2:
     image: bitnami/elasticsearch:7.14.2
     container_name: elasticsearch-cluster2
+    hostname: elasticsearch-cluster2
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
       - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-cluster0,elasticsearch-cluster1,elasticsearch-cluster2,elasticsearch-cluster3
@@ -52,6 +55,7 @@ services:
   elasticsearch-cluster3:
     image: bitnami/elasticsearch:7.14.2
     container_name: elasticsearch-cluster3
+    hostname: elasticsearch-cluster3
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
       - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-cluster0,elasticsearch-cluster1,elasticsearch-cluster2,elasticsearch-cluster3
@@ -68,6 +72,7 @@ services:
   elasticsearch-kibana:
     image: bitnami/kibana:7.14.2
     container_name: elasticsearch-kibana
+    hostname: elasticsearch-kibana
     environment:
       - KIBANA_ELASTICSEARCH_URL=elasticsearch-cluster0
       - TZ=Asia/Shanghai

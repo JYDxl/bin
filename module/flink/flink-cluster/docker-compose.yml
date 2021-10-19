@@ -2,8 +2,9 @@ version: '3'
 services:
 
   flink-jobmanager:
-    image: flink:1.13.2-scala_2.12-java11
+    image: flink:1.14-scala_2.12-java11
     container_name: flink-jobmanager
+    hostname: flink-jobmanager
     ports:
       - "8079:8081"
     networks:
@@ -17,8 +18,9 @@ services:
         jobmanager.memory.process.size: ${MEM}G
 
   flink-taskmanager0:
-    image: flink:1.13.2-scala_2.12-java11
+    image: flink:1.14-scala_2.12-java11
     container_name: flink-taskmanager0
+    hostname: flink-taskmanager0
     depends_on:
       - flink-jobmanager
     networks:
@@ -33,8 +35,9 @@ services:
         taskmanager.memory.process.size: ${MEM}G
 
   flink-taskmanager1:
-    image: flink:1.13.2-scala_2.12-java11
+    image: flink:1.14-scala_2.12-java11
     container_name: flink-taskmanager1
+    hostname: flink-taskmanager1
     depends_on:
       - flink-jobmanager
     networks:
@@ -49,8 +52,9 @@ services:
         taskmanager.memory.process.size: ${MEM}G
 
   flink-taskmanager2:
-    image: flink:1.13.2-scala_2.12-java11
+    image: flink:1.14-scala_2.12-java11
     container_name: flink-taskmanager2
+    hostname: flink-taskmanager2
     depends_on:
       - flink-jobmanager
     networks:
@@ -65,8 +69,9 @@ services:
         taskmanager.memory.process.size: ${MEM}G
 
   flink-taskmanager3:
-    image: flink:1.13.2-scala_2.12-java11
+    image: flink:1.14-scala_2.12-java11
     container_name: flink-taskmanager3
+    hostname: flink-taskmanager3
     depends_on:
       - flink-jobmanager
     networks:
