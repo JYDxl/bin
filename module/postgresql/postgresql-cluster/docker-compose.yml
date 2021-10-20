@@ -62,6 +62,27 @@ services:
     volumes:
       - /opt/volumes/postgresql-slave1:/bitnami/postgresql/data
       - ../conf/:/bitnami/postgresql/conf/conf.d/
+  postgresql-slave2:
+    image: bitnami/postgresql:11.13.0
+    container_name: postgresql-slave2
+    networks:
+      - backend
+    ports:
+      - '5435:5432'
+    depends_on:
+      - postgresql-master
+    environment:
+      - POSTGRESQL_POSTGRES_PASSWORD=XLrootJYD713
+      - POSTGRESQL_REPLICATION_MODE=slave
+      - POSTGRESQL_REPLICATION_USER=repl_user
+      - POSTGRESQL_REPLICATION_PASSWORD=XLrootJYD713
+      - POSTGRESQL_MASTER_HOST=postgresql-master
+      - POSTGRESQL_PASSWORD=XLrootJYD713
+      - POSTGRESQL_MASTER_PORT_NUMBER=5432
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/postgresql-slave2:/bitnami/postgresql/data
+      - ../conf/:/bitnami/postgresql/conf/conf.d/
 
 networks:
   backend:

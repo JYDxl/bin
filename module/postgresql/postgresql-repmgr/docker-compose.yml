@@ -16,7 +16,7 @@ services:
       - REPMGR_PASSWORD=XLrootJYD713
       - REPMGR_PRIMARY_HOST=postgresql-repmgr-0
       - REPMGR_PRIMARY_PORT=5432
-      - REPMGR_PARTNER_NODES=postgresql-repmgr-0,postgresql-repmgr-1,postgresql-repmgr-2:5432
+      - REPMGR_PARTNER_NODES=postgresql-repmgr-0,postgresql-repmgr-1,postgresql-repmgr-2,postgresql-repmgr-3:5432
       - REPMGR_NODE_NAME=postgresql-repmgr-0
       - REPMGR_NODE_NETWORK_NAME=postgresql-repmgr-0
       - REPMGR_PORT_NUMBER=5432
@@ -39,7 +39,7 @@ services:
       - REPMGR_PASSWORD=XLrootJYD713
       - REPMGR_PRIMARY_HOST=postgresql-repmgr-0
       - REPMGR_PRIMARY_PORT=5432
-      - REPMGR_PARTNER_NODES=postgresql-repmgr-0,postgresql-repmgr-1,postgresql-repmgr-2:5432
+      - REPMGR_PARTNER_NODES=postgresql-repmgr-0,postgresql-repmgr-1,postgresql-repmgr-2,postgresql-repmgr-3:5432
       - REPMGR_NODE_NAME=postgresql-repmgr-1
       - REPMGR_NODE_NETWORK_NAME=postgresql-repmgr-1
       - REPMGR_PORT_NUMBER=5432
@@ -62,13 +62,36 @@ services:
       - REPMGR_PASSWORD=XLrootJYD713
       - REPMGR_PRIMARY_HOST=postgresql-repmgr-0
       - REPMGR_PRIMARY_PORT=5432
-      - REPMGR_PARTNER_NODES=postgresql-repmgr-0,postgresql-repmgr-1,postgresql-repmgr-2:5432
+      - REPMGR_PARTNER_NODES=postgresql-repmgr-0,postgresql-repmgr-1,postgresql-repmgr-2,postgresql-repmgr-3:5432
       - REPMGR_NODE_NAME=postgresql-repmgr-2
       - REPMGR_NODE_NETWORK_NAME=postgresql-repmgr-2
       - REPMGR_PORT_NUMBER=5432
       - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/postgresql-repmgr-2:/bitnami/postgresql/data
+      - ../conf/:/bitnami/postgresql/conf/conf.d/
+  postgresql-repmgr-3:
+    image: bitnami/postgresql-repmgr:11.13.0
+    container_name: postgresql-repmgr-3
+    networks:
+      - backend
+    ports:
+      - '5435:5432'
+    environment:
+      - POSTGRESQL_POSTGRES_PASSWORD=XLrootJYD713
+      - POSTGRESQL_USERNAME=pg
+      - POSTGRESQL_PASSWORD=XLrootJYD713
+      - POSTGRESQL_DATABASE=pg
+      - REPMGR_PASSWORD=XLrootJYD713
+      - REPMGR_PRIMARY_HOST=postgresql-repmgr-0
+      - REPMGR_PRIMARY_PORT=5432
+      - REPMGR_PARTNER_NODES=postgresql-repmgr-0,postgresql-repmgr-1,postgresql-repmgr-2,postgresql-repmgr-3:5432
+      - REPMGR_NODE_NAME=postgresql-repmgr-3
+      - REPMGR_NODE_NETWORK_NAME=postgresql-repmgr-3
+      - REPMGR_PORT_NUMBER=5432
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/postgresql-repmgr-3:/bitnami/postgresql/data
       - ../conf/:/bitnami/postgresql/conf/conf.d/
 
 networks:

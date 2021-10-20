@@ -52,6 +52,18 @@ services:
       - datanode
     networks:
       - backend
+  hdfs-datanode-3:
+    image: gradiant/hdfs:3.2.2
+    container_name: hdfs-datanode-3
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://hdfs-namenode:8020
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/hdfs-datanode-3:/hadoop/dfs
+    command:
+      - datanode
+    networks:
+      - backend
 
 networks:
   backend:
