@@ -3,7 +3,7 @@ services:
 
   clickhouse-zookeeper:
     container_name: clickhouse-zookeeper
-    image: bitnami/zookeeper
+    image: bitnami/zookeeper:3.7.0
     networks:
       - backend
     volumes:
@@ -14,7 +14,7 @@ services:
 
   clickhouse-shard0-replica0:
     container_name: clickhouse-shard0-replica0
-    image: yandex/clickhouse-server:latest
+    image: yandex/clickhouse-server:21.10.2.15
     networks:
       - backend
     depends_on:
@@ -37,7 +37,7 @@ services:
 
   clickhouse-shard0-replica1:
     container_name: clickhouse-shard0-replica1
-    image: yandex/clickhouse-server:latest
+    image: yandex/clickhouse-server:21.10.2.15
     networks:
       - backend
     depends_on:
@@ -60,7 +60,7 @@ services:
 
   clickhouse-shard1-replica0:
     container_name: clickhouse-shard1-replica0
-    image: yandex/clickhouse-server:latest
+    image: yandex/clickhouse-server:21.10.2.15
     networks:
       - backend
     depends_on:
@@ -83,7 +83,7 @@ services:
 
   clickhouse-shard1-replica1:
     container_name: clickhouse-shard1-replica1
-    image: yandex/clickhouse-server:latest
+    image: yandex/clickhouse-server:21.10.2.15
     networks:
       - backend
     depends_on:
@@ -106,7 +106,7 @@ services:
 
   clickhouse-shard2-replica0:
     container_name: clickhouse-shard2-replica0
-    image: yandex/clickhouse-server:latest
+    image: yandex/clickhouse-server:21.10.2.15
     networks:
       - backend
     depends_on:
@@ -129,7 +129,7 @@ services:
 
   clickhouse-shard2-replica1:
     container_name: clickhouse-shard2-replica1
-    image: yandex/clickhouse-server:latest
+    image: yandex/clickhouse-server:21.10.2.15
     networks:
       - backend
     depends_on:

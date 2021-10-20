@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.14.2
 
 RUN apk add tzdata \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \

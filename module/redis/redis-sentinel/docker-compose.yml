@@ -2,7 +2,7 @@ version: "3"
 
 services:
   redis-master:
-    image: bitnami/redis:latest
+    image: bitnami/redis:6.2.6
     container_name: redis-master
     environment:
       - REDIS_REPLICATION_MODE=master
@@ -16,7 +16,7 @@ services:
       - /opt/volumes/redis-master:/bitnami/redis/data
       - /opt/volumes/extra:/extra
   redis-slave0:
-    image: bitnami/redis:latest
+    image: bitnami/redis:6.2.6
     container_name: redis-slave0
     environment:
       - REDIS_REPLICATION_MODE=slave
@@ -34,7 +34,7 @@ services:
       - /opt/volumes/redis-slave0:/bitnami/redis/data
       - /opt/volumes/extra:/extra
   redis-slave1:
-    image: bitnami/redis:latest
+    image: bitnami/redis:6.2.6
     container_name: redis-slave1
     environment:
       - REDIS_REPLICATION_MODE=slave
@@ -52,7 +52,7 @@ services:
       - /opt/volumes/redis-slave1:/bitnami/redis/data
       - /opt/volumes/extra:/extra
   redis-sentinel0:
-    image: bitnami/redis-sentinel:latest
+    image: bitnami/redis-sentinel:6.2.6
     container_name: redis-sentinel0
     environment:
       - REDIS_MASTER_HOST=redis-master
@@ -67,7 +67,7 @@ services:
     networks:
       - backend
   redis-sentinel1:
-    image: bitnami/redis-sentinel:latest
+    image: bitnami/redis-sentinel:6.2.6
     container_name: redis-sentinel1
     environment:
       - REDIS_MASTER_HOST=redis-master
@@ -82,7 +82,7 @@ services:
     networks:
       - backend
   redis-sentinel2:
-    image: bitnami/redis-sentinel:latest
+    image: bitnami/redis-sentinel:6.2.6
     container_name: redis-sentinel2
     environment:
       - REDIS_MASTER_HOST=redis-master

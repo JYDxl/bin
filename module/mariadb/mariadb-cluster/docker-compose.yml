@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mariadb-master:
-    image: bitnami/mariadb:latest
+    image: bitnami/mariadb:10.6.4
     container_name: mariadb-master
     networks:
       - backend
@@ -23,7 +23,7 @@ services:
       - MARIADB_COLLATE=utf8mb4_general_ci
       - TZ=Asia/Shanghai
   mariadb-slave0:
-    image: bitnami/mariadb:latest
+    image: bitnami/mariadb:10.6.4
     container_name: mariadb-slave0
     networks:
       - backend
@@ -45,7 +45,7 @@ services:
       - MARIADB_COLLATE=utf8mb4_general_ci
       - TZ=Asia/Shanghai
   mariadb-slave1:
-    image: bitnami/mariadb:latest
+    image: bitnami/mariadb:10.6.4
     container_name: mariadb-slave1
     networks:
       - backend

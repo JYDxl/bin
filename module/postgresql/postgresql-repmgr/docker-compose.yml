@@ -2,7 +2,7 @@ version: '3'
 
 services:
   postgresql-repmgr-0:
-    image: bitnami/postgresql-repmgr:latest
+    image: bitnami/postgresql-repmgr:11.13.0
     container_name: postgresql-repmgr-0
     networks:
       - backend
@@ -25,7 +25,7 @@ services:
       - /opt/volumes/postgresql-repmgr-0:/bitnami/postgresql/data
       - ../conf/:/bitnami/postgresql/conf/conf.d/
   postgresql-repmgr-1:
-    image: bitnami/postgresql-repmgr:latest
+    image: bitnami/postgresql-repmgr:11.13.0
     container_name: postgresql-repmgr-1
     networks:
       - backend
@@ -48,7 +48,7 @@ services:
       - /opt/volumes/postgresql-repmgr-1:/bitnami/postgresql/data
       - ../conf/:/bitnami/postgresql/conf/conf.d/
   postgresql-repmgr-2:
-    image: bitnami/postgresql-repmgr:latest
+    image: bitnami/postgresql-repmgr:11.13.0
     container_name: postgresql-repmgr-2
     networks:
       - backend
