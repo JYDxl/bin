@@ -1,0 +1,16 @@
+version: '3'
+services:
+
+  debian:
+    build: ctx
+    container_name: debian
+    hostname: debian
+    networks:
+      - backend
+    tty: true
+    environment:
+      - TZ=Asia/Shanghai
+
+networks:
+  backend:
+    external: true
