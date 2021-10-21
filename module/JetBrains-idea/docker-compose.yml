@@ -1,0 +1,19 @@
+version: '3'
+services:
+
+  idea:
+    image: jetbrains/projector-idea-u:2020.3-projector-v1.4.0
+    container_name: idea
+    hostname: idea
+    ports:
+      - "8887:8887"
+    networks:
+      - backend
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/project:/home/project
+
+networks:
+  backend:
+    external: true

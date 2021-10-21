@@ -1,0 +1,19 @@
+version: '3'
+services:
+
+  goland:
+    image: jetbrains/projector-goland:2020.3-projector-v1.4.0
+    container_name: goland
+    hostname: goland
+    ports:
+      - "8888:8887"
+    networks:
+      - backend
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/project:/home/project
+
+networks:
+  backend:
+    external: true

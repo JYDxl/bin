@@ -12,6 +12,8 @@
 /rubymine
 /studio
 /webstorm
+/dataspell
+/gateway
 
 /.ruby-version
 /*.sh
