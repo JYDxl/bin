@@ -12,7 +12,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/project:/home/project
+      - /opt/volumes/hub:/home/projector-user/hub
 
 networks:
   backend:
