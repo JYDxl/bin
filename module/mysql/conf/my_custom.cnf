@@ -1,4 +1,7 @@
 [mysqld]
 lower_case_table_names = 1
-
 log_timestamps         = system
+max_connections        = 1024
+back_log               = 1024
+wait_timeout           = 7200
+interactive_timeout    = 7200
