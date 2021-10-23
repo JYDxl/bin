@@ -16,7 +16,6 @@ services:
       - "9555:9555"
     env_file:
       - ./env/nacos-hostname.env
-    restart: always
 
   nacos-cluster1:
     image: nacos/nacos-server:v2.0.3
@@ -32,7 +31,6 @@ services:
       - "9849:9848"
     env_file:
       - ./env/nacos-hostname.env
-    restart: always
 
   nacos-cluster2:
     image: nacos/nacos-server:v2.0.3
@@ -48,7 +46,6 @@ services:
       - "9850:9848"
     env_file:
       - ./env/nacos-hostname.env
-    restart: always
 
   nacos-cluster3:
     image: nacos/nacos-server:v2.0.3
@@ -64,7 +61,6 @@ services:
       - "9851:9848"
     env_file:
       - ./env/nacos-hostname.env
-    restart: always
 
 networks:
   backend:
