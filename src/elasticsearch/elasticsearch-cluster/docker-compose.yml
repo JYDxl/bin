@@ -2,7 +2,7 @@ version: '3'
 services:
 
   elasticsearch-cluster0:
-    image: bitnami/elasticsearch:7.14.2
+    image: bitnami/elasticsearch:7.15.1
     container_name: elasticsearch-cluster0
     hostname: elasticsearch-cluster0
     environment:
@@ -11,7 +11,7 @@ services:
       - ELASTICSEARCH_NODE_NAME=elasticsearch-cluster0
       - TZ=Asia/Shanghai
     volumes:
-      - ../plugins/elasticsearch-analysis-ik-7.14.2.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.14.2.zip
+      - ../plugins/elasticsearch-analysis-ik-7.15.1.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.15.1.zip
       - /opt/volumes/elasticsearch-cluster0:/bitnami/elasticsearch/data
       - /opt/volumes/extra:/extra
     ports:
@@ -19,7 +19,7 @@ services:
     networks:
       - backend
   elasticsearch-cluster1:
-    image: bitnami/elasticsearch:7.14.2
+    image: bitnami/elasticsearch:7.15.1
     container_name: elasticsearch-cluster1
     hostname: elasticsearch-cluster1
     environment:
@@ -28,7 +28,7 @@ services:
       - ELASTICSEARCH_NODE_NAME=elasticsearch-cluster1
       - TZ=Asia/Shanghai
     volumes:
-      - ../plugins/elasticsearch-analysis-ik-7.14.2.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.14.2.zip
+      - ../plugins/elasticsearch-analysis-ik-7.15.1.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.15.1.zip
       - /opt/volumes/elasticsearch-cluster1:/bitnami/elasticsearch/data
       - /opt/volumes/extra:/extra
     ports:
@@ -36,7 +36,7 @@ services:
     networks:
       - backend
   elasticsearch-cluster2:
-    image: bitnami/elasticsearch:7.14.2
+    image: bitnami/elasticsearch:7.15.1
     container_name: elasticsearch-cluster2
     hostname: elasticsearch-cluster2
     environment:
@@ -45,7 +45,7 @@ services:
       - ELASTICSEARCH_NODE_NAME=elasticsearch-cluster2
       - TZ=Asia/Shanghai
     volumes:
-      - ../plugins/elasticsearch-analysis-ik-7.14.2.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.14.2.zip
+      - ../plugins/elasticsearch-analysis-ik-7.15.1.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.15.1.zip
       - /opt/volumes/elasticsearch-cluster2:/bitnami/elasticsearch/data
       - /opt/volumes/extra:/extra
     ports:
@@ -53,7 +53,7 @@ services:
     networks:
       - backend
   elasticsearch-cluster3:
-    image: bitnami/elasticsearch:7.14.2
+    image: bitnami/elasticsearch:7.15.1
     container_name: elasticsearch-cluster3
     hostname: elasticsearch-cluster3
     environment:
@@ -62,7 +62,7 @@ services:
       - ELASTICSEARCH_NODE_NAME=elasticsearch-cluster3
       - TZ=Asia/Shanghai
     volumes:
-      - ../plugins/elasticsearch-analysis-ik-7.14.2.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.14.2.zip
+      - ../plugins/elasticsearch-analysis-ik-7.15.1.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.15.1.zip
       - /opt/volumes/elasticsearch-cluster3:/bitnami/elasticsearch/data
       - /opt/volumes/extra:/extra
     ports:
@@ -70,7 +70,7 @@ services:
     networks:
       - backend
   elasticsearch-kibana:
-    image: bitnami/kibana:7.14.2
+    image: bitnami/kibana:7.15.1
     container_name: elasticsearch-kibana
     hostname: elasticsearch-kibana
     environment:

@@ -2,7 +2,7 @@ version: '3'
 
 services:
   gitlab:
-    image: gitlab/gitlab-ce:14.3.3-ce.0
+    image: gitlab/gitlab-ce:14.3.4-ce.0
     container_name: gitlab
     hostname: msi
     networks:
