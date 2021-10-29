@@ -1,6 +1,5 @@
 #!/usr/bin/ruby
 
-#sudo gem update --system
 #sudo gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
 #sudo gem install colorize
 
@@ -38,7 +37,7 @@ def exec_path(opt, path, cmd = nil)
     when 'start'
       exec cmd || "docker-compose -f #{path}/docker-compose.yml up -d"
     when 'stop'
-      exec cmd || "docker-compose -f #{path}/docker-compose.yml stop "
+      exec "docker-compose -f #{path}/docker-compose.yml stop"
     else
       warn
   end
@@ -85,13 +84,13 @@ case app
     exec_path opt, "~/bin/module/clickhouse/clickhouse-cluster"
   when 'flink'
     path = "~/bin/module/flink/flink-cluster"
-    exec "NUM=#{num} MEM=#{mem} docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, path, "NUM=#{num} MEM=#{mem} docker-compose -f #{path}/docker-compose.yml up -d"
   when 'spark'
     path = "~/bin/module/spark"
-    exec "NUM=#{num} MEM=#{mem} docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, path, "NUM=#{num} MEM=#{mem} docker-compose -f #{path}/docker-compose.yml up -d"
   when 'kafka'
     path = "~/bin/module/kafka/kafka-cluster"
-    exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, path, "IP=#{ip} docker-compose -f #{path}/docker-compose.yml up -d"
   when 'nacos'
     exec_path opt, "~/bin/module/nacos/nacos-cluster"
   when 'zipkin'
