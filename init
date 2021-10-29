@@ -9,7 +9,7 @@ require 'socket'
 require 'etc'
 
 def warn
-  system "echo 'bin/init mysql|mariadb|postgresql-repmgr|postgresql-cluster|rabbitmq|redis-sentinel|redis-cluster|mongodb|elasticsearch|clickhouse|flink|kafka|nacos|logstash|cerebro|neo4j|minio|hdfs|spark|nginx|zipkin|gitlab|canal|sentinel|seata|chrome|alpine|idea|goland|pycharm|env'"
+  system "echo 'bin/init mysql|mariadb|postgresql-repmgr|postgresql-cluster|rabbitmq|redis-sentinel|redis-cluster|mongodb|elasticsearch|clickhouse|flink|kafka|nacos|logstash|cerebro|neo4j|minio|hdfs|spark|nginx|zipkin|gitlab|canal|sentinel|seata|chrome|alpine|idea|goland|pycharm|env  start(default)|stop'"
 end
 
 def memsize
@@ -33,11 +33,23 @@ def exec(cmd)
   system cmd
 end
 
+def exec_path(opt, path, cmd = nil)
+  case opt
+    when 'start'
+      exec cmd || "docker-compose -f #{path}/docker-compose.yml up -d"
+    when 'stop'
+      exec cmd || "docker-compose -f #{path}/docker-compose.yml stop "
+    else
+      warn
+  end
+end
+
 #noinspection RubyNilAnalysis
 ip  = Socket.ip_address_list.detect { |x| x.ipv4_private? }.ip_address
 num = Etc.nprocessors
 mem = memsize / 4
 app = ARGV[0]
+opt = ARGV[1] || 'start'
 warn && exit unless app
 
 case app
@@ -46,44 +58,31 @@ case app
     exec 'docker rm -f canal-server'
     exec "docker run -d --net backend --name canal-server -p 11111:11111 -v /opt/volumes/extra:/extra canal-server"
   when 'mariadb'
-    path = "~/bin/module/mariadb/mariadb-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/mariadb/mariadb-cluster"
   when 'postgresql-repmgr'
-    path = "~/bin/module/postgresql/postgresql-repmgr"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/postgresql/postgresql-repmgr"
   when 'postgresql-cluster'
-    path = "~/bin/module/postgresql/postgresql-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/postgresql/postgresql-cluster"
   when 'rabbitmq'
-    path = "~/bin/module/rabbitmq/rabbitmq-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/rabbitmq/rabbitmq-cluster"
   when 'neo4j'
-    path = "~/bin/module/neo4j"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/neo4j"
   when 'mysql'
-    path = "~/bin/module/mysql/mysql-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/mysql/mysql-cluster"
   when 'redis-sentinel'
-    path = "~/bin/module/redis/redis-sentinel"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/redis/redis-sentinel"
   when 'redis-cluster'
-    path = "~//bin/module/redis/redis-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/redis/redis-cluster"
   when 'mongodb'
-    path = "~/bin/module/mongodb/mongodb-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/mongodb/mongodb-cluster"
   when 'elasticsearch'
-    path = "~/bin/module/elasticsearch/elasticsearch-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/elasticsearch/elasticsearch-cluster"
   when 'logstash'
-    path = "~/bin/module/logstash"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/logstash"
   when 'cerebro'
-    path = "~/bin/module/cerebro"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/cerebro"
   when 'clickhouse'
-    path = "~/bin/module/clickhouse/clickhouse-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/clickhouse/clickhouse-cluster"
   when 'flink'
     path = "~/bin/module/flink/flink-cluster"
     exec "NUM=#{num} MEM=#{mem} docker-compose -f #{path}/docker-compose.yml up -d"
@@ -94,8 +93,7 @@ case app
     path = "~/bin/module/kafka/kafka-cluster"
     exec "IP=#{ip} docker-compose -f #{path}/docker-compose.yml up -d"
   when 'nacos'
-    path = "~/bin/module/nacos/nacos-cluster"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/nacos/nacos-cluster"
   when 'zipkin'
     exec 'docker build -t zipkin-server ~/bin/module/zipkin/'
     exec 'docker rm -f zipkin-server'
@@ -105,35 +103,23 @@ case app
     exec 'docker rm -f sentinel-server'
     exec 'docker run -d --net host    --name sentinel-server -v /etc/localtime:/etc/localtime -v /opt/volumes/extra:/extra sentinel-server'
   when 'nginx'
-    path = "~/bin/module/nginx"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/nginx"
   when 'minio'
-    path = "~/bin/module/minio"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/minio"
   when 'gitlab'
-    path = "~/bin/module/gitlab"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/gitlab"
   when 'hdfs'
-    path = "~/bin/module/hdfs"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/hdfs"
   when 'chrome'
-    path = "~/bin/module/chrome"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
-  when 'firefox'
-    path = "~/bin/module/firefox"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/chrome"
   when 'alpine'
-    path = "~/bin/module/alpine"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/alpine"
   when 'idea'
-    path = "~/bin/module/JetBrains-idea"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/JetBrains-idea"
   when 'goland'
-    path = "~/bin/module/JetBrains-goland"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/JetBrains-goland"
   when 'pycharm'
-    path = "~/bin/module/JetBrains-pycharm"
-    exec "docker-compose -f #{path}/docker-compose.yml up -d"
+    exec_path opt, "~/bin/module/JetBrains-pycharm"
   when 'seata'
     exec "docker build -t seata-server --build-arg IP='#{ip}' ~/bin/module/seata/"
     exec 'docker rm -f seata-server'
