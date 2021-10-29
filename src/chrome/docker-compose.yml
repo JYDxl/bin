@@ -7,7 +7,7 @@ services:
     hostname: chrome
     environment:
       - VNC_PW=password
-      - VNC_RESOLUTION=1920x1200
+      - VNC_RESOLUTION=2880x1800
       - TZ=Asia/Shanghai
     ports:
       - '6901:6901'
