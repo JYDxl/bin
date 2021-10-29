@@ -53,74 +53,74 @@ warn && exit unless app
 
 case app
   when 'canal'
-    exec 'docker build -t canal-server ~/bin/module/canal/'
+    exec 'docker build -t canal-server ~/bin/src/canal/'
     exec 'docker rm -f canal-server'
     exec "docker run -d --net backend --name canal-server -p 11111:11111 -v /opt/volumes/extra:/extra canal-server"
   when 'mariadb'
-    exec_path opt, "~/bin/module/mariadb/mariadb-cluster"
+    exec_path opt, "~/bin/src/mariadb/mariadb-cluster"
   when 'postgresql-repmgr'
-    exec_path opt, "~/bin/module/postgresql/postgresql-repmgr"
+    exec_path opt, "~/bin/src/postgresql/postgresql-repmgr"
   when 'postgresql-cluster'
-    exec_path opt, "~/bin/module/postgresql/postgresql-cluster"
+    exec_path opt, "~/bin/src/postgresql/postgresql-cluster"
   when 'rabbitmq'
-    exec_path opt, "~/bin/module/rabbitmq/rabbitmq-cluster"
+    exec_path opt, "~/bin/src/rabbitmq/rabbitmq-cluster"
   when 'neo4j'
-    exec_path opt, "~/bin/module/neo4j"
+    exec_path opt, "~/bin/src/neo4j"
   when 'mysql'
-    exec_path opt, "~/bin/module/mysql/mysql-cluster"
+    exec_path opt, "~/bin/src/mysql/mysql-cluster"
   when 'redis-sentinel'
-    exec_path opt, "~/bin/module/redis/redis-sentinel"
+    exec_path opt, "~/bin/src/redis/redis-sentinel"
   when 'redis-cluster'
-    exec_path opt, "~/bin/module/redis/redis-cluster"
+    exec_path opt, "~/bin/src/redis/redis-cluster"
   when 'mongodb'
-    exec_path opt, "~/bin/module/mongodb/mongodb-cluster"
+    exec_path opt, "~/bin/src/mongodb/mongodb-cluster"
   when 'elasticsearch'
-    exec_path opt, "~/bin/module/elasticsearch/elasticsearch-cluster"
+    exec_path opt, "~/bin/src/elasticsearch/elasticsearch-cluster"
   when 'logstash'
-    exec_path opt, "~/bin/module/logstash"
+    exec_path opt, "~/bin/src/logstash"
   when 'cerebro'
-    exec_path opt, "~/bin/module/cerebro"
+    exec_path opt, "~/bin/src/cerebro"
   when 'clickhouse'
-    exec_path opt, "~/bin/module/clickhouse/clickhouse-cluster"
+    exec_path opt, "~/bin/src/clickhouse/clickhouse-cluster"
   when 'flink'
-    path = "~/bin/module/flink/flink-cluster"
+    path = "~/bin/src/flink/flink-cluster"
     exec_path opt, path, "NUM=#{num} MEM=#{mem} docker-compose -f #{path}/docker-compose.yml up -d"
   when 'spark'
-    path = "~/bin/module/spark"
+    path = "~/bin/src/spark"
     exec_path opt, path, "NUM=#{num} MEM=#{mem} docker-compose -f #{path}/docker-compose.yml up -d"
   when 'kafka'
-    path = "~/bin/module/kafka/kafka-cluster"
+    path = "~/bin/src/kafka/kafka-cluster"
     exec_path opt, path, "IP=#{ip} docker-compose -f #{path}/docker-compose.yml up -d"
   when 'nacos'
-    exec_path opt, "~/bin/module/nacos/nacos-cluster"
+    exec_path opt, "~/bin/src/nacos/nacos-cluster"
   when 'zipkin'
-    exec 'docker build -t zipkin-server ~/bin/module/zipkin/'
+    exec 'docker build -t zipkin-server ~/bin/src/zipkin/'
     exec 'docker rm -f zipkin-server'
     exec 'docker run -d --net backend --name zipkin-server -p 9411:9411 zipkin-server --link rabbitmq'
   when 'sentinel'
-    exec 'docker build -t sentinel-server ~/bin/module/sentinel/'
+    exec 'docker build -t sentinel-server ~/bin/src/sentinel/'
     exec 'docker rm -f sentinel-server'
     exec 'docker run -d --net host    --name sentinel-server -v /etc/localtime:/etc/localtime -v /opt/volumes/extra:/extra sentinel-server'
   when 'nginx'
-    exec_path opt, "~/bin/module/nginx"
+    exec_path opt, "~/bin/src/nginx"
   when 'minio'
-    exec_path opt, "~/bin/module/minio"
+    exec_path opt, "~/bin/src/minio"
   when 'gitlab'
-    exec_path opt, "~/bin/module/gitlab"
+    exec_path opt, "~/bin/src/gitlab"
   when 'hdfs'
-    exec_path opt, "~/bin/module/hdfs"
+    exec_path opt, "~/bin/src/hdfs"
   when 'chrome'
-    exec_path opt, "~/bin/module/chrome"
+    exec_path opt, "~/bin/src/chrome"
   when 'alpine'
-    exec_path opt, "~/bin/module/alpine"
+    exec_path opt, "~/bin/src/alpine"
   when 'idea'
-    exec_path opt, "~/bin/module/JetBrains-idea"
+    exec_path opt, "~/bin/src/JetBrains-idea"
   when 'goland'
-    exec_path opt, "~/bin/module/JetBrains-goland"
+    exec_path opt, "~/bin/src/JetBrains-goland"
   when 'pycharm'
-    exec_path opt, "~/bin/module/JetBrains-pycharm"
+    exec_path opt, "~/bin/src/JetBrains-pycharm"
   when 'seata'
-    exec "docker build -t seata-server --build-arg IP='#{ip}' ~/bin/module/seata/"
+    exec "docker build -t seata-server --build-arg IP='#{ip}' ~/bin/src/seata/"
     exec 'docker rm -f seata-server'
     exec 'docker run -d --net backend --name seata-server -p 8091:8091 -v /etc/localtime:/etc/localtime -v /opt/volumes/extra:/extra seata-server'
   when 'env'
