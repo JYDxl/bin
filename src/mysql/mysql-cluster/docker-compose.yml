@@ -22,35 +22,13 @@ services:
       - MYSQL_CHARACTER_SET=utf8mb4
       - MYSQL_COLLATE=utf8mb4_general_ci
       - TZ=Asia/Shanghai
-  mysql-slave0:
-    image: bitnami/mysql:8.0.27
-    container_name: mysql-slave0
-    networks:
-      - backend
-    ports:
-      - '3307:3306'
-    depends_on:
-      - mysql-master
-    volumes:
-      - ../conf/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
-      - /opt/volumes/mysql-slave0:/bitnami/mysql/data
-    environment:
-      - MYSQL_REPLICATION_MODE=slave
-      - MYSQL_REPLICATION_USER=repl_user
-      - MYSQL_REPLICATION_PASSWORD=XLrootJYD713
-      - MYSQL_MASTER_HOST=mysql-master
-      - MYSQL_MASTER_PORT_NUMBER=3306
-      - MYSQL_MASTER_ROOT_PASSWORD=XLrootJYD713
-      - MYSQL_CHARACTER_SET=utf8mb4
-      - MYSQL_COLLATE=utf8mb4_general_ci
-      - TZ=Asia/Shanghai
   mysql-slave1:
     image: bitnami/mysql:8.0.27
     container_name: mysql-slave1
     networks:
       - backend
     ports:
-      - '3308:3306'
+      - '3307:3306'
     depends_on:
       - mysql-master
     volumes:
@@ -72,12 +50,34 @@ services:
     networks:
       - backend
     ports:
-      - '3309:3306'
+      - '3308:3306'
     depends_on:
       - mysql-master
     volumes:
       - ../conf/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
       - /opt/volumes/mysql-slave2:/bitnami/mysql/data
+    environment:
+      - MYSQL_REPLICATION_MODE=slave
+      - MYSQL_REPLICATION_USER=repl_user
+      - MYSQL_REPLICATION_PASSWORD=XLrootJYD713
+      - MYSQL_MASTER_HOST=mysql-master
+      - MYSQL_MASTER_PORT_NUMBER=3306
+      - MYSQL_MASTER_ROOT_PASSWORD=XLrootJYD713
+      - MYSQL_CHARACTER_SET=utf8mb4
+      - MYSQL_COLLATE=utf8mb4_general_ci
+      - TZ=Asia/Shanghai
+  mysql-slave3:
+    image: bitnami/mysql:8.0.27
+    container_name: mysql-slave3
+    networks:
+      - backend
+    ports:
+      - '3309:3306'
+    depends_on:
+      - mysql-master
+    volumes:
+      - ../conf/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
+      - /opt/volumes/mysql-slave3:/bitnami/mysql/data
     environment:
       - MYSQL_REPLICATION_MODE=slave
       - MYSQL_REPLICATION_USER=repl_user
