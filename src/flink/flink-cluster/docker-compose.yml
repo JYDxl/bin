@@ -17,23 +17,6 @@ services:
         jobmanager.rpc.address: flink-jobmanager
         jobmanager.memory.process.size: ${MEM}G
 
-  flink-taskmanager0:
-    image: flink:1.14.0-scala_2.12-java11
-    container_name: flink-taskmanager0
-    hostname: flink-taskmanager0
-    depends_on:
-      - flink-jobmanager
-    networks:
-      - backend
-    command: taskmanager
-    environment:
-      - TZ=Asia/Shanghai
-      - |
-        FLINK_PROPERTIES=
-        jobmanager.rpc.address: flink-jobmanager
-        taskmanager.numberOfTaskSlots: ${NUM}
-        taskmanager.memory.process.size: ${MEM}G
-
   flink-taskmanager1:
     image: flink:1.14.0-scala_2.12-java11
     container_name: flink-taskmanager1
@@ -72,6 +55,23 @@ services:
     image: flink:1.14.0-scala_2.12-java11
     container_name: flink-taskmanager3
     hostname: flink-taskmanager3
+    depends_on:
+      - flink-jobmanager
+    networks:
+      - backend
+    command: taskmanager
+    environment:
+      - TZ=Asia/Shanghai
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: flink-jobmanager
+        taskmanager.numberOfTaskSlots: ${NUM}
+        taskmanager.memory.process.size: ${MEM}G
+
+  flink-taskmanager4:
+    image: flink:1.14.0-scala_2.12-java11
+    container_name: flink-taskmanager4
+    hostname: flink-taskmanager4
     depends_on:
       - flink-jobmanager
     networks:
