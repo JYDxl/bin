@@ -1,30 +1,13 @@
 version: '3'
 services:
 
-  elasticsearch-cluster0:
-    image: bitnami/elasticsearch:7.15.1
-    container_name: elasticsearch-cluster0
-    hostname: elasticsearch-cluster0
-    environment:
-      - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
-      - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-cluster0,elasticsearch-cluster1,elasticsearch-cluster2,elasticsearch-cluster3
-      - ELASTICSEARCH_NODE_NAME=elasticsearch-cluster0
-      - TZ=Asia/Shanghai
-    volumes:
-      - ../plugins/elasticsearch-analysis-ik-7.15.1.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.15.1.zip
-      - /opt/volumes/elasticsearch-cluster0:/bitnami/elasticsearch/data
-      - /opt/volumes/extra:/extra
-    ports:
-      - "9200:9200"
-    networks:
-      - backend
   elasticsearch-cluster1:
     image: bitnami/elasticsearch:7.15.1
     container_name: elasticsearch-cluster1
     hostname: elasticsearch-cluster1
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
-      - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-cluster0,elasticsearch-cluster1,elasticsearch-cluster2,elasticsearch-cluster3
+      - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-cluster1,elasticsearch-cluster2,elasticsearch-cluster3,elasticsearch-cluster4
       - ELASTICSEARCH_NODE_NAME=elasticsearch-cluster1
       - TZ=Asia/Shanghai
     volumes:
@@ -32,7 +15,7 @@ services:
       - /opt/volumes/elasticsearch-cluster1:/bitnami/elasticsearch/data
       - /opt/volumes/extra:/extra
     ports:
-      - "9201:9200"
+      - "9200:9200"
     networks:
       - backend
   elasticsearch-cluster2:
@@ -41,7 +24,7 @@ services:
     hostname: elasticsearch-cluster2
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
-      - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-cluster0,elasticsearch-cluster1,elasticsearch-cluster2,elasticsearch-cluster3
+      - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-cluster1,elasticsearch-cluster2,elasticsearch-cluster3,elasticsearch-cluster4
       - ELASTICSEARCH_NODE_NAME=elasticsearch-cluster2
       - TZ=Asia/Shanghai
     volumes:
@@ -49,7 +32,7 @@ services:
       - /opt/volumes/elasticsearch-cluster2:/bitnami/elasticsearch/data
       - /opt/volumes/extra:/extra
     ports:
-      - "9202:9200"
+      - "9201:9200"
     networks:
       - backend
   elasticsearch-cluster3:
@@ -58,12 +41,29 @@ services:
     hostname: elasticsearch-cluster3
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
-      - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-cluster0,elasticsearch-cluster1,elasticsearch-cluster2,elasticsearch-cluster3
+      - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-cluster1,elasticsearch-cluster2,elasticsearch-cluster3,elasticsearch-cluster4
       - ELASTICSEARCH_NODE_NAME=elasticsearch-cluster3
       - TZ=Asia/Shanghai
     volumes:
       - ../plugins/elasticsearch-analysis-ik-7.15.1.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.15.1.zip
       - /opt/volumes/elasticsearch-cluster3:/bitnami/elasticsearch/data
+      - /opt/volumes/extra:/extra
+    ports:
+      - "9202:9200"
+    networks:
+      - backend
+  elasticsearch-cluster4:
+    image: bitnami/elasticsearch:7.15.1
+    container_name: elasticsearch-cluster4
+    hostname: elasticsearch-cluster4
+    environment:
+      - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
+      - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-cluster1,elasticsearch-cluster2,elasticsearch-cluster3,elasticsearch-cluster4
+      - ELASTICSEARCH_NODE_NAME=elasticsearch-cluster4
+      - TZ=Asia/Shanghai
+    volumes:
+      - ../plugins/elasticsearch-analysis-ik-7.15.1.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.15.1.zip
+      - /opt/volumes/elasticsearch-cluster4:/bitnami/elasticsearch/data
       - /opt/volumes/extra:/extra
     ports:
       - "9203:9200"
@@ -74,7 +74,7 @@ services:
     container_name: elasticsearch-kibana
     hostname: elasticsearch-kibana
     environment:
-      - KIBANA_ELASTICSEARCH_URL=elasticsearch-cluster0
+      - KIBANA_ELASTICSEARCH_URL=elasticsearch-cluster1
       - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/elasticsearch-kibana:/bitnami/kibana/data
@@ -83,10 +83,10 @@ services:
     networks:
       - backend
     depends_on:
-      - elasticsearch-cluster0
       - elasticsearch-cluster1
       - elasticsearch-cluster2
       - elasticsearch-cluster3
+      - elasticsearch-cluster4
 
 networks:
   backend:
