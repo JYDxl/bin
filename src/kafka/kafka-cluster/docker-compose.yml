@@ -147,9 +147,9 @@ services:
       - kafka-cluster2
       - kafka-cluster3
       - kafka-cluster4
-    ports:
-      - '9308:9308'
-    command: kafka_exporter --kafka.server=kafka-cluster1:9092,kafka-cluster2:9093,kafka-cluster3:9094,kafka-cluster4:9095
+    #ports:
+    #  - '9308:9308'
+    command: --kafka.server=kafka-cluster1:9092 --kafka.server=kafka-cluster2:9093 --kafka.server=kafka-cluster3:9094 --kafka.server=kafka-cluster4:9095
 
 networks:
   backend:
