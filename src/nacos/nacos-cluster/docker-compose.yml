@@ -1,22 +1,6 @@
 version: "3"
 services:
 
-  nacos-cluster0:
-    image: nacos/nacos-server:v2.0.3
-    container_name: nacos-cluster0
-    hostname: nacos-cluster0
-    networks:
-      - backend
-    volumes:
-      - /opt/volumes/nacos-cluster0/logs:/home/nacos/logs
-      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
-    ports:
-      - "8848:8848"
-      - "9848:9848"
-      - "9555:9555"
-    env_file:
-      - ./env/nacos-hostname.env
-
   nacos-cluster1:
     image: nacos/nacos-server:v2.0.3
     container_name: nacos-cluster1
@@ -27,8 +11,9 @@ services:
       - /opt/volumes/nacos-cluster1/logs:/home/nacos/logs
       - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
     ports:
-      - "8849:8848"
-      - "9849:9848"
+      - "8848:8848"
+      - "9848:9848"
+      - "9555:9555"
     env_file:
       - ./env/nacos-hostname.env
 
@@ -42,8 +27,8 @@ services:
       - /opt/volumes/nacos-cluster2/logs:/home/nacos/logs
       - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
     ports:
-      - "8850:8848"
-      - "9850:9848"
+      - "8849:8848"
+      - "9849:9848"
     env_file:
       - ./env/nacos-hostname.env
 
@@ -55,6 +40,21 @@ services:
       - backend
     volumes:
       - /opt/volumes/nacos-cluster3/logs:/home/nacos/logs
+      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - "8850:8848"
+      - "9850:9848"
+    env_file:
+      - ./env/nacos-hostname.env
+
+  nacos-cluster4:
+    image: nacos/nacos-server:v2.0.3
+    container_name: nacos-cluster4
+    hostname: nacos-cluster4
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/nacos-cluster4/logs:/home/nacos/logs
       - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
     ports:
       - "8851:8848"
