@@ -1,23 +1,64 @@
 version: '3'
 services:
 
-  kafka-zookeeper:
-    container_name: kafka-zookeeper
+  kafka-zookeeper0:
+    container_name: kafka-zookeeper0
     image: bitnami/zookeeper:3.7.0
     networks:
       - backend
     volumes:
-      - /opt/volumes/kafka-zookeeper:/bitnami/zookeeper/data
+      - /opt/volumes/kafka-zookeeper0:/bitnami/zookeeper/data
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
       - TZ=Asia/Shanghai
+      - ZOO_SERVER_ID=0
+      - ZOO_SERVERS=kafka-zookeeper0:2888:3888,kafka-zookeeper1:2888:3888,kafka-zookeeper2:2888:3888,kafka-zookeeper3:2888:3888
+  kafka-zookeeper1:
+    container_name: kafka-zookeeper1
+    image: bitnami/zookeeper:3.7.0
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/kafka-zookeeper1:/bitnami/zookeeper/data
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+      - TZ=Asia/Shanghai
+      - ZOO_SERVER_ID=1
+      - ZOO_SERVERS=kafka-zookeeper0:2888:3888,kafka-zookeeper1:2888:3888,kafka-zookeeper2:2888:3888,kafka-zookeeper3:2888:3888
+  kafka-zookeeper2:
+    container_name: kafka-zookeeper2
+    image: bitnami/zookeeper:3.7.0
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/kafka-zookeeper2:/bitnami/zookeeper/data
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+      - TZ=Asia/Shanghai
+      - ZOO_SERVER_ID=2
+      - ZOO_SERVERS=kafka-zookeeper0:2888:3888,kafka-zookeeper1:2888:3888,kafka-zookeeper2:2888:3888,kafka-zookeeper3:2888:3888
+  kafka-zookeeper3:
+    container_name: kafka-zookeeper3
+    image: bitnami/zookeeper:3.7.0
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/kafka-zookeeper3:/bitnami/zookeeper/data
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+      - TZ=Asia/Shanghai
+      - ZOO_SERVER_ID=3
+      - ZOO_SERVERS=kafka-zookeeper0:2888:3888,kafka-zookeeper1:2888:3888,kafka-zookeeper2:2888:3888,kafka-zookeeper3:2888:3888
   kafka-cluster0:
     container_name: kafka-cluster0
     image: bitnami/kafka:3.0.0
     networks:
       - backend
     depends_on:
-      - kafka-zookeeper
+      - kafka-zookeeper0
+      - kafka-zookeeper1
+      - kafka-zookeeper2
+      - kafka-zookeeper3
     ports:
       - '9092:9092'
     environment:
@@ -36,7 +77,10 @@ services:
     networks:
       - backend
     depends_on:
-      - kafka-zookeeper
+      - kafka-zookeeper0
+      - kafka-zookeeper1
+      - kafka-zookeeper2
+      - kafka-zookeeper3
     ports:
       - '9093:9093'
     environment:
@@ -55,7 +99,10 @@ services:
     networks:
       - backend
     depends_on:
-      - kafka-zookeeper
+      - kafka-zookeeper0
+      - kafka-zookeeper1
+      - kafka-zookeeper2
+      - kafka-zookeeper3
     ports:
       - '9094:9094'
     environment:
@@ -74,7 +121,10 @@ services:
     networks:
       - backend
     depends_on:
-      - kafka-zookeeper
+      - kafka-zookeeper0
+      - kafka-zookeeper1
+      - kafka-zookeeper2
+      - kafka-zookeeper3
     ports:
       - '9095:9095'
     environment:
