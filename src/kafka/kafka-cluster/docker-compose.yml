@@ -12,7 +12,7 @@ services:
       - ALLOW_ANONYMOUS_LOGIN=yes
       - TZ=Asia/Shanghai
       - ZOO_SERVER_ID=1
-      - ZOO_SERVERS=kafka-zookeeper1:2888:3888,kafka-zookeeper2:2888:3888,kafka-zookeeper3:2888:3888,kafka-zookeeper4:2888:3888
+      - ZOO_SERVERS=kafka-zookeeper1:2888:3888,kafka-zookeeper2:2888:3888
   kafka-zookeeper2:
     container_name: kafka-zookeeper2
     image: bitnami/zookeeper:3.7.0
@@ -24,31 +24,7 @@ services:
       - ALLOW_ANONYMOUS_LOGIN=yes
       - TZ=Asia/Shanghai
       - ZOO_SERVER_ID=2
-      - ZOO_SERVERS=kafka-zookeeper1:2888:3888,kafka-zookeeper2:2888:3888,kafka-zookeeper3:2888:3888,kafka-zookeeper4:2888:3888
-  kafka-zookeeper3:
-    container_name: kafka-zookeeper3
-    image: bitnami/zookeeper:3.7.0
-    networks:
-      - backend
-    volumes:
-      - /opt/volumes/kafka-zookeeper3:/bitnami/zookeeper/data
-    environment:
-      - ALLOW_ANONYMOUS_LOGIN=yes
-      - TZ=Asia/Shanghai
-      - ZOO_SERVER_ID=3
-      - ZOO_SERVERS=kafka-zookeeper1:2888:3888,kafka-zookeeper2:2888:3888,kafka-zookeeper3:2888:3888,kafka-zookeeper4:2888:3888
-  kafka-zookeeper4:
-    container_name: kafka-zookeeper4
-    image: bitnami/zookeeper:3.7.0
-    networks:
-      - backend
-    volumes:
-      - /opt/volumes/kafka-zookeeper4:/bitnami/zookeeper/data
-    environment:
-      - ALLOW_ANONYMOUS_LOGIN=yes
-      - TZ=Asia/Shanghai
-      - ZOO_SERVER_ID=4
-      - ZOO_SERVERS=kafka-zookeeper1:2888:3888,kafka-zookeeper2:2888:3888,kafka-zookeeper3:2888:3888,kafka-zookeeper4:2888:3888
+      - ZOO_SERVERS=kafka-zookeeper1:2888:3888,kafka-zookeeper2:2888:3888
   kafka-cluster1:
     container_name: kafka-cluster1
     image: bitnami/kafka:3.0.0
@@ -57,15 +33,13 @@ services:
     depends_on:
       - kafka-zookeeper1
       - kafka-zookeeper2
-      - kafka-zookeeper3
-      - kafka-zookeeper4
     ports:
       - '9092:9092'
     environment:
       - KAFKA_BROKER_ID=1
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9092
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181,kafka-zookeeper2:2181,kafka-zookeeper3:2181,kafka-zookeeper4:2181
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181,kafka-zookeeper2:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
@@ -79,15 +53,13 @@ services:
     depends_on:
       - kafka-zookeeper1
       - kafka-zookeeper2
-      - kafka-zookeeper3
-      - kafka-zookeeper4
     ports:
       - '9093:9093'
     environment:
       - KAFKA_BROKER_ID=2
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9093
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9093
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181,kafka-zookeeper2:2181,kafka-zookeeper3:2181,kafka-zookeeper4:2181
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181,kafka-zookeeper2:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
@@ -101,15 +73,13 @@ services:
     depends_on:
       - kafka-zookeeper1
       - kafka-zookeeper2
-      - kafka-zookeeper3
-      - kafka-zookeeper4
     ports:
       - '9094:9094'
     environment:
       - KAFKA_BROKER_ID=3
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9094
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9094
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181,kafka-zookeeper2:2181,kafka-zookeeper3:2181,kafka-zookeeper4:2181
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181,kafka-zookeeper2:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
@@ -123,15 +93,13 @@ services:
     depends_on:
       - kafka-zookeeper1
       - kafka-zookeeper2
-      - kafka-zookeeper3
-      - kafka-zookeeper4
     ports:
       - '9095:9095'
     environment:
       - KAFKA_BROKER_ID=4
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9095
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9095
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181,kafka-zookeeper2:2181,kafka-zookeeper3:2181,kafka-zookeeper4:2181
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181,kafka-zookeeper2:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
