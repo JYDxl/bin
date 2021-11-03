@@ -20,21 +20,6 @@ services:
       - '15672:15672'
     volumes:
       - /opt/volumes/rabbitmq-stats:/bitnami/rabbitmq/mnesia
-  rabbitmq-disc0:
-    image: bitnami/rabbitmq:3.9.8
-    container_name: rabbitmq-disc0
-    networks:
-      - backend
-    environment:
-      - RABBITMQ_USERNAME=root
-      - RABBITMQ_PASSWORD=XLrootJYD713
-      - RABBITMQ_NODE_TYPE=queue-disc
-      - RABBITMQ_NODE_NAME=rabbit@rabbitmq-disc0
-      - RABBITMQ_CLUSTER_NODE_NAME=rabbit@rabbitmq-stats
-      - RABBITMQ_ERL_COOKIE=XLrootJYD713
-      - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/rabbitmq-disc0:/bitnami/rabbitmq/mnesia
   rabbitmq-disc1:
     image: bitnami/rabbitmq:3.9.8
     container_name: rabbitmq-disc1
@@ -50,21 +35,21 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/rabbitmq-disc1:/bitnami/rabbitmq/mnesia
-  rabbitmq-ram0:
+  rabbitmq-disc2:
     image: bitnami/rabbitmq:3.9.8
-    container_name: rabbitmq-ram0
+    container_name: rabbitmq-disc2
     networks:
       - backend
     environment:
       - RABBITMQ_USERNAME=root
       - RABBITMQ_PASSWORD=XLrootJYD713
-      - RABBITMQ_NODE_TYPE=queue-ram
-      - RABBITMQ_NODE_NAME=rabbit@rabbitmq-ram0
+      - RABBITMQ_NODE_TYPE=queue-disc
+      - RABBITMQ_NODE_NAME=rabbit@rabbitmq-disc2
       - RABBITMQ_CLUSTER_NODE_NAME=rabbit@rabbitmq-stats
       - RABBITMQ_ERL_COOKIE=XLrootJYD713
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/rabbitmq-ram0:/bitnami/rabbitmq/mnesia
+      - /opt/volumes/rabbitmq-disc2:/bitnami/rabbitmq/mnesia
   rabbitmq-ram1:
     image: bitnami/rabbitmq:3.9.8
     container_name: rabbitmq-ram1
@@ -80,6 +65,21 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/rabbitmq-ram1:/bitnami/rabbitmq/mnesia
+  rabbitmq-ram2:
+    image: bitnami/rabbitmq:3.9.8
+    container_name: rabbitmq-ram2
+    networks:
+      - backend
+    environment:
+      - RABBITMQ_USERNAME=root
+      - RABBITMQ_PASSWORD=XLrootJYD713
+      - RABBITMQ_NODE_TYPE=queue-ram
+      - RABBITMQ_NODE_NAME=rabbit@rabbitmq-ram2
+      - RABBITMQ_CLUSTER_NODE_NAME=rabbit@rabbitmq-stats
+      - RABBITMQ_ERL_COOKIE=XLrootJYD713
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/rabbitmq-ram2:/bitnami/rabbitmq/mnesia
 
 networks:
   backend:
