@@ -1,31 +1,17 @@
 version: "2"
 services:
-  redis-cluster0:
-    image: bitnami/redis-cluster:6.2.6
-    container_name: redis-cluster0
-    networks:
-      - backend
-    ports:
-      - "6379:6379"
-    volumes:
-      - /opt/volumes/redis-cluster0:/bitnami/redis/data
-    environment:
-      - REDIS_PASSWORD=XLrootJYD713
-      - REDIS_NODES=redis-cluster0 redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5
-      - TZ=Asia/Shanghai
-
   redis-cluster1:
     image: bitnami/redis-cluster:6.2.6
     container_name: redis-cluster1
     networks:
       - backend
     ports:
-      - "6380:6379"
+      - "6379:6379"
     volumes:
       - /opt/volumes/redis-cluster1:/bitnami/redis/data
     environment:
       - REDIS_PASSWORD=XLrootJYD713
-      - REDIS_NODES=redis-cluster0 redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5
+      - REDIS_NODES=redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5 redis-cluster6
       - TZ=Asia/Shanghai
 
   redis-cluster2:
@@ -34,12 +20,12 @@ services:
     networks:
       - backend
     ports:
-      - "6381:6379"
+      - "6380:6379"
     volumes:
       - /opt/volumes/redis-cluster2:/bitnami/redis/data
     environment:
       - REDIS_PASSWORD=XLrootJYD713
-      - REDIS_NODES=redis-cluster0 redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5
+      - REDIS_NODES=redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5 redis-cluster6
       - TZ=Asia/Shanghai
 
   redis-cluster3:
@@ -48,12 +34,12 @@ services:
     networks:
       - backend
     ports:
-      - "6382:6379"
+      - "6381:6379"
     volumes:
       - /opt/volumes/redis-cluster3:/bitnami/redis/data
     environment:
       - REDIS_PASSWORD=XLrootJYD713
-      - REDIS_NODES=redis-cluster0 redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5
+      - REDIS_NODES=redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5 redis-cluster6
       - TZ=Asia/Shanghai
 
   redis-cluster4:
@@ -62,12 +48,12 @@ services:
     networks:
       - backend
     ports:
-      - "6383:6379"
+      - "6382:6379"
     volumes:
       - /opt/volumes/redis-cluster4:/bitnami/redis/data
     environment:
       - REDIS_PASSWORD=XLrootJYD713
-      - REDIS_NODES=redis-cluster0 redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5
+      - REDIS_NODES=redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5 redis-cluster6
       - TZ=Asia/Shanghai
 
   redis-cluster5:
@@ -76,20 +62,34 @@ services:
     networks:
       - backend
     ports:
-      - "6384:6379"
+      - "6383:6379"
     volumes:
       - /opt/volumes/redis-cluster5:/bitnami/redis/data
+    environment:
+      - REDIS_PASSWORD=XLrootJYD713
+      - REDIS_NODES=redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5 redis-cluster6
+      - TZ=Asia/Shanghai
+
+  redis-cluster6:
+    image: bitnami/redis-cluster:6.2.6
+    container_name: redis-cluster6
+    networks:
+      - backend
+    ports:
+      - "6384:6379"
+    volumes:
+      - /opt/volumes/redis-cluster6:/bitnami/redis/data
     depends_on:
-      - redis-cluster0
       - redis-cluster1
       - redis-cluster2
       - redis-cluster3
       - redis-cluster4
+      - redis-cluster5
     environment:
       - REDIS_PASSWORD=XLrootJYD713
       - REDISCLI_AUTH=XLrootJYD713
       - REDIS_CLUSTER_REPLICAS=1
-      - REDIS_NODES=redis-cluster0 redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5
+      - REDIS_NODES=redis-cluster1 redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5 redis-cluster6
       - REDIS_CLUSTER_CREATOR=yes
       - TZ=Asia/Shanghai
 

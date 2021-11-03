@@ -15,24 +15,6 @@ services:
     volumes:
       - /opt/volumes/redis-master:/bitnami/redis/data
       - /opt/volumes/extra:/extra
-  redis-slave0:
-    image: bitnami/redis:6.2.6
-    container_name: redis-slave0
-    environment:
-      - REDIS_REPLICATION_MODE=slave
-      - REDIS_MASTER_HOST=redis-master
-      - REDIS_MASTER_PASSWORD=XLrootJYD713
-      - REDIS_PASSWORD=XLrootJYD713
-      - TZ=Asia/Shanghai
-    ports:
-      - "6380:6379"
-    depends_on:
-      - redis-master
-    networks:
-      - backend
-    volumes:
-      - /opt/volumes/redis-slave0:/bitnami/redis/data
-      - /opt/volumes/extra:/extra
   redis-slave1:
     image: bitnami/redis:6.2.6
     container_name: redis-slave1
@@ -43,7 +25,7 @@ services:
       - REDIS_PASSWORD=XLrootJYD713
       - TZ=Asia/Shanghai
     ports:
-      - "6381:6379"
+      - "6380:6379"
     depends_on:
       - redis-master
     networks:
@@ -61,7 +43,7 @@ services:
       - REDIS_PASSWORD=XLrootJYD713
       - TZ=Asia/Shanghai
     ports:
-      - "6382:6379"
+      - "6381:6379"
     depends_on:
       - redis-master
     networks:
@@ -69,22 +51,24 @@ services:
     volumes:
       - /opt/volumes/redis-slave2:/bitnami/redis/data
       - /opt/volumes/extra:/extra
-  redis-sentinel0:
-    image: bitnami/redis-sentinel:6.2.6
-    container_name: redis-sentinel0
+  redis-slave3:
+    image: bitnami/redis:6.2.6
+    container_name: redis-slave3
     environment:
+      - REDIS_REPLICATION_MODE=slave
       - REDIS_MASTER_HOST=redis-master
       - REDIS_MASTER_PASSWORD=XLrootJYD713
+      - REDIS_PASSWORD=XLrootJYD713
       - TZ=Asia/Shanghai
+    ports:
+      - "6382:6379"
     depends_on:
       - redis-master
-      - redis-slave0
-      - redis-slave1
-      - redis-slave2
-    ports:
-      - "26379:26379"
     networks:
       - backend
+    volumes:
+      - /opt/volumes/redis-slave3:/bitnami/redis/data
+      - /opt/volumes/extra:/extra
   redis-sentinel1:
     image: bitnami/redis-sentinel:6.2.6
     container_name: redis-sentinel1
@@ -94,11 +78,11 @@ services:
       - TZ=Asia/Shanghai
     depends_on:
       - redis-master
-      - redis-slave0
       - redis-slave1
       - redis-slave2
+      - redis-slave3
     ports:
-      - "26380:26379"
+      - "26379:26379"
     networks:
       - backend
   redis-sentinel2:
@@ -110,11 +94,11 @@ services:
       - TZ=Asia/Shanghai
     depends_on:
       - redis-master
-      - redis-slave0
       - redis-slave1
       - redis-slave2
+      - redis-slave3
     ports:
-      - "26381:26379"
+      - "26380:26379"
     networks:
       - backend
 
