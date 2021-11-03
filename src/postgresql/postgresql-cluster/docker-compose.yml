@@ -20,34 +20,13 @@ services:
     volumes:
       - /opt/volumes/postgresql-master:/bitnami/postgresql/data
       - ../conf/:/bitnami/postgresql/conf/conf.d/
-  postgresql-slave0:
-    image: bitnami/postgresql:11.13.0
-    container_name: postgresql-slave0
-    networks:
-      - backend
-    ports:
-      - '5433:5432'
-    depends_on:
-      - postgresql-master
-    environment:
-      - POSTGRESQL_POSTGRES_PASSWORD=XLrootJYD713
-      - POSTGRESQL_REPLICATION_MODE=slave
-      - POSTGRESQL_REPLICATION_USER=repl_user
-      - POSTGRESQL_REPLICATION_PASSWORD=XLrootJYD713
-      - POSTGRESQL_MASTER_HOST=postgresql-master
-      - POSTGRESQL_PASSWORD=XLrootJYD713
-      - POSTGRESQL_MASTER_PORT_NUMBER=5432
-      - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/postgresql-slave0:/bitnami/postgresql/data
-      - ../conf/:/bitnami/postgresql/conf/conf.d/
   postgresql-slave1:
     image: bitnami/postgresql:11.13.0
     container_name: postgresql-slave1
     networks:
       - backend
     ports:
-      - '5434:5432'
+      - '5433:5432'
     depends_on:
       - postgresql-master
     environment:
@@ -68,7 +47,7 @@ services:
     networks:
       - backend
     ports:
-      - '5435:5432'
+      - '5434:5432'
     depends_on:
       - postgresql-master
     environment:
@@ -82,6 +61,27 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/postgresql-slave2:/bitnami/postgresql/data
+      - ../conf/:/bitnami/postgresql/conf/conf.d/
+  postgresql-slave3:
+    image: bitnami/postgresql:11.13.0
+    container_name: postgresql-slave3
+    networks:
+      - backend
+    ports:
+      - '5435:5432'
+    depends_on:
+      - postgresql-master
+    environment:
+      - POSTGRESQL_POSTGRES_PASSWORD=XLrootJYD713
+      - POSTGRESQL_REPLICATION_MODE=slave
+      - POSTGRESQL_REPLICATION_USER=repl_user
+      - POSTGRESQL_REPLICATION_PASSWORD=XLrootJYD713
+      - POSTGRESQL_MASTER_HOST=postgresql-master
+      - POSTGRESQL_PASSWORD=XLrootJYD713
+      - POSTGRESQL_MASTER_PORT_NUMBER=5432
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/postgresql-slave3:/bitnami/postgresql/data
       - ../conf/:/bitnami/postgresql/conf/conf.d/
 
 networks:
