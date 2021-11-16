@@ -6,9 +6,11 @@
 require 'colorize'
 require 'socket'
 require 'etc'
+require 'set'
 
 def warn
-  system "echo 'bin/init mysql|mariadb|postgresql-repmgr|postgresql-cluster|rabbitmq|redis-sentinel|redis-cluster|mongodb|elasticsearch|clickhouse|flink|kafka|nacos|logstash|cerebro|neo4j|minio|hdfs|spark|nginx|zipkin|gitlab|canal|sentinel|seata|chrome|alpine|idea|goland|pycharm|env  start(default)|stop'"
+  system "echo 'bin/init mysql|mariadb|postgresql-repmgr|postgresql-cluster|rabbitmq|redis-sentinel|redis-cluster|mongodb|elasticsearch|clickhouse|flink|kafka|nacos|logstash|cerebro|neo4j|minio|hdfs|spark|nginx|zipkin|gitlab|canal|sentinel|seata|chrome|alpine|idea|goland|pycharm  start(default)|stop'"
+  exit
 end
 
 def memsize
@@ -43,88 +45,92 @@ def exec_path(opt, path, cmd = nil)
   end
 end
 
-#noinspection RubyNilAnalysis
-ip  = Socket.ip_address_list.detect { |x| x.ipv4_private? }.ip_address
-num = Etc.nprocessors
-mem = memsize / 4
-app = ARGV[0]
-opt = ARGV[1] || 'start'
-warn && exit unless app
+class Component
+  def parse_type(name)
+    name.split('_')[0].to_sym
+  end
 
-case app
-  when 'canal'
-    exec 'docker build -t canal-server ~/bin/src/canal/'
-    exec 'docker rm -f canal-server'
-    exec "docker run -d --net backend --name canal-server -p 11111:11111 -v /opt/volumes/extra:/extra canal-server"
-  when 'mariadb'
-    exec_path opt, "~/bin/src/mariadb/mariadb-cluster"
-  when 'postgresql-repmgr'
-    exec_path opt, "~/bin/src/postgresql/postgresql-repmgr"
-  when 'postgresql-cluster'
-    exec_path opt, "~/bin/src/postgresql/postgresql-cluster"
-  when 'rabbitmq'
-    exec_path opt, "~/bin/src/rabbitmq/rabbitmq-cluster"
-  when 'neo4j'
-    exec_path opt, "~/bin/src/neo4j"
-  when 'mysql'
-    exec_path opt, "~/bin/src/mysql/mysql-cluster"
-  when 'redis-sentinel'
-    exec_path opt, "~/bin/src/redis/redis-sentinel"
-  when 'redis-cluster'
-    exec_path opt, "~/bin/src/redis/redis-cluster"
-  when 'mongodb'
-    exec_path opt, "~/bin/src/mongodb/mongodb-cluster"
-  when 'elasticsearch'
-    exec_path opt, "~/bin/src/elasticsearch/elasticsearch-cluster"
-  when 'logstash'
-    exec_path opt, "~/bin/src/logstash"
-  when 'cerebro'
-    exec_path opt, "~/bin/src/cerebro"
-  when 'clickhouse'
-    exec_path opt, "~/bin/src/clickhouse/clickhouse-cluster"
-  when 'flink'
-    path = "~/bin/src/flink/flink-cluster"
-    exec_path opt, path, "NUM=#{num} MEM=#{mem} docker-compose -f #{path}/docker-compose.yml up -d"
-  when 'spark'
-    path = "~/bin/src/spark"
-    exec_path opt, path, "NUM=#{num} MEM=#{mem} docker-compose -f #{path}/docker-compose.yml up -d"
-  when 'kafka'
-    path = "~/bin/src/kafka/kafka-cluster"
-    exec_path opt, path, "IP=#{ip} docker-compose -f #{path}/docker-compose.yml up -d"
-  when 'nacos'
-    exec_path opt, "~/bin/src/nacos/nacos-cluster"
-  when 'zipkin'
-    exec 'docker build -t zipkin-server ~/bin/src/zipkin/'
-    exec 'docker rm -f zipkin-server'
-    exec 'docker run -d --net backend --name zipkin-server -p 9411:9411 zipkin-server --link rabbitmq'
-  when 'sentinel'
-    exec 'docker build -t sentinel-server ~/bin/src/sentinel/'
-    exec 'docker rm -f sentinel-server'
-    exec 'docker run -d --net host    --name sentinel-server -v /etc/localtime:/etc/localtime -v /opt/volumes/extra:/extra sentinel-server'
-  when 'nginx'
-    exec_path opt, "~/bin/src/nginx"
-  when 'minio'
-    exec_path opt, "~/bin/src/minio"
-  when 'gitlab'
-    exec_path opt, "~/bin/src/gitlab"
-  when 'hdfs'
-    exec_path opt, "~/bin/src/hdfs"
-  when 'chrome'
-    exec_path opt, "~/bin/src/chrome"
-  when 'alpine'
-    exec_path opt, "~/bin/src/alpine"
-  when 'idea'
-    exec_path opt, "~/bin/src/JetBrains-idea"
-  when 'goland'
-    exec_path opt, "~/bin/src/JetBrains-goland"
-  when 'pycharm'
-    exec_path opt, "~/bin/src/JetBrains-pycharm"
-  when 'seata'
-    exec "docker build -t seata-server --build-arg IP='#{ip}' ~/bin/src/seata/"
-    exec 'docker rm -f seata-server'
-    exec 'docker run -d --net backend --name seata-server -p 8091:8091 -v /etc/localtime:/etc/localtime -v /opt/volumes/extra:/extra seata-server'
-  when 'env'
-    exec 'docker network create backend'
-  else
-    warn
+  def parse_path(name)
+    split  = name.split('_')
+    prefix = "~/bin/src/"
+    split.size > 1 ? prefix + split[0] + '/' + name : prefix + name
+  end
+
+  def initialize(name, opt)
+    @name = name
+    @type = parse_type(name.to_s)
+    @path = parse_path(name.to_s)
+    @opt  = opt
+  end
+
+  def run_docker_compose
+    args = get_args.map { |k, v| "#{k}=#{v}" }.join(" ")
+
+    case @opt
+      when :start
+        exec "#{args} docker-compose -p #{@name} -f #{@path}/docker-compose.yml up -d"
+      when :stop
+        exec "#{args} docker-compose -f #{@path}/docker-compose.yml stop"
+      else
+        warn
+    end
+  end
+
+  def run
+    pre_check_run
+
+    case @type
+      when :canal
+        exec 'docker build -t canal-server ~/bin/src/canal/'
+        exec 'docker rm -f canal-server'
+        exec "docker run -d --net backend --name canal-server -p 11111:11111 -v /opt/volumes/extra:/extra canal-server"
+      when :seata
+        exec "docker build -t seata-server --build-arg IP='#{ip}' ~/bin/src/seata/"
+        exec 'docker rm -f seata-server'
+        exec 'docker run -d --net backend --name seata-server -p 8091:8091 -v /etc/localtime:/etc/localtime -v /opt/volumes/extra:/extra seata-server'
+      when :zipkin
+        exec 'docker build -t zipkin-server ~/bin/src/zipkin/'
+        exec 'docker rm -f zipkin-server'
+        exec 'docker run -d --net backend --name zipkin-server -p 9411:9411 zipkin-server --link rabbitmq'
+      when :sentinel
+        exec 'docker build -t sentinel-server ~/bin/src/sentinel/'
+        exec 'docker rm -f sentinel-server'
+        exec 'docker run -d --net host    --name sentinel-server -v /etc/localtime:/etc/localtime -v /opt/volumes/extra:/extra sentinel-server'
+      else
+        run_docker_compose
+    end
+  end
+
+  def get_args
+    args = Hash.new
+
+    case @type
+      when :flink, :spark
+        args[:NUM] = Etc.nprocessors
+        args[:MEM] = memsize / 4
+      when :kafka
+        #noinspection RubyNilAnalysis
+        args[:IP] = Socket.ip_address_list.detect { |x| x.ipv4_private? }.ip_address
+      else
+        # type code here
+    end
+
+    args
+  end
+
+  def pre_check_run
+    backend = exec 'docker network ls | grep backend'
+    exec 'docker network create backend' unless backend
+  end
 end
+
+set_app = Set[:mysql, :mysql_cluster, :mariadb, :postgresql_repmgr, :postgresql_cluster, :rabbitmq, :redis_sentinel, :redis_cluster, :mongodb, :elasticsearch, :clickhouse, :flink, :kafka, :kafka_cluster, :nacos, :logstash, :cerebro, :neo4j, :minio, :hdfs, :spark, :nginx, :zipkin, :gitlab, :canal, :sentinel, :seata, :chrome, :alpine, :idea, :goland, :pycharm]
+set_opt = Set[:start, :stop]
+
+app = ARGV[0].to_s.to_sym
+opt = (ARGV[1] || 'start').to_sym
+
+warn unless (set_app === app) && (set_opt === opt)
+
+component = Component.new(app, opt)
+component.run

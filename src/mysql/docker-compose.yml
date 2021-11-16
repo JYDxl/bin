@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  mysql-single:
+    image: bitnami/mysql:8.0.27
+    container_name: mysql-single
+    networks:
+      - backend
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./conf/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
+      - /opt/volumes/mysql-single:/bitnami/mysql/data
+    environment:
+      - MYSQL_REPLICATION_MODE=master
+      - MYSQL_REPLICATION_USER=repl_user
+      - MYSQL_REPLICATION_PASSWORD=XLrootJYD713
+      - MYSQL_ROOT_PASSWORD=XLrootJYD713
+      - MYSQL_USER=my
+      - MYSQL_PASSWORD=XLrootJYD713
+      - MYSQL_DATABASE=my
+      - MYSQL_CHARACTER_SET=utf8mb4
+      - MYSQL_COLLATE=utf8mb4_general_ci
+      - TZ=Asia/Shanghai
+
+networks:
+  backend:
+    external: true
