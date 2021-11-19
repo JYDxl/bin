@@ -8,11 +8,16 @@ require 'socket'
 require 'etc'
 require 'set'
 
+# TODO: app集合补全，以及添加对应的docker-compose
+$set_app = Set[:mysql, :mysql_cluster, :mariadb, :postgresql_repmgr, :postgresql_cluster, :rabbitmq, :redis_sentinel, :redis_cluster, :mongodb, :elasticsearch, :clickhouse, :flink, :kafka, :kafka_cluster, :nacos, :logstash, :cerebro, :neo4j, :minio, :hdfs, :spark, :nginx, :zipkin, :gitlab, :canal, :sentinel, :seata, :chrome, :alpine, :idea, :goland, :pycharm]
+$set_opt = Set[:start, :stop]
+
 def warn
-  system "echo 'bin/init mysql|mariadb|postgresql-repmgr|postgresql-cluster|rabbitmq|redis-sentinel|redis-cluster|mongodb|elasticsearch|clickhouse|flink|kafka|nacos|logstash|cerebro|neo4j|minio|hdfs|spark|nginx|zipkin|gitlab|canal|sentinel|seata|chrome|alpine|idea|goland|pycharm  start(default)|stop'"
+  system "echo 'bin/init #{$set_app.to_a.join('|')} (--)#{$set_opt.to_a.join('|')}'"
   exit
 end
 
+#noinspection RubyNilAnalysis
 def memsize
   if RUBY_PLATFORM.match?(/^.*darwin.*$/)
     return Float(%x(sysctl hw.memsize | awk '{print $2 / 1024 / 1024 / 1024}')).ceil
@@ -124,13 +129,10 @@ class Component
   end
 end
 
-set_app = Set[:mysql, :mysql_cluster, :mariadb, :postgresql_repmgr, :postgresql_cluster, :rabbitmq, :redis_sentinel, :redis_cluster, :mongodb, :elasticsearch, :clickhouse, :flink, :kafka, :kafka_cluster, :nacos, :logstash, :cerebro, :neo4j, :minio, :hdfs, :spark, :nginx, :zipkin, :gitlab, :canal, :sentinel, :seata, :chrome, :alpine, :idea, :goland, :pycharm]
-set_opt = Set[:start, :stop]
-
 app = ARGV[0].to_s.to_sym
 opt = (ARGV[1] || 'start').to_sym
 
-warn unless (set_app === app) && (set_opt === opt)
+warn unless ($set_app === app) && ($set_opt === opt)
 
 component = Component.new(app, opt)
 component.run
