@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  flink-job:
+    image: flink:1.14.0-scala_2.12-java11
+    container_name: flink-job
+    hostname: flink-job
+    ports:
+      - "8079:8081"
+    networks:
+      - backend
+    command: jobmanager
+    environment:
+      - TZ=Asia/Shanghai
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: flink-job
+        jobmanager.memory.process.size: ${MEM}G
+
+  flink-task:
+    image: flink:1.14.0-scala_2.12-java11
+    container_name: flink-task
+    hostname: flink-task
+    depends_on:
+      - flink-job
+    networks:
+      - backend
+    command: taskmanager
+    environment:
+      - TZ=Asia/Shanghai
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: flink-job
+        taskmanager.numberOfTaskSlots: ${NUM}
+        taskmanager.memory.process.size: ${MEM}G
+
+networks:
+  backend:
+    external: true

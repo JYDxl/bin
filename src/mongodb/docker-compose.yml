@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  mongodb-single:
+    container_name: mongodb-single
+    image: bitnami/mongodb:4.4.10
+    networks:
+      - backend
+    environment:
+      - MONGODB_ROOT_PASSWORD=XLrootJYD713
+      - TZ=Asia/Shanghai
+    ports:
+      - '27017:27017'
+    volumes:
+      - /opt/volumes/mongodb-single:/bitnami/mongodb/data
+
+networks:
+  backend:
+    external: true

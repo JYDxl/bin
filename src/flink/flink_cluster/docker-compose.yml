@@ -1,6 +1,6 @@
 version: '3'
-services:
 
+services:
   flink-jobmanager:
     image: flink:1.14.0-scala_2.12-java11
     container_name: flink-jobmanager

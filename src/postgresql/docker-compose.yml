@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  postgresql-single:
+    image: bitnami/postgresql:11.13.0
+    container_name: postgresql-single
+    networks:
+      - backend
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRESQL_POSTGRES_PASSWORD=XLrootJYD713
+      - POSTGRESQL_USERNAME=pg
+      - POSTGRESQL_PASSWORD=XLrootJYD713
+      - POSTGRESQL_DATABASE=pg
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/postgresql-single:/bitnami/postgresql/data
+      - ./conf/:/bitnami/postgresql/conf/conf.d/
+
+networks:
+  backend:
+    external: true

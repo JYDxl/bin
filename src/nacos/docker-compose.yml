@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  nacos-single:
+    image: nacos/nacos-server:v2.0.3
+    container_name: nacos-single
+    hostname: nacos-single
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/nacos-single/logs:/home/nacos/logs
+      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - "8848:8848"
+    env_file:
+      - ./env/nacos-hostname.env
+
+networks:
+  backend:
+    external: true

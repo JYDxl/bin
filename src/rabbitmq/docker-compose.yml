@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  rabbitmq-single:
+    image: bitnami/rabbitmq:3.9.8
+    container_name: rabbitmq-single
+    networks:
+      - backend
+    environment:
+      - RABBITMQ_USERNAME=root
+      - RABBITMQ_PASSWORD=XLrootJYD713
+      - TZ=Asia/Shanghai
+    ports:
+      - '4369:4369'
+      - '5672:5672'
+      - '25672:25672'
+      - '15672:15672'
+    volumes:
+      - /opt/volumes/rabbitmq-single:/bitnami/rabbitmq/mnesia
+
+networks:
+  backend:
+    external: true

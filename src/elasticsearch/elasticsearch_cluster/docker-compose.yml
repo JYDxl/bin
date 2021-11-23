@@ -1,6 +1,6 @@
 version: '3'
-services:
 
+services:
   elasticsearch-cluster1:
     image: bitnami/elasticsearch:7.15.1
     container_name: elasticsearch-cluster1

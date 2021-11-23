@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  alma:
+    image: almalinux:8.5-20211112
+    container_name: alma
+    hostname: alma
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - backend
+    tty: true
+
+networks:
+  backend:
+    external: true

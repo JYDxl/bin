@@ -9,7 +9,7 @@ require 'etc'
 require 'set'
 
 # TODO: app集合补全，以及添加对应的docker-compose
-$set_app = Set[:mysql, :mysql_cluster, :mariadb, :postgresql_repmgr, :postgresql_cluster, :rabbitmq, :redis_sentinel, :redis_cluster, :mongodb, :elasticsearch, :clickhouse, :flink, :kafka, :kafka_cluster, :nacos_cluster, :logstash, :cerebro, :neo4j, :minio, :hdfs, :spark, :nginx, :zipkin, :gitlab, :canal, :sentinel, :seata, :chrome, :alpine, :idea, :goland, :pycharm]
+$set_app = Set[:mysql, :mysql_cluster, :mariadb, :mariadb_cluster, :postgresql, :postgresql_repmgr, :postgresql_cluster, :rabbitmq, :rabbitmq_cluster, :redis, :redis_sentinel, :redis_cluster, :mongodb, :mongodb_cluster, :elasticsearch, :elasticsearch_cluster, :clickhouse, :clickhouse_cluster, :flink, :flink_cluster, :kafka, :kafka_cluster, :nacos, :nacos_cluster, :logstash, :cerebro, :neo4j, :minio, :hdfs, :spark, :nginx, :zipkin, :gitlab, :canal, :sentinel, :seata, :chrome, :alpine, :alma, :debian, :ubuntu, :idea, :goland, :pycharm]
 $set_opt = Set[:start, :stop]
 
 def warn
