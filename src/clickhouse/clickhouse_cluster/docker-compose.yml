@@ -29,7 +29,6 @@ services:
     volumes:
       - /opt/volumes/clickhouse-shard0-replica0/lib:/var/lib/clickhouse
       - /opt/volumes/clickhouse-shard0-replica0/log:/var/log/clickhouse-server
-      - /opt/volumes/extra:/extra
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-00-0.xml:/etc/clickhouse-server/config.xml
     environment:
@@ -52,7 +51,6 @@ services:
     volumes:
       - /opt/volumes/clickhouse-shard0-replica1/lib:/var/lib/clickhouse
       - /opt/volumes/clickhouse-shard0-replica1/log:/var/log/clickhouse-server
-      - /opt/volumes/extra:/extra
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-00-1.xml:/etc/clickhouse-server/config.xml
     environment:
@@ -75,7 +73,6 @@ services:
     volumes:
       - /opt/volumes/clickhouse-shard1-replica0/lib:/var/lib/clickhouse
       - /opt/volumes/clickhouse-shard1-replica0/log:/var/log/clickhouse-server
-      - /opt/volumes/extra:/extra
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-01-0.xml:/etc/clickhouse-server/config.xml
     environment:
@@ -98,7 +95,6 @@ services:
     volumes:
       - /opt/volumes/clickhouse-shard1-replica1/lib:/var/lib/clickhouse
       - /opt/volumes/clickhouse-shard1-replica1/log:/var/log/clickhouse-server
-      - /opt/volumes/extra:/extra
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-01-1.xml:/etc/clickhouse-server/config.xml
     environment:
@@ -121,7 +117,6 @@ services:
     volumes:
       - /opt/volumes/clickhouse-shard2-replica0/lib:/var/lib/clickhouse
       - /opt/volumes/clickhouse-shard2-replica0/log:/var/log/clickhouse-server
-      - /opt/volumes/extra:/extra
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-02-0.xml:/etc/clickhouse-server/config.xml
     environment:
@@ -144,7 +139,6 @@ services:
     volumes:
       - /opt/volumes/clickhouse-shard2-replica1/lib:/var/lib/clickhouse
       - /opt/volumes/clickhouse-shard2-replica1/log:/var/log/clickhouse-server
-      - /opt/volumes/extra:/extra
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-02-1.xml:/etc/clickhouse-server/config.xml
     environment:

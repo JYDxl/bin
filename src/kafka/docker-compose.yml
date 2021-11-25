@@ -31,7 +31,6 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/kafka-single:/bitnami/kafka/data
-      - /opt/volumes/extra:/extra
 
 networks:
   backend:

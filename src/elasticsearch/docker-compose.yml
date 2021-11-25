@@ -10,7 +10,6 @@ services:
     volumes:
       - ./plugins/elasticsearch-analysis-ik-7.15.1.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.15.1.zip
       - /opt/volumes/elasticsearch-single:/bitnami/elasticsearch/data
-      - /opt/volumes/extra:/extra
     ports:
       - "9200:9200"
       - "9300:9300"

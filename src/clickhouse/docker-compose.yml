@@ -17,7 +17,6 @@ services:
     volumes:
       - /opt/volumes/clickhouse-single/lib:/var/lib/clickhouse
       - /opt/volumes/clickhouse-single/log:/var/log/clickhouse-server
-      - /opt/volumes/extra:/extra
     environment:
       - TZ=Asia/Shanghai
 

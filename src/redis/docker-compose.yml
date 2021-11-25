@@ -13,7 +13,6 @@ services:
       - "6379:6379"
     volumes:
       - /opt/volumes/redis-single:/bitnami/redis/data
-      - /opt/volumes/extra:/extra
 
 networks:
   backend:
