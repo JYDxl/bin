@@ -8,7 +8,6 @@ require 'socket'
 require 'etc'
 require 'set'
 
-# TODO: app集合补全，以及添加对应的docker-compose
 $set_app = Set[:mysql, :mysql_cluster, :mariadb, :mariadb_cluster, :postgresql, :postgresql_repmgr, :postgresql_cluster, :rabbitmq, :rabbitmq_cluster, :redis, :redis_sentinel, :redis_cluster, :mongodb, :mongodb_cluster, :elasticsearch, :elasticsearch_cluster, :clickhouse, :clickhouse_cluster, :flink, :flink_cluster, :kafka, :kafka_cluster, :nacos, :nacos_cluster, :logstash, :cerebro, :neo4j, :minio, :hdfs, :spark, :nginx, :zipkin, :gitlab, :canal, :sentinel, :seata, :chrome, :alpine, :alma, :debian, :ubuntu, :idea, :goland, :pycharm]
 $set_opt = Set[:start, :stop]
 
@@ -17,7 +16,7 @@ def warn
   exit
 end
 
-#noinspection RubyNilAnalysis
+#noinspection RubyNilAnalysis,RubyResolve
 def memsize
   if RUBY_PLATFORM.match?(/^.*darwin.*$/)
     return Float(%x(sysctl hw.memsize | awk '{print $2 / 1024 / 1024 / 1024}')).ceil
@@ -27,7 +26,7 @@ def memsize
     return Float(%x(vmstat -s | head -1 | awk '{print $1 / 1024 / 1024}')).ceil
   end
 
-  exec 'unknown os'
+  puts "#{'unknown os'.red.bold}"
   exit
 end
 
@@ -37,17 +36,6 @@ def exec(cmd)
   #noinspection RubyResolve
   puts "#{"==>".blue.bold} #{cmd.red.bold}"
   system cmd
-end
-
-def exec_path(opt, path, cmd = nil)
-  case opt
-    when 'start'
-      exec cmd || "docker-compose -f #{path}/docker-compose.yml up -d"
-    when 'stop'
-      exec "docker-compose -f #{path}/docker-compose.yml stop"
-    else
-      warn
-  end
 end
 
 class Component

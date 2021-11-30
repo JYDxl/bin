@@ -16,22 +16,6 @@ services:
       - TZ=Asia/Shanghai
     ports:
       - '27017:27017'
-  mongodb-shard0:
-    container_name: mongodb-shard0
-    image: bitnami/mongodb-sharded:4.4.10
-    networks:
-      - backend
-    environment:
-      - MONGODB_ADVERTISED_HOSTNAME=mongodb-shard0
-      - MONGODB_SHARDING_MODE=shardsvr
-      - MONGODB_MONGOS_HOST=mongodb-sharded
-      - MONGODB_ROOT_PASSWORD=XLrootJYD713
-      - MONGODB_REPLICA_SET_MODE=primary
-      - MONGODB_REPLICA_SET_KEY=replicasetkey
-      - MONGODB_REPLICA_SET_NAME=shard0
-      - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/mongodb-shard0:/bitnami/mongodb/data
   mongodb-shard1:
     container_name: mongodb-shard1
     image: bitnami/mongodb-sharded:4.4.10
@@ -80,6 +64,22 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/mongodb-shard3:/bitnami/mongodb/data
+  mongodb-shard4:
+    container_name: mongodb-shard4
+    image: bitnami/mongodb-sharded:4.4.10
+    networks:
+      - backend
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-shard4
+      - MONGODB_SHARDING_MODE=shardsvr
+      - MONGODB_MONGOS_HOST=mongodb-sharded
+      - MONGODB_ROOT_PASSWORD=XLrootJYD713
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_REPLICA_SET_KEY=replicasetkey
+      - MONGODB_REPLICA_SET_NAME=shard4
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/mongodb-shard4:/bitnami/mongodb/data
   mongodb-cfg:
     container_name: mongodb-cfg
     image: bitnami/mongodb-sharded:4.4.10
