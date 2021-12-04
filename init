@@ -17,6 +17,7 @@ def warn
 end
 
 #noinspection RubyNilAnalysis,RubyResolve
+# @return [Integer]
 def memsize
   if RUBY_PLATFORM.match?(/^.*darwin.*$/)
     return Float(%x(sysctl hw.memsize | awk '{print $2 / 1024 / 1024 / 1024}')).ceil
@@ -32,6 +33,7 @@ end
 
 # TODO jenkins
 
+# @param [String] cmd
 def exec(cmd)
   #noinspection RubyResolve
   puts "#{"==>".blue.bold} #{cmd.red.bold}"
@@ -39,16 +41,22 @@ def exec(cmd)
 end
 
 class Component
+  # @param [String] name
+  # @return [Symbol]
   def parse_type(name)
     name.split('_')[0].to_sym
   end
 
+  # @param [String] name
+  # @return [Symbol]
   def parse_path(name)
     split  = name.split('_')
     prefix = "~/bin/src/"
-    split.size > 1 ? prefix + split[0] + '/' + name : prefix + name
+    (split.size > 1 ? prefix + split[0] + '/' + name : prefix + name).to_sym
   end
 
+  # @param [Symbol] name
+  # @param [Symbol] opt
   def initialize(name, opt)
     @name = name
     @type = parse_type(name.to_s)
@@ -94,6 +102,7 @@ class Component
     end
   end
 
+  # @return [Hash[Symbol, Object]]
   def get_args
     args = Hash.new
 
