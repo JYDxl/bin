@@ -12,9 +12,9 @@ services:
       - ALLOW_ANONYMOUS_LOGIN=yes
       - TZ=Asia/Shanghai
 
-  clickhouse-shard0-replica0:
-    container_name: clickhouse-shard0-replica0
-    image: yandex/clickhouse-server:21.8.10.19
+  clickhouse-shard1-replica1:
+    container_name: clickhouse-shard1-replica1
+    image: yandex/clickhouse-server:21.11.5.33
     networks:
       - backend
     depends_on:
@@ -27,16 +27,16 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard0-replica0/lib:/var/lib/clickhouse
-      - /opt/volumes/clickhouse-shard0-replica0/log:/var/log/clickhouse-server
+      - /opt/volumes/clickhouse-shard1-replica1/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard1-replica1/log:/var/log/clickhouse-server
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-00-0.xml:/etc/clickhouse-server/config.xml
     environment:
       - TZ=Asia/Shanghai
 
-  clickhouse-shard0-replica1:
-    container_name: clickhouse-shard0-replica1
-    image: yandex/clickhouse-server:21.8.10.19
+  clickhouse-shard1-replica2:
+    container_name: clickhouse-shard1-replica2
+    image: yandex/clickhouse-server:21.11.5.33
     networks:
       - backend
     depends_on:
@@ -49,16 +49,16 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard0-replica1/lib:/var/lib/clickhouse
-      - /opt/volumes/clickhouse-shard0-replica1/log:/var/log/clickhouse-server
+      - /opt/volumes/clickhouse-shard1-replica2/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard1-replica2/log:/var/log/clickhouse-server
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-00-1.xml:/etc/clickhouse-server/config.xml
     environment:
       - TZ=Asia/Shanghai
 
-  clickhouse-shard1-replica0:
-    container_name: clickhouse-shard1-replica0
-    image: yandex/clickhouse-server:21.8.10.19
+  clickhouse-shard2-replica1:
+    container_name: clickhouse-shard2-replica1
+    image: yandex/clickhouse-server:21.11.5.33
     networks:
       - backend
     depends_on:
@@ -71,16 +71,16 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard1-replica0/lib:/var/lib/clickhouse
-      - /opt/volumes/clickhouse-shard1-replica0/log:/var/log/clickhouse-server
+      - /opt/volumes/clickhouse-shard2-replica1/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard2-replica1/log:/var/log/clickhouse-server
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-01-0.xml:/etc/clickhouse-server/config.xml
     environment:
       - TZ=Asia/Shanghai
 
-  clickhouse-shard1-replica1:
-    container_name: clickhouse-shard1-replica1
-    image: yandex/clickhouse-server:21.8.10.19
+  clickhouse-shard2-replica2:
+    container_name: clickhouse-shard2-replica2
+    image: yandex/clickhouse-server:21.11.5.33
     networks:
       - backend
     depends_on:
@@ -93,16 +93,16 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard1-replica1/lib:/var/lib/clickhouse
-      - /opt/volumes/clickhouse-shard1-replica1/log:/var/log/clickhouse-server
+      - /opt/volumes/clickhouse-shard2-replica2/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard2-replica2/log:/var/log/clickhouse-server
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-01-1.xml:/etc/clickhouse-server/config.xml
     environment:
       - TZ=Asia/Shanghai
 
-  clickhouse-shard2-replica0:
-    container_name: clickhouse-shard2-replica0
-    image: yandex/clickhouse-server:21.8.10.19
+  clickhouse-shard3-replica1:
+    container_name: clickhouse-shard3-replica1
+    image: yandex/clickhouse-server:21.11.5.33
     networks:
       - backend
     depends_on:
@@ -115,16 +115,16 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard2-replica0/lib:/var/lib/clickhouse
-      - /opt/volumes/clickhouse-shard2-replica0/log:/var/log/clickhouse-server
+      - /opt/volumes/clickhouse-shard3-replica1/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard3-replica1/log:/var/log/clickhouse-server
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-02-0.xml:/etc/clickhouse-server/config.xml
     environment:
       - TZ=Asia/Shanghai
 
-  clickhouse-shard2-replica1:
-    container_name: clickhouse-shard2-replica1
-    image: yandex/clickhouse-server:21.8.10.19
+  clickhouse-shard3-replica2:
+    container_name: clickhouse-shard3-replica2
+    image: yandex/clickhouse-server:21.11.5.33
     networks:
       - backend
     depends_on:
@@ -137,8 +137,8 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - /opt/volumes/clickhouse-shard2-replica1/lib:/var/lib/clickhouse
-      - /opt/volumes/clickhouse-shard2-replica1/log:/var/log/clickhouse-server
+      - /opt/volumes/clickhouse-shard3-replica2/lib:/var/lib/clickhouse
+      - /opt/volumes/clickhouse-shard3-replica2/log:/var/log/clickhouse-server
       - ./conf/users.xml:/etc/clickhouse-server/users.xml
       - ./conf/config-02-1.xml:/etc/clickhouse-server/config.xml
     environment:

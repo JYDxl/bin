@@ -2,7 +2,7 @@ version: '3'
 
 services:
   postgresql-single:
-    image: bitnami/postgresql:11.13.0
+    image: bitnami/postgresql:11.14.0
     container_name: postgresql-single
     networks:
       - backend

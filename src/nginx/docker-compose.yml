@@ -2,7 +2,7 @@ version: '3'
 
 services:
   nginx:
-    image: bitnami/nginx:1.21.3
+    image: bitnami/nginx:1.21.4
     container_name: nginx
     networks:
       - backend

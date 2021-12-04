@@ -3,7 +3,7 @@ version: '3'
 services:
   clickhouse-single:
     container_name: clickhouse-single
-    image: yandex/clickhouse-server:21.8.10.19
+    image: yandex/clickhouse-server:21.11.5.33
     networks:
       - backend
     ports:

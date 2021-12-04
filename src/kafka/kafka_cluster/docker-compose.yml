@@ -101,19 +101,6 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/kafka-cluster4:/bitnami/kafka/data
-  kafka-exporter:
-    container_name: kafka-exporter
-    image: bitnami/kafka-exporter:1.4.2
-    networks:
-      - backend
-    depends_on:
-      - kafka-cluster1
-      - kafka-cluster2
-      - kafka-cluster3
-      - kafka-cluster4
-    #ports:
-    #  - '9308:9308'
-    command: --kafka.server=kafka-cluster1:9092 --kafka.server=kafka-cluster2:9093 --kafka.server=kafka-cluster3:9094 --kafka.server=kafka-cluster4:9095
 
 networks:
   backend:

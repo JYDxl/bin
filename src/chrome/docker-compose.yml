@@ -2,11 +2,11 @@ version: '3'
 
 services:
   chrome:
-    image: kasmweb/chrome:1.9.0
+    image: kasmweb/chrome:1.10.0
     container_name: chrome
     hostname: chrome
     environment:
-      - VNC_PW=password
+      - VNC_PW=kasm_pass
       - TZ=Asia/Shanghai
     ports:
       - '6901:6901'
