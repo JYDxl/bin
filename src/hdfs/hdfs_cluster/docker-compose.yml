@@ -16,18 +16,6 @@ services:
       - '9870:9870'
     networks:
       - backend
-  hdfs-datanode-0:
-    image: gradiant/hdfs:3.2.2
-    container_name: hdfs-datanode-0
-    environment:
-      - CORE_CONF_fs_defaultFS=hdfs://hdfs-namenode:8020
-      - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/hdfs-datanode-0:/hadoop/dfs
-    command:
-      - datanode
-    networks:
-      - backend
   hdfs-datanode-1:
     image: gradiant/hdfs:3.2.2
     container_name: hdfs-datanode-1
@@ -60,6 +48,18 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/hdfs-datanode-3:/hadoop/dfs
+    command:
+      - datanode
+    networks:
+      - backend
+  hdfs-datanode-4:
+    image: gradiant/hdfs:3.2.2
+    container_name: hdfs-datanode-4
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://hdfs-namenode:8020
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/hdfs-datanode-4:/hadoop/dfs
     command:
       - datanode
     networks:
