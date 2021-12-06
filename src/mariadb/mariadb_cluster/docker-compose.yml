@@ -22,35 +22,13 @@ services:
       - MARIADB_CHARACTER_SET=utf8mb4
       - MARIADB_COLLATE=utf8mb4_general_ci
       - TZ=Asia/Shanghai
-  mariadb-slave0:
-    image: bitnami/mariadb:10.6.5
-    container_name: mariadb-slave0
-    networks:
-      - backend
-    ports:
-      - '3307:3306'
-    volumes:
-      - ../conf/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro
-      - /opt/volumes/mariadb-slave0:/bitnami/mariadb/data
-    depends_on:
-      - mariadb-master
-    environment:
-      - MARIADB_REPLICATION_MODE=slave
-      - MARIADB_REPLICATION_USER=repl_user
-      - MARIADB_REPLICATION_PASSWORD=XLrootJYD713
-      - MARIADB_MASTER_HOST=mariadb-master
-      - MARIADB_MASTER_PORT_NUMBER=3306
-      - MARIADB_MASTER_ROOT_PASSWORD=XLrootJYD713
-      - MARIADB_CHARACTER_SET=utf8mb4
-      - MARIADB_COLLATE=utf8mb4_general_ci
-      - TZ=Asia/Shanghai
   mariadb-slave1:
     image: bitnami/mariadb:10.6.5
     container_name: mariadb-slave1
     networks:
       - backend
     ports:
-      - '3308:3306'
+      - '3307:3306'
     volumes:
       - ../conf/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro
       - /opt/volumes/mariadb-slave1:/bitnami/mariadb/data
@@ -72,10 +50,32 @@ services:
     networks:
       - backend
     ports:
-      - '3309:3306'
+      - '3308:3306'
     volumes:
       - ../conf/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro
       - /opt/volumes/mariadb-slave2:/bitnami/mariadb/data
+    depends_on:
+      - mariadb-master
+    environment:
+      - MARIADB_REPLICATION_MODE=slave
+      - MARIADB_REPLICATION_USER=repl_user
+      - MARIADB_REPLICATION_PASSWORD=XLrootJYD713
+      - MARIADB_MASTER_HOST=mariadb-master
+      - MARIADB_MASTER_PORT_NUMBER=3306
+      - MARIADB_MASTER_ROOT_PASSWORD=XLrootJYD713
+      - MARIADB_CHARACTER_SET=utf8mb4
+      - MARIADB_COLLATE=utf8mb4_general_ci
+      - TZ=Asia/Shanghai
+  mariadb-slave3:
+    image: bitnami/mariadb:10.6.5
+    container_name: mariadb-slave3
+    networks:
+      - backend
+    ports:
+      - '3309:3306'
+    volumes:
+      - ../conf/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro
+      - /opt/volumes/mariadb-slave3:/bitnami/mariadb/data
     depends_on:
       - mariadb-master
     environment:
