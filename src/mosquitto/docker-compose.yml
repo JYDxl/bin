@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0.14
+    container_name: mosquitto
+    networks:
+      - backend
+    ports:
+      - '1883:1883'
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./conf/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - /opt/volumes/mosquitto:/mosquitto
+
+networks:
+  backend:
+    external: true
