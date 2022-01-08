@@ -2,7 +2,7 @@ version: '3'
 
 services:
   ubuntu:
-    image: ubuntu:focal-20211006
+    image: ubuntu:focal-20220105
     container_name: ubuntu
     hostname: ubuntu
     networks:

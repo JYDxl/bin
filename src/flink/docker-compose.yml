@@ -2,7 +2,7 @@ version: '3'
 
 services:
   flink-job:
-    image: flink:1.14.0-scala_2.12-java11
+    image: flink:1.14.2-scala_2.12-java11
     container_name: flink-job
     hostname: flink-job
     ports:
@@ -18,7 +18,7 @@ services:
         jobmanager.memory.process.size: ${MEM}G
 
   flink-task:
-    image: flink:1.14.0-scala_2.12-java11
+    image: flink:1.14.2-scala_2.12-java11
     container_name: flink-task
     hostname: flink-task
     depends_on:
