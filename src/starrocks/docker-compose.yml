@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  starrocks:
+    image: centos:7.9.2009
+    container_name: starrocks
+    hostname: starrocks
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - backend
+    tty: true
+
+networks:
+  backend:
+    external: true
