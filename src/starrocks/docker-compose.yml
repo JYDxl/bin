@@ -7,8 +7,12 @@ services:
     hostname: starrocks
     environment:
       - TZ=Asia/Shanghai
+      - JAVA_HOME=/usr/java/jdk-11.0.13
     networks:
       - backend
+    ports:
+      - '8030:8030'
+      - '9030:9030'
     tty: true
 
 networks:
