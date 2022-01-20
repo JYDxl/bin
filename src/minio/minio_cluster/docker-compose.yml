@@ -2,7 +2,7 @@ version: '3'
 
 services:
   minio-node1:
-    image: bitnami/minio:2021.12.29
+    image: bitnami/minio:2022.1.8
     container_name: minio-node1
     networks:
       - backend
@@ -19,7 +19,7 @@ services:
     volumes:
       - /opt/volumes/minio-node1:/data0
   minio-node2:
-    image: bitnami/minio:2021.12.29
+    image: bitnami/minio:2022.1.8
     container_name: minio-node2
     networks:
       - backend
@@ -33,7 +33,7 @@ services:
     volumes:
       - /opt/volumes/minio-node2:/data1
   minio-node3:
-    image: bitnami/minio:2021.12.29
+    image: bitnami/minio:2022.1.8
     container_name: minio-node3
     networks:
       - backend
@@ -47,7 +47,7 @@ services:
     volumes:
       - /opt/volumes/minio-node3:/data2
   minio-node4:
-    image: bitnami/minio:2021.12.29
+    image: bitnami/minio:2022.1.8
     container_name: minio-node4
     networks:
       - backend

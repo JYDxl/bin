@@ -2,13 +2,13 @@ version: '3'
 
 services:
   elasticsearch-single:
-    image: bitnami/elasticsearch:7.16.2
+    image: bitnami/elasticsearch:7.16.3
     container_name: elasticsearch-single
     hostname: elasticsearch-single
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - ./plugins/elasticsearch-analysis-ik-7.16.2.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.16.2.zip
+      - ./plugins/elasticsearch-analysis-ik-7.16.3.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.16.3.zip
       - /opt/volumes/elasticsearch-single:/bitnami/elasticsearch/data
     ports:
       - "9200:9200"

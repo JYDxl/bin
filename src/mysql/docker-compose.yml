@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mysql-single:
-    image: bitnami/mysql:8.0.27
+    image: bitnami/mysql:8.0.28
     container_name: mysql-single
     networks:
       - backend

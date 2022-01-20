@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mysql-master:
-    image: bitnami/mysql:8.0.27
+    image: bitnami/mysql:8.0.28
     container_name: mysql-master
     networks:
       - backend
@@ -23,7 +23,7 @@ services:
       - MYSQL_COLLATE=utf8mb4_general_ci
       - TZ=Asia/Shanghai
   mysql-slave1:
-    image: bitnami/mysql:8.0.27
+    image: bitnami/mysql:8.0.28
     container_name: mysql-slave1
     networks:
       - backend
@@ -45,7 +45,7 @@ services:
       - MYSQL_COLLATE=utf8mb4_general_ci
       - TZ=Asia/Shanghai
   mysql-slave2:
-    image: bitnami/mysql:8.0.27
+    image: bitnami/mysql:8.0.28
     container_name: mysql-slave2
     networks:
       - backend
@@ -67,7 +67,7 @@ services:
       - MYSQL_COLLATE=utf8mb4_general_ci
       - TZ=Asia/Shanghai
   mysql-slave3:
-    image: bitnami/mysql:8.0.27
+    image: bitnami/mysql:8.0.28
     container_name: mysql-slave3
     networks:
       - backend

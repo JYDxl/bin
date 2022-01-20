@@ -2,7 +2,7 @@ version: "3"
 
 services:
   nacos-single:
-    image: nacos/nacos-server:v2.0.3
+    image: nacos/nacos-server:v2.0.4
     container_name: nacos-single
     hostname: nacos-single
     networks:
