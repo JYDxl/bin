@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  proxypool:
+    image: jhao104/proxy_pool:2.4.0
+    container_name: proxypool
+    environment:
+      - TZ=Asia/Shanghai
+      - DB_CONN=redis://:XLrootJYD713@redis-master:6379/0
+    networks:
+      - backend
+    ports:
+      - '5010:5010'
+
+networks:
+  backend:
+    external: true
