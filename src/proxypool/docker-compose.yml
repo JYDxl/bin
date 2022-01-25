@@ -2,10 +2,9 @@ version: '3'
 
 services:
   proxypool:
-    image: jhao104/proxy_pool:2.4.0
+    build: ctx
     container_name: proxypool
     environment:
-      - TZ=Asia/Shanghai
       - DB_CONN=redis://:XLrootJYD713@redis-master:6379/0
     networks:
       - backend
