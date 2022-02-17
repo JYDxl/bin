@@ -3,7 +3,7 @@ version: '3'
 services:
   mongodb-single:
     container_name: mongodb-single
-    image: bitnami/mongodb:4.4.11
+    image: bitnami/mongodb:4.4.12
     networks:
       - backend
     environment:

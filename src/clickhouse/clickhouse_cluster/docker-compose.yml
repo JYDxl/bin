@@ -14,7 +14,7 @@ services:
 
   clickhouse-shard1-replica1:
     container_name: clickhouse-shard1-replica1
-    image: yandex/clickhouse-server:22.1.2.2
+    image: yandex/clickhouse-server:22.1.3.7
     networks:
       - backend
     depends_on:
@@ -36,7 +36,7 @@ services:
 
   clickhouse-shard1-replica2:
     container_name: clickhouse-shard1-replica2
-    image: yandex/clickhouse-server:22.1.2.2
+    image: yandex/clickhouse-server:22.1.3.7
     networks:
       - backend
     depends_on:
@@ -58,7 +58,7 @@ services:
 
   clickhouse-shard2-replica1:
     container_name: clickhouse-shard2-replica1
-    image: yandex/clickhouse-server:22.1.2.2
+    image: yandex/clickhouse-server:22.1.3.7
     networks:
       - backend
     depends_on:
@@ -80,7 +80,7 @@ services:
 
   clickhouse-shard2-replica2:
     container_name: clickhouse-shard2-replica2
-    image: yandex/clickhouse-server:22.1.2.2
+    image: yandex/clickhouse-server:22.1.3.7
     networks:
       - backend
     depends_on:
@@ -102,7 +102,7 @@ services:
 
   clickhouse-shard3-replica1:
     container_name: clickhouse-shard3-replica1
-    image: yandex/clickhouse-server:22.1.2.2
+    image: yandex/clickhouse-server:22.1.3.7
     networks:
       - backend
     depends_on:
@@ -124,7 +124,7 @@ services:
 
   clickhouse-shard3-replica2:
     container_name: clickhouse-shard3-replica2
-    image: yandex/clickhouse-server:22.1.2.2
+    image: yandex/clickhouse-server:22.1.3.7
     networks:
       - backend
     depends_on:

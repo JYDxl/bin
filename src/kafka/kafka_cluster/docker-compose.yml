@@ -27,7 +27,7 @@ services:
       - ZOO_SERVERS=kafka-zookeeper1:2888:3888,kafka-zookeeper2:2888:3888
   kafka-cluster1:
     container_name: kafka-cluster1
-    image: bitnami/kafka:3.0.0
+    image: bitnami/kafka:3.1.0
     networks:
       - backend
     depends_on:
@@ -46,7 +46,7 @@ services:
       - /opt/volumes/kafka-cluster1:/bitnami/kafka/data
   kafka-cluster2:
     container_name: kafka-cluster2
-    image: bitnami/kafka:3.0.0
+    image: bitnami/kafka:3.1.0
     networks:
       - backend
     depends_on:
@@ -65,7 +65,7 @@ services:
       - /opt/volumes/kafka-cluster2:/bitnami/kafka/data
   kafka-cluster3:
     container_name: kafka-cluster3
-    image: bitnami/kafka:3.0.0
+    image: bitnami/kafka:3.1.0
     networks:
       - backend
     depends_on:
@@ -84,7 +84,7 @@ services:
       - /opt/volumes/kafka-cluster3:/bitnami/kafka/data
   kafka-cluster4:
     container_name: kafka-cluster4
-    image: bitnami/kafka:3.0.0
+    image: bitnami/kafka:3.1.0
     networks:
       - backend
     depends_on:
