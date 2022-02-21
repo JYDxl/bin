@@ -18,6 +18,7 @@ services:
         state.backend: filesystem
         state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink-checkpoints
         state.savepoints.dir: hdfs://hdfs-namenode:8020/flink-savepoints
+        execution.checkpointing.interval: 150000ms
 
   flink-taskmanager1:
     build: ../ctx
@@ -38,6 +39,7 @@ services:
         state.backend: filesystem
         state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink-checkpoints
         state.savepoints.dir: hdfs://hdfs-namenode:8020/flink-savepoints
+        execution.checkpointing.interval: 150000ms
 
   flink-taskmanager2:
     build: ../ctx
@@ -58,6 +60,7 @@ services:
         state.backend: filesystem
         state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink-checkpoints
         state.savepoints.dir: hdfs://hdfs-namenode:8020/flink-savepoints
+        execution.checkpointing.interval: 150000ms
 
   flink-taskmanager3:
     build: ../ctx
@@ -78,6 +81,7 @@ services:
         state.backend: filesystem
         state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink-checkpoints
         state.savepoints.dir: hdfs://hdfs-namenode:8020/flink-savepoints
+        execution.checkpointing.interval: 150000ms
 
   flink-taskmanager4:
     build: ../ctx
@@ -98,6 +102,7 @@ services:
         state.backend: filesystem
         state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink-checkpoints
         state.savepoints.dir: hdfs://hdfs-namenode:8020/flink-savepoints
+        execution.checkpointing.interval: 150000ms
 
 networks:
   backend:
