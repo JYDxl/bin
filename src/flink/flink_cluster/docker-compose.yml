@@ -10,6 +10,9 @@ services:
     networks:
       - backend
     command: jobmanager
+    volumes:
+      - /opt/volumes/flink/checkpoints:/opt/checkpoints
+      - /opt/volumes/flink/savepoints:/opt/savepoints
     environment:
       - TZ=Asia/Shanghai
       - |
@@ -32,6 +35,9 @@ services:
     networks:
       - backend
     command: taskmanager
+    volumes:
+      - /opt/volumes/flink/checkpoints:/opt/checkpoints
+      - /opt/volumes/flink/savepoints:/opt/savepoints
     environment:
       - TZ=Asia/Shanghai
       - |
@@ -56,6 +62,9 @@ services:
     networks:
       - backend
     command: taskmanager
+    volumes:
+      - /opt/volumes/flink/checkpoints:/opt/checkpoints
+      - /opt/volumes/flink/savepoints:/opt/savepoints
     environment:
       - TZ=Asia/Shanghai
       - |
@@ -80,6 +89,9 @@ services:
     networks:
       - backend
     command: taskmanager
+    volumes:
+      - /opt/volumes/flink/checkpoints:/opt/checkpoints
+      - /opt/volumes/flink/savepoints:/opt/savepoints
     environment:
       - TZ=Asia/Shanghai
       - |
@@ -104,6 +116,9 @@ services:
     networks:
       - backend
     command: taskmanager
+    volumes:
+      - /opt/volumes/flink/checkpoints:/opt/checkpoints
+      - /opt/volumes/flink/savepoints:/opt/savepoints
     environment:
       - TZ=Asia/Shanghai
       - |
