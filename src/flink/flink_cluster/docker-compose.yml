@@ -2,7 +2,7 @@ version: '3'
 
 services:
   flink-jobmanager:
-    image: flink:1.14.3-scala_2.12-java11
+    build: ../ctx
     container_name: flink-jobmanager
     hostname: flink-jobmanager
     ports:
@@ -15,10 +15,9 @@ services:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-jobmanager
-        jobmanager.memory.process.size: ${MEM}G
 
   flink-taskmanager1:
-    image: flink:1.14.3-scala_2.12-java11
+    build: ../ctx
     container_name: flink-taskmanager1
     hostname: flink-taskmanager1
     depends_on:
@@ -35,7 +34,7 @@ services:
         taskmanager.memory.process.size: ${MEM}G
 
   flink-taskmanager2:
-    image: flink:1.14.3-scala_2.12-java11
+    build: ../ctx
     container_name: flink-taskmanager2
     hostname: flink-taskmanager2
     depends_on:
@@ -52,7 +51,7 @@ services:
         taskmanager.memory.process.size: ${MEM}G
 
   flink-taskmanager3:
-    image: flink:1.14.3-scala_2.12-java11
+    build: ../ctx
     container_name: flink-taskmanager3
     hostname: flink-taskmanager3
     depends_on:
@@ -69,7 +68,7 @@ services:
         taskmanager.memory.process.size: ${MEM}G
 
   flink-taskmanager4:
-    image: flink:1.14.3-scala_2.12-java11
+    build: ../ctx
     container_name: flink-taskmanager4
     hostname: flink-taskmanager4
     depends_on:

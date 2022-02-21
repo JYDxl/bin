@@ -33,21 +33,6 @@ services:
         taskmanager.numberOfTaskSlots: ${NUM}
         taskmanager.memory.process.size: ${MEM}G
 
-  flink-sql:
-    build: ctx
-    container_name: flink-sql
-    hostname: flink-sql
-    depends_on:
-      - flink-job
-    networks:
-      - backend
-    command: bin/sql-client.sh
-    environment:
-      - TZ=Asia/Shanghai
-      - |
-        FLINK_PROPERTIES=
-        jobmanager.rpc.address: flink-job
-
 networks:
   backend:
     external: true
