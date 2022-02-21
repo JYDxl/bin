@@ -15,6 +15,9 @@ services:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-jobmanager
+        state.backend: filesystem
+        state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink-checkpoints
+        state.savepoints.dir: hdfs://hdfs-namenode:8020/flink-savepoints
 
   flink-taskmanager1:
     build: ../ctx
@@ -32,6 +35,9 @@ services:
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: ${NUM}
         taskmanager.memory.process.size: ${MEM}G
+        state.backend: filesystem
+        state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink-checkpoints
+        state.savepoints.dir: hdfs://hdfs-namenode:8020/flink-savepoints
 
   flink-taskmanager2:
     build: ../ctx
@@ -49,6 +55,9 @@ services:
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: ${NUM}
         taskmanager.memory.process.size: ${MEM}G
+        state.backend: filesystem
+        state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink-checkpoints
+        state.savepoints.dir: hdfs://hdfs-namenode:8020/flink-savepoints
 
   flink-taskmanager3:
     build: ../ctx
@@ -66,6 +75,9 @@ services:
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: ${NUM}
         taskmanager.memory.process.size: ${MEM}G
+        state.backend: filesystem
+        state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink-checkpoints
+        state.savepoints.dir: hdfs://hdfs-namenode:8020/flink-savepoints
 
   flink-taskmanager4:
     build: ../ctx
@@ -83,6 +95,9 @@ services:
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: ${NUM}
         taskmanager.memory.process.size: ${MEM}G
+        state.backend: filesystem
+        state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink-checkpoints
+        state.savepoints.dir: hdfs://hdfs-namenode:8020/flink-savepoints
 
 networks:
   backend:
