@@ -15,10 +15,13 @@ services:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-jobmanager
+        execution.checkpointing.interval: 60000ms
+        state.checkpoints.num-retained: 20
+        execution.checkpointing.mode: EXACTLY_ONCE
+        execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
         state.backend: filesystem
-        state.checkpoints.dir: file:///opt/flink-checkpoints
-        state.savepoints.dir: file:///opt/flink-savepoints
-        execution.checkpointing.interval: 150000ms
+        state.checkpoints.dir: file:///opt/checkpoints
+        state.savepoints.dir: file:///opt/savepoints
 
   flink-taskmanager1:
     build: ../ctx
@@ -36,10 +39,13 @@ services:
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: ${NUM}
         taskmanager.memory.process.size: ${MEM}G
+        execution.checkpointing.interval: 60000ms
+        state.checkpoints.num-retained: 20
+        execution.checkpointing.mode: EXACTLY_ONCE
+        execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
         state.backend: filesystem
-        state.checkpoints.dir: file:///opt/flink-checkpoints
-        state.savepoints.dir: file:///opt/flink-savepoints
-        execution.checkpointing.interval: 150000ms
+        state.checkpoints.dir: file:///opt/checkpoints
+        state.savepoints.dir: file:///opt/savepoints
 
   flink-taskmanager2:
     build: ../ctx
@@ -57,10 +63,13 @@ services:
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: ${NUM}
         taskmanager.memory.process.size: ${MEM}G
+        execution.checkpointing.interval: 60000ms
+        state.checkpoints.num-retained: 20
+        execution.checkpointing.mode: EXACTLY_ONCE
+        execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
         state.backend: filesystem
-        state.checkpoints.dir: file:///opt/flink-checkpoints
-        state.savepoints.dir: file:///opt/flink-savepoints
-        execution.checkpointing.interval: 150000ms
+        state.checkpoints.dir: file:///opt/checkpoints
+        state.savepoints.dir: file:///opt/savepoints
 
   flink-taskmanager3:
     build: ../ctx
@@ -78,10 +87,13 @@ services:
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: ${NUM}
         taskmanager.memory.process.size: ${MEM}G
+        execution.checkpointing.interval: 60000ms
+        state.checkpoints.num-retained: 20
+        execution.checkpointing.mode: EXACTLY_ONCE
+        execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
         state.backend: filesystem
-        state.checkpoints.dir: file:///opt/flink-checkpoints
-        state.savepoints.dir: file:///opt/flink-savepoints
-        execution.checkpointing.interval: 150000ms
+        state.checkpoints.dir: file:///opt/checkpoints
+        state.savepoints.dir: file:///opt/savepoints
 
   flink-taskmanager4:
     build: ../ctx
@@ -99,10 +111,13 @@ services:
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: ${NUM}
         taskmanager.memory.process.size: ${MEM}G
+        execution.checkpointing.interval: 60000ms
+        state.checkpoints.num-retained: 20
+        execution.checkpointing.mode: EXACTLY_ONCE
+        execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
         state.backend: filesystem
-        state.checkpoints.dir: file:///opt/flink-checkpoints
-        state.savepoints.dir: file:///opt/flink-savepoints
-        execution.checkpointing.interval: 150000ms
+        state.checkpoints.dir: file:///opt/checkpoints
+        state.savepoints.dir: file:///opt/savepoints
 
 networks:
   backend:
