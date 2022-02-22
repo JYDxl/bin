@@ -18,7 +18,7 @@ services:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-jobmanager
-        execution.checkpointing.interval: 60000ms
+        execution.checkpointing.interval: 300000ms
         state.checkpoints.num-retained: 20
         execution.checkpointing.mode: EXACTLY_ONCE
         execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
@@ -45,7 +45,7 @@ services:
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: ${NUM}
         taskmanager.memory.process.size: ${MEM}G
-        execution.checkpointing.interval: 60000ms
+        execution.checkpointing.interval: 300000ms
         state.checkpoints.num-retained: 20
         execution.checkpointing.mode: EXACTLY_ONCE
         execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
@@ -72,7 +72,7 @@ services:
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: ${NUM}
         taskmanager.memory.process.size: ${MEM}G
-        execution.checkpointing.interval: 60000ms
+        execution.checkpointing.interval: 300000ms
         state.checkpoints.num-retained: 20
         execution.checkpointing.mode: EXACTLY_ONCE
         execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
@@ -99,7 +99,7 @@ services:
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: ${NUM}
         taskmanager.memory.process.size: ${MEM}G
-        execution.checkpointing.interval: 60000ms
+        execution.checkpointing.interval: 300000ms
         state.checkpoints.num-retained: 20
         execution.checkpointing.mode: EXACTLY_ONCE
         execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
@@ -126,7 +126,7 @@ services:
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: ${NUM}
         taskmanager.memory.process.size: ${MEM}G
-        execution.checkpointing.interval: 60000ms
+        execution.checkpointing.interval: 300000ms
         state.checkpoints.num-retained: 20
         execution.checkpointing.mode: EXACTLY_ONCE
         execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
