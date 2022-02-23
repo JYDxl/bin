@@ -24,8 +24,8 @@ services:
         execution.checkpointing.mode: EXACTLY_ONCE
         execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
         state.backend: filesystem
-        state.checkpoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/checkpoints
-        state.savepoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/savepoints
+        state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink/checkpoints
+        state.savepoints.dir: hdfs://hdfs-namenode:8020/flink/savepoints
         web.tmpdir: /opt/jars
 
   flink-taskmanager1:
@@ -53,8 +53,8 @@ services:
         execution.checkpointing.mode: EXACTLY_ONCE
         execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
         state.backend: filesystem
-        state.checkpoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/checkpoints
-        state.savepoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/savepoints
+        state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink/checkpoints
+        state.savepoints.dir: hdfs://hdfs-namenode:8020/flink/savepoints
         web.tmpdir: /opt/jars
 
   flink-taskmanager2:
@@ -82,8 +82,8 @@ services:
         execution.checkpointing.mode: EXACTLY_ONCE
         execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
         state.backend: filesystem
-        state.checkpoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/checkpoints
-        state.savepoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/savepoints
+        state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink/checkpoints
+        state.savepoints.dir: hdfs://hdfs-namenode:8020/flink/savepoints
         web.tmpdir: /opt/jars
 
   flink-taskmanager3:
@@ -111,8 +111,8 @@ services:
         execution.checkpointing.mode: EXACTLY_ONCE
         execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
         state.backend: filesystem
-        state.checkpoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/checkpoints
-        state.savepoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/savepoints
+        state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink/checkpoints
+        state.savepoints.dir: hdfs://hdfs-namenode:8020/flink/savepoints
         web.tmpdir: /opt/jars
 
   flink-taskmanager4:
@@ -140,8 +140,8 @@ services:
         execution.checkpointing.mode: EXACTLY_ONCE
         execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
         state.backend: filesystem
-        state.checkpoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/checkpoints
-        state.savepoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/savepoints
+        state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink/checkpoints
+        state.savepoints.dir: hdfs://hdfs-namenode:8020/flink/savepoints
         web.tmpdir: /opt/jars
 
 networks:

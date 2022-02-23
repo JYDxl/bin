@@ -263,6 +263,6 @@ state.checkpoints.num-retained: 20
 execution.checkpointing.mode: EXACTLY_ONCE
 execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
 state.backend: filesystem
-state.checkpoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/checkpoints
-state.savepoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/savepoints
+state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink-web/checkpoints
+state.savepoints.dir: hdfs://hdfs-namenode:8020/flink-web/savepoints
 web.tmpdir: /opt/jars
