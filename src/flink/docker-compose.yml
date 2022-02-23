@@ -10,11 +10,21 @@ services:
     networks:
       - backend
     command: jobmanager
+    volumes:
+      - /opt/volumes/flink/checkpoints:/opt/checkpoints
+      - /opt/volumes/flink/savepoints:/opt/savepoints
     environment:
       - TZ=Asia/Shanghai
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-job
+        execution.checkpointing.interval: 300s
+        state.checkpoints.num-retained: 20
+        execution.checkpointing.mode: EXACTLY_ONCE
+        execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
+        state.backend: filesystem
+        state.checkpoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/checkpoints
+        state.savepoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/savepoints
 
   flink-task:
     build: ctx
@@ -25,6 +35,9 @@ services:
     networks:
       - backend
     command: taskmanager
+    volumes:
+      - /opt/volumes/flink/checkpoints:/opt/checkpoints
+      - /opt/volumes/flink/savepoints:/opt/savepoints
     environment:
       - TZ=Asia/Shanghai
       - |
@@ -32,6 +45,13 @@ services:
         jobmanager.rpc.address: flink-job
         taskmanager.numberOfTaskSlots: ${NUM}
         taskmanager.memory.process.size: ${MEM}G
+        execution.checkpointing.interval: 300s
+        state.checkpoints.num-retained: 20
+        execution.checkpointing.mode: EXACTLY_ONCE
+        execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
+        state.backend: filesystem
+        state.checkpoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/checkpoints
+        state.savepoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/savepoints
 
 networks:
   backend:
