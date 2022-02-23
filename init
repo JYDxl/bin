@@ -8,7 +8,7 @@ require 'socket'
 require 'etc'
 require 'set'
 
-$set_app = Set[:mysql, :mysql_cluster, :mariadb, :mariadb_cluster, :postgresql, :postgresql_repmgr, :postgresql_cluster, :rabbitmq, :rabbitmq_cluster, :redis, :redis_sentinel, :redis_cluster, :mongodb, :mongodb_cluster, :elasticsearch, :elasticsearch_cluster, :clickhouse, :clickhouse_cluster, :flink, :flink_cluster, :kafka, :kafka_cluster, :nacos, :nacos_cluster, :logstash, :cerebro, :neo4j, :minio_cluster, :hdfs_cluster, :spark, :nginx, :zipkin, :gitlab, :canal, :sentinel, :seata, :mosquitto, :chrome, :alpine, :alma, :debian, :starrocks, :proxypool]
+$set_app = Set[:mysql, :mysql_cluster, :mariadb, :mariadb_cluster, :postgresql, :postgresql_repmgr, :postgresql_cluster, :rabbitmq, :rabbitmq_cluster, :redis, :redis_sentinel, :redis_cluster, :mongodb, :mongodb_cluster, :elasticsearch, :elasticsearch_cluster, :clickhouse, :clickhouse_cluster, :flink, :flink_cluster, :kafka, :kafka_cluster, :nacos, :nacos_cluster, :logstash, :cerebro, :neo4j, :minio_cluster, :hdfs_cluster, :spark, :nginx, :zipkin, :gitlab, :sentinel, :seata, :mosquitto, :chrome, :alpine, :alma, :debian, :starrocks, :proxypool]
 $set_opt = Set[:start, :stop]
 
 def warn
@@ -81,10 +81,6 @@ class Component
     pre_check_run
 
     case @type
-      when :canal
-        exec 'docker build -t canal-server ~/bin/src/canal/'
-        exec 'docker rm -f canal-server'
-        exec "docker run -d --net backend --name canal-server -p 11111:11111 -v /opt/volumes/extra:/extra canal-server"
       when :seata
         exec "docker build -t seata-server --build-arg IP='#{ip}' ~/bin/src/seata/"
         exec 'docker rm -f seata-server'
