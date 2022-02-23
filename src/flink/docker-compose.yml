@@ -2,52 +2,25 @@ version: '3'
 
 services:
   flink-job:
-    build: ctx
+    image: registry.cn-hangzhou.aliyuncs.com/flink-streaming-platform-web/flink-web:flink-1.13.2
     container_name: flink-job
     hostname: flink-job
     ports:
       - "8079:8081"
+      - "9084:9084"
     networks:
       - backend
-    command: jobmanager
     volumes:
       - /opt/volumes/flink/checkpoints:/opt/checkpoints
       - /opt/volumes/flink/savepoints:/opt/savepoints
       - /opt/volumes/flink/jars:/opt/jars
+      - /opt/volumes/flink/logs:/data/projects/flink-streaming-platform-web/logs
+      - /opt/volumes/flink/conf:/data/projects/flink-streaming-platform-web/conf
     environment:
       - TZ=Asia/Shanghai
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-job
-        execution.checkpointing.interval: 300s
-        state.checkpoints.num-retained: 20
-        execution.checkpointing.mode: EXACTLY_ONCE
-        execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
-        state.backend: filesystem
-        state.checkpoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/checkpoints
-        state.savepoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/savepoints
-        web.tmpdir: /opt/jars
-
-  flink-task:
-    build: ctx
-    container_name: flink-task
-    hostname: flink-task
-    depends_on:
-      - flink-job
-    networks:
-      - backend
-    command: taskmanager
-    volumes:
-      - /opt/volumes/flink/checkpoints:/opt/checkpoints
-      - /opt/volumes/flink/savepoints:/opt/savepoints
-      - /opt/volumes/flink/jars:/opt/jars
-    environment:
-      - TZ=Asia/Shanghai
-      - |
-        FLINK_PROPERTIES=
-        jobmanager.rpc.address: flink-job
-        taskmanager.numberOfTaskSlots: ${NUM}
-        taskmanager.memory.process.size: ${MEM}G
         execution.checkpointing.interval: 300s
         state.checkpoints.num-retained: 20
         execution.checkpointing.mode: EXACTLY_ONCE
