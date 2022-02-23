@@ -13,6 +13,7 @@ services:
     volumes:
       - /opt/volumes/flink/checkpoints:/opt/checkpoints
       - /opt/volumes/flink/savepoints:/opt/savepoints
+      - /opt/volumes/flink/jars:/opt/jars
     environment:
       - TZ=Asia/Shanghai
       - |
@@ -25,6 +26,7 @@ services:
         state.backend: filesystem
         state.checkpoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/checkpoints
         state.savepoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/savepoints
+        web.tmpdir: /opt/jars
 
   flink-task:
     build: ctx
@@ -38,6 +40,7 @@ services:
     volumes:
       - /opt/volumes/flink/checkpoints:/opt/checkpoints
       - /opt/volumes/flink/savepoints:/opt/savepoints
+      - /opt/volumes/flink/jars:/opt/jars
     environment:
       - TZ=Asia/Shanghai
       - |
@@ -52,6 +55,7 @@ services:
         state.backend: filesystem
         state.checkpoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/checkpoints
         state.savepoints.dir: hdfs://hdfs-namenode:8020/hadoop/dfs/flink/savepoints
+        web.tmpdir: /opt/jars
 
 networks:
   backend:
