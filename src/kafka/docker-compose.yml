@@ -3,7 +3,7 @@ services:
 
   kafka-zookeeper:
     container_name: kafka-zookeeper
-    image: bitnami/zookeeper:3.7.0
+    image: bitnami/zookeeper:3.8.0
     networks:
       - backend
     volumes:
