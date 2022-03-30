@@ -118,7 +118,7 @@ class Component
 
   def pre_check_run
     backend = exec 'docker network ls | grep backend'
-    exec 'docker network create backend' unless backend
+    exec 'docker network create --subnet=172.18.0.0/16 backend' unless backend
   end
 end
 

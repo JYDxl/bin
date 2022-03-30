@@ -9,7 +9,8 @@ services:
       - TZ=Asia/Shanghai
       - JAVA_HOME=/usr/java/jdk-11.0.14
     networks:
-      - backend
+      backend:
+        ipv4_address: 172.18.255.253
     ports:
       - '8030:8030'
       - '9030:9030'
