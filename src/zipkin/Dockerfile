@@ -1,4 +1,4 @@
-FROM openzipkin/zipkin:2.23.16
+FROM openzipkin/zipkin:2.23.18
 
 RUN apk add tzdata \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \

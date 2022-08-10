@@ -2,7 +2,7 @@ version: '3'
 
 services:
   rabbitmq-single:
-    image: bitnami/rabbitmq:3.9.13
+    image: bitnami/rabbitmq:3.10.7
     container_name: rabbitmq-single
     networks:
       - backend

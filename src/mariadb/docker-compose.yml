@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mariadb-single:
-    image: bitnami/mariadb:10.7.3
+    image: bitnami/mariadb:10.8.3
     container_name: mariadb-single
     networks:
       - backend
