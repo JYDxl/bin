@@ -2,7 +2,7 @@ version: '3'
 
 services:
   postgresql-master:
-    image: bitnami/postgresql:14.4.0
+    image: bitnami/postgresql:14.5.0
     container_name: postgresql-master
     networks:
       - backend
@@ -21,7 +21,7 @@ services:
       - /opt/volumes/postgresql-master:/bitnami/postgresql/data
       - ../conf/:/bitnami/postgresql/conf/conf.d/
   postgresql-slave1:
-    image: bitnami/postgresql:14.4.0
+    image: bitnami/postgresql:14.5.0
     container_name: postgresql-slave1
     networks:
       - backend
@@ -42,7 +42,7 @@ services:
       - /opt/volumes/postgresql-slave1:/bitnami/postgresql/data
       - ../conf/:/bitnami/postgresql/conf/conf.d/
   postgresql-slave2:
-    image: bitnami/postgresql:14.4.0
+    image: bitnami/postgresql:14.5.0
     container_name: postgresql-slave2
     networks:
       - backend
@@ -63,7 +63,7 @@ services:
       - /opt/volumes/postgresql-slave2:/bitnami/postgresql/data
       - ../conf/:/bitnami/postgresql/conf/conf.d/
   postgresql-slave3:
-    image: bitnami/postgresql:14.4.0
+    image: bitnami/postgresql:14.5.0
     container_name: postgresql-slave3
     networks:
       - backend

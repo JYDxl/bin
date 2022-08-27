@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mariadb-single:
-    image: bitnami/mariadb:10.8.3
+    image: bitnami/mariadb:10.8.4
     container_name: mariadb-single
     networks:
       - backend
@@ -17,7 +17,7 @@ services:
       - MARIADB_PASSWORD=XLrootJYD713
       - MARIADB_DATABASE=my
       - MARIADB_CHARACTER_SET=utf8mb4
-      - MARIADB_COLLATE=utf8mb4_general_ci
+      - MARIADB_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai
 
 networks:

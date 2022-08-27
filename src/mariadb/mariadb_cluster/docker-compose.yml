@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mariadb-master:
-    image: bitnami/mariadb:10.8.3
+    image: bitnami/mariadb:10.8.4
     container_name: mariadb-master
     networks:
       - backend
@@ -20,10 +20,10 @@ services:
       - MARIADB_PASSWORD=XLrootJYD713
       - MARIADB_DATABASE=my
       - MARIADB_CHARACTER_SET=utf8mb4
-      - MARIADB_COLLATE=utf8mb4_general_ci
+      - MARIADB_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai
   mariadb-slave1:
-    image: bitnami/mariadb:10.8.3
+    image: bitnami/mariadb:10.8.4
     container_name: mariadb-slave1
     networks:
       - backend
@@ -42,10 +42,10 @@ services:
       - MARIADB_MASTER_PORT_NUMBER=3306
       - MARIADB_MASTER_ROOT_PASSWORD=XLrootJYD713
       - MARIADB_CHARACTER_SET=utf8mb4
-      - MARIADB_COLLATE=utf8mb4_general_ci
+      - MARIADB_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai
   mariadb-slave2:
-    image: bitnami/mariadb:10.8.3
+    image: bitnami/mariadb:10.8.4
     container_name: mariadb-slave2
     networks:
       - backend
@@ -64,10 +64,10 @@ services:
       - MARIADB_MASTER_PORT_NUMBER=3306
       - MARIADB_MASTER_ROOT_PASSWORD=XLrootJYD713
       - MARIADB_CHARACTER_SET=utf8mb4
-      - MARIADB_COLLATE=utf8mb4_general_ci
+      - MARIADB_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai
   mariadb-slave3:
-    image: bitnami/mariadb:10.8.3
+    image: bitnami/mariadb:10.8.4
     container_name: mariadb-slave3
     networks:
       - backend
@@ -86,7 +86,7 @@ services:
       - MARIADB_MASTER_PORT_NUMBER=3306
       - MARIADB_MASTER_ROOT_PASSWORD=XLrootJYD713
       - MARIADB_CHARACTER_SET=utf8mb4
-      - MARIADB_COLLATE=utf8mb4_general_ci
+      - MARIADB_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai
 
 networks:

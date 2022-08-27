@@ -20,7 +20,7 @@ services:
       - MYSQL_PASSWORD=XLrootJYD713
       - MYSQL_DATABASE=my
       - MYSQL_CHARACTER_SET=utf8mb4
-      - MYSQL_COLLATE=utf8mb4_general_ci
+      - MYSQL_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai
   mysql-slave1:
     image: bitnami/mysql:8.0.30
@@ -42,7 +42,7 @@ services:
       - MYSQL_MASTER_PORT_NUMBER=3306
       - MYSQL_MASTER_ROOT_PASSWORD=XLrootJYD713
       - MYSQL_CHARACTER_SET=utf8mb4
-      - MYSQL_COLLATE=utf8mb4_general_ci
+      - MYSQL_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai
   mysql-slave2:
     image: bitnami/mysql:8.0.30
@@ -64,7 +64,7 @@ services:
       - MYSQL_MASTER_PORT_NUMBER=3306
       - MYSQL_MASTER_ROOT_PASSWORD=XLrootJYD713
       - MYSQL_CHARACTER_SET=utf8mb4
-      - MYSQL_COLLATE=utf8mb4_general_ci
+      - MYSQL_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai
   mysql-slave3:
     image: bitnami/mysql:8.0.30
@@ -86,7 +86,7 @@ services:
       - MYSQL_MASTER_PORT_NUMBER=3306
       - MYSQL_MASTER_ROOT_PASSWORD=XLrootJYD713
       - MYSQL_CHARACTER_SET=utf8mb4
-      - MYSQL_COLLATE=utf8mb4_general_ci
+      - MYSQL_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai
 
 networks:

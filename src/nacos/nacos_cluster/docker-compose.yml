@@ -2,7 +2,7 @@ version: "3"
 
 services:
   nacos-cluster1:
-    image: nacos/nacos-server:v2.1.0
+    image: nacos/nacos-server:v2.1.1
     container_name: nacos-cluster1
     hostname: nacos-cluster1
     networks:
@@ -18,7 +18,7 @@ services:
       - ./env/nacos-hostname.env
 
   nacos-cluster2:
-    image: nacos/nacos-server:v2.1.0
+    image: nacos/nacos-server:v2.1.1
     container_name: nacos-cluster2
     hostname: nacos-cluster2
     networks:
@@ -33,7 +33,7 @@ services:
       - ./env/nacos-hostname.env
 
   nacos-cluster3:
-    image: nacos/nacos-server:v2.1.0
+    image: nacos/nacos-server:v2.1.1
     container_name: nacos-cluster3
     hostname: nacos-cluster3
     networks:
@@ -48,7 +48,7 @@ services:
       - ./env/nacos-hostname.env
 
   nacos-cluster4:
-    image: nacos/nacos-server:v2.1.0
+    image: nacos/nacos-server:v2.1.1
     container_name: nacos-cluster4
     hostname: nacos-cluster4
     networks:

@@ -20,7 +20,7 @@ services:
       - MYSQL_PASSWORD=XLrootJYD713
       - MYSQL_DATABASE=my
       - MYSQL_CHARACTER_SET=utf8mb4
-      - MYSQL_COLLATE=utf8mb4_general_ci
+      - MYSQL_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai
 
 networks:

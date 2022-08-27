@@ -1,4 +1,4 @@
-FROM eclipse-mosquitto:2.0.14
+FROM eclipse-mosquitto:2.0.15
 
 RUN apk add tzdata \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
