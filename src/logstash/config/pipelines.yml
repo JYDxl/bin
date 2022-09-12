@@ -1,8 +1,2 @@
 - pipeline.id: datax_input
   path.config: "./config/logstash-datax-input.conf"
-
-- pipeline.id: datax_kafka
-  path.config: "./config/logstash-datax-kafka.conf"
-
-- pipeline.id: datax_elasticsearch
-  path.config: "./config/logstash-datax-elasticsearch.conf"
