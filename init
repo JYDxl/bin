@@ -8,7 +8,7 @@ require 'socket'
 require 'etc'
 require 'set'
 
-$set_app = Set[:mysql, :mysql_cluster, :mariadb, :mariadb_cluster, :postgresql, :postgresql_repmgr, :postgresql_cluster, :rabbitmq, :rabbitmq_cluster, :redis, :redis_sentinel, :redis_cluster, :mongodb, :mongodb_cluster, :elasticsearch, :elasticsearch_cluster, :clickhouse, :clickhouse_cluster, :flink, :flink_cluster, :kafka, :kafka_cluster, :nacos, :nacos_cluster, :logstash, :cerebro, :neo4j, :minio_cluster, :hdfs_cluster, :spark, :nginx, :zipkin, :gitlab, :sentinel, :seata, :mosquitto, :chrome, :alpine, :alma, :debian, :starrocks, :proxypool]
+$set_app = Set[:mysql, :mysql_cluster, :mariadb, :mariadb_cluster, :postgresql, :postgresql_repmgr, :postgresql_cluster, :rabbitmq, :rabbitmq_cluster, :redis, :redis_sentinel, :redis_cluster, :mongodb, :mongodb_cluster, :elasticsearch, :elasticsearch_cluster, :clickhouse, :clickhouse_cluster, :flink, :flink_cluster, :kafka, :kafka_cluster, :nacos, :nacos_cluster, :logstash, :cerebro, :neo4j, :minio_cluster, :hdfs_cluster, :spark, :nginx, :zipkin, :gitlab, :sentinel, :seata, :mosquitto, :chrome, :alpine, :alma, :debian, :starrocks, :proxypool, :xxljob]
 $set_opt = Set[:start, :stop]
 
 def warn
