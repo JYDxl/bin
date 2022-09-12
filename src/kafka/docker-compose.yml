@@ -13,8 +13,8 @@ services:
       - TZ=Asia/Shanghai
       - ZOO_SERVER_ID=1
       - ZOO_SERVERS=kafka-zookeeper:2888:3888
-  kafka-single:
-    container_name: kafka-single
+  kafka:
+    container_name: kafka
     image: bitnami/kafka:3.2.1
     networks:
       - backend
@@ -30,7 +30,7 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/kafka-single:/bitnami/kafka/data
+      - /opt/volumes/kafka:/bitnami/kafka/data
 
 networks:
   backend:

@@ -1,9 +1,9 @@
 version: "3"
 
 services:
-  redis-single:
+  redis:
     image: bitnami/redis:7.0.4
-    container_name: redis-single
+    container_name: redis
     environment:
       - REDIS_PASSWORD=XLrootJYD713
       - TZ=Asia/Shanghai
@@ -12,7 +12,7 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - /opt/volumes/redis-single:/bitnami/redis/data
+      - /opt/volumes/redis:/bitnami/redis/data
 
 networks:
   backend:

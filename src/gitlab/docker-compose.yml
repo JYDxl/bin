@@ -13,7 +13,7 @@ services:
       TZ: Asia/Shanghai
     ports:
       #      - '443:443'
-      - '8181:80'
+      - '8076:80'
     #      - '22:22'
     volumes:
       - /opt/volumes/gitlab/config:/etc/gitlab

@@ -29,8 +29,6 @@ services:
     volumes:
       - ../plugins/elasticsearch-analysis-ik-8.4.1.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.4.1.zip
       - /opt/volumes/elasticsearch-cluster2:/bitnami/elasticsearch/data
-    ports:
-      - "9201:9200"
     networks:
       - backend
   elasticsearch-cluster3:
@@ -45,8 +43,6 @@ services:
     volumes:
       - ../plugins/elasticsearch-analysis-ik-8.4.1.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.4.1.zip
       - /opt/volumes/elasticsearch-cluster3:/bitnami/elasticsearch/data
-    ports:
-      - "9202:9200"
     networks:
       - backend
   elasticsearch-cluster4:
@@ -61,8 +57,6 @@ services:
     volumes:
       - ../plugins/elasticsearch-analysis-ik-8.4.1.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.4.1.zip
       - /opt/volumes/elasticsearch-cluster4:/bitnami/elasticsearch/data
-    ports:
-      - "9203:9200"
     networks:
       - backend
   elasticsearch-kibana:

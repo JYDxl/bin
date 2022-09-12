@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  rabbitmq-single:
+  rabbitmq:
     image: bitnami/rabbitmq:3.10.7
-    container_name: rabbitmq-single
+    container_name: rabbitmq
     networks:
       - backend
     environment:
@@ -16,7 +16,7 @@ services:
       - '25672:25672'
       - '15672:15672'
     volumes:
-      - /opt/volumes/rabbitmq-single:/bitnami/rabbitmq/mnesia
+      - /opt/volumes/rabbitmq:/bitnami/rabbitmq/mnesia
 
 networks:
   backend:

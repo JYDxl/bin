@@ -1,16 +1,16 @@
 version: '3'
 
 services:
-  mysql-single:
+  mysql:
     image: bitnami/mysql:8.0.30
-    container_name: mysql-single
+    container_name: mysql
     networks:
       - backend
     ports:
       - '3306:3306'
     volumes:
       - ./conf/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
-      - /opt/volumes/mysql-single:/bitnami/mysql/data
+      - /opt/volumes/mysql:/bitnami/mysql/data
     environment:
       - MYSQL_REPLICATION_MODE=master
       - MYSQL_REPLICATION_USER=repl_user

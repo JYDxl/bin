@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  postgresql-repmgr1:
+  postgresql-repmgr:
     image: bitnami/postgresql-repmgr:14.5.0
-    container_name: postgresql-repmgr1
+    container_name: postgresql-repmgr
     networks:
       - backend
     ports:
@@ -14,15 +14,15 @@ services:
       - POSTGRESQL_PASSWORD=XLrootJYD713
       - POSTGRESQL_DATABASE=pg
       - REPMGR_PASSWORD=XLrootJYD713
-      - REPMGR_PRIMARY_HOST=postgresql-repmgr1
+      - REPMGR_PRIMARY_HOST=postgresql-repmgr
       - REPMGR_PRIMARY_PORT=5432
-      - REPMGR_PARTNER_NODES=postgresql-repmgr1,postgresql-repmgr2,postgresql-repmgr3,postgresql-repmgr4:5432
-      - REPMGR_NODE_NAME=postgresql-repmgr1
-      - REPMGR_NODE_NETWORK_NAME=postgresql-repmgr1
+      - REPMGR_PARTNER_NODES=postgresql-repmgr,postgresql-repmgr2,postgresql-repmgr3,postgresql-repmgr4:5432
+      - REPMGR_NODE_NAME=postgresql-repmgr
+      - REPMGR_NODE_NETWORK_NAME=postgresql-repmgr
       - REPMGR_PORT_NUMBER=5432
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/postgresql-repmgr1:/bitnami/postgresql/data
+      - /opt/volumes/postgresql-repmgr:/bitnami/postgresql/data
       - ../conf/:/bitnami/postgresql/conf/conf.d/
   postgresql-repmgr2:
     image: bitnami/postgresql-repmgr:14.5.0
@@ -37,9 +37,9 @@ services:
       - POSTGRESQL_PASSWORD=XLrootJYD713
       - POSTGRESQL_DATABASE=pg
       - REPMGR_PASSWORD=XLrootJYD713
-      - REPMGR_PRIMARY_HOST=postgresql-repmgr1
+      - REPMGR_PRIMARY_HOST=postgresql-repmgr
       - REPMGR_PRIMARY_PORT=5432
-      - REPMGR_PARTNER_NODES=postgresql-repmgr1,postgresql-repmgr2,postgresql-repmgr3,postgresql-repmgr4:5432
+      - REPMGR_PARTNER_NODES=postgresql-repmgr,postgresql-repmgr2,postgresql-repmgr3,postgresql-repmgr4:5432
       - REPMGR_NODE_NAME=postgresql-repmgr2
       - REPMGR_NODE_NETWORK_NAME=postgresql-repmgr2
       - REPMGR_PORT_NUMBER=5432
@@ -60,9 +60,9 @@ services:
       - POSTGRESQL_PASSWORD=XLrootJYD713
       - POSTGRESQL_DATABASE=pg
       - REPMGR_PASSWORD=XLrootJYD713
-      - REPMGR_PRIMARY_HOST=postgresql-repmgr1
+      - REPMGR_PRIMARY_HOST=postgresql-repmgr
       - REPMGR_PRIMARY_PORT=5432
-      - REPMGR_PARTNER_NODES=postgresql-repmgr1,postgresql-repmgr2,postgresql-repmgr3,postgresql-repmgr4:5432
+      - REPMGR_PARTNER_NODES=postgresql-repmgr,postgresql-repmgr2,postgresql-repmgr3,postgresql-repmgr4:5432
       - REPMGR_NODE_NAME=postgresql-repmgr3
       - REPMGR_NODE_NETWORK_NAME=postgresql-repmgr3
       - REPMGR_PORT_NUMBER=5432
@@ -83,9 +83,9 @@ services:
       - POSTGRESQL_PASSWORD=XLrootJYD713
       - POSTGRESQL_DATABASE=pg
       - REPMGR_PASSWORD=XLrootJYD713
-      - REPMGR_PRIMARY_HOST=postgresql-repmgr1
+      - REPMGR_PRIMARY_HOST=postgresql-repmgr
       - REPMGR_PRIMARY_PORT=5432
-      - REPMGR_PARTNER_NODES=postgresql-repmgr1,postgresql-repmgr2,postgresql-repmgr3,postgresql-repmgr4:5432
+      - REPMGR_PARTNER_NODES=postgresql-repmgr,postgresql-repmgr2,postgresql-repmgr3,postgresql-repmgr4:5432
       - REPMGR_NODE_NAME=postgresql-repmgr4
       - REPMGR_NODE_NETWORK_NAME=postgresql-repmgr4
       - REPMGR_PORT_NUMBER=5432

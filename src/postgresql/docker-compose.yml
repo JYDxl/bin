@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  postgresql-single:
+  postgresql:
     image: bitnami/postgresql:14.5.0
-    container_name: postgresql-single
+    container_name: postgresql
     networks:
       - backend
     ports:
@@ -15,7 +15,7 @@ services:
       - POSTGRESQL_DATABASE=pg
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/postgresql-single:/bitnami/postgresql/data
+      - /opt/volumes/postgresql:/bitnami/postgresql/data
       - ./conf/:/bitnami/postgresql/conf/conf.d/
 
 networks:

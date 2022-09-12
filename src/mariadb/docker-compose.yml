@@ -1,16 +1,16 @@
 version: '3'
 
 services:
-  mariadb-single:
+  mariadb:
     image: bitnami/mariadb:10.8.4
-    container_name: mariadb-single
+    container_name: mariadb
     networks:
       - backend
     ports:
       - '3306:3306'
     volumes:
       - ./conf/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro
-      - /opt/volumes/mariadb-single:/bitnami/mariadb/data
+      - /opt/volumes/mariadb:/bitnami/mariadb/data
     environment:
       - MARIADB_ROOT_PASSWORD=XLrootJYD713
       - MARIADB_USER=my

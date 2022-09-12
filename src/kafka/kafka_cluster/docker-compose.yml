@@ -25,8 +25,8 @@ services:
       - TZ=Asia/Shanghai
       - ZOO_SERVER_ID=2
       - ZOO_SERVERS=kafka-zookeeper1:2888:3888,kafka-zookeeper2:2888:3888
-  kafka-cluster1:
-    container_name: kafka-cluster1
+  kafka-cluster:
+    container_name: kafka-cluster
     image: bitnami/kafka:3.2.1
     networks:
       - backend
@@ -43,7 +43,7 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/kafka-cluster1:/bitnami/kafka/data
+      - /opt/volumes/kafka-cluster:/bitnami/kafka/data
   kafka-cluster2:
     container_name: kafka-cluster2
     image: bitnami/kafka:3.2.1
@@ -52,12 +52,10 @@ services:
     depends_on:
       - kafka-zookeeper1
       - kafka-zookeeper2
-    ports:
-      - '9093:9093'
     environment:
       - KAFKA_BROKER_ID=2
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9093
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9093
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9092
       - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181,kafka-zookeeper2:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
@@ -71,12 +69,10 @@ services:
     depends_on:
       - kafka-zookeeper1
       - kafka-zookeeper2
-    ports:
-      - '9094:9094'
     environment:
       - KAFKA_BROKER_ID=3
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9094
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9094
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9092
       - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181,kafka-zookeeper2:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
@@ -90,12 +86,10 @@ services:
     depends_on:
       - kafka-zookeeper1
       - kafka-zookeeper2
-    ports:
-      - '9095:9095'
     environment:
       - KAFKA_BROKER_ID=4
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9095
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9095
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9092
       - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181,kafka-zookeeper2:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
