@@ -1,62 +1,62 @@
 version: '3'
 
 services:
-  elasticsearch-cluster:
+  elasticsearch-node1:
     image: bitnami/elasticsearch:8.4.3
-    container_name: elasticsearch-cluster
-    hostname: elasticsearch-cluster
+    container_name: elasticsearch-node1
+    hostname: elasticsearch-node1
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
-      - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-cluster,elasticsearch-cluster2,elasticsearch-cluster3,elasticsearch-cluster4
-      - ELASTICSEARCH_NODE_NAME=elasticsearch-cluster
+      - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2,elasticsearch-node3,elasticsearch-node4
+      - ELASTICSEARCH_NODE_NAME=elasticsearch-node1
       - TZ=Asia/Shanghai
     volumes:
       - ../plugins/elasticsearch-analysis-ik-8.4.3.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.4.3.zip
-      - /opt/volumes/elasticsearch-cluster:/bitnami/elasticsearch/data
+      - /opt/volumes/elasticsearch-node1:/bitnami/elasticsearch/data
     ports:
       - "9200:9200"
     networks:
       - backend
-  elasticsearch-cluster2:
+  elasticsearch-node2:
     image: bitnami/elasticsearch:8.4.3
-    container_name: elasticsearch-cluster2
-    hostname: elasticsearch-cluster2
+    container_name: elasticsearch-node2
+    hostname: elasticsearch-node2
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
-      - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-cluster,elasticsearch-cluster2,elasticsearch-cluster3,elasticsearch-cluster4
-      - ELASTICSEARCH_NODE_NAME=elasticsearch-cluster2
+      - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2,elasticsearch-node3,elasticsearch-node4
+      - ELASTICSEARCH_NODE_NAME=elasticsearch-node2
       - TZ=Asia/Shanghai
     volumes:
       - ../plugins/elasticsearch-analysis-ik-8.4.3.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.4.3.zip
-      - /opt/volumes/elasticsearch-cluster2:/bitnami/elasticsearch/data
+      - /opt/volumes/elasticsearch-node2:/bitnami/elasticsearch/data
     networks:
       - backend
-  elasticsearch-cluster3:
+  elasticsearch-node3:
     image: bitnami/elasticsearch:8.4.3
-    container_name: elasticsearch-cluster3
-    hostname: elasticsearch-cluster3
+    container_name: elasticsearch-node3
+    hostname: elasticsearch-node3
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
-      - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-cluster,elasticsearch-cluster2,elasticsearch-cluster3,elasticsearch-cluster4
-      - ELASTICSEARCH_NODE_NAME=elasticsearch-cluster3
+      - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2,elasticsearch-node3,elasticsearch-node4
+      - ELASTICSEARCH_NODE_NAME=elasticsearch-node3
       - TZ=Asia/Shanghai
     volumes:
       - ../plugins/elasticsearch-analysis-ik-8.4.3.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.4.3.zip
-      - /opt/volumes/elasticsearch-cluster3:/bitnami/elasticsearch/data
+      - /opt/volumes/elasticsearch-node3:/bitnami/elasticsearch/data
     networks:
       - backend
-  elasticsearch-cluster4:
+  elasticsearch-node4:
     image: bitnami/elasticsearch:8.4.3
-    container_name: elasticsearch-cluster4
-    hostname: elasticsearch-cluster4
+    container_name: elasticsearch-node4
+    hostname: elasticsearch-node4
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
-      - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-cluster,elasticsearch-cluster2,elasticsearch-cluster3,elasticsearch-cluster4
-      - ELASTICSEARCH_NODE_NAME=elasticsearch-cluster4
+      - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2,elasticsearch-node3,elasticsearch-node4
+      - ELASTICSEARCH_NODE_NAME=elasticsearch-node4
       - TZ=Asia/Shanghai
     volumes:
       - ../plugins/elasticsearch-analysis-ik-8.4.3.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.4.3.zip
-      - /opt/volumes/elasticsearch-cluster4:/bitnami/elasticsearch/data
+      - /opt/volumes/elasticsearch-node4:/bitnami/elasticsearch/data
     networks:
       - backend
   elasticsearch-kibana:
@@ -73,10 +73,10 @@ services:
     networks:
       - backend
     depends_on:
-      - elasticsearch-cluster
-      - elasticsearch-cluster2
-      - elasticsearch-cluster3
-      - elasticsearch-cluster4
+      - elasticsearch-node1
+      - elasticsearch-node2
+      - elasticsearch-node3
+      - elasticsearch-node4
 
 networks:
   backend:

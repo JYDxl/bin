@@ -25,8 +25,8 @@ services:
       - TZ=Asia/Shanghai
       - ZOO_SERVER_ID=2
       - ZOO_SERVERS=kafka-zookeeper1:2888:3888,kafka-zookeeper2:2888:3888
-  kafka-cluster:
-    container_name: kafka-cluster
+  kafka-node1:
+    container_name: kafka-node1
     image: bitnami/kafka:3.3.1
     networks:
       - backend
@@ -43,9 +43,9 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/kafka-cluster:/bitnami/kafka/data
-  kafka-cluster2:
-    container_name: kafka-cluster2
+      - /opt/volumes/kafka-node1:/bitnami/kafka/data
+  kafka-node2:
+    container_name: kafka-node2
     image: bitnami/kafka:3.3.1
     networks:
       - backend
@@ -62,9 +62,9 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/kafka-cluster2:/bitnami/kafka/data
-  kafka-cluster3:
-    container_name: kafka-cluster3
+      - /opt/volumes/kafka-node2:/bitnami/kafka/data
+  kafka-node3:
+    container_name: kafka-node3
     image: bitnami/kafka:3.3.1
     networks:
       - backend
@@ -81,9 +81,9 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/kafka-cluster3:/bitnami/kafka/data
-  kafka-cluster4:
-    container_name: kafka-cluster4
+      - /opt/volumes/kafka-node3:/bitnami/kafka/data
+  kafka-node4:
+    container_name: kafka-node4
     image: bitnami/kafka:3.3.1
     networks:
       - backend
@@ -100,7 +100,7 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/kafka-cluster4:/bitnami/kafka/data
+      - /opt/volumes/kafka-node4:/bitnami/kafka/data
 
 networks:
   backend:

@@ -15,9 +15,9 @@ services:
       - TZ=Asia/Shanghai
     ports:
       - '8078:8080'
-  spark-worker-0:
+  spark-worker1:
     image: bitnami/spark:3.3.0
-    container_name: spark-worker-0
+    container_name: spark-worker1
     networks:
       - backend
     environment:
@@ -30,9 +30,9 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
       - TZ=Asia/Shanghai
-  spark-worker-1:
+  spark-worker2:
     image: bitnami/spark:3.3.0
-    container_name: spark-worker-1
+    container_name: spark-worker2
     networks:
       - backend
     environment:
@@ -45,9 +45,9 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
       - TZ=Asia/Shanghai
-  spark-worker-2:
+  spark-worker3:
     image: bitnami/spark:3.3.0
-    container_name: spark-worker-2
+    container_name: spark-worker3
     networks:
       - backend
     environment:
@@ -60,9 +60,9 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
       - TZ=Asia/Shanghai
-  spark-worker-3:
+  spark-worker4:
     image: bitnami/spark:3.3.0
-    container_name: spark-worker-3
+    container_name: spark-worker4
     networks:
       - backend
     environment:

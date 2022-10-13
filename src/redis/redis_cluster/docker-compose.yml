@@ -1,95 +1,95 @@
 version: "2"
 services:
-  redis-cluster:
+  redis-node1:
     image: bitnami/redis-cluster:7.0.5
-    container_name: redis-cluster
+    container_name: redis-node1
     networks:
       - backend
     ports:
       - "6379:6379"
     volumes:
-      - /opt/volumes/redis-cluster:/bitnami/redis/data
+      - /opt/volumes/redis-node1:/bitnami/redis/data
     environment:
       - REDIS_PASSWORD=XLrootJYD713
-      - REDIS_NODES=redis-cluster redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5 redis-cluster6
+      - REDIS_NODES=redis-node1 redis-node2 redis-node3 redis-node4 redis-node5 redis-node6
       - TZ=Asia/Shanghai
 
-  redis-cluster2:
+  redis-node2:
     image: bitnami/redis-cluster:7.0.5
-    container_name: redis-cluster2
+    container_name: redis-node2
     networks:
       - backend
     ports:
       - "6380:6379"
     volumes:
-      - /opt/volumes/redis-cluster2:/bitnami/redis/data
+      - /opt/volumes/redis-node2:/bitnami/redis/data
     environment:
       - REDIS_PASSWORD=XLrootJYD713
-      - REDIS_NODES=redis-cluster redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5 redis-cluster6
+      - REDIS_NODES=redis-node1 redis-node2 redis-node3 redis-node4 redis-node5 redis-node6
       - TZ=Asia/Shanghai
 
-  redis-cluster3:
+  redis-node3:
     image: bitnami/redis-cluster:7.0.5
-    container_name: redis-cluster3
+    container_name: redis-node3
     networks:
       - backend
     ports:
       - "6381:6379"
     volumes:
-      - /opt/volumes/redis-cluster3:/bitnami/redis/data
+      - /opt/volumes/redis-node3:/bitnami/redis/data
     environment:
       - REDIS_PASSWORD=XLrootJYD713
-      - REDIS_NODES=redis-cluster redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5 redis-cluster6
+      - REDIS_NODES=redis-node1 redis-node2 redis-node3 redis-node4 redis-node5 redis-node6
       - TZ=Asia/Shanghai
 
-  redis-cluster4:
+  redis-node4:
     image: bitnami/redis-cluster:7.0.5
-    container_name: redis-cluster4
+    container_name: redis-node4
     networks:
       - backend
     ports:
       - "6382:6379"
     volumes:
-      - /opt/volumes/redis-cluster4:/bitnami/redis/data
+      - /opt/volumes/redis-node4:/bitnami/redis/data
     environment:
       - REDIS_PASSWORD=XLrootJYD713
-      - REDIS_NODES=redis-cluster redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5 redis-cluster6
+      - REDIS_NODES=redis-node1 redis-node2 redis-node3 redis-node4 redis-node5 redis-node6
       - TZ=Asia/Shanghai
 
-  redis-cluster5:
+  redis-node5:
     image: bitnami/redis-cluster:7.0.5
-    container_name: redis-cluster5
+    container_name: redis-node5
     networks:
       - backend
     ports:
       - "6383:6379"
     volumes:
-      - /opt/volumes/redis-cluster5:/bitnami/redis/data
+      - /opt/volumes/redis-node5:/bitnami/redis/data
     environment:
       - REDIS_PASSWORD=XLrootJYD713
-      - REDIS_NODES=redis-cluster redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5 redis-cluster6
+      - REDIS_NODES=redis-node1 redis-node2 redis-node3 redis-node4 redis-node5 redis-node6
       - TZ=Asia/Shanghai
 
-  redis-cluster6:
+  redis-node6:
     image: bitnami/redis-cluster:7.0.5
-    container_name: redis-cluster6
+    container_name: redis-node6
     networks:
       - backend
     ports:
       - "6384:6379"
     volumes:
-      - /opt/volumes/redis-cluster6:/bitnami/redis/data
+      - /opt/volumes/redis-node6:/bitnami/redis/data
     depends_on:
-      - redis-cluster
-      - redis-cluster2
-      - redis-cluster3
-      - redis-cluster4
-      - redis-cluster5
+      - redis-node1
+      - redis-node2
+      - redis-node3
+      - redis-node4
+      - redis-node5
     environment:
       - REDIS_PASSWORD=XLrootJYD713
       - REDISCLI_AUTH=XLrootJYD713
       - REDIS_CLUSTER_REPLICAS=1
-      - REDIS_NODES=redis-cluster redis-cluster2 redis-cluster3 redis-cluster4 redis-cluster5 redis-cluster6
+      - REDIS_NODES=redis-node1 redis-node2 redis-node3 redis-node4 redis-node5 redis-node6
       - REDIS_CLUSTER_CREATOR=yes
       - TZ=Asia/Shanghai
 
