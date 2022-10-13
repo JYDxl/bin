@@ -2,13 +2,13 @@ version: '3'
 
 services:
   elasticsearch:
-    image: bitnami/elasticsearch:8.4.1
+    image: bitnami/elasticsearch:8.4.3
     container_name: elasticsearch
     hostname: elasticsearch
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - ./plugins/elasticsearch-analysis-ik-8.4.1.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.4.1.zip
+      - ./plugins/elasticsearch-analysis-ik-8.4.3.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.4.3.zip
       - /opt/volumes/elasticsearch:/bitnami/elasticsearch/data
     ports:
       - "9200:9200"

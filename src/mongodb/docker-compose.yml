@@ -3,7 +3,7 @@ version: '3'
 services:
   mongodb:
     container_name: mongodb
-    image: bitnami/mongodb:6.0.1
+    image: bitnami/mongodb:6.0.2
     networks:
       - backend
     environment:

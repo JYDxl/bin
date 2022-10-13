@@ -15,7 +15,7 @@ services:
       - ZOO_SERVERS=kafka-zookeeper:2888:3888
   kafka:
     container_name: kafka
-    image: bitnami/kafka:3.2.1
+    image: bitnami/kafka:3.3.1
     networks:
       - backend
     depends_on:

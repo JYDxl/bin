@@ -1,7 +1,7 @@
 version: "2"
 services:
   redis-cluster:
-    image: bitnami/redis-cluster:7.0.4
+    image: bitnami/redis-cluster:7.0.5
     container_name: redis-cluster
     networks:
       - backend
@@ -15,7 +15,7 @@ services:
       - TZ=Asia/Shanghai
 
   redis-cluster2:
-    image: bitnami/redis-cluster:7.0.4
+    image: bitnami/redis-cluster:7.0.5
     container_name: redis-cluster2
     networks:
       - backend
@@ -29,7 +29,7 @@ services:
       - TZ=Asia/Shanghai
 
   redis-cluster3:
-    image: bitnami/redis-cluster:7.0.4
+    image: bitnami/redis-cluster:7.0.5
     container_name: redis-cluster3
     networks:
       - backend
@@ -43,7 +43,7 @@ services:
       - TZ=Asia/Shanghai
 
   redis-cluster4:
-    image: bitnami/redis-cluster:7.0.4
+    image: bitnami/redis-cluster:7.0.5
     container_name: redis-cluster4
     networks:
       - backend
@@ -57,7 +57,7 @@ services:
       - TZ=Asia/Shanghai
 
   redis-cluster5:
-    image: bitnami/redis-cluster:7.0.4
+    image: bitnami/redis-cluster:7.0.5
     container_name: redis-cluster5
     networks:
       - backend
@@ -71,7 +71,7 @@ services:
       - TZ=Asia/Shanghai
 
   redis-cluster6:
-    image: bitnami/redis-cluster:7.0.4
+    image: bitnami/redis-cluster:7.0.5
     container_name: redis-cluster6
     networks:
       - backend

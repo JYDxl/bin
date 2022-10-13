@@ -15,6 +15,7 @@
 /webstorm
 /dataspell
 /gateway
+/fleet
 
 /.ruby-version
 /*.sh
