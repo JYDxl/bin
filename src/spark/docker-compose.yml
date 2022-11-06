@@ -2,7 +2,7 @@ version: '3'
 
 services:
   spark-master:
-    image: bitnami/spark:3.3.0
+    image: bitnami/spark:3.3.1
     container_name: spark-master
     networks:
       - backend
@@ -16,7 +16,7 @@ services:
     ports:
       - '8078:8080'
   spark-worker1:
-    image: bitnami/spark:3.3.0
+    image: bitnami/spark:3.3.1
     container_name: spark-worker1
     networks:
       - backend
@@ -31,7 +31,7 @@ services:
       - SPARK_SSL_ENABLED=no
       - TZ=Asia/Shanghai
   spark-worker2:
-    image: bitnami/spark:3.3.0
+    image: bitnami/spark:3.3.1
     container_name: spark-worker2
     networks:
       - backend
@@ -46,7 +46,7 @@ services:
       - SPARK_SSL_ENABLED=no
       - TZ=Asia/Shanghai
   spark-worker3:
-    image: bitnami/spark:3.3.0
+    image: bitnami/spark:3.3.1
     container_name: spark-worker3
     networks:
       - backend
@@ -61,7 +61,7 @@ services:
       - SPARK_SSL_ENABLED=no
       - TZ=Asia/Shanghai
   spark-worker4:
-    image: bitnami/spark:3.3.0
+    image: bitnami/spark:3.3.1
     container_name: spark-worker4
     networks:
       - backend
