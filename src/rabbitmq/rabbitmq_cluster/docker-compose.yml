@@ -2,7 +2,7 @@ version: '3'
 
 services:
   rabbitmq-stats:
-    image: bitnami/rabbitmq:3.11.2
+    image: bitnami/rabbitmq:3.11.3
     container_name: rabbitmq-stats
     networks:
       - backend
@@ -21,7 +21,7 @@ services:
     volumes:
       - /opt/volumes/rabbitmq-stats:/bitnami/rabbitmq/mnesia
   rabbitmq-disc1:
-    image: bitnami/rabbitmq:3.11.2
+    image: bitnami/rabbitmq:3.11.3
     container_name: rabbitmq-disc1
     networks:
       - backend
@@ -36,7 +36,7 @@ services:
     volumes:
       - /opt/volumes/rabbitmq-disc1:/bitnami/rabbitmq/mnesia
   rabbitmq-disc2:
-    image: bitnami/rabbitmq:3.11.2
+    image: bitnami/rabbitmq:3.11.3
     container_name: rabbitmq-disc2
     networks:
       - backend
@@ -51,7 +51,7 @@ services:
     volumes:
       - /opt/volumes/rabbitmq-disc2:/bitnami/rabbitmq/mnesia
   rabbitmq-ram1:
-    image: bitnami/rabbitmq:3.11.2
+    image: bitnami/rabbitmq:3.11.3
     container_name: rabbitmq-ram1
     networks:
       - backend
@@ -66,7 +66,7 @@ services:
     volumes:
       - /opt/volumes/rabbitmq-ram1:/bitnami/rabbitmq/mnesia
   rabbitmq-ram2:
-    image: bitnami/rabbitmq:3.11.2
+    image: bitnami/rabbitmq:3.11.3
     container_name: rabbitmq-ram2
     networks:
       - backend
