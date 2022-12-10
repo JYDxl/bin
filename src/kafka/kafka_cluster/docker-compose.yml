@@ -12,19 +12,7 @@ services:
       - ALLOW_ANONYMOUS_LOGIN=yes
       - TZ=Asia/Shanghai
       - ZOO_SERVER_ID=1
-      - ZOO_SERVERS=kafka-zookeeper1:2888:3888,kafka-zookeeper2:2888:3888
-  kafka-zookeeper2:
-    container_name: kafka-zookeeper2
-    image: bitnami/zookeeper:3.8.0
-    networks:
-      - backend
-    volumes:
-      - /opt/volumes/kafka-zookeeper2:/bitnami/zookeeper/data
-    environment:
-      - ALLOW_ANONYMOUS_LOGIN=yes
-      - TZ=Asia/Shanghai
-      - ZOO_SERVER_ID=2
-      - ZOO_SERVERS=kafka-zookeeper1:2888:3888,kafka-zookeeper2:2888:3888
+      - ZOO_SERVERS=kafka-zookeeper1:2888:3888
   kafka-node1:
     container_name: kafka-node1
     image: bitnami/kafka:3.3.1
@@ -32,14 +20,13 @@ services:
       - backend
     depends_on:
       - kafka-zookeeper1
-      - kafka-zookeeper2
     ports:
       - '9092:9092'
     environment:
       - KAFKA_BROKER_ID=1
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9092
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181,kafka-zookeeper2:2181
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
@@ -51,56 +38,17 @@ services:
       - backend
     depends_on:
       - kafka-zookeeper1
-      - kafka-zookeeper2
     ports:
       - '9093:9093'
     environment:
       - KAFKA_BROKER_ID=2
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9093
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9093
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181,kafka-zookeeper2:2181
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/kafka-node2:/bitnami/kafka/data
-  kafka-node3:
-    container_name: kafka-node3
-    image: bitnami/kafka:3.3.1
-    networks:
-      - backend
-    depends_on:
-      - kafka-zookeeper1
-      - kafka-zookeeper2
-    ports:
-      - '9094:9094'
-    environment:
-      - KAFKA_BROKER_ID=3
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9094
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9094
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181,kafka-zookeeper2:2181
-      - ALLOW_PLAINTEXT_LISTENER=yes
-      - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/kafka-node3:/bitnami/kafka/data
-  kafka-node4:
-    container_name: kafka-node4
-    image: bitnami/kafka:3.3.1
-    networks:
-      - backend
-    depends_on:
-      - kafka-zookeeper1
-      - kafka-zookeeper2
-    ports:
-      - '9095:9095'
-    environment:
-      - KAFKA_BROKER_ID=4
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9095
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${IP}:9095
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=kafka-zookeeper1:2181,kafka-zookeeper2:2181
-      - ALLOW_PLAINTEXT_LISTENER=yes
-      - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/kafka-node4:/bitnami/kafka/data
 
 networks:
   backend:

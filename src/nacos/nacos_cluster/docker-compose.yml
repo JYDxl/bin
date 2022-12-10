@@ -29,30 +29,6 @@ services:
     env_file:
       - ./env/nacos-hostname.env
 
-  nacos-node3:
-    image: nacos/nacos-server:v2.1.2
-    container_name: nacos-node3
-    hostname: nacos-node3
-    networks:
-      - backend
-    volumes:
-      - /opt/volumes/nacos-node3/logs:/home/nacos/logs
-      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
-    env_file:
-      - ./env/nacos-hostname.env
-
-  nacos-node4:
-    image: nacos/nacos-server:v2.1.2
-    container_name: nacos-node4
-    hostname: nacos-node4
-    networks:
-      - backend
-    volumes:
-      - /opt/volumes/nacos-node4/logs:/home/nacos/logs
-      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
-    env_file:
-      - ./env/nacos-hostname.env
-
 networks:
   backend:
     external: true

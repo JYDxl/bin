@@ -31,40 +31,6 @@ services:
       - backend
     volumes:
       - /opt/volumes/redis-slave1:/bitnami/redis/data
-  redis-slave2:
-    image: bitnami/redis:7.0.5
-    container_name: redis-slave2
-    environment:
-      - REDIS_REPLICATION_MODE=slave
-      - REDIS_MASTER_HOST=redis-master
-      - REDIS_MASTER_PASSWORD=XLrootJYD713
-      - REDIS_PASSWORD=XLrootJYD713
-      - TZ=Asia/Shanghai
-    ports:
-      - "6381:6379"
-    depends_on:
-      - redis-master
-    networks:
-      - backend
-    volumes:
-      - /opt/volumes/redis-slave2:/bitnami/redis/data
-  redis-slave3:
-    image: bitnami/redis:7.0.5
-    container_name: redis-slave3
-    environment:
-      - REDIS_REPLICATION_MODE=slave
-      - REDIS_MASTER_HOST=redis-master
-      - REDIS_MASTER_PASSWORD=XLrootJYD713
-      - REDIS_PASSWORD=XLrootJYD713
-      - TZ=Asia/Shanghai
-    ports:
-      - "6382:6379"
-    depends_on:
-      - redis-master
-    networks:
-      - backend
-    volumes:
-      - /opt/volumes/redis-slave3:/bitnami/redis/data
   redis-sentinel1:
     image: bitnami/redis-sentinel:7.0.5
     container_name: redis-sentinel1
@@ -75,26 +41,8 @@ services:
     depends_on:
       - redis-master
       - redis-slave1
-      - redis-slave2
-      - redis-slave3
     ports:
       - "26379:26379"
-    networks:
-      - backend
-  redis-sentinel2:
-    image: bitnami/redis-sentinel:7.0.5
-    container_name: redis-sentinel2
-    environment:
-      - REDIS_MASTER_HOST=redis-master
-      - REDIS_MASTER_PASSWORD=XLrootJYD713
-      - TZ=Asia/Shanghai
-    depends_on:
-      - redis-master
-      - redis-slave1
-      - redis-slave2
-      - redis-slave3
-    ports:
-      - "26380:26379"
     networks:
       - backend
 

@@ -13,11 +13,11 @@ services:
       - MINIO_ROOT_USER=minio
       - MINIO_ROOT_PASSWORD=XLrootJYD713
       - MINIO_DISTRIBUTED_MODE_ENABLED=yes
-      - MINIO_DISTRIBUTED_NODES=minio-node1,minio-node2,minio-node3,minio-node4
+      - MINIO_DISTRIBUTED_NODES=minio-node1,minio-node2
       - MINIO_SKIP_CLIENT=yes
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/minio-node1:/data0
+      - /opt/volumes/minio-node1:/data1
   minio-node2:
     image: bitnami/minio:2022.11.17
     container_name: minio-node2
@@ -27,39 +27,11 @@ services:
       - MINIO_ROOT_USER=minio
       - MINIO_ROOT_PASSWORD=XLrootJYD713
       - MINIO_DISTRIBUTED_MODE_ENABLED=yes
-      - MINIO_DISTRIBUTED_NODES=minio-node1,minio-node2,minio-node3,minio-node4
+      - MINIO_DISTRIBUTED_NODES=minio-node1,minio-node2
       - MINIO_SKIP_CLIENT=yes
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/minio-node2:/data1
-  minio-node3:
-    image: bitnami/minio:2022.11.17
-    container_name: minio-node3
-    networks:
-      - backend
-    environment:
-      - MINIO_ROOT_USER=minio
-      - MINIO_ROOT_PASSWORD=XLrootJYD713
-      - MINIO_DISTRIBUTED_MODE_ENABLED=yes
-      - MINIO_DISTRIBUTED_NODES=minio-node1,minio-node2,minio-node3,minio-node4
-      - MINIO_SKIP_CLIENT=yes
-      - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/minio-node3:/data2
-  minio-node4:
-    image: bitnami/minio:2022.11.17
-    container_name: minio-node4
-    networks:
-      - backend
-    environment:
-      - MINIO_ROOT_USER=minio
-      - MINIO_ROOT_PASSWORD=XLrootJYD713
-      - MINIO_DISTRIBUTED_MODE_ENABLED=yes
-      - MINIO_DISTRIBUTED_NODES=minio-node1,minio-node2,minio-node3,minio-node4
-      - MINIO_SKIP_CLIENT=yes
-      - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/minio-node4:/data3
+      - /opt/volumes/minio-node2:/data2
 
 networks:
   backend:
