@@ -2,7 +2,7 @@ version: '3'
 
 services:
   alma:
-    image: almalinux:8.7-20221110
+    image: almalinux:8.7-20221201
     container_name: alma
     hostname: alma
     environment:

@@ -22,9 +22,9 @@ services:
       - MYSQL_CHARACTER_SET=utf8mb4
       - MYSQL_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai
-  mysql-slave1:
+  mysql-slave:
     image: bitnami/mysql:8.0.31
-    container_name: mysql-slave1
+    container_name: mysql-slave
     networks:
       - backend
     ports:
@@ -33,7 +33,7 @@ services:
       - mysql-master
     volumes:
       - ../conf/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
-      - /opt/volumes/mysql-slave1:/bitnami/mysql/data
+      - /opt/volumes/mysql-slave:/bitnami/mysql/data
     environment:
       - MYSQL_REPLICATION_MODE=slave
       - MYSQL_REPLICATION_USER=repl_user

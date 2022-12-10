@@ -2,7 +2,7 @@ version: '3'
 
 services:
   elasticsearch-node1:
-    image: bitnami/elasticsearch:8.4.3
+    image: bitnami/elasticsearch:8.5.2
     container_name: elasticsearch-node1
     hostname: elasticsearch-node1
     environment:
@@ -11,14 +11,14 @@ services:
       - ELASTICSEARCH_NODE_NAME=elasticsearch-node1
       - TZ=Asia/Shanghai
     volumes:
-      - ../plugins/elasticsearch-analysis-ik-8.4.3.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.4.3.zip
+      - ../plugins/elasticsearch-analysis-ik-8.5.2.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.5.2.zip
       - /opt/volumes/elasticsearch-node1:/bitnami/elasticsearch/data
     ports:
       - "9200:9200"
     networks:
       - backend
   elasticsearch-node2:
-    image: bitnami/elasticsearch:8.4.3
+    image: bitnami/elasticsearch:8.5.2
     container_name: elasticsearch-node2
     hostname: elasticsearch-node2
     environment:
@@ -27,26 +27,10 @@ services:
       - ELASTICSEARCH_NODE_NAME=elasticsearch-node2
       - TZ=Asia/Shanghai
     volumes:
-      - ../plugins/elasticsearch-analysis-ik-8.4.3.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.4.3.zip
+      - ../plugins/elasticsearch-analysis-ik-8.5.2.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.5.2.zip
       - /opt/volumes/elasticsearch-node2:/bitnami/elasticsearch/data
     networks:
       - backend
-  elasticsearch-kibana:
-    image: bitnami/kibana:8.4.3
-    container_name: elasticsearch-kibana
-    hostname: elasticsearch-kibana
-    environment:
-      - KIBANA_ELASTICSEARCH_URL=elasticsearch-cluster
-      - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/elasticsearch-kibana:/bitnami/kibana/data
-    ports:
-      - "5601:5601"
-    networks:
-      - backend
-    depends_on:
-      - elasticsearch-node1
-      - elasticsearch-node2
 
 networks:
   backend:

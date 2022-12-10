@@ -14,9 +14,9 @@ services:
       - "6379:6379"
     volumes:
       - /opt/volumes/redis-master:/bitnami/redis/data
-  redis-slave1:
+  redis-slave:
     image: bitnami/redis:7.0.5
-    container_name: redis-slave1
+    container_name: redis-slave
     environment:
       - REDIS_REPLICATION_MODE=slave
       - REDIS_MASTER_HOST=redis-master
@@ -30,17 +30,17 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/redis-slave1:/bitnami/redis/data
-  redis-sentinel1:
+      - /opt/volumes/redis-slave:/bitnami/redis/data
+  redis-sentinel:
     image: bitnami/redis-sentinel:7.0.5
-    container_name: redis-sentinel1
+    container_name: redis-sentinel
     environment:
       - REDIS_MASTER_HOST=redis-master
       - REDIS_MASTER_PASSWORD=XLrootJYD713
       - TZ=Asia/Shanghai
     depends_on:
       - redis-master
-      - redis-slave1
+      - redis-slave
     ports:
       - "26379:26379"
     networks:
