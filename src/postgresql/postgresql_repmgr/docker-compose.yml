@@ -16,7 +16,7 @@ services:
       - REPMGR_PASSWORD=XLrootJYD713
       - REPMGR_PRIMARY_HOST=postgresql-node1
       - REPMGR_PRIMARY_PORT=5432
-      - REPMGR_PARTNER_NODES=postgresql-node1,postgresql-node2,postgresql-node3,postgresql-node4:5432
+      - REPMGR_PARTNER_NODES=postgresql-node1,postgresql-node2
       - REPMGR_NODE_NAME=postgresql-node1
       - REPMGR_NODE_NETWORK_NAME=postgresql-node1
       - REPMGR_PORT_NUMBER=5432
@@ -39,59 +39,13 @@ services:
       - REPMGR_PASSWORD=XLrootJYD713
       - REPMGR_PRIMARY_HOST=postgresql-node1
       - REPMGR_PRIMARY_PORT=5432
-      - REPMGR_PARTNER_NODES=postgresql-node1,postgresql-node2,postgresql-node3,postgresql-node4:5432
+      - REPMGR_PARTNER_NODES=postgresql-node1,postgresql-node2
       - REPMGR_NODE_NAME=postgresql-node2
       - REPMGR_NODE_NETWORK_NAME=postgresql-node2
       - REPMGR_PORT_NUMBER=5432
       - TZ=Asia/Shanghai
     volumes:
       - /opt/volumes/postgresql-node2:/bitnami/postgresql/data
-      - ../conf/:/bitnami/postgresql/conf/conf.d/
-  postgresql-node3:
-    image: bitnami/postgresql-repmgr:15.1.0
-    container_name: postgresql-node3
-    networks:
-      - backend
-    ports:
-      - '5434:5432'
-    environment:
-      - POSTGRESQL_POSTGRES_PASSWORD=XLrootJYD713
-      - POSTGRESQL_USERNAME=pg
-      - POSTGRESQL_PASSWORD=XLrootJYD713
-      - POSTGRESQL_DATABASE=pg
-      - REPMGR_PASSWORD=XLrootJYD713
-      - REPMGR_PRIMARY_HOST=postgresql-node1
-      - REPMGR_PRIMARY_PORT=5432
-      - REPMGR_PARTNER_NODES=postgresql-node1,postgresql-node2,postgresql-node3,postgresql-node4:5432
-      - REPMGR_NODE_NAME=postgresql-node3
-      - REPMGR_NODE_NETWORK_NAME=postgresql-node3
-      - REPMGR_PORT_NUMBER=5432
-      - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/postgresql-node3:/bitnami/postgresql/data
-      - ../conf/:/bitnami/postgresql/conf/conf.d/
-  postgresql-node4:
-    image: bitnami/postgresql-repmgr:15.1.0
-    container_name: postgresql-node4
-    networks:
-      - backend
-    ports:
-      - '5435:5432'
-    environment:
-      - POSTGRESQL_POSTGRES_PASSWORD=XLrootJYD713
-      - POSTGRESQL_USERNAME=pg
-      - POSTGRESQL_PASSWORD=XLrootJYD713
-      - POSTGRESQL_DATABASE=pg
-      - REPMGR_PASSWORD=XLrootJYD713
-      - REPMGR_PRIMARY_HOST=postgresql-node1
-      - REPMGR_PRIMARY_PORT=5432
-      - REPMGR_PARTNER_NODES=postgresql-node1,postgresql-node2,postgresql-node3,postgresql-node4:5432
-      - REPMGR_NODE_NAME=postgresql-node4
-      - REPMGR_NODE_NETWORK_NAME=postgresql-node4
-      - REPMGR_PORT_NUMBER=5432
-      - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/postgresql-node4:/bitnami/postgresql/data
       - ../conf/:/bitnami/postgresql/conf/conf.d/
 
 networks:
