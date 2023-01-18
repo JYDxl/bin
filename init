@@ -1,14 +1,14 @@
-#!/usr/bin/ruby
+#!ruby
 
-#sudo gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
-#sudo gem install colorize
+# sudo gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+# sudo gem install colorize
 
 require 'colorize'
 require 'socket'
 require 'etc'
 require 'set'
 
-$set_app = Set[:mysql, :mysql_cluster, :mariadb, :mariadb_cluster, :postgresql, :postgresql_repmgr, :postgresql_cluster, :rabbitmq, :rabbitmq_cluster, :redis, :redis_sentinel, :redis_cluster, :mongodb, :mongodb_cluster, :elasticsearch, :elasticsearch_cluster, :clickhouse, :clickhouse_cluster, :flink, :flink_cluster, :kafka, :kafka_cluster, :nacos, :nacos_cluster, :logstash, :neo4j, :minio_cluster, :hdfs_cluster, :spark, :nginx, :zipkin, :gitlab, :sentinel, :seata, :mosquitto, :chrome, :alpine, :alma, :debian, :starrocks, :proxypool, :xxljob]
+$set_app = Set[:mysql, :mysql_cluster, :mariadb, :mariadb_cluster, :postgresql, :postgresql_repmgr, :postgresql_cluster, :rabbitmq, :rabbitmq_cluster, :redis, :redis_sentinel, :redis_cluster, :mongodb, :mongodb_cluster, :elasticsearch, :elasticsearch_cluster, :clickhouse, :clickhouse_cluster, :flink, :flink_cluster, :kafka, :kafka_cluster, :nacos, :nacos_cluster, :logstash, :neo4j, :minio, :minio_cluster, :hdfs_cluster, :spark, :nginx, :zipkin, :gitlab, :sentinel, :seata, :mosquitto, :chrome, :alpine, :alma, :debian, :starrocks, :proxypool, :xxljob]
 $set_opt = Set[:start, :stop]
 
 def warn
@@ -16,7 +16,7 @@ def warn
   exit
 end
 
-#noinspection RubyNilAnalysis,RubyResolve
+# noinspection RubyNilAnalysis,RubyResolve
 # @return [Integer]
 def memsize
   if RUBY_PLATFORM.match?(/^.*darwin.*$/)
@@ -35,7 +35,7 @@ end
 
 # @param [String] cmd
 def exec(cmd)
-  #noinspection RubyResolve
+  # noinspection RubyResolve
   puts "#{"==>".blue.bold} #{cmd.red.bold}"
   system cmd
 end
@@ -107,7 +107,7 @@ class Component
         args[:NUM] = Etc.nprocessors
         args[:MEM] = memsize / 4
       when :kafka
-        #noinspection RubyNilAnalysis
+        # noinspection RubyNilAnalysis
         args[:IP] = Socket.ip_address_list.detect { |x| x.ipv4_private? }.ip_address
       else
         # type code here

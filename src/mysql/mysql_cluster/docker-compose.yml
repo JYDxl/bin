@@ -16,9 +16,7 @@ services:
       - MYSQL_REPLICATION_USER=repl_user
       - MYSQL_REPLICATION_PASSWORD=XLrootJYD713
       - MYSQL_ROOT_PASSWORD=XLrootJYD713
-      - MYSQL_USER=my
       - MYSQL_PASSWORD=XLrootJYD713
-      - MYSQL_DATABASE=my
       - MYSQL_CHARACTER_SET=utf8mb4
       - MYSQL_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai

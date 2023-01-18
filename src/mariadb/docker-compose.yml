@@ -13,9 +13,7 @@ services:
       - /opt/volumes/mariadb:/bitnami/mariadb/data
     environment:
       - MARIADB_ROOT_PASSWORD=XLrootJYD713
-      - MARIADB_USER=my
       - MARIADB_PASSWORD=XLrootJYD713
-      - MARIADB_DATABASE=my
       - MARIADB_CHARACTER_SET=utf8mb4
       - MARIADB_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai

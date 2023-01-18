@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  minio-node:
+    image: bitnami/minio:2023.1.12
+    container_name: minio-node
+    networks:
+      - backend
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    environment:
+      - MINIO_ROOT_USER=minio
+      - MINIO_ROOT_PASSWORD=XLrootJYD713
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/volumes/minio-node:/data
+  minio-client:
+    image: bitnami/minio-client:2023.1.11
+    container_name: minio-client
+    networks:
+      - backend
+    environment:
+      - MINIO_SERVER_HOST=minio-node
+      - MINIO_SERVER_ACCESS_KEY=minio
+      - MINIO_SERVER_SECRET_KEY=XLrootJYD713
+      - TZ=Asia/Shanghai
+
+networks:
+  backend:
+    external: true
