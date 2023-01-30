@@ -1,9 +1,5 @@
 #!/usr/bin/ruby
 
-# sudo gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
-# sudo gem install colorize
-
-require 'colorize'
 require 'socket'
 require 'etc'
 require 'set'
@@ -16,27 +12,10 @@ def warn
   exit
 end
 
-# noinspection RubyNilAnalysis,RubyResolve
-# @return [Integer]
-def memsize
-  if RUBY_PLATFORM.match?(/^.*darwin.*$/)
-    return Float(%x(sysctl hw.memsize | awk '{print $2 / 1024 / 1024 / 1024}')).ceil
-  end
-
-  if RUBY_PLATFORM.match?(/^.*linux.*$/)
-    return Float(%x(vmstat -s | head -1 | awk '{print $1 / 1024 / 1024}')).ceil
-  end
-
-  puts "#{'unknown os'.red.bold}"
-  exit
-end
-
-# TODO jenkins
-
 # @param [String] cmd
 def exec(cmd)
   # noinspection RubyResolve
-  puts "#{"==>".blue.bold} #{cmd.red.bold}"
+  puts "\033[42m==>\033[0m \033[44m#{cmd}\033[0m"
   system cmd
 end
 
@@ -65,13 +44,11 @@ class Component
   end
 
   def run_docker_compose
-    args = get_args.map { |k, v| "#{k}=#{v}" }.join(" ")
-
     case @opt
       when :start
-        exec "#{args} docker-compose -p #{@name} -f #{@path}/docker-compose.yml up -d --build"
+        exec "docker-compose -p #{@name} -f #{@path}/docker-compose.yml up -d --build"
       when :stop
-        exec "#{args} docker-compose -f #{@path}/docker-compose.yml stop"
+        exec "docker-compose -f #{@path}/docker-compose.yml stop"
       else
         warn
     end
@@ -96,24 +73,6 @@ class Component
       else
         run_docker_compose
     end
-  end
-
-  # @return [Hash[Symbol, Object]]
-  def get_args
-    args = Hash.new
-
-    case @type
-      when :flink, :spark
-        args[:NUM] = Etc.nprocessors
-        args[:MEM] = memsize / 4
-      when :kafka
-        # noinspection RubyNilAnalysis
-        args[:IP] = Socket.ip_address_list.detect { |x| x.ipv4_private? }.ip_address
-      else
-        # type code here
-    end
-
-    args
   end
 
   def pre_check_run
