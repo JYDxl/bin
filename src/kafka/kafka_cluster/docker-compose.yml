@@ -3,7 +3,7 @@ version: '3'
 services:
   kafka-zookeeper:
     container_name: kafka-zookeeper
-    image: bitnami/zookeeper:3.8.0
+    image: bitnami/zookeeper:3.8.1
     networks:
       - backend
     volumes:
@@ -15,7 +15,7 @@ services:
       - ZOO_SERVERS=kafka-zookeeper:2888:3888
   kafka-node1:
     container_name: kafka-node1
-    image: bitnami/kafka:3.3.1
+    image: bitnami/kafka:3.3.2
     networks:
       - backend
     depends_on:
@@ -33,7 +33,7 @@ services:
       - /opt/volumes/kafka-node1:/bitnami/kafka/data
   kafka-node2:
     container_name: kafka-node2
-    image: bitnami/kafka:3.3.1
+    image: bitnami/kafka:3.3.2
     networks:
       - backend
     depends_on:

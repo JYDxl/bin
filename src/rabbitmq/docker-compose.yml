@@ -2,7 +2,7 @@ version: '3'
 
 services:
   rabbitmq-stats:
-    image: bitnami/rabbitmq:3.11.7
+    image: bitnami/rabbitmq:3.11.8
     container_name: rabbitmq-stats
     networks:
       - backend
