@@ -9,7 +9,7 @@ services:
     volumes:
       - /opt/volumes/xxl_job_admin/logs:/data/applogs
     ports:
-      - '8080:8080'
+      - '8079:8080'
     networks:
       - backend
 

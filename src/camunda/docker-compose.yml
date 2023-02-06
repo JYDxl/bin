@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  camunda:
+    image: camunda/camunda-bpm-platform:7.18.0
+    container_name: camunda
+    hostname: camunda
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - '8077:8080'
+    networks:
+      - backend
+
+networks:
+  backend:
+    external: true
