@@ -12,7 +12,7 @@ services:
       - LOGSTASH_ENABLE_MULTIPLE_PIPELINES=true
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/logstash:/bitnami/logstash/data
+      - /opt/volumes/logstash:/bitnami
       - /opt/volumes/extra:/extra
       - ./config:/bitnami/logstash/config
 

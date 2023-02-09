@@ -10,7 +10,7 @@ services:
       - '3306:3306'
     volumes:
       - ./conf/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro
-      - /opt/volumes/mariadb:/bitnami/mariadb/data
+      - /opt/volumes/mariadb:/bitnami/mariadb
     environment:
       - MARIADB_ROOT_PASSWORD=XLrootJYD713
       - MARIADB_PASSWORD=XLrootJYD713

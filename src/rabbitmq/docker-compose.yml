@@ -13,7 +13,7 @@ services:
     ports:
       - '5672:5672'
     volumes:
-      - /opt/volumes/rabbitmq:/bitnami/rabbitmq/mnesia
+      - /opt/volumes/rabbitmq:/bitnami
 
 networks:
   backend:

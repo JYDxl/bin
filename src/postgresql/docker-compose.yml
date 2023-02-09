@@ -15,7 +15,7 @@ services:
       - POSTGRESQL_DATABASE=pg
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/postgresql:/bitnami/postgresql/data
+      - /opt/volumes/postgresql:/bitnami/postgresql
       - ./conf/:/bitnami/postgresql/conf/conf.d/
 
 networks:

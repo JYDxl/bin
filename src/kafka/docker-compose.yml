@@ -21,7 +21,7 @@ services:
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=CLIENT
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/kafka:/bitnami/kafka/data
+      - /opt/volumes/kafka:/bitnami/kafka
 
 networks:
   backend:
