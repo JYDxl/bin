@@ -13,6 +13,7 @@ services:
       - MINIO_ROOT_USER=minio
       - MINIO_ROOT_PASSWORD=XLrootJYD713
       - TZ=Asia/Shanghai
+      - MINIO_DEFAULT_BUCKETS=public:public
     volumes:
       - /opt/volumes/minio-node:/data
 

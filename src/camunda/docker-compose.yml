@@ -12,8 +12,6 @@ services:
       - DB_PASSWORD=XLrootJYD713
       - TZ=Asia/Shanghai
       - WAIT_FOR=mysql-master:3306
-    ports:
-      - '8077:8080'
     networks:
       - backend
 

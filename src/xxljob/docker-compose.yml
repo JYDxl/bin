@@ -8,8 +8,6 @@ services:
       - PARAMS=--spring.datasource.url=jdbc:mysql://mysql-master:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai  --spring.datasource.password=XLrootJYD713  --xxl.job.accessToken=XLrootJYD713
     volumes:
       - /opt/volumes/xxl_job_admin/logs:/data/applogs
-    ports:
-      - '8079:8080'
     networks:
       - backend
 

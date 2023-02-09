@@ -11,10 +11,7 @@ services:
       - RABBITMQ_PASSWORD=XLrootJYD713
       - TZ=Asia/Shanghai
     ports:
-      - '4369:4369'
       - '5672:5672'
-      - '25672:25672'
-      - '15672:15672'
     volumes:
       - /opt/volumes/rabbitmq:/bitnami/rabbitmq/mnesia
 
