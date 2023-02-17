@@ -1,4 +1,4 @@
-FROM seataio/seata-server:1.6.0
+FROM seataio/seata-server:1.6.1
 
 ENV LANG zh_CN.UTF-8
 

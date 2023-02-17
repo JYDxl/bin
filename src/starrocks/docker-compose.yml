@@ -7,7 +7,7 @@ services:
     hostname: starrocks
     environment:
       - TZ=Asia/Shanghai
-      - JAVA_HOME=/usr/java/jdk-11.0.16
+      - JAVA_HOME=/usr/java/jdk-11.0.18
     networks:
       backend:
         ipv4_address: 172.18.255.253

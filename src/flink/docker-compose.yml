@@ -2,7 +2,7 @@ version: '3'
 
 services:
   flink:
-    build: web
+    build: ./ctx
     container_name: flink
     hostname: flink
     ports:

@@ -2,7 +2,7 @@ version: '3'
 
 services:
   gitlab:
-    image: gitlab/gitlab-ce:15.8.1-ce.0
+    image: gitlab/gitlab-ce:15.8.3-ce.0
     container_name: gitlab
     hostname: gitlab
     networks:
