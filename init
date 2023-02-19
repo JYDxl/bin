@@ -95,10 +95,6 @@ class Component
         exec "docker build -t seata-server --build-arg IP='#{ip}' ~/bin/src/seata/"
         exec 'docker rm -f seata-server'
         exec 'docker run -d --net backend --name seata-server -p 8091:8091 -v /etc/localtime:/etc/localtime -v /opt/volumes/extra:/extra seata-server'
-      when :zipkin
-        exec 'docker build -t zipkin-server ~/bin/src/zipkin/'
-        exec 'docker rm -f zipkin-server'
-        exec 'docker run -d --net backend --name zipkin-server -p 9411:9411 zipkin-server --link rabbitmq'
       when :sentinel
         exec 'docker build -t sentinel-server ~/bin/src/sentinel/'
         exec 'docker rm -f sentinel-server'

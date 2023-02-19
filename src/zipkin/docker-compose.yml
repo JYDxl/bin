@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  zipkin:
+    build: ctx
+    container_name: zipkin
+    ports:
+      - '9411:9411'
+    environment:
+      - RABBIT_ADDRESSES=rabbitmq-stats:5672
+      - RABBIT_USER=root
+      - RABBIT_PASSWORD=XLrootJYD713
+    networks:
+      - backend
+
+networks:
+  backend:
+    external: true

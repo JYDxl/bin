@@ -7,11 +7,13 @@ services:
     hostname: camunda
     environment:
       - DB_DRIVER=com.mysql.cj.jdbc.Driver
-      - DB_URL=jdbc:mysql://mysql-master:3306/camunda
+      - DB_URL=jdbc:mysql://mysql-master:3306/camunda?autoReconnect=true
       - DB_USERNAME=root
       - DB_PASSWORD=XLrootJYD713
       - TZ=Asia/Shanghai
       - WAIT_FOR=mysql-master:3306
+    ports:
+      - '8077:8080'
     networks:
       - backend
 
