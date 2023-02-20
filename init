@@ -95,10 +95,6 @@ class Component
         exec "docker build -t seata-server --build-arg IP='#{ip}' ~/bin/src/seata/"
         exec 'docker rm -f seata-server'
         exec 'docker run -d --net backend --name seata-server -p 8091:8091 -v /etc/localtime:/etc/localtime -v /opt/volumes/extra:/extra seata-server'
-      when :sentinel
-        exec 'docker build -t sentinel-server ~/bin/src/sentinel/'
-        exec 'docker rm -f sentinel-server'
-        exec 'docker run -d --net host    --name sentinel-server -v /etc/localtime:/etc/localtime -v /opt/volumes/extra:/extra sentinel-server'
       else
         run_docker_compose
     end
