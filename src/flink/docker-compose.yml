@@ -4,7 +4,6 @@ services:
   flink:
     build: ctx
     container_name: flink
-    hostname: flink
     ports:
       - "8079:8081"
       - "9084:9084"

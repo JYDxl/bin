@@ -4,7 +4,6 @@ services:
   alpine:
     build: ctx
     container_name: alpine
-    hostname: alpine
     networks:
       - backend
     tty: true

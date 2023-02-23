@@ -4,7 +4,6 @@ services:
   camunda:
     image: camunda/camunda-bpm-platform:run-7.18.0
     container_name: camunda
-    hostname: camunda
     environment:
       - DB_DRIVER=com.mysql.cj.jdbc.Driver
       - DB_URL=jdbc:mysql://mysql-master:3306/camunda?autoReconnect=true

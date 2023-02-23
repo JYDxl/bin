@@ -4,7 +4,6 @@ services:
   nacos-node1:
     image: nacos/nacos-server:v2.2.0
     container_name: nacos-node1
-    hostname: nacos-node1
     networks:
       - backend
     volumes:
@@ -20,7 +19,6 @@ services:
   nacos-node2:
     image: nacos/nacos-server:v2.2.0
     container_name: nacos-node2
-    hostname: nacos-node2
     networks:
       - backend
     volumes:

@@ -2,7 +2,7 @@ version: '3'
 
 services:
   logstash:
-    image: bitnami/logstash:8.6.1
+    image: bitnami/logstash:8.6.2
     container_name: logstash
     networks:
       - backend

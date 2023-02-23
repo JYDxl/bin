@@ -4,7 +4,6 @@ services:
   chrome:
     image: kasmweb/chrome:1.12.0
     container_name: chrome
-    hostname: chrome
     environment:
       - VNC_PW=kasm_pass
       - VNC_RESOLUTION=1920x1200

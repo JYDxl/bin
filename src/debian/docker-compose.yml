@@ -4,7 +4,6 @@ services:
   debian:
     image: debian:bullseye-20230208
     container_name: debian
-    hostname: debian
     networks:
       - backend
     tty: true

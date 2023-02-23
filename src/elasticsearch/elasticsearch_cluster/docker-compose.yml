@@ -2,32 +2,30 @@ version: '3'
 
 services:
   elasticsearch-node1:
-    image: bitnami/elasticsearch:8.6.1
+    image: bitnami/elasticsearch:8.6.2
     container_name: elasticsearch-node1
-    hostname: elasticsearch-node1
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
       - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2
       - ELASTICSEARCH_NODE_NAME=elasticsearch-node1
       - TZ=Asia/Shanghai
     volumes:
-      - ../plugins/elasticsearch-analysis-ik-8.6.1.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.6.1.zip
+      - ../plugins/elasticsearch-analysis-ik-8.6.2.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.6.2.zip
       - /opt/volumes/elasticsearch-node1:/bitnami/elasticsearch/data
     ports:
       - "9200:9200"
     networks:
       - backend
   elasticsearch-node2:
-    image: bitnami/elasticsearch:8.6.1
+    image: bitnami/elasticsearch:8.6.2
     container_name: elasticsearch-node2
-    hostname: elasticsearch-node2
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
       - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2
       - ELASTICSEARCH_NODE_NAME=elasticsearch-node2
       - TZ=Asia/Shanghai
     volumes:
-      - ../plugins/elasticsearch-analysis-ik-8.6.1.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.6.1.zip
+      - ../plugins/elasticsearch-analysis-ik-8.6.2.zip:/bitnami/elasticsearch/plugins/analysis-ik-8.6.2.zip
       - /opt/volumes/elasticsearch-node2:/bitnami/elasticsearch/data
     networks:
       - backend

@@ -4,7 +4,6 @@ services:
   nacos:
     image: nacos/nacos-server:v2.2.0
     container_name: nacos
-    hostname: nacos
     networks:
       - backend
     volumes:
