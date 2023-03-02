@@ -2,7 +2,7 @@ version: '3'
 
 services:
   debian:
-    image: debian:bullseye-20230208
+    image: debian:bullseye-20230227
     container_name: debian
     networks:
       - backend

@@ -2,7 +2,7 @@ version: '3'
 
 services:
   minio-node:
-    image: bitnami/minio:2023.2.10
+    image: bitnami/minio:2023.2.27
     container_name: minio-node
     networks:
       - backend

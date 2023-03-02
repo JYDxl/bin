@@ -1,4 +1,4 @@
-FROM jhao104/proxy_pool:2.4.0
+FROM jhao104/proxy_pool:2.4.1
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories && \
     apk --update add tzdata && \
