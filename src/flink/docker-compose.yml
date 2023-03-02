@@ -5,8 +5,8 @@ services:
     build: ctx
     container_name: flink
     ports:
-      - "8079:8081"
-      - "9084:9084"
+      - '8079:8081'
+      - '9084:9084'
     networks:
       - backend
     volumes:

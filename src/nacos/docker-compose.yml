@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 services:
   nacos:
@@ -10,8 +10,8 @@ services:
       - /opt/volumes/nacos/logs:/home/nacos/logs
       - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
     ports:
-      - "8848:8848"
-      - "9848:9848"
+      - '8848:8848'
+      - '9848:9848'
     env_file:
       - ./env/nacos-hostname.env
 

@@ -6,7 +6,7 @@ services:
     container_name: camunda
     environment:
       - DB_DRIVER=com.mysql.cj.jdbc.Driver
-      - DB_URL=jdbc:mysql://mysql-master:3306/camunda?autoReconnect=true
+      - DB_URL=jdbc:mysql://mysql-master:3306/camunda?autoReconnect=true&nullCatalogMeansCurrent=true
       - DB_USERNAME=root
       - DB_PASSWORD=XLrootJYD713
       - TZ=Asia/Shanghai

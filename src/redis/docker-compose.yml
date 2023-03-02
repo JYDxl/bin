@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 services:
   redis:
@@ -10,7 +10,7 @@ services:
     networks:
       - backend
     ports:
-      - "6379:6379"
+      - '6379:6379'
     volumes:
       - /opt/volumes/redis:/bitnami/redis/data
 
