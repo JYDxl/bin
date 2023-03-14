@@ -4,7 +4,7 @@
   "avatar": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAZiS0dEAAAAAAAA+UO7fwAAAAlwSFlzAAAASAAAAEgARslrPgAAD+1JREFUeNrtnHlclGXXx39nhkXNHBYxs6dUBLQUc8sWTR8lE+1xiVAEsxTQgWHYU3Iry9zSQXaGFCWf0lQycSv3qDRNzZ7cnUHNFRWGARVDZ+a8f+D4ft7h5XMPDMygz3z/hOtc97mvOfd1n+26ATt27NixY8eOHTt27Nix818E2VoBa9PqlcxAdZyXl9hXNNQw1M+Pe6GtaLujIw3Re+Lk3r1lXvKuXjtOnLC1ntbisTcAV5fMwCJ1//48hwYZDDExtBU/Iy0gAIcxALFisel4vo5cpO7bh685Ali0SDtJFu6VvmULQETEbOv7aWgeIwP4mJlFIpeVbZaro996C+3oGhQzZtA4tMbFV16p97RLsB27VCpewDn4JDOz5Yiq0c2mfvHF5aUJB55NvHvX1ndtKY+sAbgNS/NXyVu14nmOT9GdyZPhx3/wSzExAKQY8txzghO8jGT6SKPhIKSz+717lIDziG3bVkiMk9ERqcXFeIEm0LX0dEOs44QqUiorDoQv7Zqv0dh6XerKI2MArWfk5Jxq/vTT+nm6KQ6VUin6UjaiY2KgBhDr6io4QWccJsWFC1zC83ljSopzx8odleOXL7++s72zw1/377sE3Wzv7DduHFKoC3efNo1ewGq06dpVcN6ZaA9xVRVOQIYD69aJ/hTPMFTMn196RCrtHHH6tK3XTYgmawASzgw8u7ZHD1EoHSJ9QgKcIaVPx43DWrjwZkdHwQkC8SvaHT3KFRxFq1JStGtvvHwpYvVq4BMaRDpd7YLMzERuf2ZnqUL8/DgImaIrsbEohpxz//Uvwet6whfbDAZUQkrfbtuGXrSJWixcWPZ1pFenH/bts/W6mtIEDMDCBXdFJlTM/BaiqGD3bvRiR3ZMS9NOiprsnbF5c0NpKcnP/lQl79lTtJVz8Vp8PO7gGK0ODsZOfMVLHRwEJ5gDYO+RI7yfe5E+Lc18g2xcbGAAaf4qubOzS5B4DnUNCsIsSuTgpCQagPG4+cILguKR+Iy63LuHa3Dkf69di5mGbZS3aJG1wzcJZ/Mp7tCByjnbsX9EBHXEUf44IgJAT3SUSAQn6EfTKfz8eT5tOMNnUlP/95U09b0XFXfuWOs+Gt0AWvZI81fJPTwcHR1GAqGhvBSBdCQmhkYgn1e1ayckz6UYCKeKClqL/vR7Xh6t0r3Muxcv1nwf84N3xuXL1looIYxOqUElzkP+pEnYTEuoaupUeg2e/Nszz5gxxVGcLy9HFvLpzpdfWus+G9wAHiZaYmk3BkZHswsm8+7wcApBB8S2aCE4wQNnDXr0YQelEiqxSBSnVJZppRGdvMrLG2shGp51a08EOjnV27k03encyUcU9/nnZUsid3a6cfx4Q2lpsQHUNdFSg4EYTm/+8Qc7czGmLV3aVN6NDY+Fvo5xlgZOVNXBAKoTLa6uTxWqHceNg4yC8UtiIrJ4Ntx79RIUNzprezAG2374gf9N+0Trliwpnx25s9ONPXus9Cs0OdwDMneee/Gll/RB6Kef+sEHtJxCceCdd8x+gIzRzkxajCSFQtvB/Sev9G++AcaOJdLrhcQFDaA9r+Tz3KxZxfK7wbrorVsxDQMQO3iwoGLGLawfvY6U1auxFxqaq1A09Bb2uCGZmx5+5qWOHUWO4imiu/HxPIiGU+fQUPLnT3nhE08IyfMxdEbh/v3iI86H9fD3Lx0VltQl/Nat2sYLGoBLSVZftfP06eSNiXx8/vxaB7pRHLZrtXyEU2hNTo64UN9ONyktrXRU9Ogu4Vev2nphH1VavbI8/kSgm5sopirCeVhkJKroHB+Vy4Uyl9yFzsBj6VLtr5Gp3i4JCbWNEzaA6KwstXTnTvoK4A/eeOPhBVTIo263blELDECLOXNEO509dIuXLROyODuWUh1Gu950LKRdEybwcS7ArYQECoCaf3z+eeMo/glfw+PkSa2vbJ+3S+1Op0jochSIYLSuqKjxd29M5ONPPokC5PL44GBDZdVCB/fhw4F165jNeHfZqReuLs6jRXHNmuESxuJViYQmowO/XTO6ouM4iVmVlULzCe4ArguzflOXDhuGLzCJD27dijJEwZtqlzMmOAzoa5ibkuJ8//aEuwW5udZOcDwuPPQJwsQ6sS4mhp1wEifDwh4+gLXAG+BF/5TLtYNkb3pdycysbZzZUYDrzezm6i7h4ezOh3m7QkHuKMS9Vq0EBR9U3dCNOvLh7GyHvwwSh7MZGTfXR+V3pOJiWy9wU8N1fLa6yL9fP3bgaWyIj6ercGKf0aMFo4IheJfidTqocI+nLF5cdjTS3WvEzJlC4WGd8wDuBbmLTi9/8kl94t/vi2eFhlIpDcVHCQkwtwxrkuCgYtEg7F+4UPN9RJ53xsmTtv4BrIdJ/8IQ8kSPDz8kX5zBwNdeE5J+6IPthArfrFzJRYZ00dDkZO0s+bueLf76y1wtGiATaGEjhpWKObamxoMDqkBgfDxKsQux7dsLyRv7EGgi+yM9J8fgQtlOF1NTy8tlsvbty8rqq1ej1QIszhDKaC5Kf/+d1Ybv6Ghq6qOWITS+uyla3EvsJJVSb4rjYKkUGk7BUBcXwQlqZEgd/tD2WbMGkEb0een+/YbS02rVQItrBE2kelYbEklWllrdu7coAIv4t9hYs8vFNt4BbdYPYGmVECbVM1EL/Upd6aJFjZ94suzdbdpBZGsfqAk0hBixsE/AdGFDeAdfXLBAMySqs8+Hp07VVytL392IQyia37zJsVhBQStWNLUMaRMyAFOqnzS3P5/KUoUMHmxpaxatRZThmdRUTXdZlM+aXbtqE7P43Z2EPrimVvNyfg5jMzKaT3UoeGLEsmXXpFJpu2XCiRlrU/c8QDLv5zZTppASE+nG4cP6pWIZv6FQVEyUSr0ziooaW+FWvyiXFy3s00fU1pBryE9MpBnYTm0DA81tzTIWS/g6VYpWLllCOkzSG0pK6G9WiQbHxeEzRHL5qFFmO6sJeBs/793LgZTP7yQna58vlnu32rYN+ISIDIbGWgePMZmB57ltW90ukadu58SJSOJAJLRrJ1ovPmqQZ2WZ25QqnAl0SS8uUvv6gsQbDPznnzUGGJ+0ZHSjGxs34io80UehKAuWlXm9vX9/Yy2AEYu7hc3FdEfpgI3cfd48zfcyH++MAwca+z5d1Rkn1G927coJIl+cSUigAdjMe8ePxzz8Bb2zs3Ec34QKe44f1zrIlnpLfX2F5hU0gCdWZQ8patOmjWNnHOXXz50zuyy5m8Oh/fVX0UyE4MvkZM33HmO90r/7ztw6dX2xOFFl1N8k0YJI8QLyVSiqO5MuXmws/Y1I/DPFRcv8/EhJsw3/SUykwViP4f7+Qql4/hL5uLt9u3akbI93d39/oeuY/Qpwq8zefNatb1/uzUmibrNnowVy+J3hw3EOxzBcJFhUwiiA+p07xy7Yjg0pKY5X2LEqZeXKm+uj8rvm377deEuZozx8yNHR5YJhtOTLsWOpgDege3w85gAY1Lv3w2EPwkw6ZpjGc9LT8YL+Z3ybm1vdk1ezGNbg+m3Sr5M4BwXRCqygUYmJKMQ23tGjh6D4gzASAdQOJZs2iZ1EgTppZGTJfKn0+bvXrgmJ19sJbJWXk6OSd+okdtZ/SH4xMXWN602bPav/umRJ9avj0qXGW/AH6+aSoyxSP/ccsvXT+Rizta5rukPhDO3FmsREao0y/OPZZwUnaOCu6AaLAiyO6x/cGLfBTD5VUCD+iX3EYxYvLt0QNcTzP4cONfQPYS1qtI/XMaqo0RU9ilYZwj7/XNMicoSP5soVS/VrxDDQwrjeuACP2Gldiw+QWLkr2op5gAbqik0kGVLPnkWeoRj5WVm2O61rYZ7CSL2PsDUMNk8EWXoGkGdhJnZcv04JrIFMqdTN4L66jPT0Wwvkh56PLi1tOE0t3NGaaNXT5gZgiqVxPX+GAhT9/Tcdxmlo1q+v72ndGj7NbOTTndhYeh+BPOPppwUnaCJH2IRocgZgisVxvZmndS2tVj4qR9hMMdsAXC5kF6vk48djB5eQ8r33sJKWccmJEw46/X7x+0plySH5Ic+Cs2cbX+XquNnVVd9F8uqYMXU+oPIAY0qYhiCaVmk0dc5rmHxvwLEn5Pf65+Y2fl7DSLUPIuG2UGPAAIBViO7RQzxcNB/YscPc6qIZBlDtvLmoslcXda+ooL4o5w0tWz78t/EJ64I1GLJlC1+BBlnJydofZd94ZxQWNv5CVGNxA4oQNj7C5jEmM/BEYMuW92U0xfnX99+nc8jkWbGx+ABD8Ya3t3Ecp1EijTh4UDsh8q7XaeGOLPOLQXOzrqlW7NmDZHyH1wcNEhSYA2DvkSMoYB1DoSjb4+BU0TM/v6E7WmrD4i29RvhpXWfNmKjiVfp1fFkup3j6hY9PniyYP+hJcnpx8+ayPZEGr8qRI4WuY7YBGN/FhjlVYeI206ejgtrhYmSk2QmNErji8qVLtA4y0qalVefWly2z1qnfhzWNj1BsyIuMxC+cgqtvvknbkYb7Hh4sokqc+PFHel2fQmdTU63trLlWKjerXV99lTfr/Tg9Lo6+JR19ExAgmD8w7sAhuA7Vpk0iL72DvkdUlLn9BvV2Ao1bkq4/DXZeGBLCTtAgIyGBZsCNozp3FpLn3yChgNu3cQHlLFq92mGGYaW4g0JhPV/CVph0FI0nJZCURE8hDLH9+gmKN3DjSwNGARa2Sj1i39YxF9MPR9Q5ipmLMly8cQNRPAODs7PvH3HIMeRkZNzuI43oHFFSYql+jR4G1miWvIxXsT8kxGznbA6a5Ld1aqNGkcyTxPgqLMzsMrqVM51WzwNIJFlZZ4M9PUVKzBSNjY2t6wIZy7a4zgvYNyfH1l8QsTT6sHWtw+aJoGpvVyLh1rrRhv4TJ9b12zrWKyv/30++0O90gdcmJqIEGizr3l1Q3DQz+J3+oKjv4sVl2ui2nbyOHbPV+tvcAGpi8m2dr2kti6ZOJQ94Y3C3boLiQdDSiPv3uQskvGnjRlErw7tcrFBoQuUSnwEHD5qrhTFqcErntw1jJ02ytG29qWYGm6AB/P8Yt1o8TSc5NCkJVSD+8K23BE8rP8C41YqeQihiUlM1Za09vLw3bDC2qLkEKT89c+7FFxFuaC16WybDTYxE2IQJFIVNGNa8uaCCYZgH16Ii3shH0C09vakdXKmNR8YATHlYd/+C/ZCYkABPFNKwoCCzq4gb4EX/PHWKsqDlyzduYBdKoB440GwF3kBreBUWsjtG4kpyslZ53dnrmS1bGrsbuKF5ZA3AlIdt0uuwXoeICAwjbwqJjsZBJPCnbm71ntjG3cCNzWNjAKbUSFTdIhmnJCaSgrMQ6+NTm5ytu4GtzWNrADX5mPeyg4Oruu0fzw4NCOCr/AT7BATQJopC32bNWMctyHP3bvEg59d0p/Py7N86smPHjh07duzYsWPHzuPJ/wApJVs9KysF1AAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMS0wNy0yNFQxODo1Njo1NyswODowMKIxoyIAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjEtMDctMjRUMTg6NTY6NTcrMDg6MDDTbBueAAAATnRFWHRzdmc6YmFzZS11cmkAZmlsZTovLy9ob21lL2FkbWluL2ljb24tZm9udC90bXAvaWNvbl92OHRlMHJhZDF2ZC9nb25nY2hlbmdfMS5zdmdKgq7UAAAAAElFTkSuQmCC",
   "version": "4.4.0",
   "createdTime": "2023-3-13 15:38:42",
-  "updatedTime": "2023-3-13 17:28:15",
+  "updatedTime": "2023-3-14 17:13:39",
   "dbConns": [],
   "profile": {
     "default": {
@@ -344,7 +344,7 @@
       {
         "type": "dbDDL",
         "applyFor": "dictSQLTemplate",
-        "content": "/* 插入字典总表[{{=it.dict.defKey}}-{{=it.dict.defName}}] */\nINSERT INTO SYS_DICT(KEY_,LABEL,INTRO,REVISION) VALUES('{{=it.dict.defKey}}','{{=it.dict.defName}}','{{=it.dict.intro}}',1);\n/* 插入字典明细表 */\n{{~it.dict.items:item:index}}\nINSERT INTO SYS_DICT_ITEM(DICT_KEY,KEY_,LABEL,SORT_,INTRO,REVISION) VALUES('{{=it.dict.defKey}}','{{=item.defKey}}','{{=item.defName}}','{{=item.sort}}','{{=item.intro}}',1);\n{{~}}"
+        "content": "/* 插入字典总表[{{=it.dict.defKey}}-{{=it.dict.defName}}] */\r\nINSERT INTO T_SYS_DICT(DICT_CODE,DICT_NAME,DICT_INFO,REVISION) VALUES('{{=it.dict.defKey}}','{{=it.dict.defName}}','{{=it.dict.intro}}',1);\r\n/* 插入字典明细表 */\r\n{{~it.dict.items:item:index}}\r\nINSERT INTO T_SYS_DICT_ITEM(DICT_CODE,ITEM_CODE,ITEM_NAME,SORT,ITEM_INFO,REVISION) VALUES('{{=it.dict.defKey}}','{{=item.defKey}}','{{=item.defName}}','{{=item.defKey}}','{{=item.intro}}',1);\r\n{{~}}"
       },
       {
         "applyFor": "81CCA482-3F4D-4EAC-8CF9-F5E7BC098AD2",
@@ -628,6 +628,23 @@
           "id": "88D0629F-57AC-4607-8D5E-3E30A1B8819A"
         },
         {
+          "defKey": "SECRET_KEY",
+          "defName": "秘钥",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "9092C4E0-1A54-4859-ABBB-5B62DBC27573",
+          "id": "96A4343B-B85A-48BE-8FC6-344D755C5A7F"
+        },
+        {
           "defKey": "USER_PWD",
           "defName": "用户密码",
           "comment": "",
@@ -671,7 +688,7 @@
           "primaryKey": false,
           "notNull": true,
           "autoIncrement": false,
-          "defaultValue": "",
+          "defaultValue": "1",
           "hideInGraph": false,
           "refDict": "527E4BB3-F0F2-49CC-A4AE-B56E43F16B2F",
           "extProps": {},
@@ -2023,6 +2040,23 @@
           "id": "63ABAC64-3C15-43BC-A02C-B20509A44E35"
         },
         {
+          "defKey": "ENABLED",
+          "defName": "启用状态",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "1",
+          "hideInGraph": false,
+          "refDict": "45B07005-8F35-4A14-A537-36D4AC770029",
+          "extProps": {},
+          "domain": "54611CCC-CA4B-42E1-9F32-4944C85B85A6",
+          "id": "41DDFF74-B641-4B9C-B49B-722DBB4DC474"
+        },
+        {
           "defKey": "TENANT_ID",
           "defName": "租户号",
           "comment": "",
@@ -2630,11 +2664,11 @@
       "id": "527E4BB3-F0F2-49CC-A4AE-B56E43F16B2F",
       "items": [
         {
-          "defKey": "normal",
+          "defKey": "1",
           "defName": "正常",
-          "sort": "1",
+          "sort": "",
           "parentKey": "",
-          "intro": "",
+          "intro": "Normal",
           "enabled": true,
           "attr1": "",
           "attr2": "",
@@ -2642,11 +2676,11 @@
           "id": "5C44151C-24A9-4986-8A02-BED9E1F1AAA4"
         },
         {
-          "defKey": "disabled",
+          "defKey": "2",
           "defName": "禁用",
-          "sort": "2",
+          "sort": "",
           "parentKey": "",
-          "intro": "",
+          "intro": "Disabled",
           "enabled": true,
           "attr1": "",
           "attr2": "",
@@ -2663,11 +2697,11 @@
       "id": "45B07005-8F35-4A14-A537-36D4AC770029",
       "items": [
         {
-          "defKey": "False",
+          "defKey": "0",
           "defName": "否",
-          "sort": "0",
+          "sort": "",
           "parentKey": "",
-          "intro": "",
+          "intro": "N",
           "enabled": true,
           "attr1": "",
           "attr2": "",
@@ -2675,11 +2709,11 @@
           "id": "B50007CE-DEFD-423D-8290-E1E62465C7F3"
         },
         {
-          "defKey": "True",
+          "defKey": "1",
           "defName": "是",
-          "sort": "1",
+          "sort": "",
           "parentKey": "",
-          "intro": "",
+          "intro": "Y",
           "enabled": true,
           "attr1": "",
           "attr2": "",
