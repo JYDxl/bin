@@ -64,6 +64,28 @@ services:
       - MYSQL_CHARACTER_SET=utf8mb4
       - MYSQL_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai
+  mysql-worker3:
+    image: bitnami/mysql:8.0.32
+    container_name: mysql-worker3
+    networks:
+      - backend
+    ports:
+      - '3309:3306'
+    depends_on:
+      - mysql-master
+    volumes:
+      - ../conf/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
+      - /opt/volumes/mysql-worker3:/bitnami/mysql/data
+    environment:
+      - MYSQL_REPLICATION_MODE=slave
+      - MYSQL_REPLICATION_USER=repl_user
+      - MYSQL_REPLICATION_PASSWORD=XLrootJYD713
+      - MYSQL_MASTER_HOST=mysql-master
+      - MYSQL_MASTER_PORT_NUMBER=3306
+      - MYSQL_MASTER_ROOT_PASSWORD=XLrootJYD713
+      - MYSQL_CHARACTER_SET=utf8mb4
+      - MYSQL_COLLATE=utf8mb4_unicode_ci
+      - TZ=Asia/Shanghai
 
 networks:
   backend:

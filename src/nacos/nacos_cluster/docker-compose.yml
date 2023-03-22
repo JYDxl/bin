@@ -8,7 +8,6 @@ services:
       - backend
     volumes:
       - /opt/volumes/nacos-node1/logs:/home/nacos/logs
-      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
     ports:
       - "8848:8848"
       - "9848:9848"
@@ -23,7 +22,26 @@ services:
       - backend
     volumes:
       - /opt/volumes/nacos-node2/logs:/home/nacos/logs
-      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
+    env_file:
+      - ./env/nacos-hostname.env
+
+  nacos-node3:
+    image: nacos/nacos-server:v2.2.0
+    container_name: nacos-node3
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/nacos-node3/logs:/home/nacos/logs
+    env_file:
+      - ./env/nacos-hostname.env
+
+  nacos-node4:
+    image: nacos/nacos-server:v2.2.0
+    container_name: nacos-node4
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/nacos-node4/logs:/home/nacos/logs
     env_file:
       - ./env/nacos-hostname.env
 
