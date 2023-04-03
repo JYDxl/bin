@@ -1,69 +1,69 @@
 version: '3'
-
 services:
+
   hdfs-namenode:
-    image: gradiant/hdfs:3.2.2
     container_name: hdfs-namenode
-    environment:
-      - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/hdfs-namenode:/hadoop/dfs
-    command:
-      - namenode
+    image: gradiant/hdfs:3.2.2
     ports:
       - '8020:8020'
       - '50070:50070'
       - '9870:9870'
     networks:
       - backend
-  hdfs-datanode-1:
+    volumes:
+      - /opt/volumes/hdfs-namenode:/hadoop/dfs
+    environment:
+      - TZ=Asia/Shanghai
+    command:
+      - namenode
+  hdfs-datanode1:
+    container_name: hdfs-datanode1
     image: gradiant/hdfs:3.2.2
-    container_name: hdfs-datanode-1
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/hdfs-datanode1:/hadoop/dfs
     environment:
       - CORE_CONF_fs_defaultFS=hdfs://hdfs-namenode:8020
       - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/hdfs-datanode-1:/hadoop/dfs
     command:
       - datanode
+  hdfs-datanode2:
+    container_name: hdfs-datanode2
+    image: gradiant/hdfs:3.2.2
     networks:
       - backend
-  hdfs-datanode-2:
-    image: gradiant/hdfs:3.2.2
-    container_name: hdfs-datanode-2
+    volumes:
+      - /opt/volumes/hdfs-datanode2:/hadoop/dfs
     environment:
       - CORE_CONF_fs_defaultFS=hdfs://hdfs-namenode:8020
       - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/hdfs-datanode-2:/hadoop/dfs
     command:
       - datanode
+  hdfs-datanode3:
+    container_name: hdfs-datanode3
+    image: gradiant/hdfs:3.2.2
     networks:
       - backend
-  hdfs-datanode-3:
-    image: gradiant/hdfs:3.2.2
-    container_name: hdfs-datanode-3
+    volumes:
+      - /opt/volumes/hdfs-datanode3:/hadoop/dfs
     environment:
       - CORE_CONF_fs_defaultFS=hdfs://hdfs-namenode:8020
       - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/hdfs-datanode-3:/hadoop/dfs
     command:
       - datanode
+  hdfs-datanode4:
+    container_name: hdfs-datanode4
+    image: gradiant/hdfs:3.2.2
     networks:
       - backend
-  hdfs-datanode-4:
-    image: gradiant/hdfs:3.2.2
-    container_name: hdfs-datanode-4
+    volumes:
+      - /opt/volumes/hdfs-datanode4:/hadoop/dfs
     environment:
       - CORE_CONF_fs_defaultFS=hdfs://hdfs-namenode:8020
       - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/hdfs-datanode-4:/hadoop/dfs
     command:
       - datanode
-    networks:
-      - backend
 
 networks:
   backend:

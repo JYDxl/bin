@@ -1,18 +1,18 @@
 version: '3'
-
 services:
-  mongodb:
-    container_name: mongodb
+
+  mongodb-node:
+    container_name: mongodb-node
     image: bitnami/mongodb:6.0.5
+    ports:
+      - '27017:27017'
     networks:
       - backend
+    volumes:
+      - /opt/volumes/mongodb-node:/bitnami/mongodb
     environment:
       - MONGODB_ROOT_PASSWORD=XLrootJYD713
       - TZ=Asia/Shanghai
-    ports:
-      - '27017:27017'
-    volumes:
-      - /opt/volumes/mongodb:/bitnami/mongodb
 
 networks:
   backend:

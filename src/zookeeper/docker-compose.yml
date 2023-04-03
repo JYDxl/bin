@@ -1,15 +1,15 @@
 version: '3'
-
 services:
-  zookeeper:
-    container_name: zookeeper
+
+  zookeeper-node:
+    container_name: zookeeper-node
     image: bitnami/zookeeper:3.8.1
     networks:
       - backend
     ports:
       - '2181:2181'
     volumes:
-      - /opt/volumes/zookeeper:/bitnami/zookeeper
+      - /opt/volumes/zookeeper-node:/bitnami/zookeeper
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
       - TZ=Asia/Shanghai

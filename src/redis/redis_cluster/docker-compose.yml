@@ -8,7 +8,7 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - /opt/volumes/redis-node1:/bitnami/redis/data
+      - /opt/volumes/redis-node1:/bitnami/redis
     environment:
       - REDIS_PASSWORD=XLrootJYD713
       - REDIS_NODES=redis-node1 redis-node2
@@ -22,7 +22,7 @@ services:
     ports:
       - "6380:6379"
     volumes:
-      - /opt/volumes/redis-node2:/bitnami/redis/data
+      - /opt/volumes/redis-node2:/bitnami/redis
     environment:
       - REDIS_PASSWORD=XLrootJYD713
       - REDIS_NODES=redis-node1 redis-node2

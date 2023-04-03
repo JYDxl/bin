@@ -1,6 +1,6 @@
 version: '3'
-
 services:
+
   starrocks:
     image: centos:7.9.2009
     container_name: starrocks

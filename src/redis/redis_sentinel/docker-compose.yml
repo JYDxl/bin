@@ -1,6 +1,6 @@
-version: "3"
-
+version: '3'
 services:
+
   redis-master:
     image: bitnami/redis:7.0.10
     container_name: redis-master
@@ -13,7 +13,7 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - /opt/volumes/redis-master:/bitnami/redis/data
+      - /opt/volumes/redis-master:/bitnami/redis
   redis-worker:
     image: bitnami/redis:7.0.10
     container_name: redis-worker
@@ -30,7 +30,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/redis-worker:/bitnami/redis/data
+      - /opt/volumes/redis-worker:/bitnami/redis
   redis-sentinel:
     image: bitnami/redis-sentinel:7.0.10
     container_name: redis-sentinel

@@ -1,6 +1,6 @@
 version: '3'
-
 services:
+
   seata:
     image: seataio/seata-server:1.6.1
     container_name: seata

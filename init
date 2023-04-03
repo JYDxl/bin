@@ -14,7 +14,7 @@ $set_app = Set[
 :elasticsearch, :elasticsearch_cluster,
 :clickhouse, :clickhouse_cluster,
 :flink, :flink_cluster,
-:zookeeper,
+:zookeeper, :zookeeper_cluster,
 :kafka, :kafka_cluster,
 :nacos, :nacos_cluster,
 :logstash,

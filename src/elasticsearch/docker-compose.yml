@@ -1,20 +1,19 @@
 version: '3'
-
 services:
-  elasticsearch:
+
+  elasticsearch-node:
+    container_name: elasticsearch-node
     image: bitnami/elasticsearch:7.17.7
-    container_name: elasticsearch
-    hostname: elasticsearch
-    environment:
-      - TZ=Asia/Shanghai
-    volumes:
-      - ./plugins/elasticsearch-analysis-ik-7.17.7.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.17.7.zip
-      - /opt/volumes/elasticsearch:/bitnami/elasticsearch/data
     ports:
       - '9200:9200'
       - '9300:9300'
     networks:
       - backend
+    volumes:
+      - ./plugins/elasticsearch-analysis-ik-7.17.7.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.17.7.zip
+      - /opt/volumes/elasticsearch-node:/bitnami/elasticsearch
+    environment:
+      - TZ=Asia/Shanghai
 
 networks:
   backend:

@@ -1,6 +1,6 @@
 version: '3'
-
 services:
+
   postgresql:
     image: bitnami/postgresql:15.2.0
     container_name: postgresql

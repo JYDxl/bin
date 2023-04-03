@@ -1,21 +1,21 @@
 version: '3'
-
 services:
+
   minio-node:
-    image: bitnami/minio:2023.3.24
     container_name: minio-node
-    networks:
-      - backend
+    image: bitnami/minio:2023.3.24
     ports:
       - '9000:9000'
       - '9001:9001'
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/minio-node:/data
     environment:
       - MINIO_ROOT_USER=minio
       - MINIO_ROOT_PASSWORD=XLrootJYD713
       - TZ=Asia/Shanghai
       - MINIO_DEFAULT_BUCKETS=public:public
-    volumes:
-      - /opt/volumes/minio-node:/data
 
 networks:
   backend:

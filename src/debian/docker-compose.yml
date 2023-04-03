@@ -1,6 +1,6 @@
 version: '3'
-
 services:
+
   debian:
     image: debian:bullseye-20230320
     container_name: debian

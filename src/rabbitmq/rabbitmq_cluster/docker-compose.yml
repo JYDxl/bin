@@ -1,11 +1,18 @@
 version: '3'
-
 services:
+
   rabbitmq-stats:
-    image: bitnami/rabbitmq:3.11.11
     container_name: rabbitmq-stats
+    image: bitnami/rabbitmq:3.11.11
+    ports:
+      - '4369:4369'
+      - '5672:5672'
+      - '25672:25672'
+      - '15672:15672'
     networks:
       - backend
+    volumes:
+      - /opt/volumes/rabbitmq-stats:/bitnami/rabbitmq
     environment:
       - RABBITMQ_USERNAME=root
       - RABBITMQ_PASSWORD=XLrootJYD713
@@ -13,18 +20,13 @@ services:
       - RABBITMQ_NODE_NAME=rabbit@rabbitmq-stats
       - RABBITMQ_ERL_COOKIE=XLrootJYD713
       - TZ=Asia/Shanghai
-    ports:
-      - '4369:4369'
-      - '5672:5672'
-      - '25672:25672'
-      - '15672:15672'
-    volumes:
-      - /opt/volumes/rabbitmq-stats:/bitnami/rabbitmq/mnesia
   rabbitmq-disc:
-    image: bitnami/rabbitmq:3.11.11
     container_name: rabbitmq-disc
+    image: bitnami/rabbitmq:3.11.11
     networks:
       - backend
+    volumes:
+      - /opt/volumes/rabbitmq-disc:/bitnami/rabbitmq
     environment:
       - RABBITMQ_USERNAME=root
       - RABBITMQ_PASSWORD=XLrootJYD713
@@ -33,13 +35,13 @@ services:
       - RABBITMQ_CLUSTER_NODE_NAME=rabbit@rabbitmq-stats
       - RABBITMQ_ERL_COOKIE=XLrootJYD713
       - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/rabbitmq-disc:/bitnami/rabbitmq/mnesia
   rabbitmq-ram:
-    image: bitnami/rabbitmq:3.11.11
     container_name: rabbitmq-ram
+    image: bitnami/rabbitmq:3.11.11
     networks:
       - backend
+    volumes:
+      - /opt/volumes/rabbitmq-ram:/bitnami/rabbitmq
     environment:
       - RABBITMQ_USERNAME=root
       - RABBITMQ_PASSWORD=XLrootJYD713
@@ -48,8 +50,6 @@ services:
       - RABBITMQ_CLUSTER_NODE_NAME=rabbit@rabbitmq-stats
       - RABBITMQ_ERL_COOKIE=XLrootJYD713
       - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/rabbitmq-ram:/bitnami/rabbitmq/mnesia
 
 networks:
   backend:

@@ -1,6 +1,6 @@
 version: '3'
-
 services:
+
   xxl_job_admin:
     image: xuxueli/xxl-job-admin:2.4.0
     container_name: xxl_job_admin

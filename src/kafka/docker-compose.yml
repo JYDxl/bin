@@ -1,27 +1,27 @@
 version: '3'
 services:
 
-  kafka:
+  kafka-node:
     container_name: kafka-node
     image: bitnami/kafka:3.4.0
-    networks:
-      - backend
     ports:
       - '9092:9092'
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/kafka-node:/bitnami/kafka
     environment:
       - KAFKA_ENABLE_KRAFT=yes
       - KAFKA_CFG_PROCESS_ROLES=broker,controller
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_LISTENERS=CONTROLLER://:9093,CLIENT://:9094,EXTERNAL://0.0.0.0:9092
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
-      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka-node:9093
       - ALLOW_PLAINTEXT_LISTENER=yes
       - KAFKA_BROKER_ID=1
-      - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:9094,EXTERNAL://192.168.196.100:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka-node:9094,EXTERNAL://192.168.196.100:9092
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=CLIENT
       - TZ=Asia/Shanghai
-    volumes:
-      - /opt/volumes/kafka:/bitnami/kafka
 
 networks:
   backend:

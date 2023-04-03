@@ -1,16 +1,16 @@
 version: '3'
-
 services:
+
   mysql-master:
-    image: bitnami/mysql:8.0.32
     container_name: mysql-master
-    networks:
-      - backend
+    image: bitnami/mysql:8.0.32
     ports:
       - '3306:3306'
+    networks:
+      - backend
     volumes:
       - ../conf/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
-      - /opt/volumes/mysql-master:/bitnami/mysql/data
+      - /opt/volumes/mysql-master:/bitnami/mysql
     environment:
       - MYSQL_REPLICATION_MODE=master
       - MYSQL_REPLICATION_USER=repl_user
@@ -20,18 +20,18 @@ services:
       - MYSQL_CHARACTER_SET=utf8mb4
       - MYSQL_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai
-  mysql-worker1:
+  mysql-node1:
+    container_name: mysql-node1
     image: bitnami/mysql:8.0.32
-    container_name: mysql-worker1
-    networks:
-      - backend
     ports:
       - '3307:3306'
+    networks:
+      - backend
     depends_on:
       - mysql-master
     volumes:
       - ../conf/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
-      - /opt/volumes/mysql-worker1:/bitnami/mysql/data
+      - /opt/volumes/mysql-node1:/bitnami/mysql
     environment:
       - MYSQL_REPLICATION_MODE=slave
       - MYSQL_REPLICATION_USER=repl_user
@@ -42,18 +42,18 @@ services:
       - MYSQL_CHARACTER_SET=utf8mb4
       - MYSQL_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai
-  mysql-worker2:
+  mysql-node2:
+    container_name: mysql-node2
     image: bitnami/mysql:8.0.32
-    container_name: mysql-worker2
-    networks:
-      - backend
     ports:
       - '3308:3306'
+    networks:
+      - backend
     depends_on:
       - mysql-master
     volumes:
       - ../conf/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
-      - /opt/volumes/mysql-worker2:/bitnami/mysql/data
+      - /opt/volumes/mysql-node2:/bitnami/mysql
     environment:
       - MYSQL_REPLICATION_MODE=slave
       - MYSQL_REPLICATION_USER=repl_user
@@ -64,18 +64,18 @@ services:
       - MYSQL_CHARACTER_SET=utf8mb4
       - MYSQL_COLLATE=utf8mb4_unicode_ci
       - TZ=Asia/Shanghai
-  mysql-worker3:
+  mysql-node3:
+    container_name: mysql-node3
     image: bitnami/mysql:8.0.32
-    container_name: mysql-worker3
-    networks:
-      - backend
     ports:
       - '3309:3306'
+    networks:
+      - backend
     depends_on:
       - mysql-master
     volumes:
       - ../conf/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
-      - /opt/volumes/mysql-worker3:/bitnami/mysql/data
+      - /opt/volumes/mysql-node3:/bitnami/mysql
     environment:
       - MYSQL_REPLICATION_MODE=slave
       - MYSQL_REPLICATION_USER=repl_user

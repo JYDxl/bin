@@ -1,0 +1,49 @@
+version: '3'
+services:
+
+  zookeeper-node1:
+    container_name: zookeeper-node1
+    image: bitnami/zookeeper:3.8.1
+    ports:
+      - '2181:2181'
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/zookeeper-node1:/bitnami/zookeeper
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+      - TZ=Asia/Shanghai
+      - ZOO_SERVER_ID=1
+      - ZOO_SERVERS=zookeeper-node1:2888:3888,zookeeper-node2:2888:3888,zookeeper-node3:2888:3888
+  zookeeper-node2:
+    container_name: zookeeper-node2
+    image: bitnami/zookeeper:3.8.1
+    ports:
+      - '2182:2181'
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/zookeeper-node2:/bitnami/zookeeper
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+      - TZ=Asia/Shanghai
+      - ZOO_SERVER_ID=2
+      - ZOO_SERVERS=zookeeper-node1:2888:3888,zookeeper-node2:2888:3888,zookeeper-node3:2888:3888
+  zookeeper-node3:
+    container_name: zookeeper-node3
+    image: bitnami/zookeeper:3.8.1
+    ports:
+      - '2183:2181'
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/zookeeper-node3:/bitnami/zookeeper
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+      - TZ=Asia/Shanghai
+      - ZOO_SERVER_ID=3
+      - ZOO_SERVERS=zookeeper-node1:2888:3888,zookeeper-node2:2888:3888,zookeeper-node3:2888:3888
+
+networks:
+  backend:
+    external: true
