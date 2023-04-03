@@ -1,14 +1,15 @@
-version: '3'
+version: "3"
 services:
 
-  seata:
+  seata-server:
+    container_name: seata-server
     image: seataio/seata-server:1.6.1
-    container_name: seata
     ports:
-      - '7091:7091'
-      - '8091:8091'
-    networks:
-      - backend
+      - "8091:8091"
+      - "7091:7091"
+    environment:
+      - SEATA_PORT=8091
+      - STORE_MODE=file
 
 networks:
   backend:

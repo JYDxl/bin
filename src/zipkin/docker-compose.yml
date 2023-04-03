@@ -1,17 +1,20 @@
 version: '3'
 services:
 
-  zipkin:
+  zipkin-node:
+    container_name: zipkin-node
     build: ctx
-    container_name: zipkin
     ports:
       - '9411:9411'
-    environment:
-      - RABBIT_ADDRESSES=rabbitmq-stats:5672
-      - RABBIT_USER=root
-      - RABBIT_PASSWORD=XLrootJYD713
     networks:
       - backend
+    environment:
+      - STORAGE_TYPE=mysql
+      - MYSQL_DB=zipkin
+      - MYSQL_USER=root
+      - MYSQL_PASS=XLrootJYD713
+      - MYSQL_HOST=mysql-master
+      - MYSQL_TCP_PORT=3306
 
 networks:
   backend:
