@@ -3,14 +3,14 @@ services:
 
   nacos-node:
     container_name: nacos-node
-    image: nacos/nacos-server:v2.2.1
+    image: nacos/nacos-server:v2.2.0
     ports:
       - '8848:8848'
       - '9848:9848'
     networks:
       - backend
     volumes:
-      - /opt/volumes/nacos-node:/home/nacos
+      - /opt/volumes/nacos-node/logs:/home/nacos/logs
     env_file:
       - ./env/nacos-hostname.env
 
