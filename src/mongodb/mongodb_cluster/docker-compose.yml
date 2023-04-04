@@ -1,68 +1,81 @@
 version: '3'
 services:
 
-  mongodb-sharded:
-    container_name: mongodb-sharded
-    image: bitnami/mongodb-sharded:6.0.5
-    networks:
-      - backend
-    environment:
-      - MONGODB_ADVERTISED_HOSTNAME=mongodb-sharded
-      - MONGODB_SHARDING_MODE=mongos
-      - MONGODB_CFG_PRIMARY_HOST=mongodb-cfg
-      - MONGODB_CFG_REPLICA_SET_NAME=cfgreplicaset
-      - MONGODB_REPLICA_SET_KEY=replicasetkey
-      - MONGODB_ROOT_PASSWORD=XLrootJYD713
-      - TZ=Asia/Shanghai
+  mongodb-primary:
+    container_name: mongodb-primary
+    image: bitnami/mongodb:6.0.5
     ports:
       - '27017:27017'
-  mongodb-shard1:
-    container_name: mongodb-shard1
-    image: bitnami/mongodb-sharded:6.0.5
     networks:
       - backend
-    environment:
-      - MONGODB_ADVERTISED_HOSTNAME=mongodb-shard1
-      - MONGODB_SHARDING_MODE=shardsvr
-      - MONGODB_MONGOS_HOST=mongodb-sharded
-      - MONGODB_ROOT_PASSWORD=XLrootJYD713
-      - MONGODB_REPLICA_SET_MODE=primary
-      - MONGODB_REPLICA_SET_KEY=replicasetkey
-      - MONGODB_REPLICA_SET_NAME=shard1
-      - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/mongodb-shard1:/bitnami/mongodb
-  mongodb-shard2:
-    container_name: mongodb-shard2
-    image: bitnami/mongodb-sharded:6.0.5
+      - /opt/volumes/mongodb-primary:/bitnami/mongodb
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-primary
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_ROOT_PASSWORD=XLrootJYD713
+      - MONGODB_REPLICA_SET_KEY=replicasetkey
+      - TZ=Asia/Shanghai
+  mongodb-secondary1:
+    container_name: mongodb-secondary1
+    image: bitnami/mongodb:6.0.5
     networks:
       - backend
-    environment:
-      - MONGODB_ADVERTISED_HOSTNAME=mongodb-shard2
-      - MONGODB_SHARDING_MODE=shardsvr
-      - MONGODB_MONGOS_HOST=mongodb-sharded
-      - MONGODB_ROOT_PASSWORD=XLrootJYD713
-      - MONGODB_REPLICA_SET_MODE=primary
-      - MONGODB_REPLICA_SET_KEY=replicasetkey
-      - MONGODB_REPLICA_SET_NAME=shard2
-      - TZ=Asia/Shanghai
+    depends_on:
+      - mongodb-primary
     volumes:
-      - /opt/volumes/mongodb-shard2:/bitnami/mongodb
-  mongodb-cfg:
-    container_name: mongodb-cfg
-    image: bitnami/mongodb-sharded:6.0.5
+      - /opt/volumes/mongodb-secondary1:/bitnami/mongodb
+    environment:
+      - MONGODB_REPLICA_SET_MODE=secondary
+      - MONGODB_INITIAL_PRIMARY_HOST=mongodb-primary
+      - MONGODB_INITIAL_PRIMARY_PORT_NUMBER=27017
+      - MONGODB_INITIAL_PRIMARY_ROOT_PASSWORD=XLrootJYD713
+      - MONGODB_REPLICA_SET_KEY=replicasetkey
+      - TZ=Asia/Shanghai
+  mongodb-secondary2:
+    container_name: mongodb-secondary2
+    image: bitnami/mongodb:6.0.5
     networks:
       - backend
-    environment:
-      - MONGODB_ADVERTISED_HOSTNAME=mongodb-cfg
-      - MONGODB_SHARDING_MODE=configsvr
-      - MONGODB_ROOT_PASSWORD=XLrootJYD713
-      - MONGODB_REPLICA_SET_MODE=primary
-      - MONGODB_REPLICA_SET_KEY=replicasetkey
-      - MONGODB_REPLICA_SET_NAME=cfgreplicaset
-      - TZ=Asia/Shanghai
+    depends_on:
+      - mongodb-primary
     volumes:
-      - /opt/volumes/mongodb-cfg:/bitnami/mongodb
+      - /opt/volumes/mongodb-secondary2:/bitnami/mongodb
+    environment:
+      - MONGODB_REPLICA_SET_MODE=secondary
+      - MONGODB_INITIAL_PRIMARY_HOST=mongodb-primary
+      - MONGODB_INITIAL_PRIMARY_PORT_NUMBER=27017
+      - MONGODB_INITIAL_PRIMARY_ROOT_PASSWORD=XLrootJYD713
+      - MONGODB_REPLICA_SET_KEY=replicasetkey
+      - TZ=Asia/Shanghai
+  mongodb-secondary3:
+    container_name: mongodb-secondary3
+    image: bitnami/mongodb:6.0.5
+    networks:
+      - backend
+    depends_on:
+      - mongodb-primary
+    volumes:
+      - /opt/volumes/mongodb-secondary3:/bitnami/mongodb
+    environment:
+      - MONGODB_REPLICA_SET_MODE=secondary
+      - MONGODB_INITIAL_PRIMARY_HOST=mongodb-primary
+      - MONGODB_INITIAL_PRIMARY_PORT_NUMBER=27017
+      - MONGODB_INITIAL_PRIMARY_ROOT_PASSWORD=XLrootJYD713
+      - MONGODB_REPLICA_SET_KEY=replicasetkey
+      - TZ=Asia/Shanghai
+  mongodb-arbiter:
+    container_name: mongodb-arbiter
+    image: bitnami/mongodb:6.0.5
+    depends_on:
+      - mongodb-primary
+    environment:
+      - MONGODB_REPLICA_SET_MODE=arbiter
+      - MONGODB_INITIAL_PRIMARY_HOST=mongodb-primary
+      - MONGODB_INITIAL_PRIMARY_PORT_NUMBER=27017
+      - MONGODB_INITIAL_PRIMARY_ROOT_PASSWORD=XLrootJYD713
+      - MONGODB_REPLICA_SET_KEY=replicasetkey
+      - TZ=Asia/Shanghai
 
 networks:
   backend:

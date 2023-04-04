@@ -9,12 +9,8 @@ services:
     networks:
       - backend
     environment:
-      - STORAGE_TYPE=mysql
-      - MYSQL_DB=zipkin
-      - MYSQL_USER=root
-      - MYSQL_PASS=XLrootJYD713
-      - MYSQL_HOST=mysql-master
-      - MYSQL_TCP_PORT=3306
+      - STORAGE_TYPE=elasticsearch
+      - ES_HOSTS=http://elasticsearch-node1:9200
 
 networks:
   backend:

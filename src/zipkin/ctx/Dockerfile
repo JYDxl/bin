@@ -1,4 +1,4 @@
-FROM openzipkin/zipkin:2.24.0
+FROM openzipkin/zipkin-slim:2.24.0
 
 USER root
 
