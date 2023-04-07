@@ -7,7 +7,8 @@ services:
     ports:
       - "9200:9200"
     networks:
-      - backend
+      backend:
+        ipv4_address: 172.18.255.101
     volumes:
       - ../plugins/elasticsearch-analysis-ik-7.17.7.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.17.7.zip
       - /opt/volumes/elasticsearch-node1:/bitnami/elasticsearch
@@ -20,7 +21,8 @@ services:
     container_name: elasticsearch-node2
     image: bitnami/elasticsearch:7.17.7
     networks:
-      - backend
+      backend:
+        ipv4_address: 172.18.255.102
     volumes:
       - ../plugins/elasticsearch-analysis-ik-7.17.7.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.17.7.zip
       - /opt/volumes/elasticsearch-node2:/bitnami/elasticsearch
@@ -33,7 +35,8 @@ services:
     container_name: elasticsearch-node3
     image: bitnami/elasticsearch:7.17.7
     networks:
-      - backend
+      backend:
+        ipv4_address: 172.18.255.103
     volumes:
       - ../plugins/elasticsearch-analysis-ik-7.17.7.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.17.7.zip
       - /opt/volumes/elasticsearch-node3:/bitnami/elasticsearch
@@ -46,7 +49,8 @@ services:
     container_name: elasticsearch-node4
     image: bitnami/elasticsearch:7.17.7
     networks:
-      - backend
+      backend:
+        ipv4_address: 172.18.255.104
     volumes:
       - ../plugins/elasticsearch-analysis-ik-7.17.7.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.17.7.zip
       - /opt/volumes/elasticsearch-node4:/bitnami/elasticsearch

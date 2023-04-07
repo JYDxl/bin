@@ -3,7 +3,7 @@ services:
 
   rabbitmq-node:
     container_name: rabbitmq-node
-    image: bitnami/rabbitmq:3.11.11
+    image: bitnami/rabbitmq:3.11.13
     ports:
       - '5672:5672'
       - '15672:15672'

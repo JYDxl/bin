@@ -3,7 +3,7 @@ services:
 
   kafka-node1:
     container_name: kafka-node1
-    image: bitnami/kafka:3.1.0
+    image: bitnami/kafka:3.4.0
     networks:
       - backend
     ports:
@@ -19,7 +19,7 @@ services:
       - /opt/volumes/kafka-node1:/bitnami/kafka
   kafka-node2:
     container_name: kafka-node2
-    image: bitnami/kafka:3.1.0
+    image: bitnami/kafka:3.4.0
     networks:
       - backend
     ports:
@@ -35,7 +35,7 @@ services:
       - /opt/volumes/kafka-node2:/bitnami/kafka
   kafka-node3:
     container_name: kafka-node3
-    image: bitnami/kafka:3.1.0
+    image: bitnami/kafka:3.4.0
     networks:
       - backend
     ports:
@@ -51,7 +51,7 @@ services:
       - /opt/volumes/kafka-node3:/bitnami/kafka
   kafka-node4:
     container_name: kafka-node4
-    image: bitnami/kafka:3.1.0
+    image: bitnami/kafka:3.4.0
     networks:
       - backend
     ports:

@@ -2,7 +2,7 @@ version: '3'
 services:
 
   chrome:
-    image: kasmweb/chrome:1.12.0
+    image: kasmweb/chrome:1.13.0
     container_name: chrome
     environment:
       - VNC_PW=kasm_pass
