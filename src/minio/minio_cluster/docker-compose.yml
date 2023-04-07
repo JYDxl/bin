@@ -11,14 +11,11 @@ services:
       - backend
     volumes:
       - /opt/volumes/minio-node1:/data1
-      - /opt/volumes/minio-node2:/data2
-      - /opt/volumes/minio-node3:/data3
-      - /opt/volumes/minio-node4:/data4
     environment:
       - MINIO_ROOT_USER=minio
       - MINIO_ROOT_PASSWORD=XLrootJYD713
       - MINIO_DISTRIBUTED_MODE_ENABLED=yes
-      - MINIO_DISTRIBUTED_NODES=minio-node{1...4}/data{1...4}
+      - MINIO_DISTRIBUTED_NODES=minio-node1,minio-node2,minio-node3,minio-node4
       - MINIO_SKIP_CLIENT=yes
       - MINIO_DEFAULT_BUCKETS=public:public
       - TZ=Asia/Shanghai
@@ -28,15 +25,12 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/minio-node1:/data1
       - /opt/volumes/minio-node2:/data2
-      - /opt/volumes/minio-node3:/data3
-      - /opt/volumes/minio-node4:/data4
     environment:
       - MINIO_ROOT_USER=minio
       - MINIO_ROOT_PASSWORD=XLrootJYD713
       - MINIO_DISTRIBUTED_MODE_ENABLED=yes
-      - MINIO_DISTRIBUTED_NODES=minio-node{1...4}/data{1...4}
+      - MINIO_DISTRIBUTED_NODES=minio-node1,minio-node2,minio-node3,minio-node4
       - MINIO_SKIP_CLIENT=yes
       - MINIO_DEFAULT_BUCKETS=public:public
       - TZ=Asia/Shanghai
@@ -46,15 +40,12 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/minio-node1:/data1
-      - /opt/volumes/minio-node2:/data2
       - /opt/volumes/minio-node3:/data3
-      - /opt/volumes/minio-node4:/data4
     environment:
       - MINIO_ROOT_USER=minio
       - MINIO_ROOT_PASSWORD=XLrootJYD713
       - MINIO_DISTRIBUTED_MODE_ENABLED=yes
-      - MINIO_DISTRIBUTED_NODES=minio-node{1...4}/data{1...4}
+      - MINIO_DISTRIBUTED_NODES=minio-node1,minio-node2,minio-node3,minio-node4
       - MINIO_SKIP_CLIENT=yes
       - MINIO_DEFAULT_BUCKETS=public:public
       - TZ=Asia/Shanghai
@@ -64,15 +55,12 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/minio-node1:/data1
-      - /opt/volumes/minio-node2:/data2
-      - /opt/volumes/minio-node3:/data3
       - /opt/volumes/minio-node4:/data4
     environment:
       - MINIO_ROOT_USER=minio
       - MINIO_ROOT_PASSWORD=XLrootJYD713
       - MINIO_DISTRIBUTED_MODE_ENABLED=yes
-      - MINIO_DISTRIBUTED_NODES=minio-node{1...4}/data{1...4}
+      - MINIO_DISTRIBUTED_NODES=minio-node1,minio-node2,minio-node3,minio-node4
       - MINIO_SKIP_CLIENT=yes
       - MINIO_DEFAULT_BUCKETS=public:public
       - TZ=Asia/Shanghai
