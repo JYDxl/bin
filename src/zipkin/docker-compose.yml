@@ -11,6 +11,7 @@ services:
     environment:
       - STORAGE_TYPE=elasticsearch
       - ES_HOSTS=http://elasticsearch-node1:9200
+      - JAVA_OPTS=-Xms1g -Xmx1g -XX:+ExitOnOutOfMemoryError
 
 networks:
   backend:

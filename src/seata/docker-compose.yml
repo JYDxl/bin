@@ -5,11 +5,17 @@ services:
     container_name: seata-server
     image: seataio/seata-server:1.6.1
     ports:
-      - "8091:8091"
       - "7091:7091"
+      - "8091:8091"
+    networks:
+      - backend
+    volumes:
+      - ./resources/application.yml:/seata-server/resources/application.yml
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/timezone
     environment:
       - SEATA_PORT=8091
-      - STORE_MODE=file
+      - STORE_MODE=db
 
 networks:
   backend:

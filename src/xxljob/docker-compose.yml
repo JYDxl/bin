@@ -4,6 +4,8 @@ services:
   xxl-job-admin:
     container_name: xxl-job-admin
     image: xuxueli/xxl-job-admin:2.4.0
+    ports:
+      - '8079:8080'
     networks:
       - backend
     volumes:

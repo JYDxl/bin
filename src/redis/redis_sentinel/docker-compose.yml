@@ -14,9 +14,9 @@ services:
       - "6379:6379"
     volumes:
       - /opt/volumes/redis-master:/bitnami/redis
-  redis-worker:
+  redis-worker1:
     image: bitnami/redis:7.0.10
-    container_name: redis-worker
+    container_name: redis-worker1
     environment:
       - REDIS_REPLICATION_MODE=slave
       - REDIS_MASTER_HOST=redis-master
@@ -30,7 +30,41 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/redis-worker:/bitnami/redis
+      - /opt/volumes/redis-worker1:/bitnami/redis
+  redis-worker2:
+    image: bitnami/redis:7.0.10
+    container_name: redis-worker2
+    environment:
+      - REDIS_REPLICATION_MODE=slave
+      - REDIS_MASTER_HOST=redis-master
+      - REDIS_MASTER_PASSWORD=XLrootJYD713
+      - REDIS_PASSWORD=XLrootJYD713
+      - TZ=Asia/Shanghai
+    ports:
+      - "6381:6379"
+    depends_on:
+      - redis-master
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/redis-worker2:/bitnami/redis
+  redis-worker3:
+    image: bitnami/redis:7.0.10
+    container_name: redis-worker3
+    environment:
+      - REDIS_REPLICATION_MODE=slave
+      - REDIS_MASTER_HOST=redis-master
+      - REDIS_MASTER_PASSWORD=XLrootJYD713
+      - REDIS_PASSWORD=XLrootJYD713
+      - TZ=Asia/Shanghai
+    ports:
+      - "6382:6379"
+    depends_on:
+      - redis-master
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/redis-worker3:/bitnami/redis
   redis-sentinel:
     image: bitnami/redis-sentinel:7.0.10
     container_name: redis-sentinel
@@ -40,7 +74,9 @@ services:
       - TZ=Asia/Shanghai
     depends_on:
       - redis-master
-      - redis-worker
+      - redis-worker1
+      - redis-worker2
+      - redis-worker3
     ports:
       - "26379:26379"
     networks:
