@@ -3,6 +3,7 @@ services:
 
   proxypool:
     build: ctx
+    image: proxypool-node
     container_name: proxypool
     environment:
       - DB_CONN=redis://:XLrootJYD713@redis-master:6379/0

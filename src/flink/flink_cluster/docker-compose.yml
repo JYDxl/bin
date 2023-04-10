@@ -3,6 +3,7 @@ services:
 
   flink-jobmanager:
     build: ../ctx
+    image: flink-cluster
     container_name: flink-jobmanager
     ports:
       - "8079:8081"
@@ -29,6 +30,7 @@ services:
 
   flink-taskmanager1:
     build: ../ctx
+    image: flink-cluster
     container_name: flink-taskmanager1
     depends_on:
       - flink-jobmanager
@@ -57,6 +59,7 @@ services:
 
   flink-taskmanager2:
     build: ../ctx
+    image: flink-cluster
     container_name: flink-taskmanager2
     depends_on:
       - flink-jobmanager
@@ -85,6 +88,7 @@ services:
 
   flink-taskmanager3:
     build: ../ctx
+    image: flink-cluster
     container_name: flink-taskmanager3
     depends_on:
       - flink-jobmanager
@@ -113,6 +117,7 @@ services:
 
   flink-taskmanager4:
     build: ../ctx
+    image: flink-cluster
     container_name: flink-taskmanager4
     depends_on:
       - flink-jobmanager

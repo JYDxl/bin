@@ -3,6 +3,7 @@ services:
 
   sentinel:
     build: ctx
+    image: sentinel-node
     container_name: sentinel
     ports:
       - '8074:8080'

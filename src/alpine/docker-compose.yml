@@ -3,6 +3,7 @@ services:
 
   alpine:
     build: ctx
+    image: alpine-node
     container_name: alpine
     networks:
       - backend

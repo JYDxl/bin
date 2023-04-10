@@ -4,6 +4,7 @@ services:
   zipkin-node:
     container_name: zipkin-node
     build: ctx
+    image: zipkin-node
     ports:
       - '9411:9411'
     networks:
