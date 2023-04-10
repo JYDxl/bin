@@ -3,6 +3,7 @@ services:
 
   flink:
     build: ctx
+    image: flink-node
     container_name: flink
     ports:
       - '8079:8081'

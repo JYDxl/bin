@@ -4,6 +4,7 @@ services:
   mosquitto-node:
     container_name: mosquitto-node
     build: ctx
+    image: mosquitto-node
     networks:
       - backend
     ports:
