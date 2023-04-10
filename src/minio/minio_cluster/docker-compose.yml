@@ -17,7 +17,6 @@ services:
       - MINIO_DISTRIBUTED_MODE_ENABLED=yes
       - MINIO_DISTRIBUTED_NODES=minio-node1,minio-node2,minio-node3,minio-node4
       - MINIO_SKIP_CLIENT=yes
-      - MINIO_DEFAULT_BUCKETS=public:public
       - TZ=Asia/Shanghai
   minio-node2:
     container_name: minio-node2
@@ -32,7 +31,6 @@ services:
       - MINIO_DISTRIBUTED_MODE_ENABLED=yes
       - MINIO_DISTRIBUTED_NODES=minio-node1,minio-node2,minio-node3,minio-node4
       - MINIO_SKIP_CLIENT=yes
-      - MINIO_DEFAULT_BUCKETS=public:public
       - TZ=Asia/Shanghai
   minio-node3:
     image: bitnami/minio:2023.3.24
@@ -47,7 +45,6 @@ services:
       - MINIO_DISTRIBUTED_MODE_ENABLED=yes
       - MINIO_DISTRIBUTED_NODES=minio-node1,minio-node2,minio-node3,minio-node4
       - MINIO_SKIP_CLIENT=yes
-      - MINIO_DEFAULT_BUCKETS=public:public
       - TZ=Asia/Shanghai
   minio-node4:
     image: bitnami/minio:2023.3.24
@@ -62,7 +59,6 @@ services:
       - MINIO_DISTRIBUTED_MODE_ENABLED=yes
       - MINIO_DISTRIBUTED_NODES=minio-node1,minio-node2,minio-node3,minio-node4
       - MINIO_SKIP_CLIENT=yes
-      - MINIO_DEFAULT_BUCKETS=public:public
       - TZ=Asia/Shanghai
 
 networks:
