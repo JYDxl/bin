@@ -1,0 +1,16 @@
+version: '3'
+services:
+
+  sentinel:
+    build: ctx
+    image: sentinel-node
+    container_name: sentinel
+    ports:
+      - '8074:8080'
+      - '8719:8719'
+    networks:
+      - backend
+
+networks:
+  backend:
+    external: true
