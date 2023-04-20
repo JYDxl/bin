@@ -6,7 +6,7 @@ services:
     container_name: starrocks
     environment:
       - TZ=Asia/Shanghai
-      - JAVA_HOME=/usr/java/jdk-11.0.18
+      - JAVA_HOME=/usr/java/jdk-11.0.19
     networks:
       backend:
         ipv4_address: 172.18.255.253

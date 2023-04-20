@@ -2,7 +2,7 @@ version: '3'
 services:
 
   redis-master:
-    image: bitnami/redis:7.0.10
+    image: bitnami/redis:7.0.11
     container_name: redis-master
     environment:
       - REDIS_REPLICATION_MODE=master
@@ -15,7 +15,7 @@ services:
     volumes:
       - /opt/volumes/redis-master:/bitnami/redis
   redis-worker1:
-    image: bitnami/redis:7.0.10
+    image: bitnami/redis:7.0.11
     container_name: redis-worker1
     environment:
       - REDIS_REPLICATION_MODE=slave
@@ -32,7 +32,7 @@ services:
     volumes:
       - /opt/volumes/redis-worker1:/bitnami/redis
   redis-worker2:
-    image: bitnami/redis:7.0.10
+    image: bitnami/redis:7.0.11
     container_name: redis-worker2
     environment:
       - REDIS_REPLICATION_MODE=slave
@@ -49,7 +49,7 @@ services:
     volumes:
       - /opt/volumes/redis-worker2:/bitnami/redis
   redis-worker3:
-    image: bitnami/redis:7.0.10
+    image: bitnami/redis:7.0.11
     container_name: redis-worker3
     environment:
       - REDIS_REPLICATION_MODE=slave
@@ -66,7 +66,7 @@ services:
     volumes:
       - /opt/volumes/redis-worker3:/bitnami/redis
   redis-sentinel:
-    image: bitnami/redis-sentinel:7.0.10
+    image: bitnami/redis-sentinel:7.0.11
     container_name: redis-sentinel
     environment:
       - REDIS_MASTER_HOST=redis-master

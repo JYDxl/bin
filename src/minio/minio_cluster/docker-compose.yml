@@ -3,7 +3,7 @@ services:
 
   minio-node1:
     container_name: minio-node1
-    image: bitnami/minio:2023.3.24
+    image: bitnami/minio:2023.4.13
     ports:
       - '9000:9000'
       - '9001:9001'
@@ -20,7 +20,7 @@ services:
       - TZ=Asia/Shanghai
   minio-node2:
     container_name: minio-node2
-    image: bitnami/minio:2023.3.24
+    image: bitnami/minio:2023.4.13
     networks:
       - backend
     volumes:
@@ -33,7 +33,7 @@ services:
       - MINIO_SKIP_CLIENT=yes
       - TZ=Asia/Shanghai
   minio-node3:
-    image: bitnami/minio:2023.3.24
+    image: bitnami/minio:2023.4.13
     container_name: minio-node3
     networks:
       - backend
@@ -47,7 +47,7 @@ services:
       - MINIO_SKIP_CLIENT=yes
       - TZ=Asia/Shanghai
   minio-node4:
-    image: bitnami/minio:2023.3.24
+    image: bitnami/minio:2023.4.13
     container_name: minio-node4
     networks:
       - backend

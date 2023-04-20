@@ -3,7 +3,7 @@ services:
 
   nacos-node1:
     container_name: nacos-node1
-    image: nacos/nacos-server:v2.2.1
+    image: nacos/nacos-server:v2.2.2
     ports:
       - "8848:8848"
       - "9848:9848"
@@ -16,7 +16,7 @@ services:
       - ./env/nacos-hostname.env
   nacos-node2:
     container_name: nacos-node2
-    image: nacos/nacos-server:v2.2.1
+    image: nacos/nacos-server:v2.2.2
     networks:
       - backend
     volumes:
@@ -25,7 +25,7 @@ services:
       - ./env/nacos-hostname.env
   nacos-node3:
     container_name: nacos-node3
-    image: nacos/nacos-server:v2.2.1
+    image: nacos/nacos-server:v2.2.2
     networks:
       - backend
     volumes:
@@ -34,7 +34,7 @@ services:
       - ./env/nacos-hostname.env
   nacos-node4:
     container_name: nacos-node4
-    image: nacos/nacos-server:v2.2.1
+    image: nacos/nacos-server:v2.2.2
     networks:
       - backend
     volumes:

@@ -3,7 +3,7 @@ services:
 
   mysql-master:
     container_name: mysql-master
-    image: bitnami/mysql:8.0.32
+    image: bitnami/mysql:8.0.33
     ports:
       - '3306:3306'
     networks:
@@ -22,7 +22,7 @@ services:
       - TZ=Asia/Shanghai
   mysql-node1:
     container_name: mysql-node1
-    image: bitnami/mysql:8.0.32
+    image: bitnami/mysql:8.0.33
     ports:
       - '3307:3306'
     networks:
@@ -44,7 +44,7 @@ services:
       - TZ=Asia/Shanghai
   mysql-node2:
     container_name: mysql-node2
-    image: bitnami/mysql:8.0.32
+    image: bitnami/mysql:8.0.33
     ports:
       - '3308:3306'
     networks:
@@ -66,7 +66,7 @@ services:
       - TZ=Asia/Shanghai
   mysql-node3:
     container_name: mysql-node3
-    image: bitnami/mysql:8.0.32
+    image: bitnami/mysql:8.0.33
     ports:
       - '3309:3306'
     networks:

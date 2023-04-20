@@ -3,7 +3,7 @@ services:
 
   nacos-node:
     container_name: nacos-node
-    image: nacos/nacos-server:v2.2.1
+    image: nacos/nacos-server:v2.2.2
     ports:
       - '8848:8848'
       - '9848:9848'

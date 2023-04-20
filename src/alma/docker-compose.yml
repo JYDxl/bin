@@ -2,7 +2,7 @@ version: '3'
 services:
 
   alma:
-    image: almalinux:8.7-20230222
+    image: almalinux:8.7-20230407
     container_name: alma
     environment:
       - TZ=Asia/Shanghai
