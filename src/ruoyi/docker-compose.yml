@@ -1,13 +1,10 @@
 version: '3'
 services:
 
-  sentinel:
+  ruoyi:
     build: ctx
-    image: sentinel-node
-    container_name: sentinel
-    ports:
-      - '8074:8080'
-      - '8719:8719'
+    image: ruoyi-node
+    container_name: ruoyi
     networks:
       - backend
 

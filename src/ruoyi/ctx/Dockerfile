@@ -1,13 +1,14 @@
-FROM azul/zulu-openjdk-alpine:17.0.6-jre-headless
+FROM azul/zulu-openjdk-alpine:8u362-jre
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories && \
     apk --update add tzdata && \
+    apk add fontconfig ttf-dejavu && \
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone && \
     apk del tzdata && \
     rm -rf /var/cache/apk/*
 
-COPY sentinel-dashboard-1.8.6.jar /sentinel-dashboard.jar
-CMD java -Dserver.port=8080 -Dcsp.sentinel.dashboard.server=localhost:8080 -Dproject.name=sentinel-dashboard -jar sentinel-dashboard.jar
+COPY ruoyi-admin.jar /ruoyi-admin.jar
+CMD java -jar ruoyi-admin.jar
 
-EXPOSE 8080 8719
+EXPOSE 8080
