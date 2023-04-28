@@ -3,14 +3,14 @@ services:
 
   elasticsearch-node:
     container_name: elasticsearch-node
-    image: bitnami/elasticsearch:7.17.7
+    build: ctx
+    image: elasticsearch-node
     ports:
       - '9200:9200'
       - '9300:9300'
     networks:
       - backend
     volumes:
-      - ./plugins/elasticsearch-analysis-ik-7.17.7.zip:/bitnami/elasticsearch/plugins/analysis-ik-7.17.7.zip
       - /opt/volumes/elasticsearch-node:/bitnami/elasticsearch
     environment:
       - TZ=Asia/Shanghai
