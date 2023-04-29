@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alpine:8u362-jre
+FROM azul/zulu-openjdk-alpine:8u372-jre
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories && \
     apk --update add tzdata && \

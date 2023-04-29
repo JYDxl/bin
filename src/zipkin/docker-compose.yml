@@ -1,8 +1,8 @@
 version: '3'
 services:
 
-  zipkin-node:
-    container_name: zipkin-node
+  zipkin:
+    container_name: zipkin
     build: ctx
     image: zipkin-node
     ports:

@@ -1,21 +1,60 @@
 version: '3'
 services:
 
-  flink:
+  flink-jobmanager:
     build: ctx
-    image: flink-node
-    container_name: flink
+    image: flink-cluster
+    container_name: flink-jobmanager
     ports:
-      - '8079:8081'
-      - '9084:9084'
+      - "8079:8081"
     networks:
       - backend
+    command: jobmanager
     volumes:
-      - /opt/volumes/flink/checkpoints:/opt/checkpoints
-      - /opt/volumes/flink/savepoints:/opt/savepoints
-      - /opt/volumes/flink/jars:/opt/jars
-      - /opt/volumes/flink/logs:/data/projects/flink-streaming-platform-web/logs
-      - /opt/volumes/flink/conf:/data/projects/flink-streaming-platform-web/conf
+      - /opt/volumes/flink-jobmanager/checkpoints:/opt/checkpoints
+      - /opt/volumes/flink-jobmanager/savepoints:/opt/savepoints
+      - /opt/volumes/flink-jobmanager/jars:/opt/jars
+    environment:
+      - TZ=Asia/Shanghai
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: flink-jobmanager
+        execution.checkpointing.interval: 300s
+        state.checkpoints.num-retained: 20
+        execution.checkpointing.mode: EXACTLY_ONCE
+        execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
+        state.backend: filesystem
+        state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink/checkpoints
+        state.savepoints.dir: hdfs://hdfs-namenode:8020/flink/savepoints
+        web.tmpdir: /opt/jars
+  flink-taskmanager:
+    build: ctx
+    image: flink-cluster
+    container_name: flink-taskmanager
+    depends_on:
+      - flink-jobmanager
+    networks:
+      - backend
+    command: taskmanager
+    volumes:
+      - /opt/volumes/flink-taskmanager/checkpoints:/opt/checkpoints
+      - /opt/volumes/flink-taskmanager/savepoints:/opt/savepoints
+      - /opt/volumes/flink-taskmanager/jars:/opt/jars
+    environment:
+      - TZ=Asia/Shanghai
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: flink-jobmanager
+        taskmanager.numberOfTaskSlots: 8
+        taskmanager.memory.process.size: 512M
+        execution.checkpointing.interval: 300s
+        state.checkpoints.num-retained: 20
+        execution.checkpointing.mode: EXACTLY_ONCE
+        execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
+        state.backend: filesystem
+        state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink/checkpoints
+        state.savepoints.dir: hdfs://hdfs-namenode:8020/flink/savepoints
+        web.tmpdir: /opt/jars
 
 networks:
   backend:

@@ -1,9 +1,9 @@
 version: '3'
 services:
 
-  neo4j-node:
-    container_name: neo4j-node
-    image: neo4j:5.6.0-community
+  neo4j:
+    container_name: neo4j
+    image: neo4j:5.7.0-community
     ports:
       - '7474:7474'
       - '7473:7473'
@@ -11,8 +11,8 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/neo4j-node/data:/data
-      - /opt/volumes/neo4j-node/logs:/logs
+      - /opt/volumes/neo4j/data:/data
+      - /opt/volumes/neo4j/logs:/logs
       - /opt/volumes/extra:/extra
     environment:
       - NEO4J_AUTH=neo4j/XLrootJYD713

@@ -3,7 +3,7 @@ services:
 
   rabbitmq-stats:
     container_name: rabbitmq-stats
-    image: bitnami/rabbitmq:3.11.13
+    image: bitnami/rabbitmq:3.11.14
     ports:
       - '4369:4369'
       - '5672:5672'
@@ -22,7 +22,7 @@ services:
       - TZ=Asia/Shanghai
   rabbitmq-disc:
     container_name: rabbitmq-disc
-    image: bitnami/rabbitmq:3.11.13
+    image: bitnami/rabbitmq:3.11.14
     networks:
       - backend
     volumes:
@@ -37,7 +37,7 @@ services:
       - TZ=Asia/Shanghai
   rabbitmq-ram:
     container_name: rabbitmq-ram
-    image: bitnami/rabbitmq:3.11.13
+    image: bitnami/rabbitmq:3.11.14
     networks:
       - backend
     volumes:

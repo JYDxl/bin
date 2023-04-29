@@ -1,16 +1,16 @@
 version: '3'
 services:
 
-  rabbitmq-node:
-    container_name: rabbitmq-node
-    image: bitnami/rabbitmq:3.11.13
+  rabbitmq-stats:
+    container_name: rabbitmq-stats
+    image: bitnami/rabbitmq:3.11.14
     ports:
       - '5672:5672'
       - '15672:15672'
     networks:
       - backend
     volumes:
-      - /opt/volumes/rabbitmq-node:/bitnami/rabbitmq
+      - /opt/volumes/rabbitmq-stats:/bitnami/rabbitmq
     environment:
       - RABBITMQ_USERNAME=root
       - RABBITMQ_PASSWORD=XLrootJYD713

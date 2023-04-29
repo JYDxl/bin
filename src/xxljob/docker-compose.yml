@@ -1,15 +1,15 @@
 version: '3'
 services:
 
-  xxl-job-admin:
-    container_name: xxl-job-admin
+  xxljob:
+    container_name: xxljob
     image: xuxueli/xxl-job-admin:2.4.0
     ports:
       - '8079:8080'
     networks:
       - backend
     volumes:
-      - /opt/volumes/xxl-job-admin/logs:/data/applogs
+      - /opt/volumes/xxljob/logs:/data/applogs
     environment:
       - PARAMS=--spring.datasource.url=jdbc:mysql://mysql-master:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai  --spring.datasource.password=XLrootJYD713  --xxl.job.accessToken=XLrootJYD713
 

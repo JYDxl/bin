@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alpine:17.0.6-jre-headless
+FROM azul/zulu-openjdk-alpine:17.0.7-jre-headless
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories && \
     apk --update add tzdata && \

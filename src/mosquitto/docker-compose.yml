@@ -1,8 +1,8 @@
 version: '3'
 services:
 
-  mosquitto-node:
-    container_name: mosquitto-node
+  mosquitto:
+    container_name: mosquitto
     build: ctx
     image: mosquitto-node
     networks:
@@ -11,7 +11,7 @@ services:
       - '1883:1883'
     volumes:
       - ./conf/mosquitto.conf:/mosquitto/config/mosquitto.conf
-      - /opt/volumes/mosquitto-node:/mosquitto
+      - /opt/volumes/mosquitto:/mosquitto
 
 networks:
   backend:

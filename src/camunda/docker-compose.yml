@@ -1,8 +1,8 @@
 version: '3'
 services:
 
-  camunda-node:
-    container_name: camunda-node
+  camunda:
+    container_name: camunda
     image: camunda/camunda-bpm-platform:run-7.19.0
     ports:
       - '8077:8080'
