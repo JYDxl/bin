@@ -11,7 +11,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/elasticsearch-node:/bitnami/elasticsearch
+      - /opt/volumes/elasticsearch-node:/bitnami/elasticsearch/data
     environment:
       - TZ=Asia/Shanghai
 

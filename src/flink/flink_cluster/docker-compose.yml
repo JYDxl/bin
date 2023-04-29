@@ -6,7 +6,7 @@ services:
     image: flink-cluster
     container_name: flink-jobmanager
     ports:
-      - "8079:8081"
+      - "8073:8081"
     networks:
       - backend
     command: jobmanager
@@ -46,7 +46,7 @@ services:
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: 32
-        taskmanager.memory.process.size: 1G
+        taskmanager.memory.process.size: 4G
         execution.checkpointing.interval: 300s
         state.checkpoints.num-retained: 20
         execution.checkpointing.mode: EXACTLY_ONCE
@@ -74,7 +74,7 @@ services:
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: 32
-        taskmanager.memory.process.size: 1G
+        taskmanager.memory.process.size: 4G
         execution.checkpointing.interval: 300s
         state.checkpoints.num-retained: 20
         execution.checkpointing.mode: EXACTLY_ONCE
@@ -102,7 +102,7 @@ services:
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: 32
-        taskmanager.memory.process.size: 1G
+        taskmanager.memory.process.size: 4G
         execution.checkpointing.interval: 300s
         state.checkpoints.num-retained: 20
         execution.checkpointing.mode: EXACTLY_ONCE
@@ -130,7 +130,7 @@ services:
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: 32
-        taskmanager.memory.process.size: 1G
+        taskmanager.memory.process.size: 4G
         execution.checkpointing.interval: 300s
         state.checkpoints.num-retained: 20
         execution.checkpointing.mode: EXACTLY_ONCE
