@@ -1,0 +1,45 @@
+version: '3'
+services:
+
+  emqx-node1:
+    image: emqx:5.0.24
+    container_name: emqx-node1
+    environment:
+      - "EMQX_NODE_NAME=emqx@emqx-node1"
+      - "EMQX_CLUSTER__DISCOVERY_STRATEGY=static"
+      - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@emqx-node1,emqx@emqx-node2]"
+    healthcheck:
+      test: [ "CMD", "/opt/emqx/bin/emqx_ctl", "status" ]
+      interval: 5s
+      timeout: 25s
+      retries: 5
+    networks:
+      - backend
+    ports:
+      - '1883:1883'
+      - '8083:8083'
+      - '8084:8084'
+      - '8883:8883'
+      - '18083:18083'
+    volumes:
+      - /opt/volumes/emqx-node1:/opt/emqx/data
+  emqx-node2:
+    image: emqx:5.0.24
+    container_name: emqx-node2
+    environment:
+      - "EMQX_NODE_NAME=emqx@emqx-node2"
+      - "EMQX_CLUSTER__DISCOVERY_STRATEGY=static"
+      - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@emqx-node1,emqx@emqx-node2]"
+    healthcheck:
+      test: [ "CMD", "/opt/emqx/bin/emqx_ctl", "status" ]
+      interval: 5s
+      timeout: 25s
+      retries: 5
+    networks:
+      - backend
+    volumes:
+      - /opt/volumes/emqx-node2:/opt/emqx/data
+
+networks:
+  backend:
+    external: true

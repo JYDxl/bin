@@ -2,18 +2,17 @@ version: '3'
 services:
 
   starrocks:
-    image: centos:7.9.2009
+    image: starrocks/allin1-ubuntu:2.5.5
     container_name: starrocks
     environment:
       - TZ=Asia/Shanghai
-      - JAVA_HOME=/usr/java/jdk-11.0.19
     networks:
       backend:
         ipv4_address: 172.18.255.253
     ports:
       - '8030:8030'
+      - '8040:8040'
       - '9030:9030'
-    tty: true
 
 networks:
   backend:

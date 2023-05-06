@@ -1,4 +1,5 @@
 /.idea
+/.fastRequest
 .DS_Store
 
 /.ruby-version

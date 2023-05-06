@@ -27,7 +27,7 @@ $set_app = Set[
 :gitlab,
 :sentinel,
 :seata,
-:mosquitto,
+:emqx, :emqx_cluster,
 :chrome,
 :alpine,
 :alma,

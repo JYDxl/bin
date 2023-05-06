@@ -3,7 +3,7 @@ services:
 
   rabbitmq-stats:
     container_name: rabbitmq-stats
-    image: bitnami/rabbitmq:3.11.14
+    image: bitnami/rabbitmq:3.11.15
     ports:
       - '5672:5672'
       - '15672:15672'

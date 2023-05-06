@@ -1,0 +1,20 @@
+version: '3'
+services:
+
+  emqx-node:
+    image: emqx:5.0.24
+    container_name: emqx-node
+    networks:
+      - backend
+    ports:
+      - '1883:1883'
+      - '8083:8083'
+      - '8084:8084'
+      - '8883:8883'
+      - '18083:18083'
+    volumes:
+      - /opt/volumes/emqx-node:/opt/emqx/data
+
+networks:
+  backend:
+    external: true
