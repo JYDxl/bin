@@ -9,7 +9,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/kafka-node:/bitnami/kafka
+      - kafka-node:/bitnami/kafka
     environment:
       - KAFKA_ENABLE_KRAFT=yes
       - KAFKA_CFG_PROCESS_ROLES=broker,controller
@@ -26,3 +26,6 @@ services:
 networks:
   backend:
     external: true
+
+volumes:
+  kafka-node:

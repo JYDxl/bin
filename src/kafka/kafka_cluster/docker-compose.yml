@@ -16,7 +16,7 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/kafka-node1:/bitnami/kafka
+      - kafka-node1:/bitnami/kafka
   kafka-node2:
     container_name: kafka-node2
     image: bitnami/kafka:3.4.0
@@ -32,7 +32,7 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/kafka-node2:/bitnami/kafka
+      - kafka-node2:/bitnami/kafka
   kafka-node3:
     container_name: kafka-node3
     image: bitnami/kafka:3.4.0
@@ -48,7 +48,7 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/kafka-node3:/bitnami/kafka
+      - kafka-node3:/bitnami/kafka
   kafka-node4:
     container_name: kafka-node4
     image: bitnami/kafka:3.4.0
@@ -64,8 +64,14 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/kafka-node4:/bitnami/kafka
+      - kafka-node4:/bitnami/kafka
 
 networks:
   backend:
     external: true
+
+volumes:
+  kafka-node1:
+  kafka-node2:
+  kafka-node3:
+  kafka-node4:

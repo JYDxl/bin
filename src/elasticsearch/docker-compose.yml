@@ -11,10 +11,13 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/elasticsearch-node:/bitnami/elasticsearch/data
+      - elasticsearch-node:/bitnami/elasticsearch
     environment:
       - TZ=Asia/Shanghai
 
 networks:
   backend:
     external: true
+
+volumes:
+  elasticsearch-node:

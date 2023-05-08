@@ -1,0 +1,87 @@
+version: '3'
+services:
+
+  dolphinscheduler-schema-initializer:
+    image: apache/dolphinscheduler-tools:3.1.5
+    container_name: dolphinscheduler-schema-initializer
+    env_file: .env
+    profiles: [ "schema" ]
+    command: [ tools/bin/upgrade-schema.sh ]
+    volumes:
+      - dolphinscheduler-logs:/opt/dolphinscheduler/logs
+      - dolphinscheduler-shared:/opt/soft
+      - dolphinscheduler-resource:/dolphinscheduler
+    networks:
+      - backend
+  dolphinscheduler-api:
+    image: apache/dolphinscheduler-api:3.1.5
+    container_name: dolphinscheduler-api
+    ports:
+      - "12345:12345"
+      - "25333:25333"
+    profiles: [ "all" ]
+    env_file: .env
+    healthcheck:
+      test: [ "CMD", "curl", "http://localhost:12345/dolphinscheduler/actuator/health" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    volumes:
+      - dolphinscheduler-logs:/opt/dolphinscheduler/logs
+      - dolphinscheduler-shared:/opt/soft
+      - dolphinscheduler-resource:/dolphinscheduler
+    networks:
+      - backend
+  dolphinscheduler-alert:
+    image: apache/dolphinscheduler-alert-server:3.1.5
+    profiles: [ "all" ]
+    env_file: .env
+    healthcheck:
+      test: [ "CMD", "curl", "http://localhost:50053/actuator/health" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    volumes:
+      - dolphinscheduler-logs:/opt/dolphinscheduler/logs
+    networks:
+      - backend
+  dolphinscheduler-master:
+    image: apache/dolphinscheduler-master:3.1.5
+    profiles: [ "all" ]
+    env_file: .env
+    healthcheck:
+      test: [ "CMD", "curl", "http://localhost:5679/actuator/health" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    volumes:
+      - dolphinscheduler-logs:/opt/dolphinscheduler/logs
+      - dolphinscheduler-shared:/opt/soft
+    networks:
+      - backend
+  dolphinscheduler-worker:
+    image: apache/dolphinscheduler-worker:3.1.5
+    profiles: [ "all" ]
+    env_file: .env
+    healthcheck:
+      test: [ "CMD", "curl", "http://localhost:1235/actuator/health" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    volumes:
+      - dolphinscheduler-worker:/tmp/dolphinscheduler
+      - dolphinscheduler-logs:/opt/dolphinscheduler/logs
+      - dolphinscheduler-shared:/opt/soft
+      - dolphinscheduler-resource:/dolphinscheduler
+    networks:
+      - backend
+
+networks:
+  backend:
+    external: true
+
+volumes:
+  dolphinscheduler-worker:
+  dolphinscheduler-logs:
+  dolphinscheduler-shared:
+  dolphinscheduler-resource:

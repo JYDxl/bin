@@ -10,7 +10,7 @@ services:
       - backend
     volumes:
       - ./conf/my_server_block.conf:/opt/bitnami/nginx/conf/server_blocks/my_server_block.conf:ro
-      - /data/frontend:/app
+      - ./app:/app
     environment:
       - TZ=Asia/Shanghai
 

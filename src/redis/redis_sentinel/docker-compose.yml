@@ -13,7 +13,7 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - /opt/volumes/redis-master:/bitnami/redis
+      - redis-master:/bitnami/redis
   redis-worker1:
     image: bitnami/redis:7.0.11
     container_name: redis-worker1
@@ -30,7 +30,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/redis-worker1:/bitnami/redis
+      - redis-worker1:/bitnami/redis
   redis-worker2:
     image: bitnami/redis:7.0.11
     container_name: redis-worker2
@@ -47,7 +47,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/redis-worker2:/bitnami/redis
+      - redis-worker2:/bitnami/redis
   redis-worker3:
     image: bitnami/redis:7.0.11
     container_name: redis-worker3
@@ -64,7 +64,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/redis-worker3:/bitnami/redis
+      - redis-worker3:/bitnami/redis
   redis-sentinel:
     image: bitnami/redis-sentinel:7.0.11
     container_name: redis-sentinel
@@ -85,3 +85,9 @@ services:
 networks:
   backend:
     external: true
+
+volumes:
+  redis-master:
+  redis-worker1:
+  redis-worker2:
+  redis-worker3:

@@ -12,8 +12,11 @@ services:
     ports:
       - '6379:6379'
     volumes:
-      - /opt/volumes/redis-master:/bitnami/redis
+      - redis-master:/bitnami/redis
 
 networks:
   backend:
     external: true
+
+volumes:
+  redis-master:

@@ -10,7 +10,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/minio-node:/data
+      - minio-node:/data
     environment:
       - MINIO_ROOT_USER=minio
       - MINIO_ROOT_PASSWORD=XLrootJYD713
@@ -20,3 +20,6 @@ services:
 networks:
   backend:
     external: true
+
+volumes:
+  minio-node:

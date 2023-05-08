@@ -11,9 +11,8 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/neo4j/data:/data
-      - /opt/volumes/neo4j/logs:/logs
-      - /opt/volumes/extra:/extra
+      - neo4j-data:/data
+      - neo4j-logs:/logs
     environment:
       - NEO4J_AUTH=neo4j/XLrootJYD713
       - NEO4J_dbms_default__database=neo4j
@@ -24,3 +23,7 @@ services:
 networks:
   backend:
     external: true
+
+volumes:
+  neo4j-data:
+  neo4j-logs:

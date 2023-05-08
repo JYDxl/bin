@@ -22,7 +22,7 @@ services:
       - '8883:8883'
       - '18083:18083'
     volumes:
-      - /opt/volumes/emqx-node1:/opt/emqx/data
+      - emqx-node1:/opt/emqx
   emqx-node2:
     image: emqx:5.0.24
     container_name: emqx-node2
@@ -38,8 +38,12 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/emqx-node2:/opt/emqx/data
+      - emqx-node2:/opt/emqx
 
 networks:
   backend:
     external: true
+
+volumes:
+  emqx-node1:
+  emqx-node2:

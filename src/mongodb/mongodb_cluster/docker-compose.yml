@@ -31,7 +31,7 @@ services:
       - MONGODB_REPLICA_SET_NAME=shard1
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/mongodb-shard1:/bitnami/mongodb
+      - mongodb-shard1:/bitnami/mongodb
   mongodb-shard2:
     container_name: mongodb-shard2
     image: bitnami/mongodb-sharded:6.0.5
@@ -47,7 +47,7 @@ services:
       - MONGODB_REPLICA_SET_NAME=shard2
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/mongodb-shard2:/bitnami/mongodb
+      - mongodb-shard2:/bitnami/mongodb
   mongodb-shard3:
     container_name: mongodb-shard3
     image: bitnami/mongodb-sharded:6.0.5
@@ -63,7 +63,7 @@ services:
       - MONGODB_REPLICA_SET_NAME=shard3
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/mongodb-shard3:/bitnami/mongodb
+      - mongodb-shard3:/bitnami/mongodb
   mongodb-cfg:
     container_name: mongodb-cfg
     image: bitnami/mongodb-sharded:6.0.5
@@ -78,8 +78,14 @@ services:
       - MONGODB_REPLICA_SET_NAME=cfgreplicaset
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/mongodb-cfg:/bitnami/mongodb
+      - mongodb-cfg:/bitnami/mongodb
 
 networks:
   backend:
     external: true
+
+volumes:
+  mongodb-shard1:
+  mongodb-shard2:
+  mongodb-shard3:
+  mongodb-cfg:

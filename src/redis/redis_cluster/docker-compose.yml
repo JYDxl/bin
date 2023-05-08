@@ -1,5 +1,6 @@
-version: "2"
+version: "3"
 services:
+
   redis-node1:
     image: bitnami/redis-cluster:7.0.11
     container_name: redis-node1
@@ -8,7 +9,7 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - /opt/volumes/redis-node1:/bitnami/redis
+      - redis-node1:/bitnami/redis
     environment:
       - REDIS_PASSWORD=XLrootJYD713
       - REDIS_NODES=redis-node1 redis-node2
@@ -22,7 +23,7 @@ services:
     ports:
       - "6380:6379"
     volumes:
-      - /opt/volumes/redis-node2:/bitnami/redis
+      - redis-node2:/bitnami/redis
     environment:
       - REDIS_PASSWORD=XLrootJYD713
       - REDIS_NODES=redis-node1 redis-node2
@@ -31,3 +32,7 @@ services:
 networks:
   backend:
     external: true
+
+volumes:
+  redis-node1:
+  redis-node2:

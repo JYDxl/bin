@@ -11,7 +11,7 @@ services:
       backend:
         ipv4_address: 172.18.255.101
     volumes:
-      - /opt/volumes/elasticsearch-node1:/bitnami/elasticsearch/data
+      - elasticsearch-node1:/bitnami/elasticsearch
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
       - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2,elasticsearch-node3,elasticsearch-node4
@@ -25,7 +25,7 @@ services:
       backend:
         ipv4_address: 172.18.255.102
     volumes:
-      - /opt/volumes/elasticsearch-node2:/bitnami/elasticsearch/data
+      - elasticsearch-node2:/bitnami/elasticsearch
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
       - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2,elasticsearch-node3,elasticsearch-node4
@@ -39,7 +39,7 @@ services:
       backend:
         ipv4_address: 172.18.255.103
     volumes:
-      - /opt/volumes/elasticsearch-node3:/bitnami/elasticsearch/data
+      - elasticsearch-node3:/bitnami/elasticsearch
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
       - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2,elasticsearch-node3,elasticsearch-node4
@@ -53,7 +53,7 @@ services:
       backend:
         ipv4_address: 172.18.255.104
     volumes:
-      - /opt/volumes/elasticsearch-node4:/bitnami/elasticsearch/data
+      - elasticsearch-node4:/bitnami/elasticsearch
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
       - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2,elasticsearch-node3,elasticsearch-node4
@@ -63,3 +63,9 @@ services:
 networks:
   backend:
     external: true
+
+volumes:
+  elasticsearch-node1:
+  elasticsearch-node2:
+  elasticsearch-node3:
+  elasticsearch-node4:

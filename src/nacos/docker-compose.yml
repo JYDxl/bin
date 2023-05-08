@@ -10,10 +10,13 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/nacos-node/logs:/home/nacos/logs
+      - nacos-node:/home/nacos/logs
     env_file:
       - ./env/nacos-hostname.env
 
 networks:
   backend:
     external: true
+
+volumes:
+  nacos-node:

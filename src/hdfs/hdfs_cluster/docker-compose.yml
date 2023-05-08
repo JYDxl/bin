@@ -11,7 +11,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/hdfs-namenode:/hadoop/dfs
+      - hdfs-namenode:/hadoop/dfs
     environment:
       - TZ=Asia/Shanghai
     command:
@@ -22,7 +22,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/hdfs-datanode1:/hadoop/dfs
+      - hdfs-datanode1:/hadoop/dfs
     environment:
       - CORE_CONF_fs_defaultFS=hdfs://hdfs-namenode:8020
       - TZ=Asia/Shanghai
@@ -34,7 +34,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/hdfs-datanode2:/hadoop/dfs
+      - hdfs-datanode2:/hadoop/dfs
     environment:
       - CORE_CONF_fs_defaultFS=hdfs://hdfs-namenode:8020
       - TZ=Asia/Shanghai
@@ -46,7 +46,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/hdfs-datanode3:/hadoop/dfs
+      - hdfs-datanode3:/hadoop/dfs
     environment:
       - CORE_CONF_fs_defaultFS=hdfs://hdfs-namenode:8020
       - TZ=Asia/Shanghai
@@ -58,7 +58,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/hdfs-datanode4:/hadoop/dfs
+      - hdfs-datanode4:/hadoop/dfs
     environment:
       - CORE_CONF_fs_defaultFS=hdfs://hdfs-namenode:8020
       - TZ=Asia/Shanghai
@@ -68,3 +68,10 @@ services:
 networks:
   backend:
     external: true
+
+volumes:
+  hdfs-namenode:
+  hdfs-datanode1:
+  hdfs-datanode2:
+  hdfs-datanode3:
+  hdfs-datanode4:

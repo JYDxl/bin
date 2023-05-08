@@ -17,3 +17,6 @@ services:
 networks:
   backend:
     external: true
+
+volumes:
+  mongodb-node:

@@ -1,0 +1,15 @@
+version: '3'
+services:
+
+  dolphinscheduler-node:
+    image: apache/dolphinscheduler-standalone-server:3.1.5
+    container_name: dolphinscheduler-node
+    networks:
+      - backend
+    ports:
+      - '12345:12345'
+      - '25333:25333'
+
+networks:
+  backend:
+    external: true

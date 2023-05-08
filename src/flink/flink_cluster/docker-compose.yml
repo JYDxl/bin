@@ -10,10 +10,6 @@ services:
     networks:
       - backend
     command: jobmanager
-    volumes:
-      - /opt/volumes/flink-jobmanager/checkpoints:/opt/checkpoints
-      - /opt/volumes/flink-jobmanager/savepoints:/opt/savepoints
-      - /opt/volumes/flink-jobmanager/jars:/opt/jars
     environment:
       - TZ=Asia/Shanghai
       - |
@@ -26,7 +22,6 @@ services:
         state.backend: filesystem
         state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink/checkpoints
         state.savepoints.dir: hdfs://hdfs-namenode:8020/flink/savepoints
-        web.tmpdir: /opt/jars
   flink-taskmanager1:
     build: ../ctx
     image: flink-cluster
@@ -36,10 +31,6 @@ services:
     networks:
       - backend
     command: taskmanager
-    volumes:
-      - /opt/volumes/flink-taskmanager1/checkpoints:/opt/checkpoints
-      - /opt/volumes/flink-taskmanager1/savepoints:/opt/savepoints
-      - /opt/volumes/flink-taskmanager1/jars:/opt/jars
     environment:
       - TZ=Asia/Shanghai
       - |
@@ -54,7 +45,6 @@ services:
         state.backend: filesystem
         state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink/checkpoints
         state.savepoints.dir: hdfs://hdfs-namenode:8020/flink/savepoints
-        web.tmpdir: /opt/jars
   flink-taskmanager2:
     build: ../ctx
     image: flink-cluster
@@ -64,10 +54,6 @@ services:
     networks:
       - backend
     command: taskmanager
-    volumes:
-      - /opt/volumes/flink-taskmanager2/checkpoints:/opt/checkpoints
-      - /opt/volumes/flink-taskmanager2/savepoints:/opt/savepoints
-      - /opt/volumes/flink-taskmanager2/jars:/opt/jars
     environment:
       - TZ=Asia/Shanghai
       - |
@@ -82,7 +68,6 @@ services:
         state.backend: filesystem
         state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink/checkpoints
         state.savepoints.dir: hdfs://hdfs-namenode:8020/flink/savepoints
-        web.tmpdir: /opt/jars
   flink-taskmanager3:
     build: ../ctx
     image: flink-cluster
@@ -92,10 +77,6 @@ services:
     networks:
       - backend
     command: taskmanager
-    volumes:
-      - /opt/volumes/flink-taskmanager3/checkpoints:/opt/checkpoints
-      - /opt/volumes/flink-taskmanager3/savepoints:/opt/savepoints
-      - /opt/volumes/flink-taskmanager3/jars:/opt/jars
     environment:
       - TZ=Asia/Shanghai
       - |
@@ -110,7 +91,6 @@ services:
         state.backend: filesystem
         state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink/checkpoints
         state.savepoints.dir: hdfs://hdfs-namenode:8020/flink/savepoints
-        web.tmpdir: /opt/jars
   flink-taskmanager4:
     build: ../ctx
     image: flink-cluster
@@ -120,10 +100,6 @@ services:
     networks:
       - backend
     command: taskmanager
-    volumes:
-      - /opt/volumes/flink-taskmanager4/checkpoints:/opt/checkpoints
-      - /opt/volumes/flink-taskmanager4/savepoints:/opt/savepoints
-      - /opt/volumes/flink-taskmanager4/jars:/opt/jars
     environment:
       - TZ=Asia/Shanghai
       - |
@@ -138,7 +114,6 @@ services:
         state.backend: filesystem
         state.checkpoints.dir: hdfs://hdfs-namenode:8020/flink/checkpoints
         state.savepoints.dir: hdfs://hdfs-namenode:8020/flink/savepoints
-        web.tmpdir: /opt/jars
 
 networks:
   backend:

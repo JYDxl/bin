@@ -10,7 +10,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/rabbitmq-stats:/bitnami/rabbitmq
+      - rabbitmq-stats:/bitnami/rabbitmq
     environment:
       - RABBITMQ_USERNAME=root
       - RABBITMQ_PASSWORD=XLrootJYD713
@@ -19,3 +19,6 @@ services:
 networks:
   backend:
     external: true
+
+volumes:
+  rabbitmq-stats:

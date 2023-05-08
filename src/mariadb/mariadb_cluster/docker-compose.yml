@@ -10,7 +10,7 @@ services:
       - '3306:3306'
     volumes:
       - ../conf/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro
-      - /opt/volumes/mariadb-master:/bitnami/mariadb
+      - mariadb-master:/bitnami/mariadb
     environment:
       - MARIADB_REPLICATION_MODE=master
       - MARIADB_REPLICATION_USER=repl_user
@@ -29,7 +29,7 @@ services:
       - '3307:3306'
     volumes:
       - ../conf/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro
-      - /opt/volumes/mariadb-worker1:/bitnami/mariadb
+      - mariadb-worker1:/bitnami/mariadb
     depends_on:
       - mariadb-master
     environment:
@@ -51,7 +51,7 @@ services:
       - '3308:3306'
     volumes:
       - ../conf/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro
-      - /opt/volumes/mariadb-worker2:/bitnami/mariadb
+      - mariadb-worker2:/bitnami/mariadb
     depends_on:
       - mariadb-master
     environment:
@@ -73,7 +73,7 @@ services:
       - '3309:3306'
     volumes:
       - ../conf/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro
-      - /opt/volumes/mariadb-worker3:/bitnami/mariadb
+      - mariadb-worker3:/bitnami/mariadb
     depends_on:
       - mariadb-master
     environment:
@@ -90,3 +90,9 @@ services:
 networks:
   backend:
     external: true
+
+volumes:
+  mariadb-master:
+  mariadb-worker1:
+  mariadb-worker2:
+  mariadb-worker3:

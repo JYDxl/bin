@@ -10,7 +10,7 @@ services:
       - backend
     volumes:
       - ./conf/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
-      - /opt/volumes/mysql-master:/bitnami/mysql
+      - mysql-master:/bitnami/mysql
     environment:
       - MYSQL_REPLICATION_MODE=master
       - MYSQL_REPLICATION_USER=repl_user
@@ -24,3 +24,6 @@ services:
 networks:
   backend:
     external: true
+
+volumes:
+  mysql-master:

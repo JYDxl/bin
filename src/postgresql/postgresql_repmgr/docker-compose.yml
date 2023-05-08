@@ -22,7 +22,7 @@ services:
       - REPMGR_PORT_NUMBER=5432
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/postgresql-node1:/bitnami/postgresql
+      - postgresql-node1:/bitnami/postgresql
       - ../conf/:/bitnami/postgresql/conf/conf.d/
   postgresql-node2:
     image: bitnami/postgresql-repmgr:15.2.0
@@ -45,9 +45,13 @@ services:
       - REPMGR_PORT_NUMBER=5432
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/postgresql-node2:/bitnami/postgresql
+      - postgresql-node2:/bitnami/postgresql
       - ../conf/:/bitnami/postgresql/conf/conf.d/
 
 networks:
   backend:
     external: true
+
+volumes:
+  postgresql-node1:
+  postgresql-node2:

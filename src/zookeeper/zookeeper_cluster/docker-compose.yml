@@ -9,7 +9,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/zookeeper-node1:/bitnami/zookeeper
+      - zookeeper-node1:/bitnami/zookeeper
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
       - TZ=Asia/Shanghai
@@ -23,7 +23,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/zookeeper-node2:/bitnami/zookeeper
+      - zookeeper-node2:/bitnami/zookeeper
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
       - TZ=Asia/Shanghai
@@ -37,7 +37,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/zookeeper-node3:/bitnami/zookeeper
+      - zookeeper-node3:/bitnami/zookeeper
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
       - TZ=Asia/Shanghai
@@ -47,3 +47,8 @@ services:
 networks:
   backend:
     external: true
+
+volumes:
+  zookeeper-node1:
+  zookeeper-node2:
+  zookeeper-node3:

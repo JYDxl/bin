@@ -15,10 +15,15 @@ services:
       - '8076:80'
     #      - '22:22'
     volumes:
-      - /opt/volumes/gitlab/config:/etc/gitlab
-      - /opt/volumes/gitlab/logs:/var/log/gitlab
-      - /opt/volumes/gitlab/data:/var/opt/gitlab
+      - gitlab-config:/etc/gitlab
+      - gitlab-logs:/var/log/gitlab
+      - gitlab-data:/var/opt/gitlab
 
 networks:
   backend:
     external: true
+
+volumes:
+  gitlab-config:
+  gitlab-logs:
+  gitlab-data:

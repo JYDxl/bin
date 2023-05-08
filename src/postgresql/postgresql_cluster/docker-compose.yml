@@ -18,7 +18,7 @@ services:
       - POSTGRESQL_DATABASE=pg
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/postgresql-master:/bitnami/postgresql
+      - postgresql-master:/bitnami/postgresql
       - ../conf/:/bitnami/postgresql/conf/conf.d/
   postgresql-worker1:
     image: bitnami/postgresql:15.2.0
@@ -39,7 +39,7 @@ services:
       - POSTGRESQL_MASTER_PORT_NUMBER=5432
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/postgresql-worker1:/bitnami/postgresql
+      - postgresql-worker1:/bitnami/postgresql
       - ../conf/:/bitnami/postgresql/conf/conf.d/
   postgresql-worker2:
     image: bitnami/postgresql:15.2.0
@@ -60,7 +60,7 @@ services:
       - POSTGRESQL_MASTER_PORT_NUMBER=5432
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/postgresql-worker2:/bitnami/postgresql
+      - postgresql-worker2:/bitnami/postgresql
       - ../conf/:/bitnami/postgresql/conf/conf.d/
   postgresql-worker3:
     image: bitnami/postgresql:15.2.0
@@ -81,9 +81,15 @@ services:
       - POSTGRESQL_MASTER_PORT_NUMBER=5432
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/volumes/postgresql-worker3:/bitnami/postgresql
+      - postgresql-worker3:/bitnami/postgresql
       - ../conf/:/bitnami/postgresql/conf/conf.d/
 
 networks:
   backend:
     external: true
+
+volumes:
+  postgresql-master:
+  postgresql-worker1:
+  postgresql-worker2:
+  postgresql-worker3:

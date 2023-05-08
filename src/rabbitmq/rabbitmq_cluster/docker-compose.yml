@@ -12,7 +12,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/rabbitmq-stats:/bitnami/rabbitmq
+      - rabbitmq-stats:/bitnami/rabbitmq
     environment:
       - RABBITMQ_USERNAME=root
       - RABBITMQ_PASSWORD=XLrootJYD713
@@ -26,7 +26,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/rabbitmq-disc:/bitnami/rabbitmq
+      - rabbitmq-disc:/bitnami/rabbitmq
     environment:
       - RABBITMQ_USERNAME=root
       - RABBITMQ_PASSWORD=XLrootJYD713
@@ -41,7 +41,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/rabbitmq-ram:/bitnami/rabbitmq
+      - rabbitmq-ram:/bitnami/rabbitmq
     environment:
       - RABBITMQ_USERNAME=root
       - RABBITMQ_PASSWORD=XLrootJYD713
@@ -54,3 +54,8 @@ services:
 networks:
   backend:
     external: true
+
+volumes:
+  rabbitmq-stats:
+  rabbitmq-disc:
+  rabbitmq-ram:

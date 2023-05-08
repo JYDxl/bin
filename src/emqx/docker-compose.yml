@@ -13,8 +13,11 @@ services:
       - '8883:8883'
       - '18083:18083'
     volumes:
-      - /opt/volumes/emqx-node:/opt/emqx/data
+      - emqx-node:/opt/emqx
 
 networks:
   backend:
     external: true
+
+volumes:
+  emqx-node:
