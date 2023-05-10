@@ -1,0 +1,78 @@
+version: "3"
+services:
+
+  starrocks-fe:
+    image: starrocks/fe-ubuntu:2.5.5
+    container_name: starrocks-fe
+    #user: root
+    command: /opt/starrocks/fe/bin/start_fe.sh
+    ports:
+      - '8030:8030'
+      - '9020:9020'
+      - '9030:9030'
+    networks:
+      - backend
+    volumes:
+      #- path/of/host/fe.conf:/opt/starrocks/fe/conf/fe.conf
+      - fe-meta:/opt/starrocks/fe/meta
+  starrocks-be1:
+    image: starrocks/be-ubuntu:2.5.5
+    #user: root
+    command:
+      - /bin/bash
+      - -c
+      - |
+        sleep 15s; mysql --connect-timeout 2 -h starrocks-fe -P9030 -uroot -e "alter system add backend \"starrocks-be1:9050\";"
+        /opt/starrocks/be/bin/start_be.sh 
+    container_name: starrocks-be1
+    networks:
+      - backend
+    depends_on:
+      - "starrocks-fe"
+    volumes:
+      #- path/of/host/be.conf:/opt/starrocks/be/conf/be.conf
+      - be1-storage:/opt/starrocks/be/storage
+  starrocks-be2:
+    image: starrocks/be-ubuntu:2.5.5
+    #user: root
+    command:
+      - /bin/bash
+      - -c
+      - |
+        sleep 15s;  mysql --connect-timeout 2 -h starrocks-fe -P9030 -uroot -e "alter system add backend \"starrocks-be2:9050\";"
+        /opt/starrocks/be/bin/start_be.sh 
+    container_name: starrocks-be2
+    networks:
+      - backend
+    depends_on:
+      - "starrocks-fe"
+    volumes:
+      #- path/of/host/be.conf:/opt/starrocks/be/conf/be.conf
+      - be2-storage:/opt/starrocks/be/storage
+  starrocks-be3:
+    image: starrocks/be-ubuntu:2.5.5
+    #user: root
+    command:
+      - /bin/bash
+      - -c
+      - |
+        sleep 15s; mysql --connect-timeout 2 -h starrocks-fe -P9030 -uroot -e "alter system add backend \"starrocks-be3:9050\";"
+        /opt/starrocks/be/bin/start_be.sh 
+    container_name: starrocks-be3
+    networks:
+      - backend
+    depends_on:
+      - "starrocks-fe"
+    volumes:
+      #- path/of/host/be.conf:/opt/starrocks/be/conf/be.conf
+      - be3-storage:/opt/starrocks/be/storage
+
+networks:
+  backend:
+    external: true
+
+volumes:
+  fe-meta:
+  be1-storage:
+  be2-storage:
+  be3-storage:

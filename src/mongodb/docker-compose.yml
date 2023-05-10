@@ -9,7 +9,7 @@ services:
     networks:
       - backend
     volumes:
-      - /opt/volumes/mongodb-node:/bitnami/mongodb
+      - mongodb-node:/bitnami/mongodb
     environment:
       - MONGODB_ROOT_PASSWORD=XLrootJYD713
       - TZ=Asia/Shanghai

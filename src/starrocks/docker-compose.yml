@@ -1,18 +1,42 @@
-version: '3'
+version: "3"
 services:
 
-  starrocks:
-    image: starrocks/allin1-ubuntu:2.5.5
-    container_name: starrocks
-    environment:
-      - TZ=Asia/Shanghai
-    networks:
-      backend:
-        ipv4_address: 172.18.255.253
+  starrocks-fe:
+    image: starrocks/fe-ubuntu:2.5.5
+    container_name: starrocks-fe
+    command:
+      /opt/starrocks/fe/bin/start_fe.sh
     ports:
       - '8030:8030'
-      - '8040:8040'
+      - '9020:9020'
       - '9030:9030'
+    networks:
+      - backend
+    # volumes:
+    #   - ../../conf/fe.conf:/opt/starrocks/fe/conf/fe.conf
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9030" ]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  starrocks-be:
+    image: starrocks/be-ubuntu:2.5.5
+    container_name: starrocks-be
+    command:
+      - /bin/bash
+      - -c
+      - |
+        sleep 15s; mysql --connect-timeout 2 -h starrocks-fe -P9030 -uroot -e "alter system add backend \"starrocks-be:9050\";"
+        /opt/starrocks/be/bin/start_be.sh
+    ports:
+      - '8040:8040'
+    networks:
+      - backend
+    depends_on:
+      - starrocks-fe
+    # volumes:
+    #   - ../../conf/be.conf:/opt/starrocks/be/conf/be.conf
 
 networks:
   backend:
