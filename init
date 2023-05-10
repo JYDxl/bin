@@ -36,8 +36,7 @@ $set_app = Set[
 :starrocks,
 :proxypool,
 :xxljob,
-:camunda,
-:ruoyi
+:camunda
 ]
 
 $set_opt = Set[:start, :stop]
