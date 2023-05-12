@@ -2,7 +2,7 @@ version: '3'
 services:
 
   postgresql-master:
-    image: bitnami/postgresql:15.2.0
+    image: bitnami/postgresql:15.3.0
     container_name: postgresql-master
     networks:
       - backend

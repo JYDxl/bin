@@ -2,7 +2,7 @@ version: '3'
 services:
 
   mariadb-master:
-    image: bitnami/mariadb:10.11.2
+    image: bitnami/mariadb:10.11.3
     container_name: mariadb-master
     networks:
       - backend

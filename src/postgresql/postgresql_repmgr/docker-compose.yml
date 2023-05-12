@@ -2,7 +2,7 @@ version: '3'
 services:
 
   postgresql-node1:
-    image: bitnami/postgresql-repmgr:15.2.0
+    image: bitnami/postgresql-repmgr:15.3.0
     container_name: postgresql-node1
     networks:
       - backend
@@ -25,7 +25,7 @@ services:
       - postgresql-node1:/bitnami/postgresql
       - ../conf/:/bitnami/postgresql/conf/conf.d/
   postgresql-node2:
-    image: bitnami/postgresql-repmgr:15.2.0
+    image: bitnami/postgresql-repmgr:15.3.0
     container_name: postgresql-node2
     networks:
       - backend
